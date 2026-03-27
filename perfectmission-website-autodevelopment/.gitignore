@@ -1,0 +1,8 @@
+.env
+logs/
+state/
+memory/daily/
+.agent/
+steering/providers/linear/map.json
+steering/providers/linear/last-sync.json
+steering/providers/linear/outbox.jsonl
