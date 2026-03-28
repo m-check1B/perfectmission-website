@@ -139,6 +139,12 @@ html.js .reveal.is-visible {
   transform: translateY(0);
 }
 
+html.js .reveal.reveal--instant {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
 .site-header {
   position: sticky;
   top: 0;

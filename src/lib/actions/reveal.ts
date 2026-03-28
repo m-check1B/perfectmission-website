@@ -26,7 +26,12 @@ export function reveal(node: HTMLElement, options: RevealOptions = {}) {
     return bounds.top < window.innerHeight;
   }
 
+  function clearImmediateState() {
+    node.classList.remove('reveal--instant');
+  }
+
   function showImmediately() {
+    node.classList.add('reveal--instant');
     node.classList.add('is-visible');
   }
 
@@ -49,6 +54,7 @@ export function reveal(node: HTMLElement, options: RevealOptions = {}) {
       return;
     }
 
+    clearImmediateState();
     node.classList.remove('is-visible');
     observer = new IntersectionObserver(
       (entries) => {
@@ -83,6 +89,8 @@ export function reveal(node: HTMLElement, options: RevealOptions = {}) {
   return {
     destroy() {
       cleanupObserver();
+      clearImmediateState();
+      node.classList.remove('is-visible');
       node.style.removeProperty('--reveal-delay');
       reducedMotionQuery.removeEventListener('change', handleMotionPreferenceChange);
     },
