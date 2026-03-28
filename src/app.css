@@ -331,11 +331,13 @@ html.js .reveal.reveal--instant {
 
 .section {
   position: relative;
-  padding: var(--space-20) 0;
+  padding: var(--section-padding-desktop, var(--space-20)) 0;
   scroll-margin-top: calc(var(--nav-height) + 1rem);
 }
 
 .section--dark {
+  --section-padding-desktop: var(--space-24);
+  --section-padding-mobile: var(--space-20);
   color: var(--text-on-dark);
   background:
     radial-gradient(circle at top left, rgba(201, 168, 76, 0.1), transparent 30%),
@@ -344,11 +346,15 @@ html.js .reveal.reveal--instant {
 }
 
 .section--light {
+  --section-padding-desktop: var(--space-20);
+  --section-padding-mobile: var(--space-16);
   color: var(--text-primary);
   background: var(--bg-off-white);
 }
 
 .section--surface {
+  --section-padding-desktop: var(--space-20);
+  --section-padding-mobile: var(--space-16);
   color: var(--text-primary);
   background: var(--surface-white);
 }
@@ -969,11 +975,15 @@ html.js .reveal.reveal--instant {
   }
 
   .section {
-    padding: var(--space-16) 0;
+    padding: var(--section-padding-mobile, var(--space-16)) 0;
   }
 
   .hero {
     padding-top: var(--space-20);
+  }
+
+  .card {
+    padding: var(--space-6);
   }
 
   .hero__visual-frame {
