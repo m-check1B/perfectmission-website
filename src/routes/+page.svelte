@@ -8,6 +8,8 @@
     { href: '#founders', label: 'Founders' },
     { href: '#process', label: 'Process' }
   ];
+  const contactSectionHref = '#contact';
+  const trackedSectionHrefs = [...navLinks.map((link) => link.href), contactSectionHref];
 
   const statHighlights = [
     { value: '14', label: 'Markets covered' },
@@ -181,6 +183,7 @@
 
   let menuOpen = false;
   let headerCondensed = false;
+  let activeNavHref = '';
   let navElement: HTMLElement | undefined;
   let navToggleElement: HTMLButtonElement | undefined;
   let contactName = '';
@@ -283,6 +286,7 @@
     }
 
     headerCondensed = window.scrollY > 24;
+    updateActiveNav();
   }
 
   function handleResize() {
@@ -293,6 +297,27 @@
     if (window.innerWidth > mobileNavBreakpoint && menuOpen) {
       void closeMenu();
     }
+
+    updateActiveNav();
+  }
+
+  function updateActiveNav() {
+    if (typeof document === 'undefined' || typeof window === 'undefined') {
+      return;
+    }
+
+    const threshold = Math.max(window.innerHeight * 0.32, 96);
+    activeNavHref =
+      trackedSectionHrefs.find((href) => {
+        const section = document.querySelector<HTMLElement>(href);
+
+        if (!section) {
+          return false;
+        }
+
+        const bounds = section.getBoundingClientRect();
+        return bounds.top <= threshold && bounds.bottom >= threshold;
+      }) ?? '';
   }
 
   function handleContactSubmit(event: SubmitEvent) {
@@ -397,9 +422,22 @@
         aria-label="Primary"
       >
         {#each navLinks as link}
-          <a href={link.href} onclick={() => void closeMenu()}>{link.label}</a>
+          <a
+            href={link.href}
+            aria-current={activeNavHref === link.href ? 'location' : undefined}
+            onclick={() => void closeMenu()}
+          >
+            {link.label}
+          </a>
         {/each}
-        <a href="#contact" class="site-nav__cta" onclick={() => void closeMenu()}>Get in touch</a>
+        <a
+          href={contactSectionHref}
+          class="site-nav__cta"
+          aria-current={activeNavHref === contactSectionHref ? 'location' : undefined}
+          onclick={() => void closeMenu()}
+        >
+          Get in touch
+        </a>
       </nav>
     </div>
 

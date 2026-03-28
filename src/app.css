@@ -239,11 +239,13 @@ html.js .reveal.reveal--instant {
 }
 
 .site-nav a:hover,
+.site-nav a[aria-current='location'],
 .site-nav a:focus-visible {
   color: var(--text-on-dark);
 }
 
 .site-nav a:hover::after,
+.site-nav a[aria-current='location']::after,
 .site-nav a:focus-visible::after {
   transform: scaleX(1);
 }
@@ -264,6 +266,7 @@ html.js .reveal.reveal--instant {
 }
 
 .site-nav__cta:hover,
+.site-nav__cta[aria-current='location'],
 .site-nav__cta:focus-visible {
   color: var(--primary-deep-navy);
   background: var(--accent-gold);
