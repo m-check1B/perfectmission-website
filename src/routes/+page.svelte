@@ -176,7 +176,7 @@
       addressCountry: 'GB'
     },
     serviceType: 'Real Estate Development Consultancy'
-  });
+  }).replace(/</g, '\\u003c');
 
   let menuOpen = false;
   let headerCondensed = false;
@@ -332,9 +332,7 @@
   />
   <meta name="twitter:image" content={socialImageUrl} />
   <meta name="twitter:image:alt" content="Perfect Mission social card with a stylized market atlas in navy and gold." />
-  <script type="application/ld+json">
-    {jsonLd}
-  </script>
+  {@html `<script type="application/ld+json">${jsonLd}</script>`}
 </svelte:head>
 
 <svelte:window onkeydown={handleKeydown} onscroll={handleScroll} onresize={handleResize} />
