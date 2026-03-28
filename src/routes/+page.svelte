@@ -341,6 +341,7 @@
   />
   <meta name="theme-color" content="#0A1628" />
   <link rel="canonical" href={`${siteUrl}/`} />
+  <link rel="preload" as="image" href={heroImageUrl} type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={`${siteUrl}/`} />
   <meta property="og:site_name" content="Perfect Mission" />
