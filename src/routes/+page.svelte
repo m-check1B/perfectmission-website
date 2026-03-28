@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { reveal } from '$lib/actions/reveal';
 
   const navLinks = [
@@ -178,11 +178,35 @@
 
   let menuOpen = false;
   let headerCondensed = false;
+  let navElement: HTMLElement | undefined;
+  let navToggleElement: HTMLButtonElement | undefined;
 
   const currentYear = new Date().getFullYear();
 
-  function closeMenu() {
+  async function openMenu() {
+    menuOpen = true;
+    await tick();
+    navElement?.querySelector<HTMLAnchorElement>('a')?.focus();
+  }
+
+  async function closeMenu(restoreFocus = false) {
     menuOpen = false;
+
+    if (!restoreFocus) {
+      return;
+    }
+
+    await tick();
+    navToggleElement?.focus();
+  }
+
+  function toggleMenu() {
+    if (menuOpen) {
+      void closeMenu(true);
+      return;
+    }
+
+    void openMenu();
   }
 
   function syncMenuLock(isOpen: boolean) {
@@ -208,7 +232,7 @@
     }
 
     if (window.innerWidth > mobileNavBreakpoint && menuOpen) {
-      closeMenu();
+      void closeMenu();
     }
   }
 
@@ -260,12 +284,14 @@
 </svelte:head>
 
 <svelte:window
-  onkeydown={(event) => (event.key === 'Escape' ? closeMenu() : undefined)}
+  onkeydown={(event) => (event.key === 'Escape' && menuOpen ? closeMenu(true) : undefined)}
   onscroll={handleScroll}
   onresize={handleResize}
 />
 
-<div class="page-shell">
+<div class="page-shell" id="top">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <header class:site-header--condensed={headerCondensed} class="site-header">
     <div class="site-header__inner">
       <a class="brand" href="#top" aria-label="Perfect Mission homepage">
@@ -273,21 +299,28 @@
       </a>
 
       <button
+        bind:this={navToggleElement}
         class="nav-toggle"
         type="button"
         aria-controls="site-nav"
         aria-expanded={menuOpen}
         aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-        onclick={() => (menuOpen = !menuOpen)}
+        onclick={toggleMenu}
       >
         <span class="nav-toggle__bars" aria-hidden="true"></span>
       </button>
 
-      <nav id="site-nav" class:site-nav--open={menuOpen} class="site-nav" aria-label="Primary">
+      <nav
+        bind:this={navElement}
+        id="site-nav"
+        class:site-nav--open={menuOpen}
+        class="site-nav"
+        aria-label="Primary"
+      >
         {#each navLinks as link}
-          <a href={link.href} onclick={closeMenu}>{link.label}</a>
+          <a href={link.href} onclick={() => void closeMenu()}>{link.label}</a>
         {/each}
-        <a href="#contact" class="site-nav__cta" onclick={closeMenu}>Get in touch</a>
+        <a href="#contact" class="site-nav__cta" onclick={() => void closeMenu()}>Get in touch</a>
       </nav>
     </div>
 
@@ -296,11 +329,13 @@
       class:menu-scrim--visible={menuOpen}
       class="menu-scrim"
       aria-label="Close navigation menu"
-      onclick={closeMenu}
+      aria-hidden={menuOpen ? 'false' : 'true'}
+      tabindex={menuOpen ? 0 : -1}
+      onclick={() => void closeMenu(true)}
     ></button>
   </header>
 
-  <main id="top">
+  <main id="main-content" tabindex="-1">
     <section class="section section--dark hero" aria-labelledby="hero-title">
       <div class="section__inner hero__content">
         <div class="hero__layout">

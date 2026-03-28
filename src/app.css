@@ -89,6 +89,26 @@ img {
   outline-offset: 2px;
 }
 
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 1rem;
+  z-index: 30;
+  padding: 0.875rem 1rem;
+  border-radius: 6px;
+  background: var(--accent-gold);
+  color: var(--primary-deep-navy);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -855,6 +875,7 @@ html.js .reveal.is-visible {
     position: fixed;
     z-index: 2;
     inset: 0;
+    visibility: hidden;
     flex-direction: column;
     align-items: stretch;
     justify-content: center;
@@ -868,13 +889,16 @@ html.js .reveal.is-visible {
     pointer-events: none;
     transition:
       transform var(--duration-normal) var(--ease-out),
-      opacity var(--duration-normal) var(--ease-out);
+      opacity var(--duration-normal) var(--ease-out),
+      visibility 0s linear var(--duration-normal);
   }
 
   .site-nav--open {
+    visibility: visible;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+    transition-delay: 0s, 0s, 0s;
   }
 
   .site-nav a {
@@ -903,16 +927,21 @@ html.js .reveal.is-visible {
     position: fixed;
     z-index: 1;
     inset: 0;
+    visibility: hidden;
     opacity: 0;
     pointer-events: none;
     background: rgba(10, 22, 40, 0.95);
     backdrop-filter: blur(18px);
-    transition: opacity var(--duration-normal) var(--ease-out);
+    transition:
+      opacity var(--duration-normal) var(--ease-out),
+      visibility 0s linear var(--duration-normal);
   }
 
   .menu-scrim--visible {
+    visibility: visible;
     opacity: 1;
     pointer-events: auto;
+    transition-delay: 0s, 0s;
   }
 
   .section {
