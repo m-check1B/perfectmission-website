@@ -427,7 +427,7 @@ html.js .reveal.reveal--instant {
 
 .hero {
   overflow: hidden;
-  padding: clamp(5rem, 10vw, 10rem) 0 var(--space-24);
+  padding: var(--space-32) 0;
 }
 
 .hero::before {
@@ -988,7 +988,7 @@ html.js .reveal.reveal--instant {
   }
 
   .hero {
-    padding-top: var(--space-20);
+    padding: var(--space-32) 0;
   }
 
   .card {
@@ -1006,6 +1006,12 @@ html.js .reveal.reveal--instant {
 
   .section__header {
     margin-bottom: var(--space-8);
+  }
+}
+
+@media (min-width: 64rem) {
+  .hero {
+    padding: 10rem 0;
   }
 }
 
