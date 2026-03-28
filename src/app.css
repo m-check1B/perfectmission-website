@@ -913,14 +913,16 @@ html.js .reveal.reveal--instant {
 @media (max-width: 64rem) {
   .hero__layout,
   .hero__visual-meta,
-  .grid--three,
-  .grid--two,
   .contact-layout {
     grid-template-columns: 1fr;
   }
 
   .hero__stats {
     grid-template-columns: 1fr;
+  }
+
+  .grid--three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .markets-grid {
@@ -1010,6 +1012,8 @@ html.js .reveal.reveal--instant {
     padding: var(--section-padding-mobile, var(--space-16)) 0;
   }
 
+  .grid--three,
+  .grid--two,
   .markets-grid {
     grid-template-columns: 1fr;
   }
