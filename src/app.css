@@ -187,6 +187,9 @@ html.js .reveal.reveal--instant {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
   text-decoration: none;
   font-family: var(--font-heading);
   font-size: 1.25rem;
@@ -210,6 +213,10 @@ html.js .reveal.reveal--instant {
 }
 
 .site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: 0.25rem;
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
