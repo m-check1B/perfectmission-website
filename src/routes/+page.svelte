@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { reveal } from '$lib/actions/reveal';
 
   const navLinks = [
@@ -149,6 +150,7 @@
   const siteUrl = 'https://perfectmission.co.uk';
   const heroImageUrl = '/images/market-atlas-panel.svg';
   const socialImageUrl = `${siteUrl}/social/perfect-mission-og.png`;
+  const mobileNavBreakpoint = 768;
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -175,12 +177,52 @@
   });
 
   let menuOpen = false;
+  let headerCondensed = false;
 
   const currentYear = new Date().getFullYear();
 
   function closeMenu() {
     menuOpen = false;
   }
+
+  function syncMenuLock(isOpen: boolean) {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
+    document.documentElement.classList.toggle('menu-open', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
+  }
+
+  function handleScroll() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    headerCondensed = window.scrollY > 24;
+  }
+
+  function handleResize() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (window.innerWidth > mobileNavBreakpoint && menuOpen) {
+      closeMenu();
+    }
+  }
+
+  onMount(() => {
+    handleScroll();
+    handleResize();
+    syncMenuLock(menuOpen);
+
+    return () => {
+      syncMenuLock(false);
+    };
+  });
+
+  $: syncMenuLock(menuOpen);
 </script>
 
 <svelte:head>
@@ -217,10 +259,14 @@
   </script>
 </svelte:head>
 
-<svelte:window onkeydown={(event) => (event.key === 'Escape' ? closeMenu() : undefined)} />
+<svelte:window
+  onkeydown={(event) => (event.key === 'Escape' ? closeMenu() : undefined)}
+  onscroll={handleScroll}
+  onresize={handleResize}
+/>
 
 <div class="page-shell">
-  <header class="site-header">
+  <header class:site-header--condensed={headerCondensed} class="site-header">
     <div class="site-header__inner">
       <a class="brand" href="#top" aria-label="Perfect Mission homepage">
         Perfect <span class="brand__accent">Mission</span>
