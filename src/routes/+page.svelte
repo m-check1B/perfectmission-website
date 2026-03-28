@@ -148,7 +148,7 @@
 
   const siteUrl = 'https://perfectmission.co.uk';
   const heroImageUrl = '/images/market-atlas-panel.svg';
-  const socialImageUrl = `${siteUrl}/social/perfect-mission-og.svg`;
+  const socialImageUrl = `${siteUrl}/social/perfect-mission-og.png`;
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -203,7 +203,7 @@
   <meta property="og:image:alt" content="Perfect Mission social card with a stylized market atlas in navy and gold." />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:type" content="image/svg+xml" />
+  <meta property="og:image:type" content="image/png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Perfect Mission | AI-Driven Real Estate Consultancy" />
   <meta
