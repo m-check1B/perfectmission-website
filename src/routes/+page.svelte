@@ -630,7 +630,7 @@
                   <span class="contact-item__label">{item.label}</span>
                   {#if item.href}
                     <p class="contact-item__value">
-                      <a href={item.href}>{item.value}</a>
+                      <a class="text-link" href={item.href}>{item.value}</a>
                     </p>
                   {:else}
                     <p class="contact-item__value">{item.value}</p>
@@ -696,7 +696,7 @@
               <button class="btn btn--primary btn--wide" type="submit">Send inquiry</button>
               <p class="contact-note" id="contact-note">
                 Submitting opens your email client with a prefilled brief. Prefer direct email? Use
-                <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+                <a class="text-link" href={`mailto:${contactEmail}`}>{contactEmail}</a>.
               </p>
             </form>
           </article>

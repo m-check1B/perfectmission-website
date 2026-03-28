@@ -73,6 +73,24 @@ a {
   color: inherit;
 }
 
+.text-link {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration-line: underline;
+  text-decoration-color: rgba(201, 168, 76, 0.68);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    text-decoration-color var(--duration-fast) var(--ease-out);
+}
+
+.text-link:hover,
+.text-link:focus-visible {
+  color: var(--secondary-slate-blue);
+  text-decoration-color: var(--accent-gold);
+}
+
 button,
 input,
 textarea {
