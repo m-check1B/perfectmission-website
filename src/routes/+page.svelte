@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { reveal } from '$lib/actions/reveal';
+
   const navLinks = [
     { href: '#approach', label: 'Approach' },
     { href: '#markets', label: 'Markets' },
@@ -223,7 +225,7 @@
   <main id="top">
     <section class="section section--dark hero" aria-labelledby="hero-title">
       <div class="section__inner hero__content">
-        <div class="hero__copy">
+        <div class="hero__copy reveal" use:reveal>
           <span class="eyebrow eyebrow--dark">AI-driven real estate consultancy</span>
           <h1 id="hero-title" class="hero__title">
             Emerging market opportunities, <em>found fast</em>.
@@ -240,8 +242,8 @@
         </div>
 
         <div class="hero__stats" aria-label="Key highlights">
-          {#each statHighlights as stat}
-            <article class="stat-card">
+          {#each statHighlights as stat, index}
+            <article class="stat-card reveal" use:reveal={{ delay: index * 80 }}>
               <span class="stat-card__value">{stat.value}</span>
               <span class="stat-card__label">{stat.label}</span>
             </article>
@@ -252,7 +254,7 @@
 
     <section id="approach" class="section section--light" aria-labelledby="approach-title">
       <div class="section__inner">
-        <div class="section__header section__header--centered">
+        <div class="section__header section__header--centered reveal" use:reveal>
           <span class="eyebrow eyebrow--light">Our approach</span>
           <h2 id="approach-title" class="section-title">Speed is the strategy</h2>
           <p class="section-copy">
@@ -262,8 +264,8 @@
         </div>
 
         <div class="grid grid--three">
-          {#each approachPillars as pillar}
-            <article class="card card--light">
+          {#each approachPillars as pillar, index}
+            <article class="card card--light reveal" use:reveal={{ delay: index * 80 }}>
               <span class="card__kicker">{pillar.kicker}</span>
               <h3 class="card__title">{pillar.title}</h3>
               <p class="card__body">{pillar.body}</p>
@@ -275,7 +277,7 @@
 
     <section id="markets" class="section section--dark" aria-labelledby="markets-title">
       <div class="section__inner">
-        <div class="section__header">
+        <div class="section__header reveal" use:reveal>
           <span class="eyebrow eyebrow--dark">Markets</span>
           <h2 id="markets-title" class="section-title">Focused where institutional capital is still early</h2>
           <p class="section-copy hero__lede">
@@ -285,8 +287,8 @@
         </div>
 
         <div class="markets-grid">
-          {#each marketRegions as region}
-            <article class="card card--dark market-region">
+          {#each marketRegions as region, index}
+            <article class="card card--dark market-region reveal" use:reveal={{ delay: index * 80 }}>
               <div class="market-region__heading">
                 <h3>{region.name}</h3>
                 <span class="market-region__count">{region.count} markets</span>
@@ -304,7 +306,7 @@
 
     <section id="founders" class="section section--light" aria-labelledby="founders-title">
       <div class="section__inner">
-        <div class="section__header section__header--centered">
+        <div class="section__header section__header--centered reveal" use:reveal>
           <span class="eyebrow eyebrow--light">Leadership</span>
           <h2 id="founders-title" class="section-title">Three decades of cross-border dealmaking</h2>
           <p class="section-copy">
@@ -314,8 +316,8 @@
         </div>
 
         <div class="grid grid--two">
-          {#each founders as founder}
-            <article class="card card--light">
+          {#each founders as founder, index}
+            <article class="card card--light reveal" use:reveal={{ delay: index * 80 }}>
               <span class="card__kicker">Founder</span>
               <h3 class="card__title">{founder.name}</h3>
               <p class="founder-card__meta">{founder.role}</p>
@@ -328,7 +330,7 @@
 
     <section id="process" class="section section--dark" aria-labelledby="process-title">
       <div class="section__inner">
-        <div class="section__header">
+        <div class="section__header reveal" use:reveal>
           <span class="eyebrow eyebrow--dark">Process</span>
           <h2 id="process-title" class="section-title">From signal to settlement</h2>
           <p class="section-copy hero__lede">
@@ -338,8 +340,8 @@
         </div>
 
         <div class="grid grid--three process-grid">
-          {#each processSteps as step}
-            <article class="card card--dark process-card">
+          {#each processSteps as step, index}
+            <article class="card card--dark process-card reveal" use:reveal={{ delay: index * 80 }}>
               <h3 class="card__title">{step.title}</h3>
               <p class="card__body">{step.body}</p>
             </article>
@@ -350,7 +352,7 @@
 
     <section id="contact" class="section section--surface" aria-labelledby="contact-title">
       <div class="section__inner">
-        <div class="section__header section__header--centered">
+        <div class="section__header section__header--centered reveal" use:reveal>
           <span class="eyebrow eyebrow--muted">Contact</span>
           <h2 id="contact-title" class="section-title">Start with a market briefing</h2>
           <p class="section-copy">
@@ -360,7 +362,7 @@
         </div>
 
         <div class="contact-layout">
-          <article class="card card--light">
+          <article class="card card--light reveal" use:reveal>
             <h3 class="card__title">Perfect Mission Ltd</h3>
             <div class="contact-list">
               {#each contactDetails as item}
@@ -378,7 +380,7 @@
             </div>
           </article>
 
-          <article class="card card--light">
+          <article class="card card--light reveal" use:reveal={{ delay: 80 }}>
             <form
               class="contact-form"
               action="mailto:info@perfectmission.co.uk"
@@ -421,7 +423,7 @@
 
     <section class="section section--dark" aria-labelledby="cta-title">
       <div class="section__inner">
-        <div class="section__header section__header--centered">
+        <div class="section__header section__header--centered reveal" use:reveal>
           <span class="eyebrow eyebrow--dark">Get started</span>
           <h2 id="cta-title" class="section-title">The best opportunities do not wait for committee speed</h2>
           <p class="section-copy hero__lede">
@@ -438,7 +440,7 @@
   </main>
 
   <footer class="footer">
-    <div class="footer__inner">
+    <div class="footer__inner reveal" use:reveal>
       <span>Perfect Mission Ltd · Registered in England & Wales · Company No. 08651715</span>
       <span>© {currentYear} Perfect Mission Ltd. All rights reserved.</span>
     </div>
