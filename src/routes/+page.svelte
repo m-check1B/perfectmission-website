@@ -151,6 +151,8 @@
   const heroImageUrl = '/images/market-atlas-panel.svg';
   const socialImageUrl = `${siteUrl}/social/perfect-mission-og.png`;
   const mobileNavBreakpoint = 768;
+  const mobileMenuFocusableSelector =
+    'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -218,6 +220,58 @@
     document.body.classList.toggle('menu-open', isOpen);
   }
 
+  function getMenuFocusables() {
+    const navFocusables = Array.from(
+      navElement?.querySelectorAll<HTMLElement>(mobileMenuFocusableSelector) ?? []
+    );
+    const toggleFocusable = navToggleElement ? [navToggleElement] : [];
+
+    return [...toggleFocusable, ...navFocusables].filter(
+      (element) =>
+        !element.hasAttribute('disabled') &&
+        element.getAttribute('aria-hidden') !== 'true' &&
+        element.getClientRects().length > 0
+    );
+  }
+
+  function handleKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape' && menuOpen) {
+      void closeMenu(true);
+      return;
+    }
+
+    if (event.key !== 'Tab' || !menuOpen) {
+      return;
+    }
+
+    const focusables = getMenuFocusables();
+
+    if (focusables.length === 0) {
+      return;
+    }
+
+    const firstFocusable = focusables[0];
+    const lastFocusable = focusables[focusables.length - 1];
+    const activeElement = document.activeElement as HTMLElement | null;
+
+    if (!activeElement || !focusables.includes(activeElement)) {
+      event.preventDefault();
+      (event.shiftKey ? lastFocusable : firstFocusable).focus();
+      return;
+    }
+
+    if (event.shiftKey && activeElement === firstFocusable) {
+      event.preventDefault();
+      lastFocusable.focus();
+      return;
+    }
+
+    if (!event.shiftKey && activeElement === lastFocusable) {
+      event.preventDefault();
+      firstFocusable.focus();
+    }
+  }
+
   function handleScroll() {
     if (typeof window === 'undefined') {
       return;
@@ -283,11 +337,7 @@
   </script>
 </svelte:head>
 
-<svelte:window
-  onkeydown={(event) => (event.key === 'Escape' && menuOpen ? closeMenu(true) : undefined)}
-  onscroll={handleScroll}
-  onresize={handleResize}
-/>
+<svelte:window onkeydown={handleKeydown} onscroll={handleScroll} onresize={handleResize} />
 
 <div class="page-shell" id="top">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -335,7 +385,12 @@
     ></button>
   </header>
 
-  <main id="main-content" tabindex="-1">
+  <main
+    id="main-content"
+    tabindex="-1"
+    inert={menuOpen ? true : undefined}
+    aria-hidden={menuOpen ? 'true' : undefined}
+  >
     <section class="section section--dark hero" aria-labelledby="hero-title">
       <div class="section__inner hero__content">
         <div class="hero__layout">
@@ -577,7 +632,11 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer
+    class="footer"
+    inert={menuOpen ? true : undefined}
+    aria-hidden={menuOpen ? 'true' : undefined}
+  >
     <div class="footer__inner reveal" use:reveal>
       <span>Perfect Mission Ltd · Registered in England & Wales · Company No. 08651715</span>
       <span>© {currentYear} Perfect Mission Ltd. All rights reserved.</span>
