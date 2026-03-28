@@ -148,6 +148,7 @@
   ];
 
   const siteUrl = 'https://perfectmission.co.uk';
+  const contactEmail = 'info@perfectmission.co.uk';
   const heroImageUrl = '/images/market-atlas-panel.svg';
   const socialImageUrl = `${siteUrl}/social/perfect-mission-og.png`;
   const mobileNavBreakpoint = 768;
@@ -159,7 +160,7 @@
     '@type': 'ProfessionalService',
     name: 'Perfect Mission Ltd',
     url: siteUrl,
-    email: 'info@perfectmission.co.uk',
+    email: contactEmail,
     description:
       'AI-driven real estate development consultancy for institutional investors targeting emerging markets.',
     image: socialImageUrl,
@@ -182,6 +183,10 @@
   let headerCondensed = false;
   let navElement: HTMLElement | undefined;
   let navToggleElement: HTMLButtonElement | undefined;
+  let contactName = '';
+  let contactEmailAddress = '';
+  let contactCompany = '';
+  let contactMessage = '';
 
   const currentYear = new Date().getFullYear();
 
@@ -288,6 +293,31 @@
     if (window.innerWidth > mobileNavBreakpoint && menuOpen) {
       void closeMenu();
     }
+  }
+
+  function handleContactSubmit(event: SubmitEvent) {
+    event.preventDefault();
+
+    const subjectParts = ['Perfect Mission market briefing'];
+
+    if (contactCompany.trim()) {
+      subjectParts.push(contactCompany.trim());
+    } else if (contactName.trim()) {
+      subjectParts.push(contactName.trim());
+    }
+
+    const bodyLines = [
+      `Name: ${contactName.trim() || 'Not provided'}`,
+      `Email: ${contactEmailAddress.trim() || 'Not provided'}`,
+      `Company: ${contactCompany.trim() || 'Not provided'}`,
+      '',
+      'Investment brief:',
+      contactMessage.trim() || 'Not provided'
+    ];
+
+    const mailtoHref = `mailto:${contactEmail}?subject=${encodeURIComponent(subjectParts.join(' - '))}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+
+    window.location.href = mailtoHref;
   }
 
   onMount(() => {
@@ -574,28 +604,50 @@
           <article class="card card--light reveal" use:reveal={{ delay: 80 }}>
             <form
               class="contact-form"
-              action="mailto:info@perfectmission.co.uk"
-              method="POST"
-              enctype="text/plain"
+              action={`mailto:${contactEmail}`}
+              method="GET"
+              aria-describedby="contact-note"
+              onsubmit={handleContactSubmit}
             >
               <div class="field-group">
                 <label for="name">Name</label>
-                <input id="name" name="name" type="text" autocomplete="name" required />
+                <input
+                  bind:value={contactName}
+                  id="name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                />
               </div>
 
               <div class="field-group">
                 <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" required />
+                <input
+                  bind:value={contactEmailAddress}
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                />
               </div>
 
               <div class="field-group">
                 <label for="company">Company or organisation</label>
-                <input id="company" name="company" type="text" autocomplete="organization" />
+                <input
+                  bind:value={contactCompany}
+                  id="company"
+                  name="company"
+                  type="text"
+                  autocomplete="organization"
+                />
               </div>
 
               <div class="field-group">
                 <label for="message">Investment brief</label>
                 <textarea
+                  bind:value={contactMessage}
                   id="message"
                   name="message"
                   placeholder="Markets, ticket sizes, asset classes, or current sourcing constraints."
@@ -603,8 +655,9 @@
               </div>
 
               <button class="btn btn--primary btn--wide" type="submit">Send inquiry</button>
-              <p class="contact-note">
-                Prefer direct email? Use <a href="mailto:info@perfectmission.co.uk">info@perfectmission.co.uk</a>.
+              <p class="contact-note" id="contact-note">
+                Submitting opens your email client with a prefilled brief. Prefer direct email? Use
+                <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
               </p>
             </form>
           </article>
