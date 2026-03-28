@@ -610,7 +610,7 @@
       </div>
     </section>
 
-    <section id="contact" class="section section--surface" aria-labelledby="contact-title">
+    <section id="contact" class="section section--light" aria-labelledby="contact-title">
       <div class="section__inner">
         <div class="section__header section__header--centered reveal" use:reveal>
           <span class="eyebrow eyebrow--muted">Contact</span>

@@ -857,6 +857,12 @@ html.js .reveal.reveal--instant {
   border-radius: 6px;
   background: var(--surface-white);
   color: var(--text-primary);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.field-group input:focus-visible,
+.field-group textarea:focus-visible {
+  border-color: var(--accent-gold);
 }
 
 .field-group textarea {
