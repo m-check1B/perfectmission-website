@@ -72,6 +72,21 @@
     }
   ];
 
+  const coverageSignals = [
+    {
+      label: 'CEE',
+      body: 'Institutional screening from Prague and Sofia through Bucharest, Warsaw, Chisinau, and Tirana.'
+    },
+    {
+      label: 'LATAM',
+      body: 'Deal-flow coverage across Honduras, Dominican Republic, Bolivia, Panama, Belize, and Cuba.'
+    },
+    {
+      label: 'Global',
+      body: 'Frontier market visibility in Vietnam and Morocco for investors expanding beyond crowded hubs.'
+    }
+  ];
+
   const founders = [
     {
       name: 'Matej Havlin',
@@ -131,15 +146,24 @@
     }
   ];
 
+  const siteUrl = 'https://perfectmission.co.uk';
+  const heroImageUrl = '/images/market-atlas-panel.svg';
+  const socialImageUrl = `${siteUrl}/social/perfect-mission-og.svg`;
+
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     name: 'Perfect Mission Ltd',
-    url: 'https://perfectmission.co.uk',
+    url: siteUrl,
     email: 'info@perfectmission.co.uk',
     description:
       'AI-driven real estate development consultancy for institutional investors targeting emerging markets.',
+    image: socialImageUrl,
     areaServed: ['CZ', 'BG', 'RO', 'PL', 'MD', 'AL', 'HN', 'DO', 'BO', 'PA', 'BZ', 'CU', 'VN', 'MA'],
+    founder: founders.map((founder) => ({
+      '@type': 'Person',
+      name: founder.name
+    })),
     address: {
       '@type': 'PostalAddress',
       streetAddress: '20 Wenlock Road',
@@ -165,21 +189,29 @@
     name="description"
     content="Perfect Mission identifies and executes real estate opportunities across emerging markets with AI-powered analysis and three decades of founder expertise."
   />
-  <link rel="canonical" href="https://perfectmission.co.uk/" />
+  <meta name="theme-color" content="#0A1628" />
+  <link rel="canonical" href={`${siteUrl}/`} />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://perfectmission.co.uk/" />
+  <meta property="og:url" content={`${siteUrl}/`} />
   <meta property="og:site_name" content="Perfect Mission" />
   <meta property="og:title" content="Perfect Mission | AI-Driven Real Estate Consultancy" />
   <meta
     property="og:description"
     content="Faster to market, analyse, decide, finance, and execute across frontier real estate markets."
   />
+  <meta property="og:image" content={socialImageUrl} />
+  <meta property="og:image:alt" content="Perfect Mission social card with a stylized market atlas in navy and gold." />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/svg+xml" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Perfect Mission | AI-Driven Real Estate Consultancy" />
   <meta
     name="twitter:description"
     content="Emerging market real estate consultancy for investors who need speed, structure, and cross-border execution."
   />
+  <meta name="twitter:image" content={socialImageUrl} />
+  <meta name="twitter:image:alt" content="Perfect Mission social card with a stylized market atlas in navy and gold." />
   <script type="application/ld+json">
     {jsonLd}
   </script>
@@ -225,19 +257,44 @@
   <main id="top">
     <section class="section section--dark hero" aria-labelledby="hero-title">
       <div class="section__inner hero__content">
-        <div class="hero__copy reveal" use:reveal>
-          <span class="eyebrow eyebrow--dark">AI-driven real estate consultancy</span>
-          <h1 id="hero-title" class="hero__title">
-            Emerging market opportunities, <em>found fast</em>.
-          </h1>
-          <p class="hero__lede">
-            Perfect Mission combines thirty years of founder expertise with AI-powered analysis to
-            identify, evaluate, finance, and execute real estate investments across frontier
-            markets before the rest of the market catches up.
-          </p>
-          <div class="cta-row">
-            <a class="btn btn--primary" href="#contact">Request a briefing</a>
-            <a class="btn btn--secondary" href="#approach">See the operating model</a>
+        <div class="hero__layout">
+          <div class="hero__copy reveal" use:reveal>
+            <span class="eyebrow eyebrow--dark">AI-driven real estate consultancy</span>
+            <h1 id="hero-title" class="hero__title">
+              Emerging market opportunities, <em>found fast</em>.
+            </h1>
+            <p class="hero__lede">
+              Perfect Mission combines thirty years of founder expertise with AI-powered analysis
+              to identify, evaluate, finance, and execute real estate investments across frontier
+              markets before the rest of the market catches up.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn--primary" href="#contact">Request a briefing</a>
+              <a class="btn btn--secondary" href="#approach">See the operating model</a>
+            </div>
+          </div>
+
+          <div class="hero__visual reveal" use:reveal={{ delay: 120 }}>
+            <div class="hero__visual-frame">
+              <span class="hero__visual-badge">Live market footprint</span>
+              <img
+                src={heroImageUrl}
+                alt="Stylized market atlas connecting Central and Eastern Europe, Latin America, Morocco, and Vietnam."
+                width="960"
+                height="720"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+
+            <div class="hero__visual-meta" aria-label="Coverage summary">
+              {#each coverageSignals as signal}
+                <article class="hero__visual-region">
+                  <span class="hero__visual-region-label">{signal.label}</span>
+                  <p class="hero__visual-region-copy">{signal.body}</p>
+                </article>
+              {/each}
+            </div>
           </div>
         </div>
 

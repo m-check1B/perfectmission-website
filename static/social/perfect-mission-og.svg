@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Perfect Mission social preview</title>
+  <desc id="desc">Perfect Mission social card with a stylized market atlas and the tagline AI-driven real estate consultancy for emerging markets.</desc>
+  <defs>
+    <linearGradient id="bg" x1="122" x2="1064" y1="38" y2="592" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#162438"/>
+      <stop offset=".55" stop-color="#0a1628"/>
+      <stop offset="1" stop-color="#07101b"/>
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="0" cy="0" r="1" gradientTransform="translate(292 154) rotate(65.3) scale(420 420)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c9a84c" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blueGlow" cx="0" cy="0" r="1" gradientTransform="translate(920 104) rotate(135.2) scale(360 360)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3a5068" stop-opacity=".54"/>
+      <stop offset="1" stop-color="#3a5068" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
+      <path d="M54 0H0V54" fill="none" stroke="#e2e0db" stroke-opacity=".08" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="network" x1="706" x2="1074" y1="180" y2="470" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e8d48b"/>
+      <stop offset=".55" stop-color="#c9a84c"/>
+      <stop offset="1" stop-color="#d4943a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="630" rx="28" fill="url(#goldGlow)"/>
+  <rect width="1200" height="630" rx="28" fill="url(#blueGlow)"/>
+  <rect width="1200" height="630" rx="28" fill="url(#grid)"/>
+  <rect x="34" y="34" width="1132" height="562" rx="24" fill="none" stroke="#e8d48b" stroke-opacity=".32" stroke-width="1.5"/>
+
+  <g fill="#f8f6f1">
+    <text x="92" y="126" font-family="Georgia, serif" font-size="42" font-weight="700" letter-spacing=".8">Perfect</text>
+    <text x="246" y="126" font-family="Georgia, serif" font-size="42" font-weight="700" fill="#c9a84c" letter-spacing=".8">Mission</text>
+  </g>
+
+  <g fill="#c5cfdb" font-family="system-ui, sans-serif" font-size="18" font-weight="600" letter-spacing="2.4">
+    <text x="92" y="174">AI-DRIVEN REAL ESTATE CONSULTANCY</text>
+  </g>
+
+  <g fill="#ffffff">
+    <text x="92" y="282" font-family="Georgia, serif" font-size="78" font-weight="700">Emerging market</text>
+    <text x="92" y="364" font-family="Georgia, serif" font-size="78" font-weight="700">opportunities,</text>
+    <text x="92" y="446" font-family="Georgia, serif" font-size="78" font-style="italic" font-weight="700" fill="#e8d48b">found fast.</text>
+  </g>
+
+  <g fill="#c5cfdb" font-family="system-ui, sans-serif" font-size="26" letter-spacing=".2">
+    <text x="92" y="520">CEE, LATAM, Morocco, Vietnam</text>
+    <text x="92" y="558">Signal-led sourcing, diligence, finance, and execution for institutional capital.</text>
+  </g>
+
+  <g transform="translate(710 112)">
+    <rect width="404" height="406" rx="20" fill="#0a1628" fill-opacity=".24" stroke="#e8d48b" stroke-opacity=".4" stroke-width="1.5"/>
+    <path d="M38 336L94 292L140 316L188 252L244 280L300 220L350 244V382H38Z" fill="#162438" fill-opacity=".9"/>
+    <path d="M38 358L106 326L156 348L210 302L250 324L320 276L366 292V382H38Z" fill="#0c1b2e" fill-opacity=".95"/>
+    <path d="M76 114C120 88 164 80 206 108S288 170 338 162" fill="none" stroke="url(#network)" stroke-linecap="round" stroke-width="4"/>
+    <path d="M88 166C156 212 210 246 286 238S352 196 368 188" fill="none" stroke="#e8d48b" stroke-linecap="round" stroke-opacity=".46" stroke-width="2.5"/>
+    <path d="M108 250C164 226 220 224 276 244S336 292 364 286" fill="none" stroke="#c9a84c" stroke-linecap="round" stroke-opacity=".36" stroke-width="2"/>
+    <g fill="#e8d48b">
+      <circle cx="84" cy="120" r="7"/>
+      <circle cx="150" cy="92" r="5.5"/>
+      <circle cx="238" cy="122" r="6"/>
+      <circle cx="338" cy="162" r="6.5"/>
+      <circle cx="188" cy="248" r="6"/>
+      <circle cx="332" cy="286" r="5.5"/>
+    </g>
+    <g fill="#f8f6f1" fill-opacity=".84" font-family="system-ui, sans-serif" font-size="18" font-weight="600" letter-spacing="1.6">
+      <text x="58" y="82">CEE</text>
+      <text x="290" y="128">LATAM</text>
+      <text x="272" y="270">GLOBAL</text>
+    </g>
+    <g fill="#c5cfdb" font-family="system-ui, sans-serif" font-size="14" letter-spacing="1.6">
+      <text x="38" y="42">LIVE MARKET FOOTPRINT</text>
+    </g>
+  </g>
+</svg>

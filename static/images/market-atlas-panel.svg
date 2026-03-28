@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="title desc">
+  <title id="title">Perfect Mission market atlas</title>
+  <desc id="desc">Abstract navy and gold illustration with connected market nodes spanning Central and Eastern Europe, Latin America, Morocco, and Vietnam.</desc>
+  <defs>
+    <linearGradient id="bg" x1="120" x2="820" y1="40" y2="680" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#162438"/>
+      <stop offset=".55" stop-color="#0a1628"/>
+      <stop offset="1" stop-color="#08111f"/>
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="0" cy="0" r="1" gradientTransform="translate(226 196) rotate(57.3) scale(420 420)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c9a84c" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blueGlow" cx="0" cy="0" r="1" gradientTransform="translate(728 136) rotate(129.5) scale(360 360)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3a5068" stop-opacity=".52"/>
+      <stop offset="1" stop-color="#3a5068" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#e2e0db" stroke-opacity=".08" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="panelStroke" x1="102" x2="858" y1="82" y2="638" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e8d48b" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#3a5068" stop-opacity=".6"/>
+    </linearGradient>
+    <linearGradient id="network" x1="182" x2="776" y1="174" y2="544" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e8d48b"/>
+      <stop offset=".55" stop-color="#c9a84c"/>
+      <stop offset="1" stop-color="#d4943a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="960" height="720" fill="url(#bg)"/>
+  <rect width="960" height="720" fill="url(#goldGlow)"/>
+  <rect width="960" height="720" fill="url(#blueGlow)"/>
+  <rect width="960" height="720" fill="url(#grid)"/>
+
+  <rect x="74" y="64" width="812" height="592" rx="18" fill="#0a1628" fill-opacity=".26" stroke="url(#panelStroke)" stroke-width="1.5"/>
+
+  <path d="M120 594L188 536L248 570L318 488L386 524L444 430L520 468L614 356L684 398L756 318L842 362V656H120Z" fill="#162438" fill-opacity=".88"/>
+  <path d="M120 630L194 590L248 614L330 560L384 586L470 526L534 552L620 470L680 492L770 430L842 460V656H120Z" fill="#0c1b2e" fill-opacity=".94"/>
+
+  <path d="M188 210C244 176 298 170 342 202S430 286 492 274S606 180 682 194S780 286 792 338" fill="none" stroke="url(#network)" stroke-linecap="round" stroke-width="4"/>
+  <path d="M204 246C286 298 352 352 444 346S614 234 748 252" fill="none" stroke="#e8d48b" stroke-linecap="round" stroke-opacity=".45" stroke-width="2.5"/>
+  <path d="M248 404C316 372 370 368 446 396S596 456 726 438" fill="none" stroke="#c9a84c" stroke-linecap="round" stroke-opacity=".36" stroke-width="2"/>
+
+  <g fill="#e8d48b">
+    <circle cx="208" cy="226" r="8"/>
+    <circle cx="294" cy="194" r="6"/>
+    <circle cx="416" cy="246" r="6"/>
+    <circle cx="520" cy="260" r="7"/>
+    <circle cx="654" cy="206" r="8"/>
+    <circle cx="776" cy="280" r="7"/>
+    <circle cx="340" cy="376" r="6"/>
+    <circle cx="516" cy="390" r="7"/>
+    <circle cx="706" cy="430" r="6"/>
+  </g>
+
+  <g fill="#f8f6f1" fill-opacity=".82" font-family="system-ui, sans-serif" font-size="22" font-weight="600" letter-spacing="1.8">
+    <text x="174" y="190">CEE</text>
+    <text x="620" y="172">LATAM</text>
+    <text x="648" y="404">GLOBAL</text>
+  </g>
+
+  <g fill="#c5cfdb" font-family="system-ui, sans-serif" font-size="16" letter-spacing="1.2">
+    <text x="124" y="112">CROSS-BORDER SIGNAL MAP</text>
+    <text x="124" y="138">AI-screened opportunity corridors for institutional real estate</text>
+  </g>
+</svg>
