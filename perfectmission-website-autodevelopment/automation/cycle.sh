@@ -121,6 +121,7 @@ write_last_cycle_summary "$status" "$focus" "$changes" "$summary" "$commit_sha"
 write_last_cycle_commit "$commit_sha"
 record_delivery_event "$run_id" "$status" "$focus" "$commit_sha" "${changes:-- none}"
 record_cycle_memory "$run_id" "$status" "$focus" "$changes" "$summary" "$commit_sha" "$output_file"
+refresh_skill_memory >/dev/null || true
 refresh_stats_reports
 advance_focus_cursor
 

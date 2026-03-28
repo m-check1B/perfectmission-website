@@ -7,12 +7,13 @@ import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import json
-import os
 from pathlib import Path
 import re
 import sqlite3
 import subprocess
 from typing import Any
+
+from hindsight_bridge import HindsightError, bank_path, hindsight_request, load_autodev_config
 
 
 TOKEN_RE = re.compile(r"\b[A-Za-z][A-Za-z0-9_./:-]{2,}\b")
@@ -57,6 +58,7 @@ TYPE_BOOST = {
     "operator_memory": 0.12,
     "context_doc": 0.08,
     "queue": 0.06,
+    "learned_skill": 0.2,
 }
 
 
@@ -278,7 +280,7 @@ def run_mgrep(project_root: Path, query: str, store: str, sync: bool, max_count:
 def run_rg(project_root: Path, autodev_root: Path, query: str, max_matches: int) -> list[str]:
     terms = query_terms(query)
     if not terms:
-      return []
+        return []
 
     excludes: list[str] = []
     try:
@@ -334,7 +336,42 @@ def run_rg(project_root: Path, autodev_root: Path, query: str, max_matches: int)
     return results
 
 
-def render_markdown(query: str, status_payload: dict[str, Any], top_items: list[dict[str, Any]], rg_lines: list[str], mgrep_lines: list[str]) -> str:
+def recall_hindsight(query: str, limit: int) -> tuple[list[dict[str, Any]], str | None]:
+    config = load_autodev_config()
+    if not config.enabled:
+        return [], None
+    payload = {
+        "query": query,
+        "types": ["world", "experience", "observation"],
+        "budget": config.recall_budget,
+        "max_tokens": config.recall_max_tokens,
+        "include": {"entities": {"max_tokens": 300}},
+    }
+    try:
+        response = hindsight_request(
+            config,
+            "POST",
+            f"{bank_path(config.bank_id)}/memories/recall",
+            payload,
+        )
+    except HindsightError as exc:
+        return [], str(exc)
+    results = response.get("results", [])
+    if not isinstance(results, list):
+        return [], None
+    return results[:limit], None
+
+
+def render_markdown(
+    query: str,
+    status_payload: dict[str, Any],
+    hindsight_items: list[dict[str, Any]],
+    hindsight_error: str | None,
+    top_items: list[dict[str, Any]],
+    rg_lines: list[str],
+    mgrep_lines: list[str],
+) -> str:
+    hindsight_status = status_payload.get("hindsight") if isinstance(status_payload.get("hindsight"), dict) else {}
     lines = [
         "# Memory Retrieval",
         "",
@@ -346,10 +383,40 @@ def render_markdown(query: str, status_payload: dict[str, Any], top_items: list[
         f"- mgrep: `{status_payload.get('mgrep_available', 'missing')}`",
         f"- mgrep auth: `{status_payload.get('mgrep_auth', 'missing')}`",
         f"- mgrep store: `{status_payload.get('mgrep_store', 'mgrep')}`",
+        f"- hindsight bank: `{hindsight_status.get('bank_id', 'disabled')}`",
+        f"- hindsight status: `{hindsight_status.get('status', 'disabled')}`",
         "",
-        "## Retrieved Memory",
+        "## Hindsight Recall",
         "",
     ]
+
+    if hindsight_error:
+        lines.append(f"- error: `{hindsight_error}`")
+    elif not hindsight_items:
+        lines.append("- none")
+    else:
+        for index, item in enumerate(hindsight_items, start=1):
+            metadata = item.get("metadata") or {}
+            path = metadata.get("path") or item.get("document_id") or "unknown"
+            tags = item.get("tags") or []
+            entities = item.get("entities") or []
+            lines.extend(
+                [
+                    f"### {index}. {item.get('text', '').strip()[:120] or 'memory'}",
+                    "",
+                    f"- type: `{item.get('type', 'unknown')}`",
+                    f"- path: `{path}`",
+                    f"- context: `{item.get('context') or 'none'}`",
+                    f"- mentioned: `{item.get('mentioned_at') or 'unknown'}`",
+                    f"- tags: {', '.join(tags[:8]) if tags else 'none'}",
+                    f"- entities: {', '.join(entities[:8]) if entities else 'none'}",
+                    "",
+                    item.get("text", "- no memory text"),
+                    "",
+                ]
+            )
+
+    lines.extend(["## Local Indexed Memory", ""])
 
     if not top_items:
         lines.append("- none")
@@ -411,34 +478,31 @@ def main() -> int:
 
     status_payload = json.loads(status_path.read_text()) if status_path.is_file() else {"backend": "hybrid-sqlite"}
     status_payload["query_source"] = "sqlite-fts+symbolic"
+    hindsight_items, hindsight_error = recall_hindsight(args.query, args.limit)
+    if hindsight_items:
+        status_payload["query_source"] = "hindsight+sqlite-fts+symbolic"
 
-    if not db_path.is_file():
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(
-            "# Memory Retrieval\n\n- backend not initialized yet\n"
-        )
-        print(output_path)
-        return 0
+    top_items: list[dict[str, Any]] = []
+    if db_path.is_file():
+        conn = sqlite3.connect(db_path)
+        try:
+            candidates = fts_candidates(conn, sanitize_fts_query(args.query), max(args.limit * 3, 12))
+        finally:
+            conn.close()
 
-    conn = sqlite3.connect(db_path)
-    try:
-        candidates = fts_candidates(conn, sanitize_fts_query(args.query), max(args.limit * 3, 12))
-    finally:
-        conn.close()
-
-    query_tokens = set(tokenize(args.query))
-    scored = []
-    for candidate in candidates:
-        candidate["score"] = score_candidate(candidate, query_tokens)
-        scored.append(candidate)
-    scored.sort(key=lambda item: item["score"], reverse=True)
-    top_items = scored[: args.limit]
+        query_tokens = set(tokenize(args.query))
+        scored = []
+        for candidate in candidates:
+            candidate["score"] = score_candidate(candidate, query_tokens)
+            scored.append(candidate)
+        scored.sort(key=lambda item: item["score"], reverse=True)
+        top_items = scored[: args.limit]
 
     rg_lines: list[str] = []
     if args.use_rg == "true" or (args.use_rg == "auto" and status_payload.get("rg_available") == "ready"):
         rg_lines = run_rg(project_root, autodev_root, args.query, args.rg_max_matches)
         if rg_lines:
-            status_payload["query_source"] = "sqlite-fts+symbolic+rg"
+            status_payload["query_source"] = f"{status_payload.get('query_source', 'sqlite-fts+symbolic')}+rg"
 
     mgrep_lines: list[str] = []
     if status_payload.get("mgrep_available") == "ready":
@@ -457,7 +521,17 @@ def main() -> int:
     status_path.parent.mkdir(parents=True, exist_ok=True)
     status_path.write_text(json.dumps(status_payload, indent=2) + "\n")
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(render_markdown(args.query, status_payload, top_items, rg_lines, mgrep_lines))
+    output_path.write_text(
+        render_markdown(
+            args.query,
+            status_payload,
+            hindsight_items,
+            hindsight_error,
+            top_items,
+            rg_lines,
+            mgrep_lines,
+        )
+    )
     print(output_path)
     return 0
 

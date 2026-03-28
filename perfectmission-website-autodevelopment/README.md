@@ -26,6 +26,8 @@ perfectmission-website-autodevelopment/
 │   ├── heartbeat.sh
 │   ├── install-cron.sh
 │   ├── lib.sh
+│   ├── linear-sync.py
+│   ├── linear-sync.sh
 │   ├── memory-sync.sh
 │   ├── memory-backend-index.py
 │   ├── memory-backend-retrieve.py
@@ -66,7 +68,10 @@ perfectmission-website-autodevelopment/
 - `automation/memory-backend-retrieve.py`
   - Produces a query-scoped retrieval brief for the current focus and adds it to the cycle prompt bundle.
 - `automation/steering-sync.sh`
-  - Imports optional task mirrors from `steering/providers/linear/mirror/`, preserves local-first task ownership, and rewrites `map.json`, `outbox.jsonl`, and `last-sync.json`.
+  - Pulls from optional Linear mirror state first, imports optional task mirrors into local steering, preserves local-first task ownership, rewrites `map.json`, `outbox.jsonl`, and `last-sync.json`, then pushes queued outbound updates back to Linear.
+- `automation/linear-sync.sh`
+  - Runs the packaged zero-token Linear adapter against the local `steering/providers/linear/` state.
+  - Supports `pull`, `push`, and `sync`, and skips cleanly when Linear credentials are not configured.
 - `automation/heartbeat.sh`
   - Writes a local health summary for the repository and adapter state.
 - `automation/stats.sh`
@@ -215,12 +220,13 @@ open /Users/matejhavlin/github/websites/perfectmission.co.uk/perfectmission-webs
 ```bash
 python3 automation/repo-local/dashboard-server.py \
   --autodev-root /Users/matejhavlin/github/websites/perfectmission.co.uk/perfectmission-website-autodevelopment \
-  --port 18881
+  --port 18880
 
-open "http://127.0.0.1:18881"
+open "http://127.0.0.1:18880"
 ```
 
 The live dashboard can pause or resume a package by toggling `AUTODEV_ENABLED`, run `verify.sh` on demand, and reinstall that package's cron block. Use this when you want to work manually in the target repository without colliding with unattended cycles or remediator actions.
+It can also run `automation/linear-sync.sh` directly when you want to force a Linear import/export cycle without waiting for the next steering sync.
 
 ## Safety Defaults
 

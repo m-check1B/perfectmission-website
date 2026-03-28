@@ -1,11 +1,9 @@
 # Commands
 
-Keep the smallest verified commands that help agents work safely in this repository.
+**Auto-generated command hints from the current repository shape.**
 
-Examples:
-- setup commands
-- development commands
-- verification commands
-- smoke or health gates
+Use these as starting points. Keep only verified commands here.
 
-Prefer exact commands over prose.
+- `npm run dev`
+- `npm run build`
+- `npm run check`

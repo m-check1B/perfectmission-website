@@ -9,12 +9,14 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 import hashlib
 import json
-import os
 from pathlib import Path
 import re
 import sqlite3
 from shutil import which
 from typing import Iterable
+from urllib import parse
+
+from hindsight_bridge import HindsightError, bank_path, chunked, hindsight_request, load_autodev_config
 
 
 ENTITY_RE = re.compile(r"\b[A-Za-z][A-Za-z0-9_./:-]{2,}\b")
@@ -70,6 +72,15 @@ class MemoryItem:
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def parse_time(value: str) -> datetime | None:
+    if not value:
+        return None
+    try:
+        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return None
 
 
 def file_timestamp(path: Path) -> str:
@@ -128,6 +139,7 @@ def summarize_text(body: str) -> str:
 def read_markdown_item(path: Path, autodev_root: Path, item_type: str, source: str, bucket: str, scope: str, durability: str, confidence: float) -> MemoryItem:
     text = path.read_text()
     frontmatter, body = parse_frontmatter(text)
+    relative_path = path.relative_to(autodev_root)
     title = frontmatter.get("title") or first_heading(body) or path.stem.replace("-", " ")
     updated_at = frontmatter.get("updated_at") or file_timestamp(path)
     created_at = frontmatter.get("created_at") or updated_at
@@ -136,7 +148,7 @@ def read_markdown_item(path: Path, autodev_root: Path, item_type: str, source: s
     entities = extract_entities(title, body, linear_id, path.as_posix())
     summary = summarize_text(body) or title
     details = body.strip()
-    item_id = frontmatter.get("id") or f"{item_type}-{slugify(path.stem)}"
+    item_id = frontmatter.get("id") or f"{item_type}-{slugify(relative_path.as_posix())}"
     content_hash = hashlib.sha256(text.encode()).hexdigest()
 
     return MemoryItem(
@@ -146,7 +158,7 @@ def read_markdown_item(path: Path, autodev_root: Path, item_type: str, source: s
         title=title,
         summary=summary,
         details=details,
-        path=str(path.relative_to(autodev_root)),
+        path=str(relative_path),
         source=source,
         bucket=bucket,
         entities=entities,
@@ -233,6 +245,11 @@ def gather_items(autodev_root: Path, project_root: Path, context_files: list[str
             if path.name == "README.md":
                 continue
             items.append(read_markdown_item(path, autodev_root, "session_summary", "episodic", "sessions", "sessions", "low", 0.8))
+
+    learned_skills_dir = autodev_root / "skills" / "learned"
+    if learned_skills_dir.is_dir():
+        for path in sorted(learned_skills_dir.glob("*/SKILL.md")):
+            items.append(read_markdown_item(path, autodev_root, "learned_skill", "skill-memory", "skills", "skills", "high", 0.9))
 
     mirror_dir = autodev_root / "steering" / "providers" / "linear" / "mirror"
     if mirror_dir.is_dir():
@@ -322,6 +339,21 @@ def write_index(conn: sqlite3.Connection, items: list[MemoryItem]) -> None:
         fts_content = " ".join([item.title, item.summary, item.details, " ".join(item.entities), item.path, item.scope])
         conn.execute("INSERT INTO items_fts (item_id, content) VALUES (?, ?)", (item.item_id, fts_content))
     conn.commit()
+
+
+def dedupe_items(items: list[MemoryItem]) -> tuple[list[MemoryItem], dict[str, int]]:
+    deduped: dict[str, MemoryItem] = {}
+    collisions: Counter[str] = Counter()
+    for item in items:
+        existing = deduped.get(item.item_id)
+        if existing is None:
+            deduped[item.item_id] = item
+            continue
+        collisions[item.item_id] += 1
+        if (item.updated_at, item.path) >= (existing.updated_at, existing.path):
+            deduped[item.item_id] = item
+    duplicate_counts = {item_id: extra + 1 for item_id, extra in collisions.items()}
+    return list(deduped.values()), duplicate_counts
 
 
 def write_graph(graph_path: Path, items: list[MemoryItem]) -> dict[str, object]:
@@ -421,6 +453,215 @@ def detect_rg_status(use_rg: str) -> dict[str, str]:
     }
 
 
+def hindsight_timestamp(item: MemoryItem) -> str:
+    # Hindsight documents support timestamp="unset", but the current retain
+    # split path can still throw on timeless batches. Keep autodev ingestion on
+    # explicit ISO timestamps until that server bug is resolved upstream.
+    for candidate in (item.updated_at, item.created_at, item.last_validated_at):
+        if parse_time(candidate) is not None:
+            return candidate
+    return now_iso()
+
+
+def hindsight_tags(config_tags: list[str], item: MemoryItem) -> list[str]:
+    tags = list(config_tags)
+    tags.extend(
+        [
+            f"bucket:{item.bucket}",
+            f"type:{item.item_type}",
+            f"source:{slugify(item.source)}",
+            f"scope:{slugify(item.scope)}",
+        ]
+    )
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for tag in tags:
+        if not tag or tag in seen:
+            continue
+        seen.add(tag)
+        ordered.append(tag)
+    return ordered
+
+
+def hindsight_content(item: MemoryItem) -> str:
+    header = [
+        f"Title: {item.title}",
+        f"Path: {item.path}",
+        f"Type: {item.item_type}",
+        f"Source: {item.source}",
+        f"Scope: {item.scope}",
+    ]
+    if item.summary and item.summary != item.title:
+        header.append(f"Summary: {item.summary}")
+    body = item.details.strip() if item.details else item.summary.strip()
+    return "\n".join(header + ["", body]).strip()
+
+
+def should_sync_to_hindsight(item: MemoryItem) -> bool:
+    # Hindsight is the durable learned layer, not a dump of every tracker mirror
+    # and historical steering artifact. Keep the full local corpus in SQLite and
+    # only send higher-signal memory surfaces upstream.
+    if item.item_type == "tracker_mirror":
+        return False
+    if item.item_type == "task" and item.bucket != "active":
+        return False
+    return True
+
+
+def load_hindsight_state(path: Path, bank_id: str) -> dict[str, dict[str, str]]:
+    if not path.is_file():
+        return {}
+    try:
+        payload = json.loads(path.read_text())
+    except json.JSONDecodeError:
+        return {}
+    if payload.get("bank_id") != bank_id:
+        return {}
+    documents = payload.get("documents")
+    if not isinstance(documents, dict):
+        return {}
+    clean: dict[str, dict[str, str]] = {}
+    for document_id, metadata in documents.items():
+        if not isinstance(document_id, str) or not isinstance(metadata, dict):
+            continue
+        clean[document_id] = {
+            "content_hash": str(metadata.get("content_hash", "")),
+            "path": str(metadata.get("path", "")),
+            "updated_at": str(metadata.get("updated_at", "")),
+        }
+    return clean
+
+
+def sync_hindsight(items: list[MemoryItem]) -> dict[str, object]:
+    config = load_autodev_config()
+    if not config.enabled:
+        return {
+            "enabled": False,
+            "status": "disabled",
+            "bank_id": config.bank_id,
+            "api_url": config.api_url,
+        }
+
+    previous_docs = load_hindsight_state(config.state_file, config.bank_id)
+    current_docs: dict[str, dict[str, str]] = {}
+    retain_payload: list[dict[str, object]] = []
+
+    for item in items:
+        if not should_sync_to_hindsight(item):
+            continue
+        document_id = f"autodev:{item.path}"
+        current_state = {
+            "content_hash": item.content_hash,
+            "path": item.path,
+            "updated_at": item.updated_at,
+        }
+        current_docs[document_id] = current_state
+        if previous_docs.get(document_id) == current_state:
+            continue
+        retain_payload.append(
+            {
+                "content": hindsight_content(item),
+                "timestamp": hindsight_timestamp(item),
+                "context": f"autodev {item.item_type}",
+                "metadata": {
+                    "path": item.path,
+                    "item_type": item.item_type,
+                    "source": item.source,
+                    "bucket": item.bucket,
+                    "scope": item.scope,
+                },
+                "document_id": document_id,
+                "tags": hindsight_tags(config.static_tags, item),
+            }
+        )
+
+    deleted_doc_ids = sorted(set(previous_docs) - set(current_docs))
+
+    changed_doc_ids = [item["document_id"] for item in retain_payload]
+
+    retained_count = 0
+    retain_errors: list[dict[str, str]] = []
+
+    try:
+        for document_id in changed_doc_ids:
+            hindsight_request(
+                config,
+                "DELETE",
+                f"{bank_path(config.bank_id)}/documents/{parse.quote(document_id, safe='')}",
+                allow_not_found=True,
+            )
+        if retain_payload:
+            for batch in chunked(retain_payload, 12):
+                try:
+                    hindsight_request(
+                        config,
+                        "POST",
+                        f"{bank_path(config.bank_id)}/memories",
+                        {"items": batch, "async": False},
+                    )
+                    retained_count += len(batch)
+                except HindsightError as exc:
+                    if len(batch) == 1:
+                        retain_errors.append({"document_id": batch[0]["document_id"], "error": str(exc)})
+                        continue
+                    for item in batch:
+                        try:
+                            hindsight_request(
+                                config,
+                                "POST",
+                                f"{bank_path(config.bank_id)}/memories",
+                                {"items": [item], "async": False},
+                            )
+                            retained_count += 1
+                        except HindsightError as item_exc:
+                            retain_errors.append({"document_id": item["document_id"], "error": str(item_exc)})
+        for document_id in deleted_doc_ids:
+            hindsight_request(
+                config,
+                "DELETE",
+                f"{bank_path(config.bank_id)}/documents/{parse.quote(document_id, safe='')}",
+                allow_not_found=True,
+            )
+        updates = {
+            "retain_mission": config.retain_mission,
+            "observations_mission": config.observations_mission,
+        }
+        hindsight_request(
+            config,
+            "PATCH",
+            f"{bank_path(config.bank_id)}/config",
+            {"updates": updates},
+        )
+    except HindsightError as exc:
+        return {
+            "enabled": True,
+            "status": "error",
+            "bank_id": config.bank_id,
+            "api_url": config.api_url,
+            "error": str(exc),
+            "retained_count": 0,
+            "deleted_count": 0,
+            "document_count": len(current_docs),
+        }
+
+    config.state_file.parent.mkdir(parents=True, exist_ok=True)
+    config.state_file.write_text(
+        json.dumps({"bank_id": config.bank_id, "documents": current_docs}, indent=2) + "\n"
+    )
+    return {
+        "enabled": True,
+        "status": "ok" if not retain_errors else "partial",
+        "bank_id": config.bank_id,
+        "api_url": config.api_url,
+        "retained_count": retained_count,
+        "deleted_count": len(deleted_doc_ids),
+        "document_count": len(current_docs),
+        "state_file": str(config.state_file),
+        "failed_count": len(retain_errors),
+        "failed_documents": retain_errors[:10],
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build a hybrid local memory backend for repo-local autodevelopment")
     parser.add_argument("--autodev-root", required=True)
@@ -443,7 +684,8 @@ def main() -> int:
     run_summaries_path = Path(args.run_summaries).resolve()
     context_files = parse_context_files(args.context_files)
 
-    items = gather_items(autodev_root, project_root, context_files)
+    raw_items = gather_items(autodev_root, project_root, context_files)
+    items, duplicate_item_ids = dedupe_items(raw_items)
     conn = init_db(db_path)
     try:
         write_index(conn, items)
@@ -456,12 +698,15 @@ def main() -> int:
 
     mgrep_status = detect_mgrep_status(args.use_mgrep, args.mgrep_store)
     rg_status = detect_rg_status(args.use_rg)
+    hindsight_status = sync_hindsight(items)
+    backend = load_autodev_config().backend
 
     status_payload = {
-        "backend": "hybrid-sqlite",
-        "status": "ok",
+        "backend": backend,
+        "status": "ok" if hindsight_status.get("status") == "ok" else "degraded",
         "indexed_at": now_iso(),
         "indexed_count": len(items),
+        "duplicate_item_ids": duplicate_item_ids,
         "item_types": dict(item_types),
         "db_path": str(db_path),
         "graph_path": str(graph_path),
@@ -469,6 +714,7 @@ def main() -> int:
         "graph_entities": graph_payload["entity_count"],
         "run_summary_count": run_summary_count,
         "query_source": "sqlite-fts+symbolic",
+        "hindsight": hindsight_status,
         **rg_status,
         **mgrep_status,
     }

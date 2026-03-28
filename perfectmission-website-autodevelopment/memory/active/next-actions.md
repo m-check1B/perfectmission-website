@@ -1,5 +1,3 @@
 # Next Actions
 
-Keep the next few actions short, specific, and ordered.
-
-This file should be updated after each significant cycle or manual intervention.
+- Continue the current focus: Build SvelteKit website for Perfect Mission — AI-driven real estate consultancy (steering/active/2026-03-27-sveltekit-website.md)

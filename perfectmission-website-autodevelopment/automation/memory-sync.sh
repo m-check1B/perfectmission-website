@@ -32,6 +32,7 @@ EOF
 refresh_steering_state >/dev/null
 refresh_semantic_memory
 refresh_active_memory
+refresh_skill_memory >/dev/null
 refresh_memory_backend >/dev/null
 refresh_memory_retrieval "$(current_focus_label || true)" >/dev/null
 printf '%s\n' "$snapshot" > "$AUTODEV_STATE_DIR/latest-snapshot.txt"

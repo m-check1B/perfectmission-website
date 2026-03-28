@@ -1,5 +1,4 @@
 # Open Questions
 
-Track only active unresolved questions that block or shape the next step.
-
-Delete resolved items quickly.
+- none captured automatically
+- promote unresolved architecture or product questions here when they matter across cycles
