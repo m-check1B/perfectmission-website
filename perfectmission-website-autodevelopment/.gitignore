@@ -6,3 +6,7 @@ memory/daily/
 steering/providers/linear/map.json
 steering/providers/linear/last-sync.json
 steering/providers/linear/outbox.jsonl
+memory/active/
+memory/episodic/
+memory/semantic/
+steering/inbox/
