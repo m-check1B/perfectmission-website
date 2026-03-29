@@ -1,12 +1,12 @@
 ---
-id: pm-2026-03-28-002
+id: pm-2026-03-28-004
 title: Commit SvelteKit scaffold and unblock auto-push
-status: active
+status: done
 priority: critical
 source: auto
 area: src/ .gitignore package.json svelte.config.js vite.config.ts tsconfig.json
 labels: [unblock, scaffold, git]
-updated_at: 2026-03-28T17:34:00Z
+updated_at: 2026-03-29T10:30:00Z
 ---
 
 # Task

@@ -1,13 +1,13 @@
 ---
 id: pm-2026-03-28-002
 title: Fix git push blocker — clean non-autodev state and push safely
-status: inbox
+status: done
 priority: critical
 source: local
 linear_id:
 area: git, deployment
 labels: [fix, git, push, blocker]
-updated_at: 2026-03-28T16:04:00Z
+updated_at: 2026-03-29T10:30:00Z
 ---
 
 # Task
