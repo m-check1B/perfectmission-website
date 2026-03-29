@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "document_type": "feature-spec",
+  "last_updated": "2026-03-29",
+  "language": "en",
+  "feature": "Cross-Border Investment Verifier",
+  "slug": "cross-border-investment-verifier",
+  "status": "concept-ready",
+  "owner": "Perfect Mission",
+  "purpose": "A cross-country, cross-language research and verification layer for emerging-market real estate opportunities.",
+  "positioning": {
+    "one_line": "A multilingual verifier agent that tests market claims, broker narratives, legal assumptions, permit stories, and pricing signals across jurisdictions before capital is committed.",
+    "why_it_matters": [
+      "Emerging-market property research is fragmented across local-language sources, broker decks, municipal documents, legal notices, and market narratives.",
+      "Investors need a single decision-ready output that separates what is verified, what is contradicted, and what remains unclear.",
+      "This product turns the existing advisory promise into a visible, repeatable verification system."
+    ],
+    "not_a_chatbot": [
+      "Outputs structured evidence and claim matrices rather than open-ended conversation.",
+      "Optimized for contradiction detection, confidence scoring, and diligence sequencing."
+    ]
+  },
+  "ideal_users": [
+    "cross-border real estate investors",
+    "developer-operators entering a new country",
+    "family offices screening unfamiliar markets",
+    "capital partners checking local broker claims",
+    "internal acquisitions teams running triage before legal diligence"
+  ],
+  "core_inputs": [
+    {
+      "field": "country",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "field": "city_or_micro_location",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "field": "asset_type",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "field": "strategy",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "field": "ticket_size",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "field": "listing_url",
+      "required": false,
+      "type": "url"
+    },
+    {
+      "field": "broker_pack",
+      "required": false,
+      "type": "file_or_text"
+    },
+    {
+      "field": "plot_id_or_title_reference",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "field": "thesis_claims",
+      "required": false,
+      "type": "array[string]"
+    },
+    {
+      "field": "uploaded_documents",
+      "required": false,
+      "type": "array[file]"
+    }
+  ],
+  "core_outputs": [
+    {
+      "block": "claim_matrix",
+      "description": "Tests each submitted or detected claim.",
+      "fields": [
+        "claim",
+        "status",
+        "evidence",
+        "counter_evidence",
+        "confidence",
+        "next_check"
+      ]
+    },
+    {
+      "block": "market_reality",
+      "description": "Normalizes price, demand, liquidity, and comparables across local-language sources."
+    },
+    {
+      "block": "development_reality",
+      "description": "Flags permit path, zoning, utility, title, heritage, and site-risk issues where relevant."
+    },
+    {
+      "block": "structure_notes",
+      "description": "Highlights ownership, tax, foreign-buyer, and SPV considerations at a high level."
+    },
+    {
+      "block": "decision_memo",
+      "description": "Returns a go / no-go / watch verdict with confidence score and priority next actions."
+    }
+  ],
+  "verification_statuses": [
+    "verified",
+    "partially_verified",
+    "contradicted",
+    "unclear",
+    "requires_local_counsel"
+  ],
+  "workflow": [
+    "ingest claim or deal package",
+    "translate and classify source domains",
+    "collect primary and high-signal secondary evidence",
+    "detect contradictions across jurisdictions and languages",
+    "score confidence at claim level and memo level",
+    "generate diligence actions and escalation flags"
+  ],
+  "integration_notes": {
+    "platform_fit": "Can be redeployed from the existing agentic Kraliki ecosystem without a new net-new app architecture.",
+    "frontend_usage": [
+      "feature page on the website",
+      "lead magnet demo flow",
+      "private client workspace output",
+      "internal analyst assistant"
+    ],
+    "backend_requirements": [
+      "multi-source retrieval",
+      "document ingestion",
+      "cross-language normalization",
+      "claim storage",
+      "evidence registry",
+      "confidence scoring"
+    ]
+  },
+  "page_copy": {
+    "nav_label": "Verifier",
+    "hero_title": "Cross-border investment verification",
+    "hero_subtitle": "A multilingual research and verification agent for emerging-market real estate.",
+    "hero_body": "It tests broker claims, scans local-language sources, compares jurisdictions, flags contradictions, and produces one decision-ready memo with confidence levels and next-step diligence actions.",
+    "value_points": [
+      "Checks local-language sources, not just English summaries",
+      "Separates verified facts from sales narratives",
+      "Normalizes countries into one comparable decision format",
+      "Flags contradictions before legal fees and site visits escalate"
+    ],
+    "cta_primary": "Request a verification demo",
+    "cta_secondary": "Submit a market thesis"
+  },
+  "pricing_logic_suggestion": {
+    "lead_capture": "free high-level triage",
+    "paid_report": "single-market or single-deal verified memo",
+    "mandate": "retained cross-border monitoring and deal support"
+  },
+  "source_registry": [
+    {
+      "id": "perfect-mission-site",
+      "label": "Perfect Mission prototype site",
+      "type": "website",
+      "ref": "turn546839view0",
+      "use": "Product-language alignment with existing site promises around AI monitoring, market intelligence, memos, and execution."
+    },
+    {
+      "id": "internal-concept",
+      "label": "Internal product concept based on user brief",
+      "type": "internal",
+      "ref": "conversation",
+      "use": "Feature description derived from the session brief."
+    }
+  ]
+}

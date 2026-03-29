@@ -1,0 +1,333 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "AL",
+  "country": "Albania",
+  "slug": "albania",
+  "region": "Central & Eastern Europe",
+  "status": "priority-upside",
+  "live_on_site": true,
+  "confidence": "high",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Albania Market Intelligence | Perfect Mission",
+    "description": "Albania is the highest-upside European market in the current Perfect Mission map, but it is less comfortable operationally than Bulgaria and demands harder title discipline."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Albania: Europe’s highest-upside market — with rougher edges",
+    "subtitle": "Extraordinary price momentum, heavy tourism growth, SEPA and EU-accession catalysts — but weaker operating comfort than Bulgaria.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Albania is the strongest pure-upside market in Europe right now, but it is not the cleanest place to build the platform unless you already have local execution depth.",
+    "market_stage": {
+      "label": "Hot rerating",
+      "description": "The market is no longer early in the sense of neglect; it is now in an active rerating phase driven by tourism, foreign demand, financial integration, and the EU path."
+    },
+    "operator_angle": "The upside is obvious, but so are the frictions: title, municipal variance, local partner quality, and the risk of buying story instead of clean inventory.",
+    "investor_angle": "Capital can still be excited by Albania, but it requires a more prepared narrative and higher trust in the operator than Bulgaria does.",
+    "base_case": "Use Albania as a higher-upside satellite market after the operating platform is already stable, or enter via tightly scoped projects in Tirana and select coastal corridors."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 9.0
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 6.0
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 5.0
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 7.0
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 5.5
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 7.0
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 6.0
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 7.0
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "15%",
+      "source_ref": "al_pwc_tax"
+    },
+    {
+      "label": "Foreign residential ownership",
+      "value": "No restrictions on purchase of private residential property",
+      "source_ref": "al_state_ics"
+    },
+    {
+      "label": "House-price signal",
+      "value": "Nationwide Fischer house-price index +41.7% YoY in H1 2025; Tirana +32.6% YoY",
+      "source_ref": "al_boa_re"
+    },
+    {
+      "label": "Foreign-buyer signal",
+      "value": "15% of sold homes were bought by non-residents; 71% of those buyers came from EU countries",
+      "source_ref": "al_boa_re"
+    },
+    {
+      "label": "Tourism / arrivals signal",
+      "value": "12,466,038 foreign arrivals in 2025",
+      "source_ref": "al_instat_arrivals"
+    },
+    {
+      "label": "Financial-integration signal",
+      "value": "Albania joined SEPA in October 2025",
+      "source_ref": "al_sepa"
+    },
+    {
+      "label": "EU path signal",
+      "value": "Final EU accession negotiating cluster opened in November 2025",
+      "source_ref": "al_eu_cluster"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Tirana residential development",
+      "fit": "strong",
+      "why": "The capital remains the cleanest and deepest residential market in the country."
+    },
+    {
+      "strategy": "Coastal urban residential",
+      "fit": "medium",
+      "why": "Can work very well where title, access, and utilities are hard-verified."
+    },
+    {
+      "strategy": "Hospitality-residential hybrid",
+      "fit": "medium",
+      "why": "Tourism and foreign demand support it, but underwriting must survive off-season reality."
+    },
+    {
+      "strategy": "Raw land speculation",
+      "fit": "weak",
+      "why": "The market punishes sloppy title, wishful zoning, and exaggerated coastal narratives."
+    },
+    {
+      "strategy": "Institutional-scale, low-friction rollout",
+      "fit": "weak",
+      "why": "Too many local variables for a casual first deployment."
+    }
+  ],
+  "development_reality": {
+    "headline": "High upside, low forgiveness",
+    "copy": "Albania can produce outsized wins, but it is far less forgiving than Bulgaria. The quality of title, local legal work, and micro-market knowledge matters more because the story has already become crowded.",
+    "permit_friction": "medium-high",
+    "title_reliability": "medium-low",
+    "utilities": "highly site dependent",
+    "best_entries": [
+      "Tirana urban residential",
+      "Durrës corridor with verified access and services",
+      "coastal plots with hard title and realistic infrastructure",
+      "small-to-mid projects where local control is tight"
+    ],
+    "avoid_first": [
+      "informal coastal land stories",
+      "cheap plots with unclear cadastre or inheritance chain",
+      "buying into broker narratives without document-level verification"
+    ],
+    "process_notes": [
+      "The Bank of Albania survey shows a very hot market, which means entry mistakes become more expensive.",
+      "Coastal properties sell faster than the national average, which attracts noise as well as demand.",
+      "Execution should be document-first, not story-first."
+    ],
+    "source_refs": [
+      "al_boa_re",
+      "al_state_ics"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Private residential property is open to foreign buyers, which is one reason demand has accelerated.",
+    "caution": "Do not confuse legal openness with operational simplicity; residential rights do not remove title, utility, or planning risk.",
+    "source_refs": [
+      "al_state_ics",
+      "al_boa_re"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Tirana",
+      "role": "capital / cleanest core market",
+      "thesis": "The best place for first-entry projects because liquidity, rent demand, and documentation quality are strongest relative to the rest of the country.",
+      "good_for": [
+        "urban residential",
+        "renovation",
+        "small mixed-use"
+      ],
+      "watchouts": [
+        "price acceleration",
+        "competitive sourcing"
+      ]
+    },
+    {
+      "city": "Durrës",
+      "role": "capital-adjacent coastal corridor",
+      "thesis": "Useful as a bridge between Tirana logic and the coast if the site is more than a tourist brochure pitch.",
+      "good_for": [
+        "corridor residential",
+        "selective coastal urban product"
+      ],
+      "watchouts": [
+        "overhyped coastal stories",
+        "utility and access diligence"
+      ]
+    },
+    {
+      "city": "Vlorë",
+      "role": "southern coastal growth market",
+      "thesis": "High tourism visibility and still-developing product depth create upside, but only with hard diligence.",
+      "good_for": [
+        "hospitality-residential hybrid",
+        "coastal apartments"
+      ],
+      "watchouts": [
+        "title noise",
+        "seasonality"
+      ]
+    },
+    {
+      "city": "Sarandë",
+      "role": "high-visibility foreign-buyer coast",
+      "thesis": "Strong foreign attention and high upside, but also strong risk of paying brochure prices for weak legal reality.",
+      "good_for": [
+        "small selective coastal product"
+      ],
+      "watchouts": [
+        "speculative overpricing",
+        "thin winter demand"
+      ]
+    }
+  ],
+  "catalysts": [
+    "The Bank of Albania survey shows an exceptionally strong price and transaction environment in 2025 H1.",
+    "Foreign demand is already meaningful rather than theoretical.",
+    "SEPA entry in October 2025 lowers payment friction and improves the country’s European financial integration.",
+    "The final EU accession cluster opening reinforces the rerating story and international credibility."
+  ],
+  "risks": [
+    "The market is hot enough that sloppiness is punished quickly.",
+    "Title, cadastre, utilities, and local enforcement matter more than broker optimism.",
+    "Albania remains a harder investor story for mainstream Central European capital than Bulgaria.",
+    "High upside can attract weak actors, inflated narratives, and low-quality inventory."
+  ],
+  "lifestyle_base": {
+    "rating": "medium-weak",
+    "copy": "Albania can be livable and attractive, but it is a weaker first base than Bulgaria for an operator who also wants to raise conservative regional capital and possibly house a small services team.",
+    "connectivity": "Improving, but still not as clean a base story as Bulgaria for regional movement and investor comfort.",
+    "climate": "Favourable coastal climate, hot summers in many areas, urban comfort varies by city.",
+    "home_office_fit": "Possible, but not the core reason to choose Albania as the headquarters."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "al_pwc_tax",
+      "title": "Albania - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/albania/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "al_state_ics",
+      "title": "2025 Investment Climate Statements: Albania",
+      "url": "https://www.state.gov/reports/2025-investment-climate-statements/albania",
+      "publisher": "U.S. Department of State",
+      "type": "official",
+      "why_it_matters": "Current foreign-investment and residential property ownership treatment.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "al_boa_re",
+      "title": "Real estate market survey and house price index, first half 2025",
+      "url": "https://www.bankofalbania.org/rc/doc/Vrojtim_i_Tregut_te_Pasurive_te_Paluajtshme_6M_I_2025_per_publikim_20_10_2025_32120.pdf",
+      "publisher": "Bank of Albania",
+      "type": "official",
+      "why_it_matters": "Official market heat, foreign-buyer share, time-to-sell, and house-price surge.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "al_instat_arrivals",
+      "title": "Movements of citizens in Albania - December 2025",
+      "url": "https://www.instat.gov.al/media/1oebcbaa/movements-of-citizens-in-albania-december-2025.pdf",
+      "publisher": "INSTAT Albania",
+      "type": "official",
+      "why_it_matters": "Official full-year foreign-arrival figure for 2025.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "al_sepa",
+      "title": "SEPA opens new horizons for the Western Balkans",
+      "url": "https://www.worldbank.org/en/news/feature/2026/03/25/cheaper-and-faster-payments-sepa-opens-new-horizons-for-the-western-balkans",
+      "publisher": "World Bank",
+      "type": "official",
+      "why_it_matters": "Confirms Albania joined SEPA in October 2025.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "al_eu_cluster",
+      "title": "EU opens last accession negotiating cluster with Albania on resources, agriculture and cohesion",
+      "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/11/17/eu-opens-last-accession-negotiating-cluster-with-albania-on-resources-agriculture-and-cohesion/",
+      "publisher": "Council of the European Union",
+      "type": "official",
+      "why_it_matters": "Confirms Albania opened the final accession cluster in late 2025.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "Upcycle",
+    "Tourism",
+    "EU path",
+    "SEPA",
+    "Higher risk"
+  ],
+  "priority_rank": 3
+}

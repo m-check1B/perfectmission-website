@@ -1,0 +1,334 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://perfectmission.co.uk/schemas/market-intelligence-country.schema.json",
+  "title": "Perfect Mission Market Intelligence Country Document",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "document_type",
+    "last_updated",
+    "language",
+    "country_code",
+    "country",
+    "slug",
+    "region",
+    "status",
+    "live_on_site",
+    "confidence",
+    "seo",
+    "hero",
+    "summary",
+    "scorecard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "source_registry"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "document_type": {
+      "const": "market-intelligence-country"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "language": {
+      "type": "string"
+    },
+    "country_code": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "country": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "priority",
+        "priority-upside",
+        "priority-global",
+        "active",
+        "opportunistic",
+        "watch-active",
+        "watch",
+        "watchlist",
+        "benchmark",
+        "bonus"
+      ]
+    },
+    "live_on_site": {
+      "type": "boolean"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium-high",
+        "medium",
+        "medium-low",
+        "low"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "priority_rank": {
+      "type": "integer"
+    },
+    "section_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "seo": {
+      "type": "object",
+      "required": [
+        "title",
+        "description"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "hero": {
+      "type": "object",
+      "required": [
+        "eyebrow",
+        "title",
+        "subtitle",
+        "cta_primary",
+        "cta_secondary"
+      ],
+      "properties": {
+        "eyebrow": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "cta_primary": {
+          "type": "string"
+        },
+        "cta_secondary": {
+          "type": "string"
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "one_line_verdict",
+        "market_stage",
+        "operator_angle",
+        "investor_angle",
+        "base_case"
+      ],
+      "properties": {
+        "one_line_verdict": {
+          "type": "string"
+        },
+        "market_stage": {
+          "type": "object",
+          "required": [
+            "label",
+            "description"
+          ],
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          }
+        },
+        "operator_angle": {
+          "type": "string"
+        },
+        "investor_angle": {
+          "type": "string"
+        },
+        "base_case": {
+          "type": "string"
+        }
+      }
+    },
+    "scorecard": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "score"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10
+          }
+        }
+      }
+    },
+    "quick_facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "value",
+          "source_ref"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "source_ref": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "strategy_fit": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "strategy",
+          "fit",
+          "why"
+        ],
+        "properties": {
+          "strategy": {
+            "type": "string"
+          },
+          "fit": {
+            "type": "string",
+            "enum": [
+              "strong",
+              "medium",
+              "weak"
+            ]
+          },
+          "why": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "development_reality": {
+      "type": "object"
+    },
+    "foreign_ownership": {
+      "type": "object"
+    },
+    "priority_cities": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "catalysts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lifestyle_base": {
+      "type": "object"
+    },
+    "cta": {
+      "type": "object"
+    },
+    "source_registry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "url",
+          "publisher",
+          "type",
+          "why_it_matters",
+          "retrieved"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "why_it_matters": {
+            "type": "string"
+          },
+          "retrieved": {
+            "type": "string",
+            "format": "date"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

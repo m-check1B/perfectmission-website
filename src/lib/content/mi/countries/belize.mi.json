@@ -1,0 +1,297 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "BZ",
+  "country": "Belize",
+  "slug": "belize",
+  "region": "Latin America & Caribbean",
+  "status": "opportunistic",
+  "live_on_site": true,
+  "confidence": "medium",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Belize Market Intelligence | Perfect Mission",
+    "description": "Belize is easy to understand for English-speaking foreign buyers and allows titled private property ownership, but it remains a small and thin market."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Belize: easy to understand, hard to scale",
+    "subtitle": "English language, titled private property access, and strong lifestyle appeal — but thin liquidity and site-specific land risk.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Belize is attractive for small, lifestyle-linked deals; it is weak as a broad, scalable development platform.",
+    "market_stage": {
+      "label": "Lifestyle / small-market",
+      "description": "Belize can feel easy because the language, legal framing, and foreign-buyer story are familiar. The real constraint is that the market is small and liquidity is selective."
+    },
+    "operator_angle": "Good for boutique hospitality or lifestyle-linked projects, not for assuming deep absorption or large institutional exits.",
+    "investor_angle": "The story is simple, but serious investors will ask how many real buyers exist beyond the brochure cohort.",
+    "base_case": "Treat Belize as a boutique, titled-property, coastal-lifestyle sleeve rather than a platform market."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 6.5
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 5.5
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 7.0
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 8.0
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 5.0
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 6.0
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 8.5
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 6.5
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Foreign ownership signal",
+      "value": "Foreign and non-resident investors may acquire titled privately owned property; national leased property is restricted",
+      "source_ref": "bz_state_ics"
+    },
+    {
+      "label": "Tourism signal",
+      "value": "Preliminary 2025 overnight arrivals: 551,698 (+0.8% YoY)",
+      "source_ref": "bz_tourism"
+    },
+    {
+      "label": "Cruise signal",
+      "value": "Preliminary 2025 cruise passenger arrivals: 967,214 (+8.1% YoY)",
+      "source_ref": "bz_tourism"
+    },
+    {
+      "label": "Business-climate signal",
+      "value": "IMF notes Belize’s BICAP and a digital single investment window among business-climate improvements",
+      "source_ref": "bz_imf"
+    },
+    {
+      "label": "Tax note",
+      "value": "Belize’s tax regime should be verified locally at structuring stage rather than simplified into a single headline rate",
+      "source_ref": "bz_tax"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Boutique hospitality",
+      "fit": "strong",
+      "why": "Belize is well-suited to smaller destination-driven hospitality and villa projects."
+    },
+    {
+      "strategy": "Lifestyle / second-home product",
+      "fit": "strong",
+      "why": "The foreign-buyer story is straightforward where the title is clean."
+    },
+    {
+      "strategy": "Large master-planned development",
+      "fit": "weak",
+      "why": "The market is too thin for casual scale."
+    },
+    {
+      "strategy": "Generic land banking",
+      "fit": "weak",
+      "why": "Land quality, access, and title matter too much for lazy speculation."
+    }
+  ],
+  "development_reality": {
+    "headline": "Small market, no room for lazy underwriting",
+    "copy": "Belize looks easy on the surface because the language and foreign-ownership story are comfortable. It is actually a market where title, access, infrastructure, and buyer depth must all be proven in a very specific way.",
+    "permit_friction": "medium",
+    "title_reliability": "medium",
+    "utilities": "material, especially outside main zones",
+    "best_entries": [
+      "boutique coastal or cay projects",
+      "eco-lodge and villa formats",
+      "small hospitality"
+    ],
+    "avoid_first": [
+      "large volume assumptions",
+      "land without hard access and title",
+      "treating cruise growth as proof of property demand"
+    ],
+    "process_notes": [
+      "Belize is a boutique market, not a broad absorption market.",
+      "Titled private property is critical; leased national land is a different risk class.",
+      "Best opportunities are small and precise."
+    ],
+    "source_refs": [
+      "bz_state_ics",
+      "bz_tourism",
+      "bz_imf"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Foreign investors can buy titled privately owned property, which is a major advantage for international buyers.",
+    "caution": "Distinguish clearly between titled private property and national leased land or rights-based arrangements.",
+    "source_refs": [
+      "bz_state_ics"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "San Pedro / Ambergris Caye",
+      "role": "top tourism and lifestyle market",
+      "thesis": "Most internationally recognisable Belize real-estate zone.",
+      "good_for": [
+        "boutique hospitality",
+        "villas",
+        "second-home product"
+      ],
+      "watchouts": [
+        "pricing",
+        "title and access discipline"
+      ]
+    },
+    {
+      "city": "Placencia",
+      "role": "southern coastal growth zone",
+      "thesis": "Good for smaller hospitality and lifestyle-led projects.",
+      "good_for": [
+        "villas",
+        "boutique hospitality"
+      ],
+      "watchouts": [
+        "market thinness"
+      ]
+    },
+    {
+      "city": "Caye Caulker / Hopkins",
+      "role": "secondary lifestyle clusters",
+      "thesis": "Interesting for boutique and eco-driven product rather than scale.",
+      "good_for": [
+        "eco-lodge",
+        "small hospitality",
+        "niche residential"
+      ],
+      "watchouts": [
+        "limited liquidity"
+      ]
+    },
+    {
+      "city": "Belize City / mainland gateways",
+      "role": "functional support zones",
+      "thesis": "More useful operationally than as a flagship international pitch.",
+      "good_for": [
+        "support functions",
+        "select local-demand product"
+      ],
+      "watchouts": [
+        "weaker lifestyle story"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Belize retains a simple foreign-buyer story for titled property.",
+    "Tourism remains solid and cruise flows are rising again.",
+    "Business-climate reform efforts are visible, though still a work in progress."
+  ],
+  "risks": [
+    "Thin buyer depth beyond top lifestyle nodes.",
+    "Land quality and title variation can be dramatic.",
+    "Infrastructure assumptions can be too optimistic.",
+    "A small market does not forgive oversized projects."
+  ],
+  "lifestyle_base": {
+    "rating": "strong",
+    "copy": "Very attractive for lifestyle and English-language comfort; weaker for a scaled development headquarters.",
+    "connectivity": "Good enough for tourism, weaker than major regional hubs for running a broader platform.",
+    "climate": "Warm tropical climate year-round.",
+    "home_office_fit": "Strong if lifestyle is the goal."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "bz_state_ics",
+      "title": "2025 Investment Climate Statements: Belize",
+      "url": "https://www.state.gov/reports/2025-investment-climate-statements/belize",
+      "publisher": "U.S. Department of State",
+      "type": "official",
+      "why_it_matters": "Current investment-climate overview and foreign-ownership note on titled vs national leased land.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bz_tourism",
+      "title": "Preliminary 2025 tourism figures indicate strong forward momentum",
+      "url": "https://www.belizetourismboard.org/preliminiary-2025-tourism-figures-indicate-strong-forward-momentum/",
+      "publisher": "Belize Tourism Board",
+      "type": "official",
+      "why_it_matters": "Official preliminary 2025 overnight and cruise tourism figures.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bz_imf",
+      "title": "Belize: 2025 Article IV Consultation-Press Release",
+      "url": "https://www.imf.org/-/media/files/publications/cr/2025/english/1blzea2025001-source-pdf.pdf",
+      "publisher": "International Monetary Fund",
+      "type": "official",
+      "why_it_matters": "Macro context and business-climate improvements such as BICAP.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bz_tax",
+      "title": "Tax Regime",
+      "url": "https://www.belize.org/trade-investment-zone/investment-regime/tax-regime/",
+      "publisher": "Belize Trade and Investment Development Service",
+      "type": "official",
+      "why_it_matters": "High-level domestic tax-regime reference.",
+      "retrieved": "2026-03-29",
+      "note": "Belize uses an income/business-tax structure that should be verified locally for project structuring."
+    }
+  ],
+  "tags": [
+    "Boutique",
+    "English",
+    "Lifestyle",
+    "Small market"
+  ],
+  "priority_rank": 12
+}

@@ -1,0 +1,308 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "MA",
+  "country": "Morocco",
+  "slug": "morocco",
+  "region": "Global frontier",
+  "status": "priority-global",
+  "live_on_site": true,
+  "confidence": "medium-high",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Morocco Market Intelligence | Perfect Mission",
+    "description": "Morocco combines record tourism, infrastructure ambition, and corridor-level upside — while property price inflation still looks comparatively restrained."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Morocco: strategic rerating without euphoria",
+    "subtitle": "A corridor market, not just a tourism market: Tangier–Tetouan and Rabat–Kenitra look more compelling than brochure-led resort narratives.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Morocco is the best immediate non-European rerating market on the board because the macro story is running ahead of the property-price story.",
+    "market_stage": {
+      "label": "Strategic rerating / corridor build-out",
+      "description": "Tourism, transport, industrial corridors, and the 2030 World Cup are pushing Morocco’s international relevance higher, while residential prices are not behaving like a bubble."
+    },
+    "operator_angle": "Morocco suits a second-stage international operator who can handle title discipline, local language, and corridor-based underwriting rather than pure tourism storytelling.",
+    "investor_angle": "For investors, Morocco works best when presented as an infrastructure-and-corridor story with tourism support — not as a simple holiday-home pitch.",
+    "base_case": "Treat Morocco as the strongest non-Europe upside sleeve, focusing on titled property and urban/coastal corridors rather than pure resort speculation."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 8.5
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 7.0
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 6.5
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 7.0
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 6.5
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 6.0
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 7.5
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 7.5
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "Tiered regime; key FY2025/FY2026 rates trend toward 20% / 35% depending on taxable income",
+      "source_ref": "ma_pwc_tax"
+    },
+    {
+      "label": "Tourism signal",
+      "value": "19.8 million tourists in 2025, up 14% YoY",
+      "source_ref": "ma_reuters_tourism"
+    },
+    {
+      "label": "Property-price signal",
+      "value": "Real-estate asset price index +1.2% YoY in Q3 2025",
+      "source_ref": "ma_q3_reapi"
+    },
+    {
+      "label": "Residential-price signal",
+      "value": "Residential prices +1.5% YoY in Q3 2025",
+      "source_ref": "ma_q3_reapi"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Urban residential in major corridors",
+      "fit": "strong",
+      "why": "Works best where transport, employment, and population flows support demand."
+    },
+    {
+      "strategy": "Hospitality-linked residential",
+      "fit": "medium",
+      "why": "Tourism supports it, but not every tourism city is equally investable."
+    },
+    {
+      "strategy": "Land assembly with title clarity",
+      "fit": "medium",
+      "why": "Can be powerful in corridor plays, but only when land status is bulletproof."
+    },
+    {
+      "strategy": "Brochure resort stock",
+      "fit": "weak",
+      "why": "Too easy to overpay for narrative without structural demand."
+    },
+    {
+      "strategy": "Patient capital for infrastructure-led rerating",
+      "fit": "strong",
+      "why": "This is where Morocco stands out globally."
+    }
+  ],
+  "development_reality": {
+    "headline": "Title discipline decides whether the upside is real",
+    "copy": "Morocco is attractive because the macro and infrastructure story is large while real-estate inflation is still moderate. That only matters if the underlying property is clean, titled, and located inside a corridor that can compound demand rather than rely on tourist excitement alone.",
+    "permit_friction": "medium",
+    "title_reliability": "medium",
+    "utilities": "market and site dependent",
+    "best_entries": [
+      "Tangier–Tetouan corridor",
+      "Rabat–Kenitra urban growth",
+      "select logistics-adjacent residential sites",
+      "hospitality-residential projects with real transport logic"
+    ],
+    "avoid_first": [
+      "buying untitled or weakly documented property",
+      "treating Marrakech as the default national proxy",
+      "assuming all coastal tourism translates into durable real-estate absorption"
+    ],
+    "process_notes": [
+      "The attraction is the mismatch between strong national rerating and comparatively restrained official property-price growth.",
+      "Corridor logic matters more than postcard logic.",
+      "Foreign buyers should default to fully titled property only."
+    ],
+    "source_refs": [
+      "ma_reuters_tourism",
+      "ma_q3_reapi",
+      "ma_state_ics"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Morocco is investable for foreign capital, but the practical quality of the investment depends heavily on title, structure, and local legal work.",
+    "caution": "Restrict acquisition to fully titled property and verify land, cadastre, infrastructure, and usage rights at document level.",
+    "source_refs": [
+      "ma_state_ics",
+      "ma_bkam_reapi"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Tangier",
+      "role": "top conviction corridor city",
+      "thesis": "Best blend of logistics, port relevance, industry, and northern-coast appeal.",
+      "good_for": [
+        "corridor residential",
+        "mixed-use",
+        "infrastructure-led rerating"
+      ],
+      "watchouts": [
+        "micro-location and title quality"
+      ]
+    },
+    {
+      "city": "Rabat–Kenitra",
+      "role": "administrative / transport corridor",
+      "thesis": "Good fit for urban demand tied to national institutions and transport upgrades.",
+      "good_for": [
+        "urban residential",
+        "select mixed-use"
+      ],
+      "watchouts": [
+        "need for precise site selection"
+      ]
+    },
+    {
+      "city": "Casablanca",
+      "role": "largest city / institutional depth",
+      "thesis": "Important for scale and corporate gravity, though not necessarily the first high-upside entry point.",
+      "good_for": [
+        "urban infill",
+        "institutional product"
+      ],
+      "watchouts": [
+        "competition",
+        "pricing"
+      ]
+    },
+    {
+      "city": "Marrakech",
+      "role": "tourism-heavy showcase market",
+      "thesis": "Can work, but foreign attention makes it easy to pay for story rather than margin.",
+      "good_for": [
+        "hospitality",
+        "select branded or premium product"
+      ],
+      "watchouts": [
+        "tourism saturation",
+        "brochure pricing"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Record tourism in 2025 confirms that demand is real, not hypothetical.",
+    "The 2030 World Cup adds long-horizon infrastructure and branding support.",
+    "Official Q3 2025 property-price growth remained modest relative to the scale of the macro story.",
+    "Morocco’s corridor logic — ports, rail, airports, industry, and tourism — gives multiple demand engines rather than a single narrative."
+  ],
+  "risks": [
+    "Strong national headlines can hide weak local deals.",
+    "Title and documentation risk remain central.",
+    "The tax story is not the reason to invest here; the rerating story is.",
+    "Language, local networks, and on-the-ground execution matter more than in EU-adjacent markets."
+  ],
+  "lifestyle_base": {
+    "rating": "medium",
+    "copy": "Morocco is attractive as a second-stage base or extended stay market, especially if the platform already knows how to operate cross-culturally. It is less natural than Bulgaria for a Czech-rooted first base.",
+    "connectivity": "Strong international access in key cities, improving aviation links, and major national infrastructure ambitions.",
+    "climate": "Generally favourable, but summer heat and local conditions vary substantially by city.",
+    "home_office_fit": "Easy enough in major cities, but the choice to base there should come from market logic rather than tax convenience."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "ma_pwc_tax",
+      "title": "Morocco - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/morocco/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current tiered corporate tax framework.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "ma_reuters_tourism",
+      "title": "Morocco receives 19.8 million tourists in 2025, tourism ministry says",
+      "url": "https://www.reuters.com/world/africa/morocco-receives-198-million-tourists-2025-tourism-ministry-says-2026-01-05/",
+      "publisher": "Reuters",
+      "type": "news",
+      "why_it_matters": "Record 2025 tourism figure and 2030 target context.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "ma_bkam_reapi",
+      "title": "Real estate price index - 2025",
+      "url": "https://www.bkam.ma/en/Statistics/Prices/Publications-ipai/Real-estate-price-index/Real-estate-price-index-2025",
+      "publisher": "Bank Al-Maghrib",
+      "type": "official",
+      "why_it_matters": "Official real-estate price index publication hub.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "ma_q3_reapi",
+      "title": "Real Estate Assets Prices Index up 1.2% in Q3 2025",
+      "url": "https://attijaricib.com/sites/default/files/2025-11/Morning%20Brief%20November%2024th%202025.pdf",
+      "publisher": "Attijari CIB summary citing Bank Al-Maghrib and ANCFCC",
+      "type": "market",
+      "why_it_matters": "Concise summary of Q3 2025 price moves by segment.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "ma_state_ics",
+      "title": "2025 Investment Climate Statements: Morocco",
+      "url": "https://www.state.gov/reports/2025-investment-climate-statements/morocco",
+      "publisher": "U.S. Department of State",
+      "type": "official",
+      "why_it_matters": "Current investment-climate overview and sector emphasis.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "Global",
+    "Tourism",
+    "Infrastructure",
+    "Corridor"
+  ],
+  "priority_rank": 4
+}

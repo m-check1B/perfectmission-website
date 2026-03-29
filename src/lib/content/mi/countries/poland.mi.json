@@ -1,0 +1,283 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "PL",
+  "country": "Poland",
+  "slug": "poland",
+  "region": "Central & Eastern Europe",
+  "status": "active",
+  "live_on_site": true,
+  "confidence": "medium-high",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Poland Market Intelligence | Perfect Mission",
+    "description": "Poland is a large, liquid, institutionalising real-estate market — stronger on scale and exits than on frontier mispricing."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Poland: scale without frontier cheapness",
+    "subtitle": "A big, credible market for operators who want depth and liquidity — but not a clean ‘low prices will obviously rise’ thesis.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Poland is a serious market, not an early market. It works for scale and institutional routes, not for cheap-cycle asymmetry.",
+    "market_stage": {
+      "label": "Mature-ish / selective",
+      "description": "The market remains active and data-rich, but price behaviour in major cities is already well observed and not obviously under-owned by capital."
+    },
+    "operator_angle": "Poland can absorb a larger platform, but it competes away the easy frontier edge through higher competition, a more ordinary tax story, and better-informed pricing.",
+    "investor_angle": "Investors like Poland because it is legible and liquid; that is good for trust and exits, but less good for exceptional upside.",
+    "base_case": "Use Poland as a selective scale market, not as the spearhead of a frontier thesis."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 5.5
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 7.5
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 6.5
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 8.0
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 8.5
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 5.5
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 8.0
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 6.8
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "19% standard; 9% reduced rate for qualifying small taxpayers on non-capital income",
+      "source_ref": "pl_pwc_tax"
+    },
+    {
+      "label": "Official data depth",
+      "value": "NBP maintains quarterly market reports and a house-price database through 2025 Q4",
+      "source_ref": "pl_nbp_report"
+    },
+    {
+      "label": "Pricing signal",
+      "value": "Average existing-home price across seven largest urban markets was PLN 13,382/m² in Q3 2025, -0.91% YoY",
+      "source_ref": "pl_gpg_market"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Ground-up residential in major cities",
+      "fit": "medium",
+      "why": "Works where sourcing edge exists, but the market is widely watched."
+    },
+    {
+      "strategy": "Regional-city residential",
+      "fit": "strong",
+      "why": "Poland’s city network makes regional diversification more realistic than in smaller markets."
+    },
+    {
+      "strategy": "Renovation / repositioning",
+      "fit": "strong",
+      "why": "A better fit than pure frontier speculation."
+    },
+    {
+      "strategy": "Frontier rerating trade",
+      "fit": "weak",
+      "why": "The market is too observed and too institutional to rely on a simple underpricing story."
+    }
+  ],
+  "development_reality": {
+    "headline": "Deep market, thinner asymmetry",
+    "copy": "Poland offers more depth, more liquidity, and more data than most of the Perfect Mission map. The trade-off is that the market is not obviously mispriced and margins are more easily competed away.",
+    "permit_friction": "medium-high",
+    "title_reliability": "high",
+    "utilities": "manageable but project-specific",
+    "best_entries": [
+      "regional-city residential",
+      "renovation",
+      "mid-size urban projects",
+      "institutional-quality build-to-rent logic"
+    ],
+    "avoid_first": [
+      "assuming cheap-cycle upside",
+      "copy-pasting a Bulgaria strategy without local adaptation"
+    ],
+    "process_notes": [
+      "The data environment is strong; the edge must therefore come from selection and execution.",
+      "Large cities are liquid, but this also means they are competitive.",
+      "Poland makes more sense as a scale market than as a first frontier-market narrative."
+    ],
+    "source_refs": [
+      "pl_nbp_report",
+      "pl_gpg_market",
+      "pl_cw_marketbeat"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "A highly legible market for foreign capital with strong institutional familiarity.",
+    "caution": "The difficulty is not access; it is finding underwritten margin in a market where many participants are already sophisticated.",
+    "source_refs": [
+      "pl_pwc_tax",
+      "pl_nbp_report"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Warsaw",
+      "role": "largest and most liquid city",
+      "thesis": "Best for scale and institutional comparables, least likely to offer hidden mispricing.",
+      "good_for": [
+        "large-ticket residential",
+        "build-to-rent logic",
+        "institutional exits"
+      ],
+      "watchouts": [
+        "competition",
+        "pricing"
+      ]
+    },
+    {
+      "city": "Kraków",
+      "role": "premium regional city",
+      "thesis": "Strong demand base with better lifestyle pull than many peers.",
+      "good_for": [
+        "premium residential",
+        "renovation"
+      ],
+      "watchouts": [
+        "tourism influence in some submarkets"
+      ]
+    },
+    {
+      "city": "Wrocław",
+      "role": "balanced regional engine",
+      "thesis": "Good fit for mid-market housing and operator-led discipline.",
+      "good_for": [
+        "residential",
+        "regional-city expansion"
+      ],
+      "watchouts": [
+        "price discovery is not frontier-like"
+      ]
+    },
+    {
+      "city": "Tri-City / Poznań / Łódź",
+      "role": "diversification cluster",
+      "thesis": "Useful for a broader Polish platform rather than a single-city bet.",
+      "good_for": [
+        "regional portfolio approach"
+      ],
+      "watchouts": [
+        "requires city-specific playbooks"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Large-city data and liquidity make investor underwriting easier.",
+    "The country’s city network supports multi-city deployment.",
+    "Institutional familiarity broadens exit routes."
+  ],
+  "risks": [
+    "Less upside asymmetry than Bulgaria, Albania, or Morocco.",
+    "Higher tax and labour cost than Bulgaria dilute the base story.",
+    "Competition compresses easy margins."
+  ],
+  "lifestyle_base": {
+    "rating": "strong",
+    "copy": "Poland is highly livable and operationally serious, but it does not beat Bulgaria on tax simplicity or first-base narrative for your model.",
+    "connectivity": "Excellent.",
+    "climate": "Comfortable but varied by city.",
+    "home_office_fit": "Strong; the question is strategic fit, not living conditions."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "pl_pwc_tax",
+      "title": "Poland - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/poland/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "pl_nbp_report",
+      "title": "Real estate market – Quarterly report",
+      "url": "https://nbp.pl/en/publications/cyclical-materials/real-estate-market/quarterly-report/",
+      "publisher": "National Bank of Poland",
+      "type": "official",
+      "why_it_matters": "Official city-level housing market reporting and house-price database through 2025 Q4.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "pl_gpg_market",
+      "title": "Poland's Residential Property Market Analysis 2025",
+      "url": "https://www.globalpropertyguide.com/europe/poland/price-history",
+      "publisher": "Global Property Guide citing NBP",
+      "type": "market",
+      "why_it_matters": "Current consolidated residential pricing signal for major cities.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "pl_cw_marketbeat",
+      "title": "Poland Marketbeat Residential Q3 2025",
+      "url": "https://assets.cushmanwakefield.com/-/media/cw/marketbeat-pdfs/2025/q3/emea/poland-marketbeat-residential-q3-2025-eng.pdf",
+      "publisher": "Cushman & Wakefield",
+      "type": "market",
+      "why_it_matters": "Current market-cycle context for the residential sector.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "Scale",
+    "Liquidity",
+    "Institutional"
+  ],
+  "priority_rank": 6
+}

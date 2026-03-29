@@ -1,0 +1,313 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "RO",
+  "country": "Romania",
+  "slug": "romania",
+  "region": "Central & Eastern Europe",
+  "status": "priority",
+  "live_on_site": true,
+  "confidence": "medium-high",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Romania Market Intelligence | Perfect Mission",
+    "description": "Romania offers the largest adjacent-scale market to Bulgaria: deeper domestic demand, stronger city diversity, and a still-active land market for residential developers."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Romania: scale next door",
+    "subtitle": "Bigger than Bulgaria, more city depth, and still attractive for development — but less frictionless as a first operating base.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Romania is the natural second market after Bulgaria: larger, deeper, and more institutional, but operationally less simple and less tax-efficient as a first base.",
+    "market_stage": {
+      "label": "Scaled rerating / selective",
+      "description": "Romania is not early in the frontier sense, but it still offers city-by-city rerating and development opportunities because the domestic market is large and unevenly repriced."
+    },
+    "operator_angle": "Romania works when you already have a platform, a repeatable underwriting model, and enough local legal capacity to handle municipal variation.",
+    "investor_angle": "The country is easier to sell than true frontier plays because scale, EU status, and larger cities make exits easier to understand.",
+    "base_case": "Run Bulgaria as the operating base, then deploy into Romania where land clarity, peri-urban growth, or city-level supply gaps support the thesis."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 7.5
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 7.5
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 6.5
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 7.0
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 8.0
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 6.5
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 7.5
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 7.5
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "16%",
+      "source_ref": "ro_pwc_tax"
+    },
+    {
+      "label": "Permit / pipeline signal",
+      "value": "Residential building permits rose 4.4% in 2025 to 37,252",
+      "source_ref": "ro_ins_permits"
+    },
+    {
+      "label": "Land-market signal",
+      "value": "CBRE reports stronger 2025 land-market activity, led by retail and residential developers",
+      "source_ref": "ro_cbre_land"
+    },
+    {
+      "label": "Pricing signal",
+      "value": "Well-located plots face upward pressure where zoning clarity and infrastructure are strong",
+      "source_ref": "ro_cbre_land"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Ground-up residential",
+      "fit": "strong",
+      "why": "The strongest fit, especially in Bucharest-Ilfov and selected regional cities."
+    },
+    {
+      "strategy": "Peri-urban family housing",
+      "fit": "strong",
+      "why": "The Bucharest-Ilfov dynamic makes this one of the clearest formats."
+    },
+    {
+      "strategy": "Urban infill",
+      "fit": "medium",
+      "why": "Works, but only with patient permitting and strong local execution."
+    },
+    {
+      "strategy": "Land banking",
+      "fit": "medium",
+      "why": "Viable where infrastructure and planning logic are visible, but dead capital on weak plots is a real risk."
+    },
+    {
+      "strategy": "Heavy change-of-use rescue plays",
+      "fit": "weak",
+      "why": "Possible, but not a clean opening strategy for cross-border capital."
+    }
+  ],
+  "development_reality": {
+    "headline": "Good market, heavier operating surface",
+    "copy": "Romania rewards teams that can absorb municipal variation and structure development patiently. Compared with Bulgaria, it offers more scale and more city choice, but not the same simplicity of story or setup.",
+    "permit_friction": "medium-high",
+    "title_reliability": "medium",
+    "utilities": "material underwriting item",
+    "best_entries": [
+      "peri-urban residential around Bucharest",
+      "regional-city residential in labour magnets",
+      "well-located plots with zoning clarity",
+      "phased developments with multiple exit options"
+    ],
+    "avoid_first": [
+      "plots priced as if fully entitled when they are not",
+      "overly optimistic pre-sale assumptions",
+      "weak municipalities without strong local counsel"
+    ],
+    "process_notes": [
+      "Romania offers more volume than Bulgaria, but local planning practice is less uniform.",
+      "Land value diverges sharply by zoning clarity, infrastructure access, and certainty of permitting.",
+      "Scale is the advantage; simplicity is not."
+    ],
+    "source_refs": [
+      "ro_cbre_land",
+      "ro_ins_permits"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Romania is investable for cross-border capital, but land and development structures should be reviewed case by case, especially for non-EU capital or asset-specific constraints.",
+    "caution": "Treat title, zoning, and access review as first-order diligence items rather than back-office admin.",
+    "source_refs": [
+      "ro_pwc_tax",
+      "ro_cbre_land"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Bucharest-Ilfov",
+      "role": "primary scale market",
+      "thesis": "The biggest and most liquid development engine in the country, with peri-urban growth still relevant.",
+      "good_for": [
+        "peri-urban residential",
+        "urban infill",
+        "family housing",
+        "larger ticket sizes"
+      ],
+      "watchouts": [
+        "more competition",
+        "municipal complexity",
+        "careful micro-location filtering"
+      ]
+    },
+    {
+      "city": "Cluj-Napoca",
+      "role": "premium regional city",
+      "thesis": "High-income, education-heavy, and developer-active, but pricing is already demanding.",
+      "good_for": [
+        "premium residential",
+        "smaller high-conviction projects"
+      ],
+      "watchouts": [
+        "entry pricing",
+        "thin margin if the plot is over-shopped"
+      ]
+    },
+    {
+      "city": "Timișoara",
+      "role": "western gateway city",
+      "thesis": "A good fit for operators who want an economically active city with less hype than Cluj.",
+      "good_for": [
+        "mid-market residential",
+        "regional diversification"
+      ],
+      "watchouts": [
+        "need for local team quality"
+      ]
+    },
+    {
+      "city": "Iași",
+      "role": "eastern growth city",
+      "thesis": "Useful for selective residential where local demand depth exists and competition is still manageable.",
+      "good_for": [
+        "residential",
+        "regional-city product"
+      ],
+      "watchouts": [
+        "liquidity thinner than Bucharest"
+      ]
+    },
+    {
+      "city": "Constanța",
+      "role": "coastal / logistics edge",
+      "thesis": "Interesting only when the thesis is more than tourism and the micro-location is defensible.",
+      "good_for": [
+        "selective coastal urban product",
+        "logistics-adjacent land"
+      ],
+      "watchouts": [
+        "seasonality",
+        "tourism dependence in weaker submarkets"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Romania offers much larger domestic scale than Bulgaria, which matters for absorption and exit routes.",
+    "Official permit data show the residential pipeline remained active in 2025.",
+    "CBRE reports stronger 2025 land-market activity, especially where zoning and infrastructure are clear.",
+    "Regional-city diversification reduces dependence on one metro area."
+  ],
+  "risks": [
+    "Operational complexity is higher than Bulgaria's, especially municipality by municipality.",
+    "A weak local planning or legal team can turn a good market into a slow market very quickly.",
+    "Strong cities are already well-covered by local developers, so edge comes from sourcing and structure, not from being present.",
+    "Romania is easier to invest in than many frontier markets, but harder to operate casually than it first appears."
+  ],
+  "lifestyle_base": {
+    "rating": "medium",
+    "copy": "Romania is a strong deployment market but a weaker first operating base than Bulgaria for a Czech-led platform. It makes more sense as the second engine rather than headquarters.",
+    "connectivity": "Excellent from Bulgaria by air and road for regional operations.",
+    "climate": "Varies meaningfully by city; Bucharest summers can be hot, regional climate depends heavily on geography.",
+    "home_office_fit": "Strong in Bucharest, Cluj, and Timișoara, but the core reason to be in Romania should be market scale rather than low-cost basing."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "ro_pwc_tax",
+      "title": "Romania - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/romania/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "ro_ins_permits",
+      "title": "Construction permits released for buildings",
+      "url": "https://insse.ro/cms/en/content/construction-permits-released-buildings-122",
+      "publisher": "National Institute of Statistics Romania",
+      "type": "official",
+      "why_it_matters": "Official residential building permit flow in 2025.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "ro_cbre_land",
+      "title": "Romania Real Estate Market Outlook 2026",
+      "url": "https://www.cbre.ro/insights/reports/romania-real-estate-market-outlook-2026",
+      "publisher": "CBRE Romania",
+      "type": "market",
+      "why_it_matters": "Current land-market tone and developer demand for zoned plots.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "ro_cbre_inv",
+      "title": "Romania Real Estate Investment Figures Q3 2025",
+      "url": "https://www.cbre.ro/insights/figures/romania-real-estate-investment-figures-q3-2025",
+      "publisher": "CBRE Romania",
+      "type": "market",
+      "why_it_matters": "Evidence that institutional activity remains live.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "EU",
+    "Scale",
+    "Residential",
+    "Adjacent market"
+  ],
+  "priority_rank": 2
+}

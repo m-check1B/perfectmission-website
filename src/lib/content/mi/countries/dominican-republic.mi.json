@@ -1,0 +1,296 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "DO",
+  "country": "Dominican Republic",
+  "slug": "dominican-republic",
+  "region": "Latin America & Caribbean",
+  "status": "active",
+  "live_on_site": true,
+  "confidence": "medium",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Dominican Republic Market Intelligence | Perfect Mission",
+    "description": "The Dominican Republic is a tourism-led development market with open foreign ownership and strong resort-residential logic."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Dominican Republic: tourism power feeding real estate",
+    "subtitle": "A market where hospitality, second-home demand, and open foreign ownership combine into a clear development story.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "The Dominican Republic is one of the cleanest tourism-linked real-estate markets in the Caribbean, but it is more of a hospitality-development story than a low-tax story.",
+    "market_stage": {
+      "label": "Tourism growth / active",
+      "description": "Tourism is not merely recovering; it is setting records, and the real-estate market benefits where projects align with durable destination demand."
+    },
+    "operator_angle": "Good for operators who understand resort-linked or mixed hospitality-residential product and can avoid generic beach brochure inventory.",
+    "investor_angle": "Easy to explain because tourism numbers are strong and foreign ownership is open.",
+    "base_case": "Use the Dominican Republic for tourism-linked development strategies rather than for a generalised national land thesis."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 7.5
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 7.0
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 7.0
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 8.5
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 7.0
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 5.0
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 8.0
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 7.2
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "27%, plus a 1% assets tax functioning as a minimum tax in some cases",
+      "source_ref": "do_pwc_tax"
+    },
+    {
+      "label": "Tourism signal",
+      "value": "11.6 million visitors in 2025",
+      "source_ref": "do_tourism"
+    },
+    {
+      "label": "Foreign ownership signal",
+      "value": "No restrictions on foreign individuals or entities owning or leasing real estate",
+      "source_ref": "do_chambers_re"
+    },
+    {
+      "label": "FDI signal",
+      "value": "2025 FDI reached about US$5.03 billion; tourism-linked real estate captured 15.7% of that flow",
+      "source_ref": "do_fdi_re"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Resort residential",
+      "fit": "strong",
+      "why": "A natural format when linked to real destination demand."
+    },
+    {
+      "strategy": "Branded or hospitality-linked development",
+      "fit": "strong",
+      "why": "This is the country’s clearest cross-border product fit."
+    },
+    {
+      "strategy": "Urban residential",
+      "fit": "medium",
+      "why": "Can work in Santo Domingo, but the signature story is still tourism and lifestyle."
+    },
+    {
+      "strategy": "Generic inland land speculation",
+      "fit": "weak",
+      "why": "The strongest demand logic is still destination-driven."
+    }
+  ],
+  "development_reality": {
+    "headline": "Destination logic matters more than national averages",
+    "copy": "The Dominican Republic rewards projects tied to real destination economics — airports, tourism flows, hotel ecosystems, and lifestyle demand. It punishes generic inventory that assumes all coastal land is equal.",
+    "permit_friction": "medium",
+    "title_reliability": "medium",
+    "utilities": "tourism-zone dependent",
+    "best_entries": [
+      "Punta Cana / Bávaro",
+      "Cap Cana",
+      "Las Terrenas",
+      "premium destination-linked residential"
+    ],
+    "avoid_first": [
+      "generic condo product without destination advantage",
+      "assuming every beach zone is equally liquid"
+    ],
+    "process_notes": [
+      "Tourism is the main engine of the story.",
+      "Foreign ownership openness is helpful, but local project quality still decides outcomes.",
+      "Best opportunities sit where destination economics are already durable."
+    ],
+    "source_refs": [
+      "do_tourism",
+      "do_chambers_re",
+      "do_state_ics"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Foreign buyers can own and lease real estate without special ownership restrictions.",
+    "caution": "Legal openness does not remove the need for title, tax, condominium-regime, and tourism-zone diligence.",
+    "source_refs": [
+      "do_chambers_re",
+      "do_state_ics"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Punta Cana / Bávaro",
+      "role": "primary tourism-growth market",
+      "thesis": "The strongest all-round destination-development engine.",
+      "good_for": [
+        "resort residential",
+        "hospitality",
+        "second-home product"
+      ],
+      "watchouts": [
+        "crowded supply in weak projects"
+      ]
+    },
+    {
+      "city": "Cap Cana",
+      "role": "premium enclave",
+      "thesis": "Better for high-ticket, higher-trust product than for volume plays.",
+      "good_for": [
+        "premium resort product"
+      ],
+      "watchouts": [
+        "premium pricing"
+      ]
+    },
+    {
+      "city": "Santo Domingo",
+      "role": "urban / business market",
+      "thesis": "Useful for urban logic, though not the signature international story.",
+      "good_for": [
+        "urban residential",
+        "mixed-use"
+      ],
+      "watchouts": [
+        "less tourism glamour"
+      ]
+    },
+    {
+      "city": "Las Terrenas / Puerto Plata",
+      "role": "selective lifestyle clusters",
+      "thesis": "Interesting for boutique and mid-scale destination product.",
+      "good_for": [
+        "boutique hospitality",
+        "lifestyle residential"
+      ],
+      "watchouts": [
+        "thin depth outside best micro-locations"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Record tourism numbers validate the demand story.",
+    "Open foreign ownership helps cross-border product design and fundraising.",
+    "Tourism-linked real estate continues to attract foreign investment."
+  ],
+  "risks": [
+    "Easy to overpay for generic tourism marketing.",
+    "The tax story is not especially light.",
+    "Destination quality is not uniform; national averages are less useful than micro-market logic."
+  ],
+  "lifestyle_base": {
+    "rating": "strong",
+    "copy": "Highly attractive as a lifestyle and destination market, though less natural than Bulgaria for a regional CEE operating headquarters.",
+    "connectivity": "Strong for North America and Caribbean flows.",
+    "climate": "Tropical and warm year-round.",
+    "home_office_fit": "Strong, especially in destination zones and Santo Domingo."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "do_pwc_tax",
+      "title": "Dominican Republic - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/dominican-republic/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate and asset-tax note.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "do_state_ics",
+      "title": "2025 Investment Climate Statement: Dominican Republic",
+      "url": "https://www.state.gov/reports/2025-investment-climate-statements/dominican-republic",
+      "publisher": "U.S. Department of State",
+      "type": "official",
+      "why_it_matters": "Current investment-climate overview and sector focus.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "do_tourism",
+      "title": "Dominican tourism reaches record figures and cements regional leadership",
+      "url": "https://eng.tourismandsocietytt.com/news-and-newsletter/2026/2026-february/ultimas-noticias/dominican-tourism-reaches-record-figures-and-cements-regional-leadership",
+      "publisher": "Tourism & Society citing official data",
+      "type": "news",
+      "why_it_matters": "2025 visitor total.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "do_chambers_re",
+      "title": "Real Estate 2025 - Dominican Republic - Trends and developments",
+      "url": "https://practiceguides.chambers.com/practice-guides/real-estate-2025/dominican-republic/trends-and-developments",
+      "publisher": "Chambers and Partners",
+      "type": "legal",
+      "why_it_matters": "Foreign-ownership summary for real estate.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "do_fdi_re",
+      "title": "To what extent does investment in tourism real estate boost the country's economic growth?",
+      "url": "https://inmobiliario.do/en/to-what-extent-does-investment-in-tourism-real-estate-boost-the-countrys-economic-growth-/",
+      "publisher": "Inmobiliario.do citing Central Bank figures",
+      "type": "market",
+      "why_it_matters": "Latest FDI share for tourism-linked real estate.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "Tourism",
+    "Caribbean",
+    "Open ownership"
+  ],
+  "priority_rank": 10
+}

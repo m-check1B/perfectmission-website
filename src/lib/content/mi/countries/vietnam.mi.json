@@ -1,0 +1,304 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "VN",
+  "country": "Vietnam",
+  "slug": "vietnam",
+  "region": "Global frontier",
+  "status": "active",
+  "live_on_site": true,
+  "confidence": "medium-high",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Vietnam Market Intelligence | Perfect Mission",
+    "description": "Vietnam has macro strength, record tourism, and continuing FDI reform — but foreign ownership constraints mean it is not a direct analogue to Bulgaria or Panama for land-led development."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Vietnam: macro strength, structured access",
+    "subtitle": "A serious growth market with real demand — but foreign property rights remain more conditional than the headline excitement suggests.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Vietnam is a strong macro market but a weaker fit for a foreign operator whose edge depends on direct, flexible control of development land and project structure.",
+    "market_stage": {
+      "label": "Growth / controlled access",
+      "description": "Demand, tourism, and investment reform are strong, but foreign access to real estate is shaped by specific legal channels rather than broad open ownership."
+    },
+    "operator_angle": "Vietnam rewards local execution and structured compliance. It is not the best match for a simple foreign-led land-development playbook.",
+    "investor_angle": "Investors like the macro and tourism story, but the real-estate vehicle must be explained clearly because rights are more conditional than in open-title markets.",
+    "base_case": "Treat Vietnam as a strategic growth sleeve, preferably through compliant local structures or project-level participation rather than assuming Western-style property control."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 8.0
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 6.5
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 6.5
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 6.0
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 7.5
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 6.5
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 8.0
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 7.0
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "20%",
+      "source_ref": "vn_pwc_tax"
+    },
+    {
+      "label": "Tourism signal",
+      "value": "Nearly 21.2 million international visitors in 2025",
+      "source_ref": "vn_tourism"
+    },
+    {
+      "label": "Foreign ownership signal",
+      "value": "Foreigners can own houses/apartments in approved commercial projects but not the land itself",
+      "source_ref": "vn_legal500_re"
+    },
+    {
+      "label": "Typical term / cap",
+      "value": "Common foreign ownership framework uses 50-year renewable rights and project-level caps such as 30% of condominium units",
+      "source_ref": "vn_lexology"
+    },
+    {
+      "label": "Investment-law signal",
+      "value": "Vietnam’s new Law on Investment 2025 took effect from 1 March 2026",
+      "source_ref": "vn_loi2025"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Project-level participation with local structure",
+      "fit": "strong",
+      "why": "Works better than trying to replicate open-title foreign development models."
+    },
+    {
+      "strategy": "Foreign direct land-led development",
+      "fit": "weak",
+      "why": "Land-control assumptions are too different from Europe or Panama."
+    },
+    {
+      "strategy": "Hospitality / city-condo product in approved projects",
+      "fit": "medium",
+      "why": "Possible, but legal caps and project eligibility matter."
+    },
+    {
+      "strategy": "Macro growth allocation",
+      "fit": "strong",
+      "why": "Vietnam is excellent as a macro-growth exposure if the structure is right."
+    }
+  ],
+  "development_reality": {
+    "headline": "Strong market, more constrained control",
+    "copy": "Vietnam is compelling because demand is real, cities are active, and reform continues. The problem for a foreign-led developer is that land and housing rights are not as direct or open as the headline growth story may suggest.",
+    "permit_friction": "medium-high",
+    "title_reliability": "structure dependent",
+    "utilities": "usually secondary to legal structure and project eligibility",
+    "best_entries": [
+      "approved commercial housing projects",
+      "local-partner development structures",
+      "hospitality and urban product in growth cities"
+    ],
+    "avoid_first": [
+      "assuming foreigners can buy and develop land directly",
+      "using generic offshore templates without Vietnamese legal design"
+    ],
+    "process_notes": [
+      "Foreign ownership applies within defined legal categories, not as a blanket right to own land.",
+      "The macro case is strong; the control case is more nuanced.",
+      "This market favours structured participation over simple foreign direct acquisition."
+    ],
+    "source_refs": [
+      "vn_tourism",
+      "vn_loi2025",
+      "vn_legal500_re",
+      "vn_lexology"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Foreigners can participate in the housing market, but typically only within approved commercial projects and without owning the land underneath.",
+    "caution": "Structure, project eligibility, ownership caps, and term length must be verified before underwriting any deal.",
+    "source_refs": [
+      "vn_legal500_re",
+      "vn_lexology"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Ho Chi Minh City",
+      "role": "primary commercial engine",
+      "thesis": "The deepest urban market and a natural entry point for structured city product.",
+      "good_for": [
+        "urban residential",
+        "mixed-use",
+        "institutional partnerships"
+      ],
+      "watchouts": [
+        "pricing",
+        "complex compliance"
+      ]
+    },
+    {
+      "city": "Hanoi",
+      "role": "political and economic counterweight",
+      "thesis": "A serious city market with depth, but foreign structures still need careful handling.",
+      "good_for": [
+        "urban residential",
+        "select mixed-use"
+      ],
+      "watchouts": [
+        "formal complexity"
+      ]
+    },
+    {
+      "city": "Da Nang",
+      "role": "coastal growth city",
+      "thesis": "Good for hospitality-linked and lifestyle-driven product if structure is compliant.",
+      "good_for": [
+        "hospitality",
+        "city-coastal residential"
+      ],
+      "watchouts": [
+        "tourism cyclicality"
+      ]
+    },
+    {
+      "city": "Nha Trang / Phu Quoc",
+      "role": "tourism-led growth zones",
+      "thesis": "Potentially attractive, but easiest place to confuse tourism enthusiasm with durable investment quality.",
+      "good_for": [
+        "hospitality",
+        "approved resort product"
+      ],
+      "watchouts": [
+        "brochure-driven overpricing"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Record 2025 tourism confirms sustained demand.",
+    "The new investment-law framework shows continued reform momentum.",
+    "Vietnam remains one of the strongest macro growth stories in the region."
+  ],
+  "risks": [
+    "Foreign ownership is conditional, not broad open-title ownership.",
+    "Local legal design matters more than generic market enthusiasm.",
+    "A foreign operator can easily overestimate how directly it can control land and project economics."
+  ],
+  "lifestyle_base": {
+    "rating": "strong",
+    "copy": "Vietnam is highly livable in its major cities and excellent for a digital / services footprint, but that does not automatically make it the best legal fit for your real-estate style.",
+    "connectivity": "Strong in major metros.",
+    "climate": "Varies substantially by region; tropical and often hot.",
+    "home_office_fit": "Very strong in major cities."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "vn_pwc_tax",
+      "title": "Vietnam - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/vietnam/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "vn_tourism",
+      "title": "Vietnam's tourism sets a new record, ranking among the world's fastest growing destinations",
+      "url": "https://vietnamtourism.gov.vn/en/post/21493",
+      "publisher": "Vietnam National Authority of Tourism",
+      "type": "official",
+      "why_it_matters": "Official 2025 international visitor total.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "vn_loi2025",
+      "title": "Legal Update: Vietnam’s New Law on Investment in 2025",
+      "url": "https://www.gvw.com/en/news/blog/detail/legal-update-vietnams-new-law-on-investment-in-2025",
+      "publisher": "GV Lawyers",
+      "type": "legal",
+      "why_it_matters": "Current summary of the 2025 Law on Investment taking effect in 2026.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "vn_legal500_re",
+      "title": "Vietnam: Real Estate",
+      "url": "https://www.legal500.com/guides/chapter/vietnam-real-estate/?export-pdf=",
+      "publisher": "Legal 500",
+      "type": "legal",
+      "why_it_matters": "Useful summary of foreign property ownership treatment.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "vn_lexology",
+      "title": "What Foreigners Must Know Before They Buy an Apartment in Vietnam",
+      "url": "https://www.lexology.com/library/detail.aspx?g=e8f1114d-031f-472c-bbe1-cadd16eabf8e",
+      "publisher": "Lexology",
+      "type": "legal",
+      "why_it_matters": "Practical foreign-buyer constraints in approved commercial housing projects.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "Asia",
+    "Growth",
+    "Tourism",
+    "Structured access"
+  ],
+  "priority_rank": 7
+}

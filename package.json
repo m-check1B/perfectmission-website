@@ -25,6 +25,7 @@
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
-    "@fontsource/playfair-display": "^5.2.8"
+    "@fontsource/playfair-display": "^5.2.8",
+    "posthog-js": "^1.364.1"
   }
 }

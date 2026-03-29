@@ -1,0 +1,288 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "PA",
+  "country": "Panama",
+  "slug": "panama",
+  "region": "Latin America & Caribbean",
+  "status": "active",
+  "live_on_site": true,
+  "confidence": "medium",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Panama Market Intelligence | Perfect Mission",
+    "description": "Panama combines open foreign ownership, a dollarised operating environment, and a credible international investor narrative — stronger on openness than on deep frontier mispricing."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Panama: open, familiar, still investable",
+    "subtitle": "One of the easiest Latin American real-estate stories to explain to international capital, especially when titled property and clear structures are used.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Panama is not the cheapest market, but it is one of the cleanest foreign-investor stories in Latin America.",
+    "market_stage": {
+      "label": "Service-hub / selective rerating",
+      "description": "Panama has long been internationally visible, yet it still offers selective real-estate opportunities because foreign ownership is open and demand is diversified."
+    },
+    "operator_angle": "Good market if you value legal openness and international familiarity more than the thrill of extreme frontier upside.",
+    "investor_angle": "Panama is easy to explain: private property rights, dollar economy, and strong cross-border recognition.",
+    "base_case": "Use Panama when the goal is an internationally legible LatAm platform market rather than a raw frontier bet."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 7.0
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 7.0
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 7.5
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 9.0
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 7.0
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 7.5
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 8.0
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 7.5
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "25%",
+      "source_ref": "pa_pwc_tax"
+    },
+    {
+      "label": "Investment climate",
+      "value": "State Department notes constitutional protection of private ownership and a generally open investment regime",
+      "source_ref": "pa_state_ics"
+    },
+    {
+      "label": "Tourism signal",
+      "value": "Roughly 3 million international visitors in 2025, up about 8.4% YoY",
+      "source_ref": "pa_tourism"
+    },
+    {
+      "label": "Foreign ownership signal",
+      "value": "Foreign investors can generally buy real estate with the same core rights as Panamanian citizens, subject to specific exceptions",
+      "source_ref": "pa_open_ownership"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Urban residential",
+      "fit": "strong",
+      "why": "Particularly where international buyer familiarity and service-economy demand are both present."
+    },
+    {
+      "strategy": "Beach and lifestyle product",
+      "fit": "medium",
+      "why": "Works when title is hard, access is real, and the product is not pure expat brochure stock."
+    },
+    {
+      "strategy": "Logistics-adjacent product",
+      "fit": "medium",
+      "why": "Can make sense given Panama’s regional-hub profile."
+    },
+    {
+      "strategy": "Concession-land speculation",
+      "fit": "weak",
+      "why": "Too easy to misunderstand what is and is not true freehold."
+    }
+  ],
+  "development_reality": {
+    "headline": "Open market, still title-sensitive",
+    "copy": "Panama’s main advantage is not raw cheapness but openness. That helps with fundraising and structuring, but it does not remove the need to distinguish titled property from concession logic and to verify taxes, access, and local execution realities.",
+    "permit_friction": "medium",
+    "title_reliability": "medium",
+    "utilities": "project specific",
+    "best_entries": [
+      "Panama City urban product",
+      "well-titled coastal communities",
+      "logistics-adjacent or service-economy demand zones"
+    ],
+    "avoid_first": [
+      "unclear coastal rights",
+      "concession misunderstandings",
+      "over-marketed expat inventory"
+    ],
+    "process_notes": [
+      "Foreign ownership openness is a real advantage.",
+      "The cleanest deals are titled, documented, and easy to explain.",
+      "Panama is more about clarity and accessibility than about being undiscovered."
+    ],
+    "source_refs": [
+      "pa_state_ics",
+      "pa_open_ownership"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Panama is one of the most open real-estate markets in the region for foreign buyers.",
+    "caution": "Treat titled property and concession / rights-based arrangements as completely different risk categories.",
+    "source_refs": [
+      "pa_state_ics",
+      "pa_open_ownership"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Panama City",
+      "role": "primary urban market",
+      "thesis": "Best for scale, liquidity, and international recognisability.",
+      "good_for": [
+        "urban residential",
+        "mixed-use",
+        "international capital"
+      ],
+      "watchouts": [
+        "competition",
+        "pricing"
+      ]
+    },
+    {
+      "city": "West Panama",
+      "role": "spillover growth belt",
+      "thesis": "Useful for more price-sensitive family and suburban formats.",
+      "good_for": [
+        "family housing",
+        "suburban product"
+      ],
+      "watchouts": [
+        "micro-location and infrastructure quality"
+      ]
+    },
+    {
+      "city": "Coronado / Pacific Riviera",
+      "role": "lifestyle-coastal market",
+      "thesis": "Best approached selectively and only on clearly titled property.",
+      "good_for": [
+        "lifestyle housing",
+        "second-home product"
+      ],
+      "watchouts": [
+        "oversupply in generic product"
+      ]
+    },
+    {
+      "city": "Boquete / David",
+      "role": "highland / western lifestyle cluster",
+      "thesis": "Interesting for niche lifestyle demand rather than institutional scale.",
+      "good_for": [
+        "boutique residential",
+        "small hospitality"
+      ],
+      "watchouts": [
+        "smaller exit pool"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Open foreign ownership and strong legal legibility remain major selling points.",
+    "Panama retains broad international recognition as a business and travel hub.",
+    "Tourism growth in 2025 shows continuing demand support."
+  ],
+  "risks": [
+    "Conflating title strength across asset types is dangerous.",
+    "Some segments are heavily marketed to foreign buyers and can be overpriced.",
+    "Not every coastal or expat community is a durable investment market."
+  ],
+  "lifestyle_base": {
+    "rating": "strong",
+    "copy": "Panama is one of the easier LatAm countries for an international operator to live and work in, though it belongs to a different time-zone and investor-story stack than your CEE thesis.",
+    "connectivity": "Strong international connectivity.",
+    "climate": "Tropical and hot.",
+    "home_office_fit": "Very strong in Panama City and selected lifestyle locations."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "pa_pwc_tax",
+      "title": "Panama - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/panama/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "pa_state_ics",
+      "title": "2025 Investment Climate Statements: Panama",
+      "url": "https://www.state.gov/reports/2025-investment-climate-statements/panama",
+      "publisher": "U.S. Department of State",
+      "type": "official",
+      "why_it_matters": "Current investment-climate overview and property-rights baseline.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "pa_tourism",
+      "title": "Panama closed 2025 with three million international visitors",
+      "url": "https://newsroompanama.com/2026/03/05/panama-surpassed-three-million-international-tourists-in-2025/",
+      "publisher": "Newsroom Panama citing government statement",
+      "type": "news",
+      "why_it_matters": "Latest tourism signal for 2025.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "pa_open_ownership",
+      "title": "The Legal Framework: Wide Open Doors for Foreign Investors",
+      "url": "https://www.jarniascyril.com/international-real-estate/invest-in-real-estate-panama/foreigners-real-estate-purchase-process-panama/",
+      "publisher": "Jarnias & Cyril",
+      "type": "legal",
+      "why_it_matters": "Practical foreign-ownership summary for standard real estate.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "Open ownership",
+    "Dollarised",
+    "LatAm"
+  ],
+  "priority_rank": 9
+}

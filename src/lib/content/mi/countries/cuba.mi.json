@@ -1,0 +1,279 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "CU",
+  "country": "Cuba",
+  "slug": "cuba",
+  "region": "Latin America & Caribbean",
+  "status": "watchlist",
+  "live_on_site": true,
+  "confidence": "medium-high",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Cuba Market Intelligence | Perfect Mission",
+    "description": "Cuba has enormous theoretical upside, but it remains a watchlist market rather than an immediately executable one."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Cuba: huge theoretical upside, not yet a current platform market",
+    "subtitle": "The thesis is obvious. The timing still is not.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Cuba is still a watchlist market: strategically fascinating, operationally premature.",
+    "market_stage": {
+      "label": "Not yet executable",
+      "description": "Recent reform signals are real, but they sit inside an ongoing energy, currency, and sanctions crisis that still makes immediate-scale execution unattractive."
+    },
+    "operator_angle": "The market could become exceptional later. Right now it is a timing bet, not an operating base.",
+    "investor_angle": "Every sophisticated investor understands the upside conceptually; the problem is that the implementation window is still unclear and politically conditioned.",
+    "base_case": "Keep Cuba visible on the site as a strategic watchlist market, not as an immediate deployment geography."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 9.0
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 2.0
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 2.0
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 2.0
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 1.0
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 3.0
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 4.0
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 2.5
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Reform signal",
+      "value": "Late-2025 proposals included allowing foreign companies to purchase real estate, hire directly, and operate more flexibly",
+      "source_ref": "cu_reuters_reform"
+    },
+    {
+      "label": "Official measure signal",
+      "value": "Cuban authorities formally announced measures to streamline and boost foreign investment in November 2025",
+      "source_ref": "cu_official_measures"
+    },
+    {
+      "label": "Investment-approval signal",
+      "value": "Official reporting says 32 new businesses were approved in 2025 with committed capital of US$2.1 billion",
+      "source_ref": "cu_granma"
+    },
+    {
+      "label": "Crisis signal",
+      "value": "Independent official reporting describes the current crisis as the most severe in decades",
+      "source_ref": "cu_crisis"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Immediate deployment",
+      "fit": "weak",
+      "why": "The timing and operating environment are not yet good enough."
+    },
+    {
+      "strategy": "Watchlist intelligence",
+      "fit": "strong",
+      "why": "Cuba deserves continuous monitoring because the upside could be enormous if the operating regime truly opens."
+    },
+    {
+      "strategy": "Early strategic relationships",
+      "fit": "medium",
+      "why": "Only for parties with deep patience and political tolerance."
+    }
+  ],
+  "development_reality": {
+    "headline": "Watch closely, but do not confuse signals with readiness",
+    "copy": "Cuba matters because it may eventually be the biggest rerating story in the wider map. The recent signals are meaningful, but the country remains constrained by crisis conditions, state control, and geopolitical risk.",
+    "permit_friction": "very high / opaque",
+    "title_reliability": "opaque",
+    "utilities": "systemic issue",
+    "best_entries": [
+      "intelligence gathering",
+      "relationship building",
+      "watchlist positioning"
+    ],
+    "avoid_first": [
+      "assuming the market is open because reforms were announced",
+      "treating late-2025 measures as equivalent to a stable investable regime"
+    ],
+    "process_notes": [
+      "The upside thesis is valid.",
+      "The immediate execution thesis remains weak.",
+      "Cuba should stay on the map, but in a separate watchlist category."
+    ],
+    "source_refs": [
+      "cu_reuters_reform",
+      "cu_official_measures",
+      "cu_crisis",
+      "cu_time_crisis"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "The formal regime may be loosening, but direct and reliable foreign property participation is still not simple enough to market as current execution.",
+    "caution": "Treat all ‘opening’ narratives as provisional until regulations, enforceability, and operations visibly change.",
+    "source_refs": [
+      "cu_reuters_reform",
+      "cu_official_measures",
+      "cu_granma"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Havana",
+      "role": "obvious strategic city",
+      "thesis": "The place everyone watches first, but still not a clean current-operating market.",
+      "good_for": [
+        "watchlist intelligence"
+      ],
+      "watchouts": [
+        "energy crisis",
+        "operating opacity"
+      ]
+    },
+    {
+      "city": "Varadero",
+      "role": "tourism zone",
+      "thesis": "Relevant for hospitality logic later, not a default current deployment zone.",
+      "good_for": [
+        "watchlist tourism thesis"
+      ],
+      "watchouts": [
+        "regime and supply constraints"
+      ]
+    },
+    {
+      "city": "Mariel",
+      "role": "special development zone watch point",
+      "thesis": "Important for monitoring foreign-investment regime changes.",
+      "good_for": [
+        "industrial/logistics watchlist"
+      ],
+      "watchouts": [
+        "political and operational complexity"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Policy language around foreign investment is becoming more flexible.",
+    "Real estate has been explicitly mentioned in the reform discussion.",
+    "If the regime genuinely opens, Cuba could become one of the largest rerating stories in the hemisphere."
+  ],
+  "risks": [
+    "Severe ongoing energy and economic crisis.",
+    "Geopolitical and sanctions exposure.",
+    "Regime opacity and execution uncertainty.",
+    "The risk of being early is much higher than the risk of missing the very first move."
+  ],
+  "lifestyle_base": {
+    "rating": "weak",
+    "copy": "Cuba is not a rational current operating base for the platform.",
+    "connectivity": "Present but constrained by wider operating issues.",
+    "climate": "Attractive; not the issue.",
+    "home_office_fit": "Not the limiting factor."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "cu_reuters_reform",
+      "title": "Cuba mulls new measures to entice foreign investment amid crisis",
+      "url": "https://www.reuters.com/world/americas/cuba-mulls-new-measures-entice-foreign-investment-amid-crisis-2025-11-25/",
+      "publisher": "Reuters",
+      "type": "news",
+      "why_it_matters": "Recent reform signals around real estate and direct hiring for foreign investors.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "cu_official_measures",
+      "title": "Cuba Announces New Measures to Streamline and Boost Foreign Investment",
+      "url": "https://misiones.cubaminrex.cu/en/articulo/cuba-announces-new-measures-streamline-and-boost-foreign-investment",
+      "publisher": "Cuban Ministry of Foreign Affairs",
+      "type": "official",
+      "why_it_matters": "Official statement on the new measures announced in late 2025.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "cu_granma",
+      "title": "Measures announced to make foreign investment more flexible and dynamic",
+      "url": "https://en.granma.cu/cuba/2025-11-28/measures-announced-to-make-foreign-investment-more-flexible-and-dynamic",
+      "publisher": "Granma",
+      "type": "official",
+      "why_it_matters": "Official Cuban outlet summary including number of approved businesses and committed capital.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "cu_crisis",
+      "title": "Economic Report 2025 Cuba",
+      "url": "https://www.seco.admin.ch/dam/seco/de/dokumente/Aussenwirtschaft/Wirtschaftsbeziehungen/L%C3%A4nderinformationen/Lateinamerika/wirtschaftsbericht_kuba.pdf.download.pdf/Wirtschaftsbericht_Kuba_2025.pdf",
+      "publisher": "Swiss SECO",
+      "type": "official",
+      "why_it_matters": "Independent official report describing the severity of the ongoing economic crisis.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "cu_time_crisis",
+      "title": "The Crisis in Cuba, Explained",
+      "url": "https://time.com/article/2026/03/17/cuba-economic-energy-crisis-trump-us-explainer/",
+      "publisher": "TIME",
+      "type": "news",
+      "why_it_matters": "Recent summary of the energy and economic crisis.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "Watchlist",
+    "High upside",
+    "Not yet executable"
+  ],
+  "priority_rank": 100
+}

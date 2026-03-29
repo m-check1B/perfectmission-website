@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-index",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "site_source": "https://perfectmission.co.uk/",
+  "market_count_live": 14,
+  "launch_recommendation": [
+    "bulgaria",
+    "romania",
+    "morocco",
+    "albania"
+  ],
+  "status_legend": {
+    "priority": "Top market for immediate country-page build and active pitching.",
+    "priority-upside": "High-upside market worth featuring prominently, but with more execution risk.",
+    "priority-global": "High-priority non-European market with strong rerating story.",
+    "active": "Current market worth keeping live on site.",
+    "opportunistic": "Selective market; keep live but do not overpromise.",
+    "watch-active": "Keep live only if explicitly framed as high-friction or selective.",
+    "watch": "Low-priority market; keep for completeness, not for active pushing.",
+    "watchlist": "Not immediately executable; display as monitored rather than currently deployable.",
+    "benchmark": "Reference market rather than target frontier market.",
+    "bonus": "Optional next market, not on current live site."
+  },
+  "render_rules": {
+    "watchlist_banner": "This market is monitored continuously but is not currently an immediate deployment market.",
+    "opportunistic_banner": "Selective market. Focus on tight scopes, verified title, and realistic exits.",
+    "source_display": "Render source_registry as expandable citations or endnotes.",
+    "scorecard_scale": "0-10 internal heuristic; 10 is strongest fit for Perfect Mission's current operator model."
+  },
+  "groups": [
+    {
+      "id": "cee",
+      "label": "Central & Eastern Europe",
+      "count_live": 6,
+      "markets": [
+        {
+          "slug": "czech-republic",
+          "status": "benchmark",
+          "priority_rank": 99
+        },
+        {
+          "slug": "bulgaria",
+          "status": "priority",
+          "priority_rank": 1
+        },
+        {
+          "slug": "romania",
+          "status": "priority",
+          "priority_rank": 2
+        },
+        {
+          "slug": "poland",
+          "status": "active",
+          "priority_rank": 6
+        },
+        {
+          "slug": "moldova",
+          "status": "opportunistic",
+          "priority_rank": 8
+        },
+        {
+          "slug": "albania",
+          "status": "priority-upside",
+          "priority_rank": 3
+        }
+      ]
+    },
+    {
+      "id": "latam-caribbean",
+      "label": "Latin America & Caribbean",
+      "count_live": 6,
+      "markets": [
+        {
+          "slug": "honduras",
+          "status": "watch-active",
+          "priority_rank": 14
+        },
+        {
+          "slug": "dominican-republic",
+          "status": "active",
+          "priority_rank": 10
+        },
+        {
+          "slug": "bolivia",
+          "status": "watch",
+          "priority_rank": 15
+        },
+        {
+          "slug": "panama",
+          "status": "active",
+          "priority_rank": 9
+        },
+        {
+          "slug": "belize",
+          "status": "opportunistic",
+          "priority_rank": 12
+        },
+        {
+          "slug": "cuba",
+          "status": "watchlist",
+          "priority_rank": 100
+        }
+      ]
+    },
+    {
+      "id": "global-frontier",
+      "label": "Global frontier",
+      "count_live": 2,
+      "markets": [
+        {
+          "slug": "vietnam",
+          "status": "active",
+          "priority_rank": 7
+        },
+        {
+          "slug": "morocco",
+          "status": "priority-global",
+          "priority_rank": 4
+        }
+      ]
+    }
+  ],
+  "optional_additions": [
+    {
+      "slug": "georgia",
+      "status": "bonus",
+      "reason": "Strong fit for future regional expansion if Perfect Mission extends beyond the current 14-market live map."
+    }
+  ]
+}

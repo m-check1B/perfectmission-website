@@ -1,0 +1,276 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "MD",
+  "country": "Moldova",
+  "slug": "moldova",
+  "region": "Central & Eastern Europe",
+  "status": "opportunistic",
+  "live_on_site": true,
+  "confidence": "medium-high",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Moldova Market Intelligence | Perfect Mission",
+    "description": "Moldova offers frontier optionality and EU-anchoring upside, but liquidity and development depth remain thin."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Moldova: thin market, real optionality",
+    "subtitle": "Interesting because it is still early and EU-anchored — dangerous because it is still thin.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Moldova is not a first-scale market; it is a selective, frontier optionality play where liquidity matters more than cheapness.",
+    "market_stage": {
+      "label": "Early / thin liquidity",
+      "description": "The country still looks early on the map, but its small size and thinner market plumbing mean the opportunity set must be tightly filtered."
+    },
+    "operator_angle": "Good for selective situations, not for assuming the market will absorb mediocre projects just because it is early.",
+    "investor_angle": "Harder to sell than Bulgaria or Romania, easier to sell if framed as a tightly controlled satellite bet with EU-anchoring.",
+    "base_case": "Approach Moldova from a Bulgaria / Romania platform and treat it as a special-situations sleeve centered on Chișinău."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 6.5
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 5.0
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 5.5
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 5.5
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 3.5
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 7.0
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 6.0
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 5.5
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "12%",
+      "source_ref": "md_pwc_tax"
+    },
+    {
+      "label": "Permit signal",
+      "value": "2,955 building permits were issued in 2025, down 9.0% YoY",
+      "source_ref": "md_nbs_permits"
+    },
+    {
+      "label": "EU path signal",
+      "value": "Government approved a 2025–2029 programme for EU accession",
+      "source_ref": "md_eu_acc"
+    },
+    {
+      "label": "EU support signal",
+      "value": "EU approved a €1.9 billion Moldova Growth Plan to support accession preparation",
+      "source_ref": "md_eu_growth"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Chișinău renovation",
+      "fit": "strong",
+      "why": "The cleanest way to play a thin market is through the strongest urban node."
+    },
+    {
+      "strategy": "Small urban infill",
+      "fit": "medium",
+      "why": "Possible where liquidity and end-demand are visible."
+    },
+    {
+      "strategy": "Large-scale speculative development",
+      "fit": "weak",
+      "why": "Market depth and financing are too thin for careless scale."
+    },
+    {
+      "strategy": "Land banking on a vague rerating thesis",
+      "fit": "weak",
+      "why": "Early does not equal liquid."
+    }
+  ],
+  "development_reality": {
+    "headline": "Special situations, not broad rollout",
+    "copy": "Moldova can produce interesting opportunities precisely because fewer international players are active. That advantage disappears if the exit market is assumed rather than proven.",
+    "permit_friction": "medium",
+    "title_reliability": "medium",
+    "utilities": "site dependent",
+    "best_entries": [
+      "Chișinău-focused projects",
+      "capital-light renovation",
+      "small selective developments"
+    ],
+    "avoid_first": [
+      "large debt-dependent projects",
+      "rural land narratives",
+      "projects needing deep institutional exits"
+    ],
+    "process_notes": [
+      "The 2025 permit data show a shrinking rather than exploding pipeline.",
+      "The EU path is a catalyst, not a substitute for liquidity.",
+      "Moldova is best treated as a satellite market, not as headquarters."
+    ],
+    "source_refs": [
+      "md_nbs_permits",
+      "md_eu_acc",
+      "md_eu_growth"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Investable, but market depth is the key constraint rather than simple legal access.",
+    "caution": "Underwrite exits conservatively and assume less financing depth than in EU-core CEE markets.",
+    "source_refs": [
+      "md_pwc_tax",
+      "md_eu_acc"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Chișinău",
+      "role": "core market",
+      "thesis": "Almost every serious Moldova thesis routes back to the capital.",
+      "good_for": [
+        "renovation",
+        "small urban development",
+        "rental-led product"
+      ],
+      "watchouts": [
+        "thin exit market",
+        "local execution matters heavily"
+      ]
+    },
+    {
+      "city": "Bălți",
+      "role": "secondary city",
+      "thesis": "Possible for very selective local-demand plays, not a default expansion target.",
+      "good_for": [
+        "small local projects"
+      ],
+      "watchouts": [
+        "liquidity"
+      ]
+    },
+    {
+      "city": "Suburban / satellite areas",
+      "role": "adjacent optionality",
+      "thesis": "Only where the capital’s demand clearly pulls through.",
+      "good_for": [
+        "small land or housing projects"
+      ],
+      "watchouts": [
+        "speculation without absorption evidence"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Formal EU-accession programming gives a real medium-term rerating narrative.",
+    "EU financial support can improve confidence and business climate over time.",
+    "The market is still early enough that a disciplined operator may see things others ignore."
+  ],
+  "risks": [
+    "Liquidity is thin.",
+    "The financing environment is weaker than in Bulgaria or Romania.",
+    "Being early is not enough if the buyer base is shallow.",
+    "This market can consume management attention without producing proportional deployment."
+  ],
+  "lifestyle_base": {
+    "rating": "medium",
+    "copy": "Moldova is a workable scouting and satellite market, but not the strongest long-term headquarters for your wider platform.",
+    "connectivity": "Improving, but still weaker than Bulgaria or Romania.",
+    "climate": "Continental; workable.",
+    "home_office_fit": "Possible, but the strategic logic points to running Moldova from elsewhere."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "md_pwc_tax",
+      "title": "Moldova - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/moldova/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "md_nbs_permits",
+      "title": "Building permits issued in 2025",
+      "url": "https://statistica.gov.md/en/building-permits-issued-in-2025-9801_62300.html",
+      "publisher": "National Bureau of Statistics of the Republic of Moldova",
+      "type": "official",
+      "why_it_matters": "Official building permit signal for 2025.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "md_eu_acc",
+      "title": "2025–2029 National Programme for the Accession of the Republic of Moldova to the European Union",
+      "url": "https://old.gov.md/en/advanced-page-type/2025-2029-national-programme-accession-republic-moldova-eu",
+      "publisher": "Government of Moldova",
+      "type": "official",
+      "why_it_matters": "Confirms the formal accession-programme framework.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "md_eu_growth",
+      "title": "Moldova Growth Plan",
+      "url": "https://eu4moldova.eu/en/enlargement/",
+      "publisher": "EU4Moldova / European Union",
+      "type": "official",
+      "why_it_matters": "Confirms EU financial support and accession-prep framing.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "Frontier",
+    "EU path",
+    "Thin liquidity"
+  ],
+  "priority_rank": 8
+}

@@ -1,0 +1,262 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "CZ",
+  "country": "Czech Republic",
+  "slug": "czech-republic",
+  "region": "Central & Eastern Europe",
+  "status": "benchmark",
+  "live_on_site": true,
+  "confidence": "high",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Czech Republic Market Intelligence | Perfect Mission",
+    "description": "The Czech Republic is the benchmark market in the Perfect Mission stack: liquid, familiar, expensive, and permit-constrained rather than early-cycle."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Czech Republic: benchmark, not frontier",
+    "subtitle": "Excellent as a reference market and track-record anchor. Weak as a ‘restart the cycle’ location.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "The Czech market is the benchmark you compare against, not the place you go to find a fresh Portugal-style rerating cycle.",
+    "market_stage": {
+      "label": "Mature / expensive / permit-constrained",
+      "description": "Prices are rising again and liquidity is credible, but the market is too well known and too permit-constrained to count as an early opportunity set."
+    },
+    "operator_angle": "The Czech Republic is where your track record means the most, but it is also where permit pain, competition, and expensive land erode the simplicity of the thesis.",
+    "investor_angle": "Investors understand the market and trust the legal environment, which is useful for credibility — but they do not expect frontier-style upside.",
+    "base_case": "Keep the Czech Republic as the reference market and track-record proof point, not as the centre of a new emerging-market strategy."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 4.5
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 4.5
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 8.5
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 8.5
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 9.0
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 5.0
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 8.0
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 6.3
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "21%",
+      "source_ref": "cz_pwc_tax"
+    },
+    {
+      "label": "Housing-cycle signal",
+      "value": "CNB describes the housing market as being in the upward phase of the cycle",
+      "source_ref": "cz_cnb_cycle"
+    },
+    {
+      "label": "Price signal",
+      "value": "Residential property price index +10% YoY in 2025 Q1",
+      "source_ref": "cz_cnb_cycle"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Prime redevelopment",
+      "fit": "medium",
+      "why": "Can work, but the country no longer offers cheap-mistake tolerance."
+    },
+    {
+      "strategy": "Ground-up residential",
+      "fit": "medium",
+      "why": "Viable with edge and patience, but planning friction is structural."
+    },
+    {
+      "strategy": "Frontier rerating",
+      "fit": "weak",
+      "why": "The opportunity is no longer in discovering the market early."
+    },
+    {
+      "strategy": "Institutional-quality benchmark projects",
+      "fit": "strong",
+      "why": "Useful as proof and credibility, less useful as a fresh-cycle engine."
+    }
+  ],
+  "development_reality": {
+    "headline": "Trustworthy market, punishing timeline",
+    "copy": "The Czech Republic remains attractive because of legal credibility and exit depth, but it is exactly the kind of market where entitlement drag, competition, and pricing squeeze operator margins.",
+    "permit_friction": "high",
+    "title_reliability": "high",
+    "utilities": "usually solvable, but planning dominates",
+    "best_entries": [
+      "high-conviction redevelopments",
+      "premium residential",
+      "institutional-grade projects"
+    ],
+    "avoid_first": [
+      "searching for frontier-style cheap upside",
+      "assuming fast permit cycles"
+    ],
+    "process_notes": [
+      "The housing cycle is rising again, but the market is not early.",
+      "Permitting remains the dominant pain point.",
+      "Use the Czech market as a benchmark for quality and proof, not as the new engine."
+    ],
+    "source_refs": [
+      "cz_cnb_cycle",
+      "cz_deloitte_property"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "The market is fully understandable to foreign capital and institutionally credible.",
+    "caution": "The real risk is not foreign-investor treatment; it is time, pricing, and planning drag.",
+    "source_refs": [
+      "cz_pwc_tax",
+      "cz_cnb_cycle"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Prague",
+      "role": "benchmark capital market",
+      "thesis": "Best for proof, best for liquidity, worst for cheap upside.",
+      "good_for": [
+        "premium residential",
+        "redevelopment",
+        "benchmark comps"
+      ],
+      "watchouts": [
+        "price level",
+        "permit drag",
+        "competition"
+      ]
+    },
+    {
+      "city": "Brno",
+      "role": "secondary core city",
+      "thesis": "Useful as a domestic benchmark and selective development market.",
+      "good_for": [
+        "mid-premium residential",
+        "regional-city comps"
+      ],
+      "watchouts": [
+        "smaller market depth than Prague"
+      ]
+    },
+    {
+      "city": "Regional capitals",
+      "role": "benchmark data points",
+      "thesis": "Good for rent and pricing comparison, less compelling for a fresh-cycle thesis.",
+      "good_for": [
+        "comparables",
+        "regional snapshots"
+      ],
+      "watchouts": [
+        "lower frontier appeal"
+      ]
+    }
+  ],
+  "catalysts": [
+    "The market has re-entered an upward housing phase.",
+    "Strong legal credibility and known exit routes still matter for investor trust.",
+    "Czech track record remains a strong social-proof asset for raising capital into nearby markets."
+  ],
+  "risks": [
+    "Permitting remains slow and expensive in opportunity cost.",
+    "The market is too known to offer easy rerating upside.",
+    "Competition and land pricing limit room for mediocre execution."
+  ],
+  "lifestyle_base": {
+    "rating": "strong",
+    "copy": "Excellent place to live and run business, but no longer the place to find early-cycle real-estate asymmetry.",
+    "connectivity": "Excellent.",
+    "climate": "Comfortable by regional standards.",
+    "home_office_fit": "Very strong, but the market logic points outward, not inward."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "cz_pwc_tax",
+      "title": "Czech Republic - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/czech-republic/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "cz_cnb_cycle",
+      "title": "The Czech housing market in the upward phase of the cycle",
+      "url": "https://www.cnb.cz/en/monetary-policy/monetary-policy-reports/boxes-and-articles/The-Czech-housing-market-in-the-upward-phase-of-the-cycle/",
+      "publisher": "Czech National Bank",
+      "type": "official",
+      "why_it_matters": "Current official assessment of the housing-cycle upswing and price growth.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "cz_deloitte_property",
+      "title": "Deloitte Property Index 2025",
+      "url": "https://www.deloitte.com/cz-sk/en/Industries/real-estate/research/property-index.html",
+      "publisher": "Deloitte",
+      "type": "market",
+      "why_it_matters": "Benchmark market-price context for the Czech market.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "Benchmark",
+    "Mature",
+    "Reference market"
+  ],
+  "priority_rank": 99
+}

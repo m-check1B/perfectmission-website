@@ -1,0 +1,285 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "HN",
+  "country": "Honduras",
+  "slug": "honduras",
+  "region": "Latin America & Caribbean",
+  "status": "watch-active",
+  "live_on_site": true,
+  "confidence": "medium",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Honduras Market Intelligence | Perfect Mission",
+    "description": "Honduras has selective tourism and coastal upside, but security and property restrictions make it a high-friction market for foreign-led development."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Honduras: selective upside, heavy friction",
+    "subtitle": "Potential exists in controlled tourism zones — but this is not a market to approach casually.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Honduras may offer pockets of coastal upside, but the combination of security risk and property restrictions makes it a poor default platform market.",
+    "market_stage": {
+      "label": "Early / high-friction",
+      "description": "The market is early enough to look tempting, especially on islands and coasts, but that earlyness comes wrapped in legal and operational constraints."
+    },
+    "operator_angle": "Works only with strong local control, clear tourism-zone structuring, and strict safety discipline.",
+    "investor_angle": "A hard sell to conservative capital unless the opportunity is unusually de-risked and small.",
+    "base_case": "Keep Honduras as a highly selective, tourism-zone watch market rather than a current priority deployment geography."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 6.0
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 5.5
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 4.5
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 5.0
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 4.0
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 5.0
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 5.5
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 5.0
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "25% on net taxable income, with additional surcharge mechanics in some cases",
+      "source_ref": "hn_pwc_tax"
+    },
+    {
+      "label": "Foreign property rule",
+      "value": "Foreigners can buy property near shorelines in designated tourism zones, subject to specific limits and approvals",
+      "source_ref": "hn_state_custom"
+    },
+    {
+      "label": "Safety signal",
+      "value": "U.S. State Department maintains a Level 3 ‘Reconsider Travel’ advisory, with some areas listed as ‘Do not travel’",
+      "source_ref": "hn_travel"
+    },
+    {
+      "label": "Tourism signal",
+      "value": "UN Tourism reports 2.8 million international visitors in 2024, up 17.8% YoY",
+      "source_ref": "hn_untourism"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Tourism-zone hospitality",
+      "fit": "medium",
+      "why": "Possible only where legal structure and security are fully understood."
+    },
+    {
+      "strategy": "General foreign land acquisition",
+      "fit": "weak",
+      "why": "Restrictions and local complexity make this a poor default approach."
+    },
+    {
+      "strategy": "Lifestyle-resort projects in controlled zones",
+      "fit": "medium",
+      "why": "Can work in narrow conditions."
+    },
+    {
+      "strategy": "Broad development platform",
+      "fit": "weak",
+      "why": "Too much operating friction for a default build-out market."
+    }
+  ],
+  "development_reality": {
+    "headline": "Possible, but not casual",
+    "copy": "Honduras is the kind of market where an operator can talk themselves into upside because the map looks cheap. The governing reality is that coastal and tourism-zone rules, safety, and local execution quality dominate the outcome.",
+    "permit_friction": "medium-high",
+    "title_reliability": "medium-low",
+    "utilities": "location specific",
+    "best_entries": [
+      "tightly scoped tourism-zone projects",
+      "small destination-led product"
+    ],
+    "avoid_first": [
+      "casual coastal land buying",
+      "security-blind sourcing",
+      "assuming islands are straightforward because foreigners are present"
+    ],
+    "process_notes": [
+      "Legal access changes by zone and property type.",
+      "Security is part of underwriting, not a side issue.",
+      "This is not a broad-market rollout candidate."
+    ],
+    "source_refs": [
+      "hn_state_ics",
+      "hn_state_custom",
+      "hn_travel",
+      "hn_untourism"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Foreign property rights exist, but important geographic restrictions apply, especially near coasts and borders.",
+    "caution": "Any coastal or island project should be treated as a specialised legal exercise, not a routine transaction.",
+    "source_refs": [
+      "hn_state_custom",
+      "hn_state_ics"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Roatán / Bay Islands",
+      "role": "primary foreign-buyer tourism zone",
+      "thesis": "The obvious area to investigate, but also the easiest place to underestimate legal and security nuance.",
+      "good_for": [
+        "small hospitality",
+        "destination residential"
+      ],
+      "watchouts": [
+        "coastal restrictions",
+        "title complexity"
+      ]
+    },
+    {
+      "city": "Tela",
+      "role": "northern coast tourism market",
+      "thesis": "Interesting only with local execution and hard legal structuring.",
+      "good_for": [
+        "tourism-linked product"
+      ],
+      "watchouts": [
+        "security and access"
+      ]
+    },
+    {
+      "city": "San Pedro Sula / Tegucigalpa",
+      "role": "urban support markets",
+      "thesis": "Better for local-economy understanding than for an international lifestyle pitch.",
+      "good_for": [
+        "support functions",
+        "local-demand product"
+      ],
+      "watchouts": [
+        "weaker foreign-buyer narrative"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Tourism recovery is real.",
+    "There are specific tourism-zone opportunities that can attract foreign attention.",
+    "The country remains less crowded by international real-estate capital than many peers."
+  ],
+  "risks": [
+    "Security risk is material.",
+    "Foreign ownership constraints and tourism-zone rules complicate underwriting.",
+    "Weak local execution can destroy value quickly.",
+    "This is not a low-friction market for remote operators."
+  ],
+  "lifestyle_base": {
+    "rating": "weak-medium",
+    "copy": "Possible for a niche operator with deep local ties; weak for a default international base.",
+    "connectivity": "Destination dependent.",
+    "climate": "Hot tropical climate.",
+    "home_office_fit": "Not the main question; operating risk dominates."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "hn_pwc_tax",
+      "title": "Honduras - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/honduras/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "hn_state_ics",
+      "title": "2025 Investment Climate Statements: Honduras",
+      "url": "https://www.state.gov/reports/2025-investment-climate-statements/honduras",
+      "publisher": "U.S. Department of State",
+      "type": "official",
+      "why_it_matters": "Current investment climate and foreign property limitations near shorelines / tourism zones.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "hn_state_custom",
+      "title": "Investment Climate Statements: custom report excerpt on Honduras property limits",
+      "url": "https://2021-2025.state.gov/report/custom/f4f14fc28f/",
+      "publisher": "U.S. Department of State",
+      "type": "official",
+      "why_it_matters": "Accessible excerpt on the 3,000 m² / tourism-zone property rule.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "hn_travel",
+      "title": "Honduras International Travel Information",
+      "url": "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/Honduras.html",
+      "publisher": "U.S. Department of State",
+      "type": "official",
+      "why_it_matters": "Current safety/travel advisory context.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "hn_untourism",
+      "title": "Tourism Doing Business Investing in Honduras",
+      "url": "https://www.untourism.int/investment/tourism-doing-business-investing-in-honduras",
+      "publisher": "UN Tourism",
+      "type": "official",
+      "why_it_matters": "Tourism recovery and destination-investment profile.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "High friction",
+    "Tourism zones",
+    "Security risk"
+  ],
+  "priority_rank": 14
+}

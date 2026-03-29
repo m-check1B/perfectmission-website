@@ -1,0 +1,288 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "GE",
+  "country": "Georgia",
+  "slug": "georgia",
+  "region": "Optional market",
+  "status": "bonus",
+  "live_on_site": false,
+  "confidence": "medium",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Georgia Market Intelligence | Perfect Mission",
+    "description": "Georgia is a compelling add-on market: open foreign ownership, tourism growth, and tax-light positioning, with more geopolitical edge than EU-adjacent CEE markets."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Georgia: open, tax-light, geopolitically sharper",
+    "subtitle": "A plausible future addition to the market stack for operators who want a more open foreign-ownership regime than Albania.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Georgia is easier than Albania on ownership openness and often easier to explain than deeper frontier markets, but it sits in a sharper geopolitical envelope.",
+    "market_stage": {
+      "label": "Open-growth / non-EU frontier",
+      "description": "Tourism, transactions, and foreign-buyer openness all support the story, but the non-EU and geopolitical framing changes the risk profile."
+    },
+    "operator_angle": "Potentially very attractive as a satellite market once the core platform is stable.",
+    "investor_angle": "Easy to like because ownership is open and the tax profile is light, but geopolitics always enters the conversation.",
+    "base_case": "Strong candidate for a future added market; not necessary for the first site release if the current map must stay tight."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 7.5
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 7.0
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 7.5
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 9.0
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 6.0
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 8.0
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 7.5
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 7.5
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "15%",
+      "source_ref": "ge_pwc_tax"
+    },
+    {
+      "label": "Tourism signal",
+      "value": "5.8 million international visitors in 2025, up 7.0% YoY",
+      "source_ref": "ge_geostat_tourism"
+    },
+    {
+      "label": "Foreign ownership signal",
+      "value": "Foreign nationals generally enjoy full real-estate ownership rights",
+      "source_ref": "ge_ownership"
+    },
+    {
+      "label": "Investor-visa signal",
+      "value": "Property-based residency threshold rose to US$150,000 from March 2026",
+      "source_ref": "ge_visa"
+    },
+    {
+      "label": "Market signal",
+      "value": "2025 transactions reportedly up 6% YoY",
+      "source_ref": "ge_market"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Urban residential",
+      "fit": "strong",
+      "why": "Tbilisi remains the default high-liquidity city."
+    },
+    {
+      "strategy": "Hospitality / tourism-led product",
+      "fit": "strong",
+      "why": "Batumi and resort zones are obvious but must be filtered carefully."
+    },
+    {
+      "strategy": "Foreign direct ownership plays",
+      "fit": "strong",
+      "why": "A key differentiator versus many other frontier markets."
+    },
+    {
+      "strategy": "Geopolitically naive investing",
+      "fit": "weak",
+      "why": "The market must always be read inside its regional risk envelope."
+    }
+  ],
+  "development_reality": {
+    "headline": "Open ownership helps; geopolitics still matters",
+    "copy": "Georgia is attractive because foreigners can own directly and the tax environment is relatively light. It is less attractive if those benefits cause you to ignore macro and geopolitical risk.",
+    "permit_friction": "medium",
+    "title_reliability": "medium",
+    "utilities": "city dependent",
+    "best_entries": [
+      "Tbilisi urban",
+      "Batumi hospitality",
+      "select tourism-linked product"
+    ],
+    "avoid_first": [
+      "visa-driven product without end-user depth",
+      "geopolitically blind underwriting"
+    ],
+    "process_notes": [
+      "Ownership openness is a real edge.",
+      "Tourism is supportive but not sufficient on its own.",
+      "Georgia is a candidate market, not necessarily a day-one site priority."
+    ],
+    "source_refs": [
+      "ge_pwc_tax",
+      "ge_geostat_tourism",
+      "ge_ownership",
+      "ge_market"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Georgia is one of the most foreigner-open real-estate markets in the wider region.",
+    "caution": "Direct ownership simplicity does not eliminate macro and geopolitical risk.",
+    "source_refs": [
+      "ge_ownership",
+      "ge_visa"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Tbilisi",
+      "role": "primary urban market",
+      "thesis": "Best for liquidity and year-round demand.",
+      "good_for": [
+        "urban residential",
+        "mixed-use"
+      ],
+      "watchouts": [
+        "pricing and politics"
+      ]
+    },
+    {
+      "city": "Batumi",
+      "role": "tourism-driven city",
+      "thesis": "High visibility and strong tourism logic.",
+      "good_for": [
+        "hospitality",
+        "coastal product"
+      ],
+      "watchouts": [
+        "oversupply in weak projects"
+      ]
+    },
+    {
+      "city": "Gudauri / mountain zones",
+      "role": "seasonal niche",
+      "thesis": "Interesting only for niche tourism product.",
+      "good_for": [
+        "seasonal hospitality"
+      ],
+      "watchouts": [
+        "thin year-round demand"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Open foreign ownership.",
+    "Tourism growth remains solid.",
+    "Tax-light reputation helps investor attention."
+  ],
+  "risks": [
+    "Geopolitical risk is non-trivial.",
+    "Tourism-driven submarkets can overbuild.",
+    "Residency-rule changes can distort buyer behaviour."
+  ],
+  "lifestyle_base": {
+    "rating": "strong",
+    "copy": "A plausible future base or extended-stay market for a cross-border operator who accepts the geopolitical overlay.",
+    "connectivity": "Good regional connectivity.",
+    "climate": "Varied by city and altitude.",
+    "home_office_fit": "Strong in Tbilisi."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "ge_pwc_tax",
+      "title": "Georgia - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/georgia/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "ge_geostat_tourism",
+      "title": "Inbound Tourism Statistics 2025",
+      "url": "https://geostat.ge/media/76544/Inbound-Tourism-Statistics---%282025%29.pdf",
+      "publisher": "National Statistics Office of Georgia",
+      "type": "official",
+      "why_it_matters": "Official 2025 international visitor total.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "ge_ownership",
+      "title": "Foreign buyers in Georgia: what you need to know in 2025",
+      "url": "https://kachretiapartments.ge/en/foreign-buyers-in-georgia-what-you-need-to-know-in-2025/",
+      "publisher": "Kachreti Apartments",
+      "type": "legal",
+      "why_it_matters": "Practical summary of foreign ownership openness.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "ge_visa",
+      "title": "Georgia to hike property-based investor visa threshold to $150,000",
+      "url": "https://www.imidaily.com/europe/georgia-to-hike-property-based-investor-visa-to-150000-next-month/",
+      "publisher": "IMI Daily",
+      "type": "news",
+      "why_it_matters": "Current investor-residency threshold update.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "ge_market",
+      "title": "Georgia's real estate market keeps upward momentum in 2025",
+      "url": "https://georgiatoday.ge/georgias-real-estate-market-keeps-upward-momentum-in-2025-as-prices-and-transactions-rise/",
+      "publisher": "Georgia Today citing TBC Capital",
+      "type": "market",
+      "why_it_matters": "2025 transaction and pricing momentum.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "Bonus",
+    "Open ownership",
+    "Tax-light"
+  ],
+  "priority_rank": 11
+}

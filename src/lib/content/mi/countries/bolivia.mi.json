@@ -1,0 +1,251 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "BO",
+  "country": "Bolivia",
+  "slug": "bolivia",
+  "region": "Latin America & Caribbean",
+  "status": "watch",
+  "live_on_site": true,
+  "confidence": "medium-high",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Bolivia Market Intelligence | Perfect Mission",
+    "description": "Bolivia can look cheap on paper, but the current investment climate and macro backdrop make it a low-priority market for a foreign development platform."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Bolivia: cheap-looking, structurally hard",
+    "subtitle": "Potential exists, but current macro and investment-climate conditions make it a low-priority platform market.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Bolivia may look affordable, but it is not where a foreign operator should go first if the goal is repeatable, scalable cross-border development.",
+    "market_stage": {
+      "label": "Cautious / distressed-leaning",
+      "description": "The market is not obviously rerating from strength; it is better understood as a country where macro and institutional risk dominate the apparent valuation appeal."
+    },
+    "operator_angle": "Bolivia demands deep local understanding and tolerance for macro and regulatory uncertainty.",
+    "investor_angle": "Very difficult to pitch as a clean, scalable, repeatable market to conservative capital.",
+    "base_case": "Keep Bolivia as a low-priority watch market for special situations only."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 5.5
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 4.5
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 4.0
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 4.0
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 3.5
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 5.0
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 5.5
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 4.5
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Headline corporate tax",
+      "value": "25%",
+      "source_ref": "bo_pwc_tax"
+    },
+    {
+      "label": "Investment-climate signal",
+      "value": "State Department says investors should remain cautious and notes no significant improvements in trade and investment conditions",
+      "source_ref": "bo_state_ics"
+    },
+    {
+      "label": "Macro signal",
+      "value": "IMF reports growth moderated to 2.1% in the first three quarters of 2024",
+      "source_ref": "bo_imf"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Special situations",
+      "fit": "medium",
+      "why": "Only for operators with unusual local edge."
+    },
+    {
+      "strategy": "Broad foreign-led development",
+      "fit": "weak",
+      "why": "Too much structural risk for default deployment."
+    },
+    {
+      "strategy": "Cheap-land speculation",
+      "fit": "weak",
+      "why": "Cheapness without reliable exits is not opportunity."
+    }
+  ],
+  "development_reality": {
+    "headline": "Low fit for platform deployment",
+    "copy": "The obstacle in Bolivia is not the absence of theoretical upside; it is the absence of a clean operating environment for foreign-led scale. Macro pressure and policy uncertainty turn cheap-looking deals into management traps.",
+    "permit_friction": "medium-high",
+    "title_reliability": "medium-low",
+    "utilities": "project specific",
+    "best_entries": [
+      "local-partner special situations"
+    ],
+    "avoid_first": [
+      "scaled rollout",
+      "thinly diligenced land deals",
+      "foreign-capital narratives that require institutional comfort"
+    ],
+    "process_notes": [
+      "The investment climate is currently cautionary, not inviting.",
+      "Macro pressure matters for financing and exits.",
+      "This is a watch market, not a current engine."
+    ],
+    "source_refs": [
+      "bo_state_ics",
+      "bo_imf"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Possible in some forms, but the market does not currently stand out as a clean foreign-investor platform.",
+    "caution": "Legal structure, local political economy, and macro risk must all be treated as core diligence items.",
+    "source_refs": [
+      "bo_state_ics",
+      "bo_pwc_tax"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Santa Cruz",
+      "role": "commercial centre / strongest practical node",
+      "thesis": "If anything is done in Bolivia, it usually starts with Santa Cruz.",
+      "good_for": [
+        "local-demand product",
+        "special situations"
+      ],
+      "watchouts": [
+        "macro risk",
+        "execution risk"
+      ]
+    },
+    {
+      "city": "La Paz",
+      "role": "administrative centre",
+      "thesis": "Relevant but not the obvious foreign-capital real-estate pitch.",
+      "good_for": [
+        "select local projects"
+      ],
+      "watchouts": [
+        "complexity"
+      ]
+    },
+    {
+      "city": "Cochabamba",
+      "role": "secondary city",
+      "thesis": "Only for localised strategies.",
+      "good_for": [
+        "special situations"
+      ],
+      "watchouts": [
+        "liquidity"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Lower competition from international capital.",
+    "Potential affordability relative to more famous LatAm markets."
+  ],
+  "risks": [
+    "Weak investment-climate signal.",
+    "Macro slowdown and broader economic pressure.",
+    "Poor fit for mainstream cross-border fundraising."
+  ],
+  "lifestyle_base": {
+    "rating": "weak-medium",
+    "copy": "Possible for a niche local edge; not a natural choice for an international operating base.",
+    "connectivity": "Adequate, not strategic.",
+    "climate": "Varies heavily by geography.",
+    "home_office_fit": "Secondary to market risk."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "bo_pwc_tax",
+      "title": "Bolivia - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/bolivia/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bo_state_ics",
+      "title": "2025 Investment Climate Statements: Bolivia",
+      "url": "https://www.state.gov/reports/2025-investment-climate-statements/bolivia",
+      "publisher": "U.S. Department of State",
+      "type": "official",
+      "why_it_matters": "Current investment-climate caution.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bo_imf",
+      "title": "Bolivia: 2025 Article IV Consultation-Press Release; Staff Report",
+      "url": "https://www.imf.org/-/media/files/publications/cr/2025/english/1bolea2025002-print-pdf.pdf",
+      "publisher": "International Monetary Fund",
+      "type": "official",
+      "why_it_matters": "Macro slowdown and external-pressure context.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "Low priority",
+    "Special situations",
+    "Macro risk"
+  ],
+  "priority_rank": 15
+}

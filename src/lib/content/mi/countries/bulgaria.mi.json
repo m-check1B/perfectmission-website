@@ -1,0 +1,363 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "market-intelligence-country",
+  "last_updated": "2026-03-29",
+  "language": "en-GB",
+  "country_code": "BG",
+  "country": "Bulgaria",
+  "slug": "bulgaria",
+  "region": "Central & Eastern Europe",
+  "status": "priority",
+  "live_on_site": true,
+  "confidence": "high",
+  "section_order": [
+    "hero",
+    "verdict",
+    "scoreboard",
+    "quick_facts",
+    "strategy_fit",
+    "development_reality",
+    "foreign_ownership",
+    "priority_cities",
+    "catalysts",
+    "risks",
+    "lifestyle_base",
+    "cta",
+    "sources"
+  ],
+  "seo": {
+    "title": "Bulgaria Market Intelligence | Perfect Mission",
+    "description": "Bulgaria is the strongest execution base in Southeast Europe: euro, Schengen, 10% corporate tax, workable permitting on clean sites, and clear fit for development capital."
+  },
+  "hero": {
+    "eyebrow": "Market Intelligence",
+    "title": "Bulgaria: the execution base for Southeast Europe",
+    "subtitle": "Moderate rerating, strong operability, simple tax story, and a credible pitch for Czech and broader CEE capital.",
+    "cta_primary": "Request a verified market memo",
+    "cta_secondary": "Request a market briefing"
+  },
+  "summary": {
+    "one_line_verdict": "Bulgaria is not the cheapest or the earliest market, but it is the best all-round base for a development-led operator who wants to raise capital quickly and execute across the region.",
+    "market_stage": {
+      "label": "Rerating / executable",
+      "description": "The country has already rerated, but the story is still supported by euro adoption, full Schengen access, low taxes, and city-level residential momentum."
+    },
+    "operator_angle": "For an operator, Bulgaria works because the story is easy to explain, the business environment is comparatively light, and development is viable on clean regulated plots.",
+    "investor_angle": "For investors, Bulgaria is legible: EU, euro, Schengen, short flight, low tax, and enough liquidity to make exits believable.",
+    "base_case": "Use Bulgaria as the first flagship market and operating base, then branch outward into Romania and selected frontier plays."
+  },
+  "scorecard": [
+    {
+      "key": "rerating_potential",
+      "label": "Rerating potential",
+      "score": 7.5
+    },
+    {
+      "key": "development_viability",
+      "label": "Development viability",
+      "score": 8.5
+    },
+    {
+      "key": "baseability",
+      "label": "Base quality",
+      "score": 9.0
+    },
+    {
+      "key": "foreign_capital_friendliness",
+      "label": "Foreign-capital friendliness",
+      "score": 8.5
+    },
+    {
+      "key": "exit_liquidity",
+      "label": "Exit liquidity",
+      "score": 7.0
+    },
+    {
+      "key": "tax_efficiency",
+      "label": "Tax efficiency",
+      "score": 9.5
+    },
+    {
+      "key": "livability",
+      "label": "Livability",
+      "score": 8.0
+    },
+    {
+      "key": "overall_fit",
+      "label": "Overall fit for Perfect Mission",
+      "score": 8.5
+    }
+  ],
+  "quick_facts": [
+    {
+      "label": "Schengen",
+      "value": "Full Schengen member from 1 January 2025",
+      "source_ref": "bg_consilium_schengen"
+    },
+    {
+      "label": "Currency",
+      "value": "Euro adopted on 1 January 2026",
+      "source_ref": "bg_ec_euro"
+    },
+    {
+      "label": "Headline corporate tax",
+      "value": "10%",
+      "source_ref": "bg_pwc_tax"
+    },
+    {
+      "label": "Dividend withholding",
+      "value": "5% domestic rate, with treaty / EU exceptions",
+      "source_ref": "bg_pwc_dividend"
+    },
+    {
+      "label": "Housing price signal",
+      "value": "National house prices +12.6% YoY in Q4 2025; Burgas +4.4% QoQ; Varna +1.7% QoQ",
+      "source_ref": "bg_nsi_housing"
+    },
+    {
+      "label": "Labour-cost signal",
+      "value": "Lowest average hourly labour cost in the EU in 2024 (€10.6/hour)",
+      "source_ref": "bg_eurostat_labour"
+    }
+  ],
+  "strategy_fit": [
+    {
+      "strategy": "Ground-up residential",
+      "fit": "strong",
+      "why": "Works well on clear, regulated plots in Sofia suburbs, regional cities, and selected coastal corridors."
+    },
+    {
+      "strategy": "Renovation / same-use repositioning",
+      "fit": "strong",
+      "why": "Useful where title is clean and the asset does not depend on a difficult change-of-use process."
+    },
+    {
+      "strategy": "Villa compounds / townhouse schemes",
+      "fit": "strong",
+      "why": "Current Sofia-suburban demand and compound supply support this format."
+    },
+    {
+      "strategy": "Urban infill mixed-use",
+      "fit": "medium",
+      "why": "Viable in strong micro-locations but more dependent on municipal nuance and parking / utility constraints."
+    },
+    {
+      "strategy": "Speculative office development",
+      "fit": "weak",
+      "why": "Higher vacancy and weaker conviction versus residential uses."
+    },
+    {
+      "strategy": "Agricultural land conversion",
+      "fit": "weak",
+      "why": "Official procedures become meaningfully slower and more expensive when designation changes are required."
+    }
+  ],
+  "development_reality": {
+    "headline": "Workable if the site is already clean",
+    "copy": "Bulgaria is easier than the Czech Republic for straightforward development, but only when the land is already inside a clear planning envelope. The formal permit timeline is not the main problem; the real friction sits in planning status, designation changes, utility coordination, and municipality-specific practice.",
+    "permit_friction": "medium",
+    "title_reliability": "medium-high",
+    "utilities": "city and district dependent",
+    "best_entries": [
+      "regulated urban plots",
+      "suburban family-housing compounds",
+      "extensions and superstructures",
+      "same-use heavy renovations",
+      "coastal urban residential with clean title"
+    ],
+    "avoid_first": [
+      "agricultural-to-building conversion",
+      "heroic office-to-residential conversions",
+      "messy restitution or co-ownership chains",
+      "coastal plots without hard title and utility clarity"
+    ],
+    "process_notes": [
+      "The official regime requires a detailed development plan, design visa, coordinated project documentation, and then a building permit.",
+      "The ministry states the design visa is issued within 14 days and the building permit within 7 days after a complete written application, but local coordination can take far longer.",
+      "Change of designation is explicitly described in official guidance as long, complex, and expensive."
+    ],
+    "source_refs": [
+      "bg_mi_permits",
+      "bg_colliers_resi"
+    ]
+  },
+  "foreign_ownership": {
+    "summary": "Bulgaria is foreign-capital friendly for normal operating and investment structures. EU investors have the cleanest route, and company structures are standard for cross-border capital.",
+    "caution": "Always verify land, zoning, easements, access, utilities, and municipality practice with local counsel before underwriting timeframes.",
+    "source_refs": [
+      "bg_consilium_schengen",
+      "bg_pwc_tax"
+    ]
+  },
+  "priority_cities": [
+    {
+      "city": "Sofia",
+      "role": "regional capital / execution base",
+      "thesis": "Best place to base the platform if the model is development plus capital raising. Deepest labour pool, strongest liquidity, and best lender familiarity.",
+      "good_for": [
+        "urban infill",
+        "suburban compounds",
+        "mixed-use",
+        "team building"
+      ],
+      "watchouts": [
+        "higher land pricing",
+        "permit nuance by district",
+        "thin margins on over-shopped plots"
+      ]
+    },
+    {
+      "city": "Burgas",
+      "role": "calmer coast / operator-friendly secondary base",
+      "thesis": "Attractive for coastal development without the same scale pressure as Sofia; Q4 2025 house-price momentum was the strongest nationally.",
+      "good_for": [
+        "coastal urban residential",
+        "renovation",
+        "summer-lifestyle product",
+        "Burgas-region scouting"
+      ],
+      "watchouts": [
+        "seasonality",
+        "tourism-linked absorption risk",
+        "micro-location matters heavily"
+      ]
+    },
+    {
+      "city": "Varna",
+      "role": "larger Black Sea city / deeper labour pool",
+      "thesis": "Bigger city and broader local economy than Burgas, with a stronger urban-services base and credible coastal demand.",
+      "good_for": [
+        "urban residential",
+        "coastal city product",
+        "outsourcing / local team base"
+      ],
+      "watchouts": [
+        "busier summer market",
+        "more competition in better-known submarkets"
+      ]
+    },
+    {
+      "city": "Plovdiv",
+      "role": "working city / inland expansion node",
+      "thesis": "Useful for non-coastal residential and small mixed-use schemes in a city with active permitting and industrial depth.",
+      "good_for": [
+        "mid-market residential",
+        "light mixed-use",
+        "regional diversification"
+      ],
+      "watchouts": [
+        "less glamorous investor story than coast or Sofia"
+      ]
+    }
+  ],
+  "catalysts": [
+    "Euro adoption from 1 January 2026 materially simplifies pricing, banking, and foreign-investor communication.",
+    "Full Schengen access from 1 January 2025 reduces psychological and operational friction for cross-border capital and teams.",
+    "Low flat corporate and personal tax rates remain a major differentiator within the EU.",
+    "Official data show continued residential momentum, especially in Burgas, Varna, and Plovdiv.",
+    "Bulgaria can serve as the operational anchor for Romania and selected nearby frontier markets."
+  ],
+  "risks": [
+    "The country is no longer an untouched early-cycle market, so returns depend on selection and execution rather than on simply buying cheap.",
+    "Municipality practice varies, and weak local advisors can destroy project timelines.",
+    "Overpaying for land with ambiguous planning or utility assumptions is the fastest way to recreate Czech-style pain in Bulgarian form.",
+    "Some segments of office and over-marketed resort stock are not compelling entry points.",
+    "Demographics are weaker than the headline tax story suggests, so city and micro-location selection matter."
+  ],
+  "lifestyle_base": {
+    "rating": "strong",
+    "copy": "Bulgaria scores highly as a base because it combines low operating cost, reasonable living standards, fast access from Central Europe, and enough urban depth to support a small AI / ops team.",
+    "connectivity": "Sofia is the strongest all-round base; Burgas and Varna are viable coastal alternatives; flights and driving connections to the wider Balkans are manageable.",
+    "climate": "Sofia gives cooler summers than the coast; Burgas is typically slightly warmer and calmer than Varna; Varna tends to feel more urban and windier.",
+    "home_office_fit": "Strong: a low-cost, air-conditioned apartment or house with good fibre and a small local team is realistic."
+  },
+  "cta": {
+    "headline": "Need the verified version?",
+    "body": "Request a country memo or submit a specific site, listing, plot, or market thesis for verification.",
+    "primary": "Request this country brief",
+    "secondary": "Submit a market thesis"
+  },
+  "source_registry": [
+    {
+      "id": "bg_consilium_schengen",
+      "title": "Council decides to lift land border controls with Bulgaria and Romania",
+      "url": "https://www.consilium.europa.eu/en/press/press-releases/2024/12/12/schengen-council-decides-to-lift-land-border-controls-with-bulgaria-and-romania/",
+      "publisher": "Council of the European Union",
+      "type": "official",
+      "why_it_matters": "Confirms full Schengen entry from 1 January 2025.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bg_ec_euro",
+      "title": "Bulgaria and the euro",
+      "url": "https://economy-finance.ec.europa.eu/euro/eu-countries-and-euro/bulgaria-and-euro_en",
+      "publisher": "European Commission",
+      "type": "official",
+      "why_it_matters": "Confirms euro adoption from 1 January 2026.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bg_pwc_tax",
+      "title": "Bulgaria - Corporate - Taxes on corporate income",
+      "url": "https://taxsummaries.pwc.com/bulgaria/corporate/taxes-on-corporate-income",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Current headline corporate tax rate and general tax framework.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bg_pwc_dividend",
+      "title": "Bulgaria - Corporate - Income determination",
+      "url": "https://taxsummaries.pwc.com/bulgaria/corporate/income-determination",
+      "publisher": "PwC Worldwide Tax Summaries",
+      "type": "tax",
+      "why_it_matters": "Domestic dividend withholding treatment.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bg_nsi_housing",
+      "title": "Housing price statistics - Fourth quarter of 2025 and 2025 preliminary data",
+      "url": "https://www.nsi.bg/en/announcement/housing-price-statistics-fourth-quarter-of-2025-and-2025-preliminary-data-8971",
+      "publisher": "National Statistical Institute of Bulgaria",
+      "type": "official",
+      "why_it_matters": "Latest official house-price trend and city-level Q4 2025 movement.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bg_mi_permits",
+      "title": "Obtaining a construction permit",
+      "url": "https://www.mi.government.bg/en/general/poluchavane-na-razreshenie-za-stroej/",
+      "publisher": "Bulgarian Ministry of Economy / Regime guide",
+      "type": "official",
+      "why_it_matters": "Official high-level permit sequence, time limits, and procedural caveats.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bg_eurostat_labour",
+      "title": "Hourly labour costs",
+      "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Hourly_labour_costs",
+      "publisher": "Eurostat",
+      "type": "official",
+      "why_it_matters": "Shows Bulgaria as the lowest average hourly labour-cost country in the EU for 2024.",
+      "retrieved": "2026-03-29"
+    },
+    {
+      "id": "bg_colliers_resi",
+      "title": "Residential Market Overview H1 2025",
+      "url": "https://colliers.bg/newsletter/e-newsletters/Colliers_Market_reports/H1_2025/Residential_Market_Overview_H1_2025_EN.pdf",
+      "publisher": "Colliers Bulgaria",
+      "type": "market",
+      "why_it_matters": "Provides developer-relevant context for Sofia compounds and land demand.",
+      "retrieved": "2026-03-29"
+    }
+  ],
+  "tags": [
+    "EU",
+    "Euro",
+    "Schengen",
+    "Low tax",
+    "Development",
+    "CEE base"
+  ],
+  "priority_rank": 1
+}
