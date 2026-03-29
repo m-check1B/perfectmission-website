@@ -4,6 +4,7 @@
   import Header from '$lib/components/Header.svelte';
   import MarketCard from '$lib/components/MarketCard.svelte';
   import Seo from '$lib/components/Seo.svelte';
+  import { PROFESSIONAL_SERVICE_SCHEMA } from '$lib/site';
   import { launchMarkets, marketGroups, markets } from '$lib/market-intelligence';
 
   let mounted = false;
@@ -59,6 +60,7 @@
   title="Perfect Mission | Market intelligence for cross-border real estate"
   description="Perfect Mission turns emerging-market real estate intelligence into decision-ready country briefs, launch priorities, and execution screens."
   canonicalPath="/"
+  structuredData={PROFESSIONAL_SERVICE_SCHEMA}
 />
 
 <div class="page-shell">
