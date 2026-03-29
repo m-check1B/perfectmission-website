@@ -6,6 +6,19 @@
     <link rel="icon" href="/favicon.svg" />
     <script>
       document.documentElement.classList.add('js');
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark =
+          savedTheme === null && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      } catch {
+        document.documentElement.removeAttribute('data-theme');
+      }
     </script>
     %sveltekit.head%
   </head>
