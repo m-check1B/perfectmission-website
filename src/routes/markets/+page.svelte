@@ -29,7 +29,7 @@
 <div class="page-shell">
   <Header currentPath="/markets/" />
 
-  <main class="section-stack">
+  <main id="main-content" class="section-stack" tabindex="-1">
     <section class="section">
       <div class="container page-intro">
         <p class="eyebrow">Market library</p>

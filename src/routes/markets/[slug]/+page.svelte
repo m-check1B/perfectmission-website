@@ -53,7 +53,7 @@
 <div class="page-shell">
   <Header currentPath="/markets/" />
 
-  <main class="section-stack">
+  <main id="main-content" class="section-stack" tabindex="-1">
     <section class="hero-section hero-section--detail">
       <div class="container detail-hero">
         <div>

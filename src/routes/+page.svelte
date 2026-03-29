@@ -64,7 +64,7 @@
 <div class="page-shell">
   <Header currentPath="/" />
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="container hero-grid">

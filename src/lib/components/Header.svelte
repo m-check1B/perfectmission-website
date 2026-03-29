@@ -166,6 +166,7 @@
 <svelte:window onkeydown={handleWindowKeydown} />
 
 <header class="site-header" class:site-header--scrolled={scrolled}>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <div class="container site-header__inner">
     <a class="brand" href="/" onclick={() => trackNavigation('home', '/') }>
       Perfect<span>Mission</span>

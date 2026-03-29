@@ -13,7 +13,7 @@
 <div class="page-shell">
   <Header currentPath="/privacy/" />
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <section class="hero-section hero-section--detail">
       <div class="container detail-hero">
         <div>
