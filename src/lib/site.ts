@@ -8,9 +8,10 @@ export function normalizePath(path: string): string {
 
   const [pathname] = path.split(/[?#]/, 1);
   const cleaned = pathname.replace(/\/{2,}/g, '/');
+  const looksLikeFile = /\/[^/]+\.[a-z0-9]+$/i.test(cleaned);
 
   if (cleaned === '') return '/';
-  if (cleaned.endsWith('.xml') || cleaned.endsWith('.txt')) return cleaned;
+  if (looksLikeFile) return cleaned;
 
   return cleaned.endsWith('/') ? cleaned : `${cleaned}/`;
 }
