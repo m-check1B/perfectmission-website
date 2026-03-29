@@ -387,6 +387,26 @@
     activeNavHref = href;
   }
 
+  async function focusPageTop() {
+    if (typeof document === 'undefined' || typeof window === 'undefined') {
+      return;
+    }
+
+    const mainContent = document.getElementById('main-content');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const { history, location } = window;
+    const historyMethod = location.hash === '#top' ? 'replaceState' : 'pushState';
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth'
+    });
+    history[historyMethod](history.state, '', '#top');
+    await tick();
+    mainContent?.focus({ preventScroll: true });
+    activeNavHref = '';
+  }
+
   async function handleSectionNavigation(event: MouseEvent, href: string) {
     if (
       event.defaultPrevented ||
@@ -410,6 +430,28 @@
     await closeMenu();
     await tick();
     await focusSectionHeading(href);
+  }
+
+  async function handleTopNavigation(event: MouseEvent) {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    if (!menuOpen) {
+      return;
+    }
+
+    event.preventDefault();
+    await closeMenu();
+    await tick();
+    await focusPageTop();
   }
 
   function getContactFieldValue(field: ContactField) {
@@ -561,7 +603,12 @@
 
   <header class:site-header--condensed={headerCondensed} class="site-header">
     <div class="site-header__inner">
-      <a class="brand" href="#top" aria-label="Perfect Mission homepage">
+      <a
+        class="brand"
+        href="#top"
+        aria-label="Perfect Mission homepage"
+        onclick={(event) => void handleTopNavigation(event)}
+      >
         Perfect <span class="brand__accent">Mission</span>
       </a>
 
