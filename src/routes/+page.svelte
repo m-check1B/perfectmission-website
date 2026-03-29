@@ -207,6 +207,7 @@
   let contactTouched: ContactTouched = {};
   let contactFormSubmitted = false;
   let contactFormEnhanced = false;
+  let contactMailtoHref = `mailto:${contactEmail}`;
 
   const currentYear = new Date().getFullYear();
 
@@ -531,6 +532,27 @@
     setContactError(field);
   }
 
+  function buildContactMailtoHref() {
+    const subjectParts = ['Perfect Mission market briefing'];
+
+    if (contactCompany.trim()) {
+      subjectParts.push(contactCompany.trim());
+    } else if (contactName.trim()) {
+      subjectParts.push(contactName.trim());
+    }
+
+    const bodyLines = [
+      `Name: ${contactName.trim() || 'Not provided'}`,
+      `Email: ${contactEmailAddress.trim() || 'Not provided'}`,
+      `Company: ${contactCompany.trim() || 'Not provided'}`,
+      '',
+      'Investment brief:',
+      contactMessage.trim() || 'Not provided'
+    ];
+
+    return `mailto:${contactEmail}?subject=${encodeURIComponent(subjectParts.join(' - '))}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+  }
+
   function handleContactSubmit(event: SubmitEvent) {
     event.preventDefault();
     contactFormSubmitted = true;
@@ -558,26 +580,7 @@
       return;
     }
 
-    const subjectParts = ['Perfect Mission market briefing'];
-
-    if (contactCompany.trim()) {
-      subjectParts.push(contactCompany.trim());
-    } else if (contactName.trim()) {
-      subjectParts.push(contactName.trim());
-    }
-
-    const bodyLines = [
-      `Name: ${contactName.trim() || 'Not provided'}`,
-      `Email: ${contactEmailAddress.trim() || 'Not provided'}`,
-      `Company: ${contactCompany.trim() || 'Not provided'}`,
-      '',
-      'Investment brief:',
-      contactMessage.trim() || 'Not provided'
-    ];
-
-    const mailtoHref = `mailto:${contactEmail}?subject=${encodeURIComponent(subjectParts.join(' - '))}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-
-    window.location.href = mailtoHref;
+    window.location.href = contactMailtoHref;
   }
 
   onMount(() => {
@@ -592,6 +595,7 @@
   });
 
   $: syncMenuLock(menuOpen);
+  $: contactMailtoHref = buildContactMailtoHref();
 </script>
 
 <svelte:head>
@@ -900,7 +904,7 @@
           <article class="card card--light reveal" use:reveal={{ delay: 80 }}>
             <form
               class="contact-form"
-              action={`mailto:${contactEmail}`}
+              action={contactMailtoHref}
               method="GET"
               aria-describedby="contact-note"
               novalidate={contactFormEnhanced}
