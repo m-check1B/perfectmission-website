@@ -168,6 +168,7 @@
 
   type ContactField = (typeof contactFieldOrder)[number];
   type ContactErrors = Partial<Record<ContactField, string>>;
+  type ContactTouched = Partial<Record<ContactField, boolean>>;
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -203,6 +204,8 @@
   let contactCompany = '';
   let contactMessage = '';
   let contactErrors: ContactErrors = {};
+  let contactTouched: ContactTouched = {};
+  let contactFormSubmitted = false;
   let contactFormEnhanced = false;
 
   const currentYear = new Date().getFullYear();
@@ -491,10 +494,18 @@
   }
 
   function getContactDescribedBy(field: ContactField, hintId: string) {
-    return contactErrors[field] ? `${hintId} ${field}-error` : hintId;
+    return getDisplayedContactError(field) ? `${hintId} ${field}-error` : hintId;
   }
 
-  function updateContactError(field: ContactField) {
+  function shouldShowContactError(field: ContactField) {
+    return contactFormSubmitted || Boolean(contactTouched[field]);
+  }
+
+  function getDisplayedContactError(field: ContactField) {
+    return shouldShowContactError(field) ? contactErrors[field] : undefined;
+  }
+
+  function setContactError(field: ContactField) {
     const nextError = validateContactField(field);
     const nextErrors = { ...contactErrors };
 
@@ -507,8 +518,26 @@
     contactErrors = nextErrors;
   }
 
+  function handleContactBlur(field: ContactField) {
+    contactTouched = { ...contactTouched, [field]: true };
+    setContactError(field);
+  }
+
+  function handleContactInput(field: ContactField) {
+    if (!shouldShowContactError(field)) {
+      return;
+    }
+
+    setContactError(field);
+  }
+
   function handleContactSubmit(event: SubmitEvent) {
     event.preventDefault();
+    contactFormSubmitted = true;
+    contactTouched = contactFieldOrder.reduce<ContactTouched>((touched, field) => {
+      touched[field] = true;
+      return touched;
+    }, {});
 
     const nextErrors = contactFieldOrder.reduce<ContactErrors>((errors, field) => {
       const error = validateContactField(field);
@@ -883,18 +912,18 @@
                 <input
                   bind:value={contactName}
                   aria-describedby={getContactDescribedBy('name', 'name-hint')}
-                  aria-invalid={contactErrors.name ? 'true' : undefined}
+                  aria-invalid={getDisplayedContactError('name') ? 'true' : undefined}
                   id="name"
                   name="name"
                   type="text"
                   autocomplete="name"
                   required
-                  onblur={() => updateContactError('name')}
-                  oninput={() => updateContactError('name')}
+                  onblur={() => handleContactBlur('name')}
+                  oninput={() => handleContactInput('name')}
                 />
-                {#if contactErrors.name}
+                {#if getDisplayedContactError('name')}
                   <p class="field-group__error" id="name-error" role="alert">
-                    {contactErrors.name}
+                    {getDisplayedContactError('name')}
                   </p>
                 {/if}
               </div>
@@ -905,18 +934,18 @@
                 <input
                   bind:value={contactEmailAddress}
                   aria-describedby={getContactDescribedBy('email', 'email-hint')}
-                  aria-invalid={contactErrors.email ? 'true' : undefined}
+                  aria-invalid={getDisplayedContactError('email') ? 'true' : undefined}
                   id="email"
                   name="email"
                   type="email"
                   autocomplete="email"
                   required
-                  onblur={() => updateContactError('email')}
-                  oninput={() => updateContactError('email')}
+                  onblur={() => handleContactBlur('email')}
+                  oninput={() => handleContactInput('email')}
                 />
-                {#if contactErrors.email}
+                {#if getDisplayedContactError('email')}
                   <p class="field-group__error" id="email-error" role="alert">
-                    {contactErrors.email}
+                    {getDisplayedContactError('email')}
                   </p>
                 {/if}
               </div>
@@ -942,17 +971,17 @@
                 <textarea
                   bind:value={contactMessage}
                   aria-describedby={getContactDescribedBy('message', 'message-hint')}
-                  aria-invalid={contactErrors.message ? 'true' : undefined}
+                  aria-invalid={getDisplayedContactError('message') ? 'true' : undefined}
                   id="message"
                   name="message"
                   placeholder="Markets, ticket sizes, asset classes, or current sourcing constraints."
                   required
-                  onblur={() => updateContactError('message')}
-                  oninput={() => updateContactError('message')}
+                  onblur={() => handleContactBlur('message')}
+                  oninput={() => handleContactInput('message')}
                 ></textarea>
-                {#if contactErrors.message}
+                {#if getDisplayedContactError('message')}
                   <p class="field-group__error" id="message-error" role="alert">
-                    {contactErrors.message}
+                    {getDisplayedContactError('message')}
                   </p>
                 {/if}
               </div>
