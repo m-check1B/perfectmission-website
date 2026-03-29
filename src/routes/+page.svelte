@@ -158,6 +158,8 @@
 
   const siteUrl = 'https://perfectmission.co.uk';
   const contactEmail = 'info@perfectmission.co.uk';
+  const defaultContactSubject = 'Perfect Mission market briefing';
+  const contactMailtoAction = `mailto:${contactEmail}`;
   const heroImageUrl = '/images/market-atlas-panel.svg';
   const socialImageUrl = `${siteUrl}/social/perfect-mission-og.png`;
   const mobileNavBreakpoint = 768;
@@ -207,7 +209,7 @@
   let contactTouched: ContactTouched = {};
   let contactFormSubmitted = false;
   let contactFormEnhanced = false;
-  let contactMailtoHref = `mailto:${contactEmail}`;
+  let contactMailtoHref = contactMailtoAction;
 
   const currentYear = new Date().getFullYear();
 
@@ -533,7 +535,7 @@
   }
 
   function buildContactMailtoHref() {
-    const subjectParts = ['Perfect Mission market briefing'];
+    const subjectParts = [defaultContactSubject];
 
     if (contactCompany.trim()) {
       subjectParts.push(contactCompany.trim());
@@ -550,7 +552,7 @@
       contactMessage.trim() || 'Not provided'
     ];
 
-    return `mailto:${contactEmail}?subject=${encodeURIComponent(subjectParts.join(' - '))}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+    return `${contactMailtoAction}?subject=${encodeURIComponent(subjectParts.join(' - '))}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
   }
 
   function handleContactSubmit(event: SubmitEvent) {
@@ -904,12 +906,13 @@
           <article class="card card--light reveal" use:reveal={{ delay: 80 }}>
             <form
               class="contact-form"
-              action={contactMailtoHref}
+              action={contactMailtoAction}
               method="GET"
               aria-describedby="contact-note"
               novalidate={contactFormEnhanced}
               onsubmit={handleContactSubmit}
             >
+              <input type="hidden" name="subject" value={defaultContactSubject} />
               <div class="field-group">
                 <label for="name">Name</label>
                 <p class="field-group__hint" id="name-hint">Who should we reply to?</p>
