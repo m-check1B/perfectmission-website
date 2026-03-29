@@ -925,6 +925,8 @@
                   name="name"
                   type="text"
                   autocomplete="name"
+                  autocapitalize="words"
+                  enterkeyhint="next"
                   required
                   onblur={() => handleContactBlur('name')}
                   oninput={() => handleContactInput('name')}
@@ -947,6 +949,11 @@
                   name="email"
                   type="email"
                   autocomplete="email"
+                  autocapitalize="off"
+                  autocorrect="off"
+                  inputmode="email"
+                  enterkeyhint="next"
+                  spellcheck="false"
                   required
                   onblur={() => handleContactBlur('email')}
                   oninput={() => handleContactInput('email')}
@@ -968,6 +975,8 @@
                   name="company"
                   type="text"
                   autocomplete="organization"
+                  autocapitalize="words"
+                  enterkeyhint="next"
                 />
               </div>
 
@@ -983,6 +992,9 @@
                   id="message"
                   name="message"
                   placeholder="Markets, ticket sizes, asset classes, or current sourcing constraints."
+                  autocapitalize="sentences"
+                  enterkeyhint="send"
+                  rows="6"
                   required
                   onblur={() => handleContactBlur('message')}
                   oninput={() => handleContactInput('message')}
