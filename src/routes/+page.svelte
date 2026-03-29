@@ -907,7 +907,8 @@
             <form
               class="contact-form"
               action={contactMailtoAction}
-              method="GET"
+              method="POST"
+              enctype="text/plain"
               aria-describedby="contact-note"
               novalidate={contactFormEnhanced}
               onsubmit={handleContactSubmit}
@@ -995,7 +996,7 @@
 
               <button class="btn btn--primary btn--wide" type="submit">Send inquiry</button>
               <p class="contact-note" id="contact-note">
-                Submitting opens your email client with a prefilled brief. Prefer direct email? Use
+                Submitting opens your email client with the briefing draft. Prefer direct email? Use
                 <a class="text-link" href={`mailto:${contactEmail}`}>{contactEmail}</a>.
               </p>
             </form>
