@@ -13,6 +13,7 @@
   --text-on-dark-muted: #c5cfdb;
   --border-light: #e2e0db;
   --success-forest: #2d6a4f;
+  --error-deep-red: #9b2335;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
   --duration-fast: 150ms;
@@ -862,6 +863,21 @@ html.js .reveal.reveal--instant {
   gap: var(--space-2);
 }
 
+.field-group__hint,
+.field-group__error {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.field-group__hint {
+  color: var(--text-secondary);
+}
+
+.field-group__error {
+  color: var(--error-deep-red);
+  font-weight: 600;
+}
+
 .field-group label {
   font-size: 0.875rem;
   font-weight: 600;
@@ -882,6 +898,18 @@ html.js .reveal.reveal--instant {
 .field-group input:focus-visible,
 .field-group textarea:focus-visible {
   border-color: var(--accent-gold);
+}
+
+.field-group input[aria-invalid='true'],
+.field-group textarea[aria-invalid='true'] {
+  border-color: var(--error-deep-red);
+  background: rgba(155, 35, 53, 0.03);
+}
+
+.field-group input[aria-invalid='true']:focus-visible,
+.field-group textarea[aria-invalid='true']:focus-visible {
+  border-color: var(--error-deep-red);
+  outline-color: var(--error-deep-red);
 }
 
 .field-group textarea {

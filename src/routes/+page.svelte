@@ -156,6 +156,11 @@
   const mobileNavBreakpoint = 768;
   const mobileMenuFocusableSelector =
     'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  const contactFieldOrder = ['name', 'email', 'message'] as const;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  type ContactField = (typeof contactFieldOrder)[number];
+  type ContactErrors = Partial<Record<ContactField, string>>;
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -190,6 +195,7 @@
   let contactEmailAddress = '';
   let contactCompany = '';
   let contactMessage = '';
+  let contactErrors: ContactErrors = {};
 
   const currentYear = new Date().getFullYear();
 
@@ -320,8 +326,79 @@
       }) ?? '';
   }
 
+  function getContactFieldValue(field: ContactField) {
+    switch (field) {
+      case 'name':
+        return contactName.trim();
+      case 'email':
+        return contactEmailAddress.trim();
+      case 'message':
+        return contactMessage.trim();
+    }
+  }
+
+  function validateContactField(field: ContactField) {
+    const value = getContactFieldValue(field);
+
+    if (field === 'name' && !value) {
+      return 'Enter your name so we know who to reply to.';
+    }
+
+    if (field === 'email') {
+      if (!value) {
+        return 'Enter an email address for the reply.';
+      }
+
+      if (!emailPattern.test(value)) {
+        return 'Enter a valid email address.';
+      }
+    }
+
+    if (field === 'message' && !value) {
+      return 'Add a short investment brief so the outreach is actionable.';
+    }
+
+    return '';
+  }
+
+  function getContactDescribedBy(field: ContactField, hintId: string) {
+    return contactErrors[field] ? `${hintId} ${field}-error` : hintId;
+  }
+
+  function updateContactError(field: ContactField) {
+    const nextError = validateContactField(field);
+    const nextErrors = { ...contactErrors };
+
+    if (nextError) {
+      nextErrors[field] = nextError;
+    } else {
+      delete nextErrors[field];
+    }
+
+    contactErrors = nextErrors;
+  }
+
   function handleContactSubmit(event: SubmitEvent) {
     event.preventDefault();
+
+    const nextErrors = contactFieldOrder.reduce<ContactErrors>((errors, field) => {
+      const error = validateContactField(field);
+
+      if (error) {
+        errors[field] = error;
+      }
+
+      return errors;
+    }, {});
+
+    contactErrors = nextErrors;
+
+    const firstInvalidField = contactFieldOrder.find((field) => nextErrors[field]);
+
+    if (firstInvalidField) {
+      document.getElementById(firstInvalidField)?.focus();
+      return;
+    }
 
     const subjectParts = ['Perfect Mission market briefing'];
 
@@ -646,36 +723,59 @@
               action={`mailto:${contactEmail}`}
               method="GET"
               aria-describedby="contact-note"
+              novalidate
               onsubmit={handleContactSubmit}
             >
               <div class="field-group">
                 <label for="name">Name</label>
+                <p class="field-group__hint" id="name-hint">Who should we reply to?</p>
                 <input
                   bind:value={contactName}
+                  aria-describedby={getContactDescribedBy('name', 'name-hint')}
+                  aria-invalid={contactErrors.name ? 'true' : undefined}
                   id="name"
                   name="name"
                   type="text"
                   autocomplete="name"
                   required
+                  onblur={() => updateContactError('name')}
+                  oninput={() => updateContactError('name')}
                 />
+                {#if contactErrors.name}
+                  <p class="field-group__error" id="name-error" role="alert">
+                    {contactErrors.name}
+                  </p>
+                {/if}
               </div>
 
               <div class="field-group">
                 <label for="email">Email</label>
+                <p class="field-group__hint" id="email-hint">Used only to return the briefing.</p>
                 <input
                   bind:value={contactEmailAddress}
+                  aria-describedby={getContactDescribedBy('email', 'email-hint')}
+                  aria-invalid={contactErrors.email ? 'true' : undefined}
                   id="email"
                   name="email"
                   type="email"
                   autocomplete="email"
                   required
+                  onblur={() => updateContactError('email')}
+                  oninput={() => updateContactError('email')}
                 />
+                {#if contactErrors.email}
+                  <p class="field-group__error" id="email-error" role="alert">
+                    {contactErrors.email}
+                  </p>
+                {/if}
               </div>
 
               <div class="field-group">
                 <label for="company">Company or organisation</label>
+                <p class="field-group__hint" id="company-hint">Optional, but useful for context.</p>
                 <input
                   bind:value={contactCompany}
+                  aria-describedby="company-hint"
                   id="company"
                   name="company"
                   type="text"
@@ -685,12 +785,25 @@
 
               <div class="field-group">
                 <label for="message">Investment brief</label>
+                <p class="field-group__hint" id="message-hint">
+                  Include geography, asset type, ticket size, or current sourcing constraint.
+                </p>
                 <textarea
                   bind:value={contactMessage}
+                  aria-describedby={getContactDescribedBy('message', 'message-hint')}
+                  aria-invalid={contactErrors.message ? 'true' : undefined}
                   id="message"
                   name="message"
                   placeholder="Markets, ticket sizes, asset classes, or current sourcing constraints."
+                  required
+                  onblur={() => updateContactError('message')}
+                  oninput={() => updateContactError('message')}
                 ></textarea>
+                {#if contactErrors.message}
+                  <p class="field-group__error" id="message-error" role="alert">
+                    {contactErrors.message}
+                  </p>
+                {/if}
               </div>
 
               <button class="btn btn--primary btn--wide" type="submit">Send inquiry</button>
