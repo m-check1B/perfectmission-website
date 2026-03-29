@@ -1,10 +1,13 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   
   let { currentPath = '/' }: { currentPath?: string } = $props();
   let menuOpen = $state(false);
   let scrolled = $state(false);
   let darkMode = $state(true);
+  let menuButton: HTMLButtonElement | undefined;
+  let navElement: HTMLElement | undefined;
+  let lastFocusedElement: HTMLElement | null = null;
 
   const links = [
     { href: '/', label: 'Overview' },
@@ -25,11 +28,22 @@
     const handleScroll = () => {
       scrolled = window.scrollY > 20;
     };
+    const desktopMedia = window.matchMedia('(min-width: 901px)');
+    const handleDesktopChange = (event: MediaQueryListEvent) => {
+      if (event.matches) {
+        closeMenu({ restoreFocus: false });
+      }
+    };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
+    desktopMedia.addEventListener('change', handleDesktopChange);
     handleScroll();
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      desktopMedia.removeEventListener('change', handleDesktopChange);
+      document.body.style.overflow = '';
+    };
   });
 
   function toggleTheme() {
@@ -67,23 +81,84 @@
     });
   }
 
-  function toggleMenu() {
-    menuOpen = !menuOpen;
+  async function toggleMenu() {
     if (menuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+      closeMenu();
+      return;
+    }
+
+    lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    menuOpen = true;
+    document.body.style.overflow = 'hidden';
+    await tick();
+    focusFirstMenuItem();
+  }
+
+  function getFocusableMenuElements() {
+    if (!navElement) {
+      return [];
+    }
+
+    return Array.from(
+      navElement.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    );
+  }
+
+  function focusFirstMenuItem() {
+    const [firstItem] = getFocusableMenuElements();
+    if (firstItem) {
+      firstItem.focus();
     }
   }
 
-  function closeMenu() {
+  async function restoreMenuFocus() {
+    await tick();
+    (lastFocusedElement ?? menuButton)?.focus();
+    lastFocusedElement = null;
+  }
+
+  function closeMenu({ restoreFocus = true }: { restoreFocus?: boolean } = {}) {
     menuOpen = false;
     document.body.style.overflow = '';
+    if (restoreFocus) {
+      void restoreMenuFocus();
+    } else {
+      lastFocusedElement = null;
+    }
+  }
+
+  function trapMenuFocus(event: KeyboardEvent) {
+    const focusable = getFocusableMenuElements();
+    if (focusable.length === 0) {
+      event.preventDefault();
+      navElement?.focus();
+      return;
+    }
+
+    const firstItem = focusable[0];
+    const lastItem = focusable[focusable.length - 1];
+    const activeElement = document.activeElement;
+
+    if (event.shiftKey && activeElement === firstItem) {
+      event.preventDefault();
+      lastItem.focus();
+    } else if (!event.shiftKey && activeElement === lastItem) {
+      event.preventDefault();
+      firstItem.focus();
+    }
   }
 
   function handleWindowKeydown(event: KeyboardEvent) {
+    if (!menuOpen) {
+      return;
+    }
+
     if (event.key === 'Escape') {
       closeMenu();
+    } else if (event.key === 'Tab') {
+      trapMenuFocus(event);
     }
   }
 </script>
@@ -122,6 +197,7 @@
       <button
         type="button"
         class="menu-toggle"
+        bind:this={menuButton}
         aria-expanded={menuOpen}
         aria-controls="primary-navigation"
         aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -135,6 +211,7 @@
 
     <nav
       id="primary-navigation"
+      bind:this={navElement}
       class:site-nav--open={menuOpen}
       class="site-nav"
       aria-label="Primary"
@@ -145,7 +222,7 @@
           class:active={isActive(link.href)}
           onclick={() => {
             trackNavigation(link.label.toLowerCase(), link.href);
-            closeMenu();
+            closeMenu({ restoreFocus: false });
           }}
         >
           {link.label}
@@ -159,7 +236,7 @@
 {#if menuOpen}
   <div 
     class="mobile-menu-overlay" 
-    onclick={closeMenu}
+    onclick={() => closeMenu()}
     onkeydown={(e) => e.key === 'Enter' && closeMenu()}
     role="button"
     tabindex="0"
