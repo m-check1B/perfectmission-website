@@ -4,11 +4,11 @@
   const links = [
     { href: '/', label: 'Overview' },
     { href: '/markets/', label: 'Markets' },
-    { href: 'mailto:info@perfectmission.co.uk', label: 'Contact' }
+    { href: '/#contact', label: 'Contact' }
   ];
 
   function isActive(href: string) {
-    if (href.startsWith('mailto:')) {
+    if (href.startsWith('mailto:') || href.includes('#')) {
       return false;
     }
 

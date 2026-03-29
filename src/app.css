@@ -297,7 +297,8 @@ dd {
 .stats-grid,
 .group-grid,
 .card-grid,
-.legend-grid {
+.legend-grid,
+.contact-grid {
   display: grid;
   gap: 1rem;
 }
@@ -320,6 +321,11 @@ dd {
 
 .legend-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contact-grid {
+  grid-template-columns: minmax(0, 1.3fr) minmax(18rem, 0.9fr);
+  align-items: start;
 }
 
 .stat-card {
@@ -436,6 +442,24 @@ dd {
   align-self: start;
 }
 
+.contact-copy {
+  margin-bottom: 0;
+}
+
+.contact-card__email {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 700;
+  text-decoration-color: rgba(209, 168, 93, 0.55);
+  text-underline-offset: 0.18em;
+}
+
+.contact-card__actions {
+  margin-top: 1.5rem;
+}
+
 .detail-summary__row + .detail-summary__row {
   margin-top: 1rem;
   padding-top: 1rem;
@@ -512,6 +536,7 @@ dd {
   .card-grid,
   .card-grid--featured,
   .legend-grid,
+  .contact-grid,
   .stats-grid,
   .list-columns,
   .market-card__facts,

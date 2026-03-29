@@ -188,6 +188,50 @@
         </div>
       </div>
     </section>
+
+    <section class="section section--muted" id="contact">
+      <div class="container contact-grid">
+        <div class="section-heading contact-copy">
+          <p class="eyebrow">Contact</p>
+          <h2>Brief us on the market, capital, or operator gap you need cleared.</h2>
+          <p>
+            Perfect Mission Ltd supports investor and operator conversations with
+            decision-ready country briefs, launch sequencing, and execution screens tailored to
+            cross-border real estate entry.
+          </p>
+        </div>
+
+        <aside class="contact-card" aria-labelledby="contact-card-title">
+          <p class="hero-panel__title" id="contact-card-title">Direct line</p>
+          <a class="contact-card__email" href="mailto:info@perfectmission.co.uk">
+            info@perfectmission.co.uk
+          </a>
+          <p>20 Wenlock Road, London N1 7GU, United Kingdom</p>
+          <p>Registered in England &amp; Wales, No. 08651715</p>
+
+          <div class="hero-actions contact-card__actions">
+            <a
+              class="button button--primary"
+              href="mailto:info@perfectmission.co.uk?subject=Perfect%20Mission%20market%20briefing"
+              onclick={() =>
+                captureCta(
+                  'email_contact_section',
+                  'mailto:info@perfectmission.co.uk?subject=Perfect%20Mission%20market%20briefing'
+                )}
+            >
+              Email Perfect Mission
+            </a>
+            <a
+              class="button button--secondary"
+              href="/markets/"
+              onclick={() => captureCta('contact_section_browse_markets', '/markets/')}
+            >
+              Review live briefs
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
   </main>
 
   <Footer />
