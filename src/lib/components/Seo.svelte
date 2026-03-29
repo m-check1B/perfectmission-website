@@ -48,6 +48,14 @@
   const extraSchemas = $derived(
     Array.isArray(structuredData) ? structuredData : structuredData ? [structuredData] : []
   );
+  const schemaMarkup = $derived(
+    [ORGANIZATION_SCHEMA, WEBSITE_SCHEMA, ...(pageSchema ? [pageSchema] : []), ...extraSchemas]
+      .map(
+        (schema) =>
+          `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}<${'/script>'}`
+      )
+      .join('')
+  );
 </script>
 
 <svelte:head>
@@ -75,7 +83,5 @@
     <meta property="article:modified_time" content={modifiedTime} />
   {/if}
 
-  {#each [ORGANIZATION_SCHEMA, WEBSITE_SCHEMA, ...(pageSchema ? [pageSchema] : []), ...extraSchemas] as schema}
-    <script type="application/ld+json">{JSON.stringify(schema)}</script>
-  {/each}
+  {@html schemaMarkup}
 </svelte:head>

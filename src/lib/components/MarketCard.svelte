@@ -17,8 +17,7 @@
   </div>
 
   <h3>{market.country}</h3>
-  <p class="market-card__subtitle">{market.hero.subtitle}</p>
-  <p>{market.summary.one_line_verdict}</p>
+  <p>{market.summary.market_stage.description}</p>
 
   <dl class="market-card__facts">
     <div>
@@ -30,7 +29,7 @@
       <dd>{market.confidence}</dd>
     </div>
     <div>
-      <dt>Overall fit</dt>
+      <dt>Overall score</dt>
       <dd>{market.scorecard.find((item) => item.key === 'overall_fit')?.score ?? 'n/a'}/10</dd>
     </div>
   </dl>

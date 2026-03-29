@@ -4,6 +4,19 @@
   import MarketCard from '$lib/components/MarketCard.svelte';
   import Seo from '$lib/components/Seo.svelte';
   import { marketGroups, marketIndex } from '$lib/market-intelligence';
+
+  const publicStatusLegend: Record<string, string> = {
+    priority: 'High-priority market with strong current execution potential.',
+    'priority-upside': 'High-upside market with stronger return potential and higher execution risk.',
+    'priority-global': 'Priority non-European market with strong structural momentum.',
+    active: 'Active live market with credible current relevance.',
+    opportunistic: 'Selective market where opportunities depend heavily on scope and timing.',
+    'watch-active': 'Market worth monitoring where execution conditions remain more demanding.',
+    watch: 'Lower-priority market kept under review.',
+    watchlist: 'Monitored market rather than an immediate execution market.',
+    benchmark: 'Reference market used for comparison and context.',
+    bonus: 'Optional market outside the current live set.'
+  };
 </script>
 
 <Seo
@@ -21,18 +34,18 @@
         <p class="eyebrow">Market library</p>
         <h1>All live market-intelligence briefs.</h1>
         <p>
-          The index follows the imported MI pack directly: group structure, priority ranking,
-          launch recommendation, and status legend are all source-driven.
+          Browse the live country briefs by region, market priority, and current operating
+          profile.
         </p>
       </div>
     </section>
 
     <section class="section section--muted">
       <div class="container legend-grid">
-        {#each Object.entries(marketIndex.status_legend) as [status, summary]}
+        {#each Object.entries(marketIndex.status_legend) as [status]}
           <article class="legend-card">
             <strong>{status.replace(/-/g, ' ')}</strong>
-            <p>{summary}</p>
+            <p>{publicStatusLegend[status] ?? marketIndex.status_legend[status]}</p>
           </article>
         {/each}
       </div>

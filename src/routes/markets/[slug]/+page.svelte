@@ -83,18 +83,16 @@
     <section class="section">
       <div class="container narrative-grid">
         <article class="panel panel--accent">
-          <p class="eyebrow">Verdict</p>
-          <h2>{market.summary.one_line_verdict}</h2>
+          <p class="eyebrow">Market stage</p>
+          <h2>{market.summary.market_stage.label}</h2>
           <p>{market.summary.market_stage.description}</p>
         </article>
 
         <article class="panel">
-          <p class="eyebrow">Operator angle</p>
-          <p>{market.summary.operator_angle}</p>
-          <p class="eyebrow">Investor angle</p>
-          <p>{market.summary.investor_angle}</p>
-          <p class="eyebrow">Base case</p>
-          <p>{market.summary.base_case}</p>
+          <p class="eyebrow">Overview</p>
+          <p>{market.development_reality.copy}</p>
+          <p class="eyebrow">Foreign ownership</p>
+          <p>{market.foreign_ownership.summary}</p>
         </article>
       </div>
     </section>
@@ -104,12 +102,15 @@
         <div>
           <div class="section-heading">
             <p class="eyebrow">Scorecard</p>
-            <h2>Internal fit across the current operator model.</h2>
+            <h2>Comparative scorecard across the current market set.</h2>
           </div>
 
           <div class="score-list">
             {#each market.scorecard as item}
-              <ScoreBar label={item.label} score={item.score} />
+              <ScoreBar
+                label={item.key === 'overall_fit' ? 'Overall market fit' : item.label}
+                score={item.score}
+              />
             {/each}
           </div>
         </div>
@@ -117,7 +118,7 @@
         <div>
           <div class="section-heading">
             <p class="eyebrow">Quick facts</p>
-            <h2>Signals worth keeping in the memo.</h2>
+            <h2>Key signals and current market facts.</h2>
           </div>
 
           <dl class="fact-list">

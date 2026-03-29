@@ -35,11 +35,12 @@
     <section class="hero-section">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">Perfect Mission market intelligence</p>
+          <p class="eyebrow">Cross-border market intelligence</p>
           <h1>Cross-border real estate briefs built for faster decisions.</h1>
           <p class="hero-copy">
-            The MI pack is now the site backbone: 14 live-country briefs, ranked launch order,
-            execution reality, and operator-grade underwriting notes in one stack.
+            Perfect Mission provides structured country briefs across 14 live markets, combining
+            execution signals, comparative scoring, and cited sources for cross-border real estate
+            decisions.
           </p>
 
           <div class="hero-actions">
@@ -65,7 +66,7 @@
         </div>
 
         <div class="hero-panel">
-          <p class="hero-panel__title">Launch order from the pack</p>
+          <p class="hero-panel__title">Priority markets</p>
           <ol class="launch-list">
             {#each launchMarkets as market}
               <li>
@@ -81,8 +82,8 @@
     <section class="section">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">What changed</p>
-          <h2>The website now runs on the structured MI pack, not hard-coded summaries.</h2>
+          <p class="eyebrow">Coverage at a glance</p>
+          <h2>Focused coverage across Europe, Latin America, and selected frontier markets.</h2>
         </div>
 
         <div class="stats-grid">
@@ -100,7 +101,7 @@
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">Priority coverage</p>
-          <h2>Immediate market pages for the launch queue.</h2>
+          <h2>Markets currently prioritized for immediate attention.</h2>
         </div>
 
         <div class="card-grid card-grid--featured">
@@ -115,7 +116,7 @@
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">Regional map</p>
-          <h2>Coverage is grouped exactly as defined in the index file.</h2>
+          <h2>Regional coverage arranged around the current live market map.</h2>
         </div>
 
         <div class="group-grid">
@@ -143,8 +144,8 @@
     <section class="section section--muted">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Top briefs</p>
-          <h2>Highest-ranked live markets across the current stack.</h2>
+          <p class="eyebrow">Selected briefs</p>
+          <h2>High-priority live markets with the strongest current fit.</h2>
         </div>
 
         <div class="card-grid">
@@ -158,10 +159,10 @@
     <section class="section">
       <div class="container cta-band">
         <div>
-          <p class="eyebrow">Operator workflow</p>
-          <h2>From ranked country thesis to verified market memo.</h2>
+          <p class="eyebrow">Need a brief?</p>
+          <h2>Start with a focused market conversation.</h2>
           <p>
-            Each country page now exposes scorecards, strategy fit, development reality,
+            Each country page includes comparative scoring, strategy fit, development reality,
             foreign-ownership notes, city priorities, and cited sources.
           </p>
         </div>
@@ -193,11 +194,10 @@
       <div class="container contact-grid">
         <div class="section-heading contact-copy">
           <p class="eyebrow">Contact</p>
-          <h2>Brief us on the market, capital, or operator gap you need cleared.</h2>
+          <h2>Brief us on the market, capital, or site question you need cleared.</h2>
           <p>
-            Perfect Mission Ltd supports investor and operator conversations with
-            decision-ready country briefs, launch sequencing, and execution screens tailored to
-            cross-border real estate entry.
+            Perfect Mission Ltd provides decision-ready country briefs, launch sequencing, and
+            execution screens for cross-border real estate opportunities.
           </p>
         </div>
 
