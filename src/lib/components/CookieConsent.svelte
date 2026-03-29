@@ -26,7 +26,7 @@
     <div class="cookie-content">
       <p>
         We use cookies to analyze site traffic and improve your experience.
-        <a href="mailto:info@perfectmission.co.uk?subject=Privacy%20Policy%20request">Privacy Policy</a>
+        <a href="/privacy" class="cookie-link">Privacy Policy</a>
       </p>
       <div class="cookie-actions">
         <button class="btn-reject" onclick={reject}>Essential only</button>
@@ -35,3 +35,101 @@
     </div>
   </div>
 {/if}
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: rgba(10, 22, 40, 0.96);
+    border-top: 1px solid var(--color-line-strong);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1rem 1.5rem;
+    box-shadow: 0 -4px 30px rgba(184, 122, 58, 0.08);
+    animation: slide-up 0.3s ease;
+  }
+
+  @keyframes slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .cookie-content {
+    max-width: 76rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cookie-content p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans);
+  }
+
+  .cookie-link {
+    color: var(--color-accent-light);
+    text-decoration: underline;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .btn-reject {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-line);
+    background: transparent;
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-reject:hover {
+    border-color: var(--color-line-strong);
+    color: var(--color-text);
+  }
+
+  .btn-accept {
+    padding: 0.5rem 1rem;
+    background: var(--color-accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-accept:hover {
+    background: var(--color-accent-light);
+  }
+
+  @media (max-width: 600px) {
+    .cookie-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .cookie-actions {
+      width: 100%;
+    }
+    .btn-reject,
+    .btn-accept {
+      flex: 1;
+    }
+  }
+</style>
