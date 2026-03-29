@@ -3,7 +3,7 @@
   import Header from '$lib/components/Header.svelte';
   import MarketCard from '$lib/components/MarketCard.svelte';
   import Seo from '$lib/components/Seo.svelte';
-  import { marketGroups, marketIndex } from '$lib/market-intelligence';
+  import { marketGroups, marketIndex, type MarketStatus } from '$lib/market-intelligence';
 
   const publicStatusLegend: Record<string, string> = {
     priority: 'High-priority market with strong current execution potential.',
@@ -17,6 +17,7 @@
     benchmark: 'Reference market used for comparison and context.',
     bonus: 'Optional market outside the current live set.'
   };
+  const statusLegendEntries = Object.entries(marketIndex.status_legend) as [MarketStatus, string][];
 </script>
 
 <Seo
@@ -42,7 +43,7 @@
 
     <section class="section section--muted">
       <div class="container legend-grid">
-        {#each Object.entries(marketIndex.status_legend) as [status]}
+        {#each statusLegendEntries as [status]}
           <article class="legend-card">
             <strong>{status.replace(/-/g, ' ')}</strong>
             <p>{publicStatusLegend[status] ?? marketIndex.status_legend[status]}</p>
