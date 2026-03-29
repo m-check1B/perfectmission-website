@@ -817,6 +817,10 @@ html.js .reveal.reveal--instant {
   color: var(--accent-pale-gold);
 }
 
+.card--light.process-card::before {
+  color: var(--accent-warm-amber);
+}
+
 .contact-layout {
   display: grid;
   gap: var(--space-6);

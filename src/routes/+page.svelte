@@ -765,10 +765,10 @@
       </div>
     </section>
 
-    <section id="approach" class="section section--light" aria-labelledby="approach-title">
+    <section id="approach" class="section section--dark" aria-labelledby="approach-title">
       <div class="section__inner">
         <div class="section__header section__header--centered reveal" use:reveal>
-          <span class="eyebrow eyebrow--light">Our approach</span>
+          <span class="eyebrow eyebrow--dark">Our approach</span>
           <h2 id="approach-title" class="section-title" tabindex="-1">Speed is the strategy</h2>
           <p class="section-copy">
             In emerging markets, the best opportunities disappear in days, not quarters. The
@@ -778,7 +778,7 @@
 
         <div class="grid grid--three">
           {#each approachPillars as pillar, index}
-            <article class="card card--light reveal" use:reveal={{ delay: index * 80 }}>
+            <article class="card card--dark reveal" use:reveal={{ delay: index * 80 }}>
               <span class="card__kicker">{pillar.kicker}</span>
               <h3 class="card__title">{pillar.title}</h3>
               <p class="card__body">{pillar.body}</p>
@@ -845,12 +845,12 @@
       </div>
     </section>
 
-    <section id="process" class="section section--dark" aria-labelledby="process-title">
+    <section id="process" class="section section--light" aria-labelledby="process-title">
       <div class="section__inner">
         <div class="section__header reveal" use:reveal>
-          <span class="eyebrow eyebrow--dark">Process</span>
+          <span class="eyebrow eyebrow--light">Process</span>
           <h2 id="process-title" class="section-title" tabindex="-1">From signal to settlement</h2>
-          <p class="section-copy hero__lede">
+          <p class="section-copy">
             A five-stage pipeline turns fragmented market information into a bankable, executable
             opportunity set for investors who need speed without sloppy underwriting.
           </p>
@@ -858,7 +858,7 @@
 
         <div class="grid grid--three process-grid">
           {#each processSteps as step, index}
-            <article class="card card--dark process-card reveal" use:reveal={{ delay: index * 80 }}>
+            <article class="card card--light process-card reveal" use:reveal={{ delay: index * 80 }}>
               <h3 class="card__title">{step.title}</h3>
               <p class="card__body">{step.body}</p>
             </article>
