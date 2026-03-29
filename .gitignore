@@ -6,9 +6,6 @@ build
 perfectmission-website-autodevelopment/memory/active/
 perfectmission-website-autodevelopment/memory/episodic/
 perfectmission-website-autodevelopment/memory/semantic/
-perfectmission-website-autodevelopment/steering/inbox.md
-perfectmission-website-autodevelopment/steering/inbox/
-perfectmission-website-autodevelopment/steering/active/2026-03-28-commit-scaffold.md
 perfectmission-website-autodevelopment/.env.example
 perfectmission-website-autodevelopment/.gitignore
 perfectmission-website-autodevelopment/README.md
