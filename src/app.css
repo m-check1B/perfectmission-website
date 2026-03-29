@@ -1246,9 +1246,26 @@ p, li, dd {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .reveal-on-scroll.animate-in,
+  .site-nav {
+    animation: none !important;
+  }
+
+  .button--primary:hover,
+  .group-card:hover,
+  .market-card:hover,
+  .stat-card:hover,
+  .hero-panel__link:hover::after {
+    transform: none;
   }
 }
 
