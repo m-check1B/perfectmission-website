@@ -203,6 +203,7 @@
   let contactCompany = '';
   let contactMessage = '';
   let contactErrors: ContactErrors = {};
+  let contactFormEnhanced = false;
 
   const currentYear = new Date().getFullYear();
 
@@ -551,6 +552,7 @@
   }
 
   onMount(() => {
+    contactFormEnhanced = true;
     handleScroll();
     handleResize();
     syncMenuLock(menuOpen);
@@ -872,7 +874,7 @@
               action={`mailto:${contactEmail}`}
               method="GET"
               aria-describedby="contact-note"
-              novalidate
+              novalidate={contactFormEnhanced}
               onsubmit={handleContactSubmit}
             >
               <div class="field-group">
