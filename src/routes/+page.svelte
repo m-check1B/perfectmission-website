@@ -448,13 +448,13 @@
       return;
     }
 
-    if (!menuOpen) {
-      return;
+    event.preventDefault();
+
+    if (menuOpen) {
+      await closeMenu();
+      await tick();
     }
 
-    event.preventDefault();
-    await closeMenu();
-    await tick();
     await focusPageTop();
   }
 
