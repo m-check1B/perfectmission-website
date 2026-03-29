@@ -11,6 +11,12 @@
     { label: 'Launch markets', value: `${launchMarkets.length}` },
     { label: 'Regions covered', value: `${marketGroups.length}` }
   ];
+  const heroSignals = [
+    'AI-assisted screening',
+    '30 years of founder expertise',
+    'Cross-border execution focus'
+  ];
+  const prioritySnapshot = launchMarkets.slice(0, 3);
 
   function captureCta(label: string, destination: string) {
     window.posthog?.capture('cta_click', {
@@ -34,47 +40,73 @@
   <main>
     <section class="hero-section">
       <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Cross-border market intelligence</p>
-          <h1>Cross-border real estate briefs built for faster decisions.</h1>
+        <div class="hero-copyblock">
+          <p class="eyebrow">AI-driven real estate consultancy</p>
+          <h1>Move on emerging-market real estate before slower capital even clears first review.</h1>
           <p class="hero-copy">
-            Perfect Mission provides structured country briefs across 14 live markets, combining
-            execution signals, comparative scoring, and cited sources for cross-border real estate
-            decisions.
+            Perfect Mission helps investors and developers screen markets, sequence entry, and
+            pressure-test execution risk with AI-assisted analysis grounded in operator judgment.
+            Start with live country briefs, then move into a focused market conversation.
           </p>
 
           <div class="hero-actions">
             <a
               class="button button--primary"
               href="/markets/"
-              onclick={() => captureCta('browse_all_markets', '/markets/')}
+              onclick={() => captureCta('review_live_briefs', '/markets/')}
             >
-              Browse all markets
+              Review live briefs
             </a>
             <a
               class="button button--secondary"
               href="mailto:info@perfectmission.co.uk?subject=Perfect%20Mission%20market%20briefing"
               onclick={() =>
                 captureCta(
-                  'request_briefing',
+                  'book_market_conversation',
                   'mailto:info@perfectmission.co.uk?subject=Perfect%20Mission%20market%20briefing'
                 )}
             >
-              Request a briefing
+              Book a market conversation
             </a>
           </div>
+
+          <ul class="hero-signal-list" aria-label="Perfect Mission operating advantages">
+            {#each heroSignals as signal}
+              <li>{signal}</li>
+            {/each}
+          </ul>
         </div>
 
         <div class="hero-panel">
-          <p class="hero-panel__title">Priority markets</p>
+          <p class="hero-panel__title">What you get first</p>
+          <div class="hero-proof">
+            <strong>Decision-ready market brief</strong>
+            <p>
+              Priority ranking, execution reality, foreign-ownership notes, city focus, and cited
+              sources in one review surface.
+            </p>
+          </div>
+
           <ol class="launch-list">
-            {#each launchMarkets as market}
+            {#each prioritySnapshot as market}
               <li>
                 <strong>{market.country}</strong>
                 <span>{market.summary.market_stage.label}</span>
               </li>
             {/each}
           </ol>
+
+          <a
+            class="text-link hero-panel__link"
+            href="mailto:info@perfectmission.co.uk?subject=Perfect%20Mission%20priority%20market%20review"
+            onclick={() =>
+              captureCta(
+                'request_priority_market_review',
+                'mailto:info@perfectmission.co.uk?subject=Perfect%20Mission%20priority%20market%20review'
+              )}
+          >
+            Request a priority market review
+          </a>
         </div>
       </div>
     </section>
