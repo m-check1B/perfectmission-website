@@ -10,6 +10,13 @@
   ];
   const contactSectionHref = '#contact';
   const trackedSectionHrefs = [...navLinks.map((link) => link.href), contactSectionHref];
+  const sectionHeadingIds = {
+    '#approach': 'approach-title',
+    '#markets': 'markets-title',
+    '#founders': 'founders-title',
+    '#process': 'process-title',
+    '#contact': 'contact-title'
+  } as const;
 
   const statHighlights = [
     { value: '14', label: 'Markets covered' },
@@ -326,6 +333,85 @@
       }) ?? '';
   }
 
+  function getSectionNavigationTarget(href: string) {
+    if (typeof document === 'undefined') {
+      return null;
+    }
+
+    const section = document.querySelector<HTMLElement>(href);
+
+    if (!section) {
+      return null;
+    }
+
+    const headingId = sectionHeadingIds[href as keyof typeof sectionHeadingIds];
+    const focusTarget = headingId ? document.getElementById(headingId) : section;
+
+    if (!(focusTarget instanceof HTMLElement)) {
+      return null;
+    }
+
+    return { section, focusTarget };
+  }
+
+  function updateSectionHash(href: string) {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const { history, location } = window;
+    const historyMethod = location.hash === href ? 'replaceState' : 'pushState';
+    history[historyMethod](history.state, '', href);
+  }
+
+  async function focusSectionHeading(href: string) {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const target = getSectionNavigationTarget(href);
+
+    if (!target) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    target.section.scrollIntoView({
+      block: 'start',
+      behavior: prefersReducedMotion ? 'auto' : 'smooth'
+    });
+    updateSectionHash(href);
+    await tick();
+    target.focusTarget.focus({ preventScroll: true });
+    activeNavHref = href;
+  }
+
+  async function handleSectionNavigation(event: MouseEvent, href: string) {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    const target = getSectionNavigationTarget(href);
+
+    if (!target) {
+      await closeMenu();
+      return;
+    }
+
+    event.preventDefault();
+    await closeMenu();
+    await tick();
+    await focusSectionHeading(href);
+  }
+
   function getContactFieldValue(field: ContactField) {
     switch (field) {
       case 'name':
@@ -502,7 +588,7 @@
           <a
             href={link.href}
             aria-current={activeNavHref === link.href ? 'location' : undefined}
-            onclick={() => void closeMenu()}
+            onclick={(event) => void handleSectionNavigation(event, link.href)}
           >
             {link.label}
           </a>
@@ -511,7 +597,7 @@
           href={contactSectionHref}
           class="site-nav__cta"
           aria-current={activeNavHref === contactSectionHref ? 'location' : undefined}
-          onclick={() => void closeMenu()}
+          onclick={(event) => void handleSectionNavigation(event, contactSectionHref)}
         >
           Get in touch
         </a>
@@ -549,8 +635,20 @@
               markets before the rest of the market catches up.
             </p>
             <div class="cta-row">
-              <a class="btn btn--primary" href="#contact">Request a briefing</a>
-              <a class="btn btn--secondary" href="#approach">See the operating model</a>
+              <a
+                class="btn btn--primary"
+                href="#contact"
+                onclick={(event) => void handleSectionNavigation(event, '#contact')}
+              >
+                Request a briefing
+              </a>
+              <a
+                class="btn btn--secondary"
+                href="#approach"
+                onclick={(event) => void handleSectionNavigation(event, '#approach')}
+              >
+                See the operating model
+              </a>
             </div>
           </div>
 
@@ -593,7 +691,7 @@
       <div class="section__inner">
         <div class="section__header section__header--centered reveal" use:reveal>
           <span class="eyebrow eyebrow--light">Our approach</span>
-          <h2 id="approach-title" class="section-title">Speed is the strategy</h2>
+          <h2 id="approach-title" class="section-title" tabindex="-1">Speed is the strategy</h2>
           <p class="section-copy">
             In emerging markets, the best opportunities disappear in days, not quarters. The
             operating model is designed to compress every stage without reducing diligence.
@@ -616,7 +714,9 @@
       <div class="section__inner">
         <div class="section__header reveal" use:reveal>
           <span class="eyebrow eyebrow--dark">Markets</span>
-          <h2 id="markets-title" class="section-title">Focused where institutional capital is still early</h2>
+          <h2 id="markets-title" class="section-title" tabindex="-1">
+            Focused where institutional capital is still early
+          </h2>
           <p class="section-copy hero__lede">
             The coverage spans Central and Eastern Europe, Latin America, and select frontier
             markets where local speed and pattern recognition create an unfair advantage.
@@ -645,7 +745,9 @@
       <div class="section__inner">
         <div class="section__header section__header--centered reveal" use:reveal>
           <span class="eyebrow eyebrow--light">Leadership</span>
-          <h2 id="founders-title" class="section-title">Three decades of cross-border dealmaking</h2>
+          <h2 id="founders-title" class="section-title" tabindex="-1">
+            Three decades of cross-border dealmaking
+          </h2>
           <p class="section-copy">
             The technology speeds up execution. The judgement comes from operators who understand
             how real estate actually moves on the ground.
@@ -669,7 +771,7 @@
       <div class="section__inner">
         <div class="section__header reveal" use:reveal>
           <span class="eyebrow eyebrow--dark">Process</span>
-          <h2 id="process-title" class="section-title">From signal to settlement</h2>
+          <h2 id="process-title" class="section-title" tabindex="-1">From signal to settlement</h2>
           <p class="section-copy hero__lede">
             A five-stage pipeline turns fragmented market information into a bankable, executable
             opportunity set for investors who need speed without sloppy underwriting.
@@ -691,7 +793,7 @@
       <div class="section__inner">
         <div class="section__header section__header--centered reveal" use:reveal>
           <span class="eyebrow eyebrow--muted">Contact</span>
-          <h2 id="contact-title" class="section-title">Start with a market briefing</h2>
+          <h2 id="contact-title" class="section-title" tabindex="-1">Start with a market briefing</h2>
           <p class="section-copy">
             Share the geography, asset profile, and ticket size you are exploring. We will respond
             through the contact route you specify below.
@@ -827,7 +929,13 @@
             value is the same: better market intelligence, earlier access, and tighter execution.
           </p>
           <div class="cta-row cta-row--center">
-            <a class="btn btn--primary" href="#contact">Request a market brief</a>
+            <a
+              class="btn btn--primary"
+              href="#contact"
+              onclick={(event) => void handleSectionNavigation(event, '#contact')}
+            >
+              Request a market brief
+            </a>
             <a class="btn btn--secondary" href="mailto:info@perfectmission.co.uk">Email directly</a>
           </div>
         </div>
