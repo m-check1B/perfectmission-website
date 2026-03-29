@@ -743,9 +743,9 @@
               />
             </div>
 
-            <div class="hero__visual-meta" aria-label="Coverage summary">
+            <div class="hero__visual-meta" role="list" aria-label="Coverage summary">
               {#each coverageSignals as signal}
-                <article class="hero__visual-region">
+                <article class="hero__visual-region" role="listitem">
                   <span class="hero__visual-region-label">{signal.label}</span>
                   <p class="hero__visual-region-copy">{signal.body}</p>
                 </article>
@@ -754,9 +754,9 @@
           </div>
         </div>
 
-        <div class="hero__stats" aria-label="Key highlights">
+        <div class="hero__stats" role="list" aria-label="Key highlights">
           {#each statHighlights as stat, index}
-            <article class="stat-card reveal" use:reveal={{ delay: index * 80 }}>
+            <article class="stat-card reveal" role="listitem" use:reveal={{ delay: index * 80 }}>
               <span class="stat-card__value">{stat.value}</span>
               <span class="stat-card__label">{stat.label}</span>
             </article>
