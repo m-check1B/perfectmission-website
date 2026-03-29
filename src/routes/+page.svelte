@@ -45,6 +45,37 @@
     'Cross-border execution focus'
   ];
   const prioritySnapshot = launchMarkets.slice(0, 3);
+  const founders = [
+    {
+      name: 'Matej Havlin',
+      role: 'Founder',
+      summary:
+        'Drives AI-enabled market analysis, opportunity filtering, and investor-facing synthesis across live briefs.'
+    },
+    {
+      name: 'Lukas Havel',
+      role: 'Founder',
+      summary:
+        'Brings 30 years of real-estate and execution judgment to underwriting, delivery reality, and market-entry sequencing.'
+    }
+  ];
+  const processSteps = [
+    {
+      title: 'Screen',
+      summary:
+        'We narrow the field fast with AI-assisted market screening, regulatory checks, and demand-side filters.'
+    },
+    {
+      title: 'Sequence',
+      summary:
+        'We rank priority countries and cities by timing, investor fit, and execution practicality rather than headline noise.'
+    },
+    {
+      title: 'Pressure-test',
+      summary:
+        'We turn the shortlist into a decision-ready brief covering foreign ownership, development friction, and next actions.'
+    }
+  ];
 
   function captureCta(label: string, destination: string) {
     window.posthog?.capture('cta_click', {
@@ -159,6 +190,44 @@
               <span>{stat.label}</span>
             </article>
           {/each}
+        </div>
+      </div>
+    </section>
+
+    <!-- Founders and Process Section -->
+    <section class="section section--muted">
+      <div class="container">
+        <div class="section-heading reveal-on-scroll">
+          <p class="eyebrow">Founders and process</p>
+          <h2>Operator judgment and a disciplined screening process, not generic market commentary.</h2>
+          <p>
+            Perfect Mission combines founder-led real estate experience with AI-assisted analysis
+            so early market decisions move faster without losing execution realism.
+          </p>
+        </div>
+
+        <div class="credibility-grid">
+          <div class="founder-stack reveal-on-scroll">
+            {#each founders as founder, i}
+              <article class="profile-card" style="animation-delay: {i * 0.08}s;">
+                <p class="eyebrow">{founder.role}</p>
+                <h3>{founder.name}</h3>
+                <p>{founder.summary}</p>
+              </article>
+            {/each}
+          </div>
+
+          <ol class="process-list reveal-on-scroll" style="animation-delay: 0.12s;">
+            {#each processSteps as step, i}
+              <li class="process-step">
+                <span class="process-step__index">0{i + 1}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.summary}</p>
+                </div>
+              </li>
+            {/each}
+          </ol>
         </div>
       </div>
     </section>
