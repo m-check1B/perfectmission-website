@@ -687,8 +687,8 @@
       class:menu-scrim--visible={menuOpen}
       class="menu-scrim"
       aria-label="Close navigation menu"
-      aria-hidden={menuOpen ? 'false' : 'true'}
-      tabindex={menuOpen ? 0 : -1}
+      aria-hidden="true"
+      tabindex="-1"
       onclick={() => void closeMenu(true)}
     ></button>
   </header>
