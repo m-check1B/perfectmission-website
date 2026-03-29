@@ -184,6 +184,26 @@ textarea {
   padding-bottom: 3rem;
 }
 
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.breadcrumb a {
+  color: var(--color-accent-soft);
+  text-decoration-color: rgba(209, 168, 93, 0.45);
+  text-underline-offset: 0.18em;
+}
+
+.breadcrumb span[aria-current='page'] {
+  color: var(--color-text);
+}
+
 .eyebrow {
   margin: 0 0 0.75rem;
   color: var(--color-accent-soft);

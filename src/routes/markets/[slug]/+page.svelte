@@ -4,22 +4,30 @@
   import ScoreBar from '$lib/components/ScoreBar.svelte';
   import Seo from '$lib/components/Seo.svelte';
   import { buildBriefMailto, formatStatus } from '$lib/market-intelligence';
+  import { buildBreadcrumbSchema } from '$lib/site';
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
   const market = $derived(data.market);
-  const structuredData = $derived({
-    '@context': 'https://schema.org',
-    '@type': 'Report',
-    name: market.seo.title,
-    description: market.seo.description,
-    url: `https://perfectmission.co.uk/markets/${market.slug}/`,
-    dateModified: market.last_updated,
-    about: {
-      '@type': 'Place',
-      name: market.country
-    }
-  });
+  const structuredData = $derived([
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Report',
+      name: market.seo.title,
+      description: market.seo.description,
+      url: `https://perfectmission.co.uk/markets/${market.slug}/`,
+      dateModified: market.last_updated,
+      about: {
+        '@type': 'Place',
+        name: market.country
+      }
+    },
+    buildBreadcrumbSchema([
+      { name: 'Perfect Mission', path: '/' },
+      { name: 'Markets', path: '/markets/' },
+      { name: market.country, path: `/markets/${market.slug}/` }
+    ])
+  ]);
   const primaryCta = $derived(
     buildBriefMailto(
       `${market.country} market brief`,
@@ -49,6 +57,14 @@
     <section class="hero-section hero-section--detail">
       <div class="container detail-hero">
         <div>
+          <nav aria-label="Breadcrumb" class="breadcrumb">
+            <a href="/">Perfect Mission</a>
+            <span aria-hidden="true">/</span>
+            <a href="/markets/">Markets</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{market.country}</span>
+          </nav>
+
           <p class="eyebrow">{market.hero.eyebrow}</p>
           <h1>{market.hero.title}</h1>
           <p class="hero-copy">{market.hero.subtitle}</p>
@@ -74,7 +90,7 @@
           </div>
           <div class="detail-summary__row">
             <span>Updated</span>
-            <strong>{market.last_updated}</strong>
+            <strong><time datetime={market.last_updated}>{market.last_updated}</time></strong>
           </div>
         </aside>
       </div>
