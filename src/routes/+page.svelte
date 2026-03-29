@@ -1,9 +1,36 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import Footer from '$lib/components/Footer.svelte';
   import Header from '$lib/components/Header.svelte';
   import MarketCard from '$lib/components/MarketCard.svelte';
   import Seo from '$lib/components/Seo.svelte';
   import { launchMarkets, marketGroups, markets } from '$lib/market-intelligence';
+
+  let mounted = false;
+  
+  onMount(() => {
+    mounted = true;
+    
+    // Progressive enhancement: add animation class for JS-enabled browsers
+    // Content starts visible (SSR-friendly), animates when scrolled into view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '50px 0px 0px 0px' }
+    );
+    
+    document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+      observer.observe(el);
+    });
+    
+    return () => observer.disconnect();
+  });
 
   const featuredMarkets = markets.filter((market) => market.priority_rank <= 6);
   const stats = [
@@ -38,9 +65,10 @@
   <Header currentPath="/" />
 
   <main>
+    <!-- Hero Section -->
     <section class="hero-section">
       <div class="container hero-grid">
-        <div class="hero-copyblock">
+        <div class="hero-copyblock" class:animate-in={mounted}>
           <p class="eyebrow">AI-driven real estate consultancy</p>
           <h1>Move on emerging-market real estate before slower capital even clears first review.</h1>
           <p class="hero-copy">
@@ -56,6 +84,9 @@
               onclick={() => captureCta('review_live_briefs', '/markets/')}
             >
               Review live briefs
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="margin-left: 4px;">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </a>
             <a
               class="button button--secondary"
@@ -77,7 +108,7 @@
           </ul>
         </div>
 
-        <div class="hero-panel">
+        <div class="hero-panel" class:animate-in={mounted} style="animation-delay: 0.2s;">
           <p class="hero-panel__title">What you get first</p>
           <div class="hero-proof">
             <strong>Decision-ready market brief</strong>
@@ -111,16 +142,17 @@
       </div>
     </section>
 
+    <!-- Stats Section -->
     <section class="section">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading reveal-on-scroll">
           <p class="eyebrow">Coverage at a glance</p>
           <h2>Focused coverage across Europe, Latin America, and selected frontier markets.</h2>
         </div>
 
         <div class="stats-grid">
-          {#each stats as stat}
-            <article class="stat-card">
+          {#each stats as stat, i}
+            <article class="stat-card reveal-on-scroll" style="animation-delay: {i * 0.1}s;">
               <strong>{stat.value}</strong>
               <span>{stat.label}</span>
             </article>
@@ -129,31 +161,35 @@
       </div>
     </section>
 
+    <!-- Priority Markets Section -->
     <section class="section section--muted">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading reveal-on-scroll">
           <p class="eyebrow">Priority coverage</p>
           <h2>Markets currently prioritized for immediate attention.</h2>
         </div>
 
         <div class="card-grid card-grid--featured">
-          {#each launchMarkets as market}
-            <MarketCard {market} featured={true} />
+          {#each launchMarkets as market, i}
+            <div class="reveal-on-scroll" style="animation-delay: {i * 0.1}s;">
+              <MarketCard {market} featured={true} />
+            </div>
           {/each}
         </div>
       </div>
     </section>
 
+    <!-- Regional Map Section -->
     <section class="section">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading reveal-on-scroll">
           <p class="eyebrow">Regional map</p>
           <h2>Regional coverage arranged around the current live market map.</h2>
         </div>
 
         <div class="group-grid">
-          {#each marketGroups as group}
-            <article class="group-card">
+          {#each marketGroups as group, i}
+            <article class="group-card reveal-on-scroll" style="animation-delay: {i * 0.1}s;">
               <div class="group-card__header">
                 <h3>{group.label}</h3>
                 <span>{group.count_live} live</span>
@@ -173,58 +209,65 @@
       </div>
     </section>
 
+    <!-- Selected Briefs Section -->
     <section class="section section--muted">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading reveal-on-scroll">
           <p class="eyebrow">Selected briefs</p>
           <h2>High-priority live markets with the strongest current fit.</h2>
         </div>
 
         <div class="card-grid">
-          {#each featuredMarkets as market}
-            <MarketCard {market} />
+          {#each featuredMarkets as market, i}
+            <div class="reveal-on-scroll" style="animation-delay: {i * 0.08}s;">
+              <MarketCard {market} />
+            </div>
           {/each}
         </div>
       </div>
     </section>
 
+    <!-- CTA Section -->
     <section class="section">
-      <div class="container cta-band">
-        <div>
-          <p class="eyebrow">Need a brief?</p>
-          <h2>Start with a focused market conversation.</h2>
-          <p>
-            Each country page includes comparative scoring, strategy fit, development reality,
-            foreign-ownership notes, city priorities, and cited sources.
-          </p>
-        </div>
+      <div class="container">
+        <div class="cta-band reveal-on-scroll">
+          <div>
+            <p class="eyebrow">Need a brief?</p>
+            <h2>Start with a focused market conversation.</h2>
+            <p>
+              Each country page includes comparative scoring, strategy fit, development reality,
+              foreign-ownership notes, city priorities, and cited sources.
+            </p>
+          </div>
 
-        <div class="hero-actions">
-          <a
-            class="button button--primary"
-            href="/markets/"
-            onclick={() => captureCta('enter_market_library', '/markets/')}
-          >
-            Enter the market library
-          </a>
-          <a
-            class="button button--secondary"
-            href="mailto:info@perfectmission.co.uk?subject=Perfect%20Mission%20verified%20market%20memo"
-            onclick={() =>
-              captureCta(
-                'request_verified_memo',
-                'mailto:info@perfectmission.co.uk?subject=Perfect%20Mission%20verified%20market%20memo'
-              )}
-          >
-            Request a verified memo
-          </a>
+          <div class="hero-actions">
+            <a
+              class="button button--primary"
+              href="/markets/"
+              onclick={() => captureCta('enter_market_library', '/markets/')}
+            >
+              Enter the market library
+            </a>
+            <a
+              class="button button--secondary"
+              href="mailto:info@perfectmission.co.uk?subject=Perfect%20Mission%20verified%20market%20memo"
+              onclick={() =>
+                captureCta(
+                  'request_verified_memo',
+                  'mailto:info@perfectmission.co.uk?subject=Perfect%20Mission%20verified%20market%20memo'
+                )}
+            >
+              Request a verified memo
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Contact Section -->
     <section class="section section--muted" id="contact">
       <div class="container contact-grid">
-        <div class="section-heading contact-copy">
+        <div class="section-heading contact-copy reveal-on-scroll">
           <p class="eyebrow">Contact</p>
           <h2>Brief us on the market, capital, or site question you need cleared.</h2>
           <p>
@@ -233,7 +276,7 @@
           </p>
         </div>
 
-        <aside class="contact-card" aria-labelledby="contact-card-title">
+        <aside class="contact-card reveal-on-scroll" aria-labelledby="contact-card-title" style="animation-delay: 0.15s;">
           <p class="hero-panel__title" id="contact-card-title">Direct line</p>
           <a class="contact-card__email" href="mailto:info@perfectmission.co.uk">
             info@perfectmission.co.uk

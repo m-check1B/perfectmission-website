@@ -1,17 +1,186 @@
-<script lang="ts"></script>
+<script lang="ts">
+  const currentYear = new Date().getFullYear();
+</script>
 
 <footer class="site-footer">
-  <div class="container site-footer__inner">
-    <div>
-      <p class="site-footer__title">Perfect Mission Ltd</p>
-      <p>20 Wenlock Road, London N1 7GU, United Kingdom</p>
-      <p>Registered in England & Wales, No. 08651715</p>
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand" href="/">
+          Perfect<span>Mission</span>
+        </a>
+        <p class="site-footer__tagline">
+          Market intelligence for cross-border real estate decisions.
+        </p>
+      </div>
+      
+      <div class="site-footer__section">
+        <p class="site-footer__title">Markets</p>
+        <ul class="site-footer__links">
+          <li><a href="/markets/">All markets</a></li>
+          <li><a href="/markets/bulgaria/">Bulgaria</a></li>
+          <li><a href="/markets/romania/">Romania</a></li>
+          <li><a href="/markets/morocco/">Morocco</a></li>
+          <li><a href="/markets/albania/">Albania</a></li>
+        </ul>
+      </div>
+      
+      <div class="site-footer__section">
+        <p class="site-footer__title">Company</p>
+        <ul class="site-footer__links">
+          <li><a href="/">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+          <li><a href="mailto:info@perfectmission.co.uk">Email us</a></li>
+        </ul>
+      </div>
+      
+      <div class="site-footer__section">
+        <p class="site-footer__title">Legal</p>
+        <ul class="site-footer__links">
+          <li><a href="/privacy/">Privacy Policy</a></li>
+          <li><a href="/terms/">Terms of Service</a></li>
+        </ul>
+        <address class="site-footer__address">
+          20 Wenlock Road<br>
+          London N1 7GU<br>
+          United Kingdom<br>
+          <span class="site-footer__reg">Reg. England & Wales No. 08651715</span>
+        </address>
+      </div>
     </div>
-
-    <div>
-      <p class="site-footer__title">Contact</p>
-      <p><a href="mailto:info@perfectmission.co.uk">info@perfectmission.co.uk</a></p>
-      <p><a href="/markets/">Market intelligence library</a></p>
+    
+    <div class="site-footer__bottom">
+      <p>&copy; {currentYear} Perfect Mission Ltd. All rights reserved.</p>
+      <a href="mailto:info@perfectmission.co.uk" class="site-footer__email">
+        info@perfectmission.co.uk
+      </a>
     </div>
   </div>
 </footer>
+
+<style>
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  
+  .site-footer__brand .brand {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+  
+  .site-footer__tagline {
+    max-width: 280px;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  
+  .site-footer__section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .site-footer__links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .site-footer__links a {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .site-footer__links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-accent);
+    transition: width var(--transition-fast);
+  }
+  
+  .site-footer__links a:hover {
+    color: var(--color-text);
+  }
+  
+  .site-footer__links a:hover::after {
+    width: 100%;
+  }
+  
+  .site-footer__address {
+    margin-top: 1.5rem;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+  
+  .site-footer__reg {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+  
+  .site-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .site-footer__bottom p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+  
+  .site-footer__email {
+    color: var(--color-accent-soft);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+  }
+  
+  .site-footer__email:hover {
+    color: var(--color-accent);
+  }
+  
+  @media (max-width: 900px) {
+    .site-footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+    }
+    
+    .site-footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .site-footer__bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+  }
+</style>
