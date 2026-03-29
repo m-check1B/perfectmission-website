@@ -2,8 +2,8 @@
 
 Repo-local automation package for unattended development work on `perfectmission-website`.
 
-This is the optional secondary `open-kraliki` path.
-The canonical and verified default remains the centralized launchd control plane installed from the root repository with `install.sh`.
+This is the primary `open-kraliki` deployment surface for per-repository automation.
+Use the centralized launchd control plane from the root repository only when you explicitly want one shared Linear + Telegram + watchdog stack outside the target repository.
 
 This package is:
 
@@ -13,7 +13,7 @@ This package is:
 - isolated, so one package can run per repository in parallel with others
 - scoped to the configured `PROJECT_ROOT`, even when that project lives inside a larger git repository
 
-If you want the full `open-kraliki` loop with Linear intake, sequential fixers, commit + push, Telegram relay, heartbeat, and watchdog, go back to the root docs and use the centralized launchd path instead.
+If you want one shared control plane with Linear intake, sequential fixers, commit + push, Telegram relay, heartbeat, and watchdog, go back to the root docs and use the centralized launchd path instead.
 
 ## Layout
 
@@ -29,9 +29,11 @@ perfectmission-website-autodevelopment/
 │   ├── linear-sync.py
 │   ├── linear-sync.sh
 │   ├── memory-sync.sh
+│   ├── memory-health.sh
 │   ├── memory-backend-index.py
 │   ├── memory-backend-retrieve.py
 │   ├── remediator.sh
+│   ├── skill-memory-sync.py
 │   ├── status.sh
 │   ├── stats.sh
 │   ├── steering-sync.sh
@@ -45,9 +47,11 @@ perfectmission-website-autodevelopment/
 │   ├── active/
 │   └── daily/
 ├── skills/
-│   └── autodev-instance-ops/
+│   ├── autodev-instance-ops/
+│   └── learned/
 ├── prompts/
 ├── queue/
+├── state/
 ├── steering/
 └── security/
 ```
@@ -62,9 +66,13 @@ perfectmission-website-autodevelopment/
 - `automation/verify.sh`
   - Runs the configured automated test and visual-test hooks on demand and records the latest results in package state files.
 - `automation/memory-sync.sh`
-  - Writes a cheap repository snapshot into the daily note, refreshes local steering state from the optional Linear mirror directory, refreshes deterministic semantic/active memory surfaces, and rebuilds the hybrid memory backend.
+  - Writes a cheap repository snapshot into the daily note, refreshes local steering state from the optional Linear mirror directory, refreshes learned skill memory, refreshes deterministic semantic/active memory surfaces, and rebuilds the hybrid memory backend.
+- `automation/memory-health.sh`
+  - Verifies the standardized memory contract: Hindsight API reachability, latest bank sync, OpenClaw memory plugin load state, and optional Swarm health.
+- `automation/skill-memory-sync.py`
+  - Promotes successful episodic sessions into reusable procedural skill docs under `skills/learned/` and refreshes the prompt-ready summary at `state/learned-skills.md`.
 - `automation/memory-backend-index.py`
-  - Builds the installed hybrid backend in `.agent/` with a local SQLite index, entity graph, run summaries, and backend status metadata.
+  - Builds the installed hybrid backend in `.agent/` with a local SQLite index, entity graph, run summaries, learned-skill indexing, and backend status metadata.
 - `automation/memory-backend-retrieve.py`
   - Produces a query-scoped retrieval brief for the current focus and adds it to the cycle prompt bundle.
 - `automation/steering-sync.sh`
@@ -94,22 +102,49 @@ This package uses a layered memory system for coding agents:
 - `memory/active/`
   - current-task scratchpad, open questions, and next actions
 
+Procedural memory lives alongside those files:
+
+- `skills/learned/*/SKILL.md`
+  - reusable procedures learned from successful sessions
+- `state/learned-skills.md`
+  - compact summary injected into unattended cycle prompts
+
 It also installs a hybrid local memory backend under `.agent/`:
 
 - `index.sqlite3`
-  - searchable memory index
+  - searchable local retrieval index
 - `entity_graph.json`
   - co-occurrence graph of memory entities
 - `run_summaries.jsonl`
   - compact session summary stream
 
-This is still local-first and file-native. By default it uses the local hybrid backend plus `rg` code hints. Optional tools like `mgrep` can enrich retrieval when explicitly enabled, but the backend works without external services.
+## Kraliki Memory Standard v1
+
+This package now follows one shared contract:
+
+- Markdown files under `memory/` remain the pinned, human-editable source of truth for objective, semantic, episodic, and active memory.
+- `Hindsight` is the only durable learned memory layer. Autodev sync retains high-signal memory surfaces there and recalls from it first.
+- Learned skill docs under `skills/learned/` are the procedural memory layer. They stay local-first, human-editable, and can also be retained into Hindsight as `learned_skill` items.
+- The local SQLite backend, `rg`, and optional `mgrep` are retrieval tools, not competing long-term memory systems.
+- Steering backlog and tracker mirrors are not durable memory by default. Active tasks can influence memory; inactive queues and mirrors stay local unless promoted into curated or episodic surfaces.
+- Swarm capsules and blackboards are runtime coordination surfaces. They may mirror durable facts into Hindsight, but they are not the canonical long-term store.
+
+This stays local-first and file-native. Hindsight adds the learned long-term layer; local retrieval still works from the repo package and codebase.
 
 Default retrieval shape:
 
+- Hindsight recall for durable learned memory
 - local SQLite + symbolic memory scoring
 - local `rg` code hints over the repository
-- no cloud dependency required
+- optional `mgrep` code retrieval when explicitly enabled
+
+Standard write path:
+
+- write or refresh pinned memory files under `memory/`
+- refresh procedural skill memory under `skills/learned/`
+- run `automation/memory-sync.sh`
+- let `automation/memory-backend-index.py` retain the durable subset into Hindsight
+- run `automation/memory-health.sh` when you want to confirm the contract has not drifted
 
 ## Verification Hooks
 
@@ -202,20 +237,26 @@ Local steering is canonical. Linear is optional and should be treated as an adap
 /bin/bash /Users/matejhavlin/github/websites/perfectmission.co.uk/perfectmission-website-autodevelopment/automation/memory-sync.sh
 ```
 
-7. View stats:
+7. Check memory health:
+
+```bash
+/bin/bash /Users/matejhavlin/github/websites/perfectmission.co.uk/perfectmission-website-autodevelopment/automation/memory-health.sh
+```
+
+8. View stats:
 
 ```bash
 /bin/bash /Users/matejhavlin/github/websites/perfectmission.co.uk/perfectmission-website-autodevelopment/automation/stats.sh
 open /Users/matejhavlin/github/websites/perfectmission.co.uk/perfectmission-website-autodevelopment/state/stats.html
 ```
 
-8. Optional: run the configured test hooks manually:
+9. Optional: run the configured test hooks manually:
 
 ```bash
 /bin/bash /Users/matejhavlin/github/websites/perfectmission.co.uk/perfectmission-website-autodevelopment/automation/verify.sh
 ```
 
-9. Optional: from your `open-kraliki` checkout, serve a combined live control dashboard if you run one or more repo-local packages:
+10. Optional: from your `open-kraliki` checkout, serve a combined live control dashboard if you run one or more repo-local packages:
 
 ```bash
 python3 automation/repo-local/dashboard-server.py \
