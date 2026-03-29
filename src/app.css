@@ -940,12 +940,7 @@ html.js .reveal.reveal--instant {
 
 @media (max-width: 64rem) {
   .hero__layout,
-  .hero__visual-meta,
   .contact-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .hero__stats {
     grid-template-columns: 1fr;
   }
 
@@ -1042,7 +1037,9 @@ html.js .reveal.reveal--instant {
 
   .grid--three,
   .grid--two,
-  .markets-grid {
+  .markets-grid,
+  .hero__visual-meta,
+  .hero__stats {
     grid-template-columns: 1fr;
   }
 
