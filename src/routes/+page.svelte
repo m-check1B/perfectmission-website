@@ -381,7 +381,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section section--muted" id="contact">
+    <section class="section section--muted" id="contact" tabindex="-1">
       <div class="container contact-grid">
         <div class="section-heading contact-copy reveal-on-scroll">
           <p class="eyebrow">Contact</p>

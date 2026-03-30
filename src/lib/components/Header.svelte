@@ -132,6 +132,34 @@
     });
   }
 
+  function getInPageHashTarget(href: string) {
+    if (!href.includes('#')) {
+      return null;
+    }
+
+    const [path, hash] = href.split('#');
+    const resolvedPath = path || '/';
+    if (!hash || resolvedPath !== currentPath) {
+      return null;
+    }
+
+    return document.getElementById(decodeURIComponent(hash));
+  }
+
+  async function handleNavLinkClick(link: { href: string; label: string }) {
+    trackNavigation(link.label.toLowerCase(), link.href);
+
+    const hashTarget = browser ? getInPageHashTarget(link.href) : null;
+    closeMenu({ restoreFocus: false });
+
+    if (!hashTarget) {
+      return;
+    }
+
+    await tick();
+    hashTarget.focus({ preventScroll: true });
+  }
+
   async function toggleMenu() {
     if (menuOpen) {
       closeMenu();
@@ -371,10 +399,7 @@
           href={link.href}
           class:active={isActive(link.href)}
           aria-current={getAriaCurrent(link.href)}
-          onclick={() => {
-            trackNavigation(link.label.toLowerCase(), link.href);
-            closeMenu({ restoreFocus: false });
-          }}
+          onclick={() => void handleNavLinkClick(link)}
         >
           {link.label}
         </a>
