@@ -40,6 +40,39 @@
     dialogElement?.focus();
   }
 
+  function getFocusableElements() {
+    if (!dialogElement) {
+      return [];
+    }
+
+    return Array.from(
+      dialogElement.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    );
+  }
+
+  function trapFocus(event: KeyboardEvent) {
+    const focusableElements = getFocusableElements();
+    if (focusableElements.length === 0) {
+      event.preventDefault();
+      dialogElement?.focus();
+      return;
+    }
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    const activeElement = document.activeElement;
+
+    if (event.shiftKey && activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+    } else if (!event.shiftKey && activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
+  }
+
   async function closeBanner() {
     visible = false;
     await tick();
@@ -61,6 +94,8 @@
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       reject();
+    } else if (event.key === 'Tab') {
+      trapFocus(event);
     }
   }
 </script>
@@ -71,6 +106,7 @@
     bind:this={dialogElement}
     class="cookie-banner"
     role="dialog"
+    aria-modal="true"
     aria-labelledby="cookie-banner-title"
     aria-describedby="cookie-banner-description"
     tabindex="-1"
@@ -99,7 +135,7 @@
     z-index: 9998;
     background:
       linear-gradient(180deg, rgba(7, 15, 28, 0.1) 0%, rgba(7, 15, 28, 0.45) 100%);
-    pointer-events: none;
+    pointer-events: auto;
   }
 
   .cookie-banner {
@@ -120,8 +156,8 @@
   }
 
   @keyframes slide-up {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
+    from { transform: translateX(-50%) translateY(100%); }
+    to { transform: translateX(-50%) translateY(0); }
   }
 
   .cookie-content {
