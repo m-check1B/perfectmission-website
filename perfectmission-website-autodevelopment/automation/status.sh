@@ -40,6 +40,66 @@ printf 'memory_backend_mgrep=%s\n' "$(memory_backend_status_field mgrep_availabl
 printf 'memory_backend_mgrep_installed=%s\n' "$(memory_backend_status_field mgrep_installed || printf 'no')"
 printf 'memory_backend_mgrep_auth=%s\n' "$(memory_backend_status_field mgrep_auth || printf 'missing')"
 printf 'memory_backend_mgrep_store=%s\n' "$(memory_backend_status_field mgrep_store || printf '%s' "$AUTODEV_MEMORY_MGREP_STORE")"
+printf 'memory_health=%s\n' "$(
+  python3 - "$AUTODEV_MEMORY_HEALTH_JSON_FILE" <<'PY'
+from pathlib import Path
+import json
+import sys
+
+path = Path(sys.argv[1])
+if not path.is_file():
+    print("unknown")
+    raise SystemExit(0)
+
+try:
+    payload = json.loads(path.read_text() or "{}")
+except Exception:
+    print("invalid")
+    raise SystemExit(0)
+
+print(payload.get("health") or "unknown")
+PY
+)"
+printf 'memory_health_root_cause=%s\n' "$(
+  python3 - "$AUTODEV_MEMORY_HEALTH_JSON_FILE" <<'PY'
+from pathlib import Path
+import json
+import sys
+
+path = Path(sys.argv[1])
+if not path.is_file():
+    print("none")
+    raise SystemExit(0)
+
+try:
+    payload = json.loads(path.read_text() or "{}")
+except Exception:
+    print("invalid")
+    raise SystemExit(0)
+
+print(payload.get("root_cause") or "none")
+PY
+)"
+printf 'memory_health_openclaw_mode=%s\n' "$(
+  python3 - "$AUTODEV_MEMORY_HEALTH_JSON_FILE" <<'PY'
+from pathlib import Path
+import json
+import sys
+
+path = Path(sys.argv[1])
+if not path.is_file():
+    print("unknown")
+    raise SystemExit(0)
+
+try:
+    payload = json.loads(path.read_text() or "{}")
+except Exception:
+    print("invalid")
+    raise SystemExit(0)
+
+print(payload.get("openclaw_plugin_mode") or "unknown")
+PY
+)"
 printf 'test_command_configured=%s\n' "$(if verification_command_configured "$AUTODEV_TEST_COMMAND"; then printf 'true'; else printf 'false'; fi)"
 printf 'test_required=%s\n' "$AUTODEV_TEST_REQUIRED"
 printf 'last_test_status=%s\n' "$(verification_status_value "$AUTODEV_LAST_TEST_STATUS_FILE")"

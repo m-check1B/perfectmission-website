@@ -20,6 +20,9 @@ CURRENT_LOG_FILE="$AUTODEV_LOG_DIR/memory-health-$run_id.log"
 health="healthy"
 report=""
 hindsight_banks_json=""
+root_cause=""
+openclaw_plugin_mode="unknown"
+openclaw_config_path="$AUTODEV_MEMORY_HINDSIGHT_RECOVERY_OPENCLAW_CONFIG"
 
 add_report() {
   report="${report}$1"$'\n'
@@ -57,6 +60,71 @@ check_hindsight_api() {
   fi
   mark_failing
   add_report "hindsight-api: unreachable ($AUTODEV_MEMORY_HINDSIGHT_API_URL)"
+}
+
+check_openclaw_config() {
+  local config_summary=""
+
+  if ! config_summary="$(python3 - "$openclaw_config_path" <<'PY'
+from pathlib import Path
+import json
+import sys
+
+config_path = Path(sys.argv[1]).expanduser()
+payload = {
+    "status": "missing",
+    "mode": "unknown",
+    "root_cause": "",
+    "report": "",
+}
+
+if config_path.is_file():
+    try:
+        config = json.loads(config_path.read_text())
+    except Exception:
+        payload["status"] = "invalid"
+        payload["report"] = f"openclaw-config: unreadable ({config_path})"
+    else:
+        payload["status"] = "ok"
+        plugin_cfg = (((config.get("plugins") or {}).get("entries") or {}).get("hindsight-openclaw") or {}).get("config") or {}
+        hindsight_api_url = plugin_cfg.get("hindsightApiUrl")
+        api_port = plugin_cfg.get("apiPort")
+        if hindsight_api_url:
+            payload["mode"] = "external-api"
+            payload["root_cause"] = "openclaw-hindsight-external-api-mode"
+            payload["report"] = (
+                f"openclaw-config: failing ({config_path}; hindsightApiUrl={hindsight_api_url}; "
+                "plugin is in external-api mode and will not start the local daemon)"
+            )
+        elif api_port:
+            payload["mode"] = "local-daemon"
+            payload["report"] = f"openclaw-config: ok ({config_path}; apiPort={api_port})"
+        else:
+            payload["mode"] = "unspecified"
+            payload["report"] = (
+                f"openclaw-config: degraded ({config_path}; no hindsightApiUrl or apiPort configured for hindsight-openclaw)"
+            )
+else:
+    payload["report"] = f"openclaw-config: missing ({config_path})"
+
+print(json.dumps(payload))
+PY
+)"; then
+    mark_degraded
+    add_report "openclaw-config: inspection failed ($openclaw_config_path)"
+    return
+  fi
+
+  openclaw_plugin_mode="$(python3 -c 'import json,sys; print(json.loads(sys.stdin.read()).get("mode","unknown"))' <<<"$config_summary")"
+  root_cause="$(python3 -c 'import json,sys; print(json.loads(sys.stdin.read()).get("root_cause",""))' <<<"$config_summary")"
+  add_report "$(python3 -c 'import json,sys; print(json.loads(sys.stdin.read()).get("report","openclaw-config: unknown"))' <<<"$config_summary")"
+
+  if [ "$openclaw_plugin_mode" = "external-api" ]; then
+    mark_failing
+    add_report "next-step: replace hindsightApiUrl with apiPort in the OpenClaw hindsight plugin config, then rerun memory-sync and memory-health"
+  elif [ "$openclaw_plugin_mode" = "unspecified" ]; then
+    mark_degraded
+  fi
 }
 
 check_openclaw() {
@@ -193,6 +261,7 @@ check_swarm() {
 
 check_backend_contract
 check_hindsight_api
+check_openclaw_config
 check_openclaw
 check_backend_status
 check_swarm
@@ -211,7 +280,7 @@ EOF
 
 printf '%s\n' "$health" > "$AUTODEV_MEMORY_HEALTH_STATUS_FILE"
 printf '%s\n' "$memory_health_report" > "$AUTODEV_MEMORY_HEALTH_REPORT_FILE"
-python3 - "$AUTODEV_MEMORY_HEALTH_JSON_FILE" "$health" "$PROJECT_NAME" "$AUTODEV_MEMORY_BACKEND" "$AUTODEV_MEMORY_HINDSIGHT_API_URL" "$AUTODEV_MEMORY_HEALTH_SWARM_URL" <<'PY'
+python3 - "$AUTODEV_MEMORY_HEALTH_JSON_FILE" "$health" "$PROJECT_NAME" "$AUTODEV_MEMORY_BACKEND" "$AUTODEV_MEMORY_HINDSIGHT_API_URL" "$AUTODEV_MEMORY_HEALTH_SWARM_URL" "$openclaw_config_path" "$openclaw_plugin_mode" "$root_cause" <<'PY'
 from pathlib import Path
 import json
 import sys
@@ -223,6 +292,9 @@ payload = {
     "backend": sys.argv[4],
     "hindsight_api_url": sys.argv[5],
     "swarm_url": sys.argv[6],
+    "openclaw_config_path": sys.argv[7],
+    "openclaw_plugin_mode": sys.argv[8],
+    "root_cause": sys.argv[9],
 }
 output.write_text(json.dumps(payload, indent=2) + "\n")
 PY
