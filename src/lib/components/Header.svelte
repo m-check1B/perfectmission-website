@@ -10,6 +10,7 @@
   let menuButton: HTMLButtonElement | undefined;
   let navElement: HTMLElement | undefined;
   let lastFocusedElement: HTMLElement | null = null;
+  let lastLocationKey = '';
   let backgroundElements: HTMLElement[] = [];
   let backgroundAriaHidden = new Map<HTMLElement, string | null>();
   let headerChromeElements: HTMLElement[] = [];
@@ -59,6 +60,24 @@
       desktopMedia.removeEventListener('change', handleDesktopChange);
       document.body.style.overflow = '';
     };
+  });
+
+  $effect(() => {
+    if (!browser) {
+      return;
+    }
+
+    const locationKey = `${currentPath}${currentHash}`;
+    if (!lastLocationKey) {
+      lastLocationKey = locationKey;
+      return;
+    }
+
+    if (menuOpen && locationKey !== lastLocationKey) {
+      closeMenu({ restoreFocus: false });
+    }
+
+    lastLocationKey = locationKey;
   });
 
   $effect(() => {
