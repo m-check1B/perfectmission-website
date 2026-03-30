@@ -21,6 +21,7 @@
     { href: '/markets/', label: 'Markets' },
     { href: '/#contact', label: 'Contact' }
   ];
+  const mobileMenuTitleId = 'primary-navigation-title';
 
   onMount(() => {
     // Check for saved theme preference
@@ -160,7 +161,10 @@
     const [firstItem] = getFocusableMenuElements();
     if (firstItem) {
       firstItem.focus();
+      return;
     }
+
+    menuButton?.focus();
   }
 
   function disableBackgroundContent() {
@@ -264,7 +268,7 @@
     const focusable = getFocusableMenuElements();
     if (focusable.length === 0) {
       event.preventDefault();
-      navElement?.focus();
+      menuButton?.focus();
       return;
     }
 
@@ -347,7 +351,13 @@
       class:site-nav--open={menuOpen}
       class="site-nav"
       aria-label="Primary"
+      aria-labelledby={menuOpen ? mobileMenuTitleId : undefined}
+      aria-modal={menuOpen ? 'true' : undefined}
+      role={menuOpen ? 'dialog' : undefined}
     >
+      {#if menuOpen}
+        <p id={mobileMenuTitleId} class="sr-only">Primary navigation menu</p>
+      {/if}
       {#each links as link}
         <a
           href={link.href}
@@ -376,6 +386,18 @@
 {/if}
 
 <style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .header-actions {
     display: flex;
     align-items: center;
