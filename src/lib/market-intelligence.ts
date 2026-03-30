@@ -1,18 +1,7 @@
 import rawIndex from '$lib/content/mi/markets.index.mi.json';
+import type { MarketConfidence, MarketStatus } from '$lib/market-shared';
 
-export type MarketStatus =
-  | 'priority'
-  | 'priority-upside'
-  | 'priority-global'
-  | 'active'
-  | 'opportunistic'
-  | 'watch-active'
-  | 'watch'
-  | 'watchlist'
-  | 'benchmark'
-  | 'bonus';
-
-export type MarketConfidence = 'high' | 'medium-high' | 'medium' | 'medium-low' | 'low';
+export type { MarketCardData, MarketConfidence, MarketStatus } from '$lib/market-shared';
 
 export interface MarketIndexMarketRef {
   slug: string;
@@ -212,10 +201,6 @@ export const marketGroups = marketIndex.groups.map((group) => ({
 
 export function getMarketBySlug(slug: string) {
   return marketsBySlug.get(slug);
-}
-
-export function formatStatus(status: MarketStatus) {
-  return status.replace(/-/g, ' ');
 }
 
 export function buildBriefMailto(subject: string, body: string) {

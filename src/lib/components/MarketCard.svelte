@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { formatStatus, type MarketDocument } from '$lib/market-intelligence';
+  import { formatStatus, type MarketCardData } from '$lib/market-shared';
 
   let {
     market,
     featured = false
   }: {
-    market: MarketDocument;
+    market: MarketCardData;
     featured?: boolean;
   } = $props();
   

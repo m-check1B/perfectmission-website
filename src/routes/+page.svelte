@@ -5,9 +5,11 @@
   import MarketCard from '$lib/components/MarketCard.svelte';
   import Seo from '$lib/components/Seo.svelte';
   import { PROFESSIONAL_SERVICE_SCHEMA } from '$lib/site';
-  import { launchMarkets, marketGroups, markets } from '$lib/market-intelligence';
+  import type { PageData } from './$types';
 
-  let mounted = false;
+  let { data }: { data: PageData } = $props();
+
+  let mounted = $state(false);
   
   onMount(() => {
     mounted = true;
@@ -33,18 +35,20 @@
     return () => observer.disconnect();
   });
 
-  const featuredMarkets = markets.filter((market) => market.priority_rank <= 6);
-  const stats = [
-    { label: 'Live markets', value: `${markets.length}` },
-    { label: 'Launch markets', value: `${launchMarkets.length}` },
-    { label: 'Regions covered', value: `${marketGroups.length}` }
-  ];
+  const featuredMarkets = $derived(data.featuredMarkets);
+  const launchMarkets = $derived(data.launchMarkets);
+  const marketGroups = $derived(data.marketGroups);
+  const stats = $derived([
+    { label: 'Live markets', value: `${data.stats.liveMarkets}` },
+    { label: 'Launch markets', value: `${data.stats.launchMarkets}` },
+    { label: 'Regions covered', value: `${data.stats.regionsCovered}` }
+  ]);
   const heroSignals = [
     'AI-assisted screening',
     '30 years of founder expertise',
     'Cross-border execution focus'
   ];
-  const prioritySnapshot = launchMarkets.slice(0, 3);
+  const prioritySnapshot = $derived(data.launchMarkets.slice(0, 3));
   const approachPillars = [
     {
       title: 'Screen faster',

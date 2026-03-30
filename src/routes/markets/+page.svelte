@@ -2,8 +2,9 @@
   import Footer from '$lib/components/Footer.svelte';
   import Header from '$lib/components/Header.svelte';
   import MarketCard from '$lib/components/MarketCard.svelte';
+  import type { MarketStatus } from '$lib/market-shared';
   import Seo from '$lib/components/Seo.svelte';
-  import { marketGroups, marketIndex, type MarketStatus } from '$lib/market-intelligence';
+  import { marketGroups, marketIndex } from '$lib/market-intelligence';
 
   const publicStatusLegend: Record<string, string> = {
     priority: 'High-priority market with strong current execution potential.',
