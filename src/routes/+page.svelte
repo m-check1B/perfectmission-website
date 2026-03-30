@@ -45,6 +45,23 @@
     'Cross-border execution focus'
   ];
   const prioritySnapshot = launchMarkets.slice(0, 3);
+  const approachPillars = [
+    {
+      title: 'Screen faster',
+      detail:
+        'AI-assisted research compresses the first pass on regulation, ownership constraints, supply pipeline, and demand fit.'
+    },
+    {
+      title: 'Rank what matters',
+      detail:
+        'We compare countries and cities by investor fit, execution friction, and timing rather than headline excitement.'
+    },
+    {
+      title: 'Move with proof',
+      detail:
+        'Every brief is shaped into a decision-ready document with cited sources, risk flags, and a practical next step.'
+    }
+  ];
   const founders = [
     {
       name: 'Matej Havlin',
@@ -171,6 +188,30 @@
           >
             Request a priority market review
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section class="section">
+      <div class="container">
+        <div class="section-heading reveal-on-scroll">
+          <p class="eyebrow">Approach and speed</p>
+          <h2>Built to cut weeks out of early market selection without lowering the underwriting standard.</h2>
+          <p>
+            Perfect Mission combines machine-speed screening with founder judgment so investors can
+            eliminate weak markets quickly and focus attention where the real edge exists.
+          </p>
+        </div>
+
+        <div class="approach-grid">
+          {#each approachPillars as pillar, i}
+            <article class="approach-card reveal-on-scroll" style="animation-delay: {i * 0.08}s;">
+              <p class="hero-panel__title">0{i + 1}</p>
+              <h3>{pillar.title}</h3>
+              <p>{pillar.detail}</p>
+            </article>
+          {/each}
         </div>
       </div>
     </section>
