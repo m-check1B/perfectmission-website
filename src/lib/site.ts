@@ -6,6 +6,7 @@ export const COMPANY_EMAIL = 'info@perfectmission.co.uk';
 export const COMPANY_LEGAL_NAME = 'Perfect Mission Ltd';
 export const COMPANY_NUMBER = '08651715';
 export const COMPANY_FOUNDERS = ['Matej Havlin', 'Lukas Havel'];
+export const SITE_LOGO_PATH = '/icons/icon-512.png';
 
 const COMPANY_ADDRESS = {
   '@type': 'PostalAddress',
@@ -105,7 +106,7 @@ export const ORGANIZATION_SCHEMA = {
   name: SITE_NAME,
   legalName: COMPANY_LEGAL_NAME,
   url: SITE_URL,
-  logo: absoluteUrl('/favicon.svg'),
+  logo: absoluteUrl(SITE_LOGO_PATH),
   email: COMPANY_EMAIL,
   address: COMPANY_ADDRESS,
   identifier: {
