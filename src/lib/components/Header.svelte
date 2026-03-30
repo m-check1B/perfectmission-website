@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { browser } from '$app/environment';
   import { onMount, tick } from 'svelte';
   
   let { currentPath = '/' }: { currentPath?: string } = $props();
@@ -9,6 +10,8 @@
   let menuButton: HTMLButtonElement | undefined;
   let navElement: HTMLElement | undefined;
   let lastFocusedElement: HTMLElement | null = null;
+  let backgroundElements: HTMLElement[] = [];
+  let backgroundAriaHidden = new Map<HTMLElement, string | null>();
 
   const links = [
     { href: '/', label: 'Overview' },
@@ -46,10 +49,28 @@
     handleHashChange();
     
     return () => {
+      restoreBackgroundContent();
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('hashchange', handleHashChange);
       desktopMedia.removeEventListener('change', handleDesktopChange);
       document.body.style.overflow = '';
+    };
+  });
+
+  $effect(() => {
+    if (!browser) {
+      return;
+    }
+
+    if (!menuOpen) {
+      restoreBackgroundContent();
+      return;
+    }
+
+    disableBackgroundContent();
+
+    return () => {
+      restoreBackgroundContent();
     };
   });
 
@@ -137,6 +158,45 @@
     if (firstItem) {
       firstItem.focus();
     }
+  }
+
+  function disableBackgroundContent() {
+    const pageShell = navElement?.closest<HTMLElement>('.page-shell');
+    if (!pageShell) {
+      return;
+    }
+
+    backgroundElements = Array.from(
+      pageShell.querySelectorAll<HTMLElement>(':scope > main, :scope > footer')
+    );
+
+    backgroundAriaHidden.clear();
+
+    for (const element of backgroundElements) {
+      backgroundAriaHidden.set(element, element.getAttribute('aria-hidden'));
+      element.inert = true;
+      element.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function restoreBackgroundContent() {
+    if (backgroundElements.length === 0) {
+      return;
+    }
+
+    for (const element of backgroundElements) {
+      element.inert = false;
+      const previousAriaHidden = backgroundAriaHidden.get(element);
+
+      if (previousAriaHidden === null || previousAriaHidden === undefined) {
+        element.removeAttribute('aria-hidden');
+      } else {
+        element.setAttribute('aria-hidden', previousAriaHidden);
+      }
+    }
+
+    backgroundElements = [];
+    backgroundAriaHidden.clear();
   }
 
   async function restoreMenuFocus() {
