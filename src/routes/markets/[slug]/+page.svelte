@@ -3,7 +3,7 @@
   import Header from '$lib/components/Header.svelte';
   import ScoreBar from '$lib/components/ScoreBar.svelte';
   import Seo from '$lib/components/Seo.svelte';
-  import { buildBriefMailto } from '$lib/market-intelligence';
+  import { buildBriefMailto } from '$lib/contact';
   import { formatStatus } from '$lib/market-shared';
   import { buildBreadcrumbSchema } from '$lib/site';
   import type { PageData } from './$types';

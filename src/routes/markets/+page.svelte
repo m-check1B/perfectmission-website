@@ -4,7 +4,9 @@
   import MarketCard from '$lib/components/MarketCard.svelte';
   import type { MarketStatus } from '$lib/market-shared';
   import Seo from '$lib/components/Seo.svelte';
-  import { marketGroups, marketIndex } from '$lib/market-intelligence';
+  import type { PageData } from './$types';
+
+  let { data }: { data: PageData } = $props();
 
   const publicStatusLegend: Record<string, string> = {
     priority: 'High-priority market with strong current execution potential.',
@@ -18,7 +20,9 @@
     benchmark: 'Reference market used for comparison and context.',
     bonus: 'Optional market outside the current live set.'
   };
-  const statusLegendEntries = Object.entries(marketIndex.status_legend) as [MarketStatus, string][];
+  const statusLegendEntries = $derived(
+    Object.entries(data.statusLegend) as [MarketStatus, string][]
+  );
 </script>
 
 <Seo
@@ -47,13 +51,13 @@
         {#each statusLegendEntries as [status]}
           <article class="legend-card">
             <strong>{status.replace(/-/g, ' ')}</strong>
-            <p>{publicStatusLegend[status] ?? marketIndex.status_legend[status]}</p>
+            <p>{publicStatusLegend[status] ?? data.statusLegend[status]}</p>
           </article>
         {/each}
       </div>
     </section>
 
-    {#each marketGroups as group}
+    {#each data.marketGroups as group}
       <section class="section">
         <div class="container">
           <div class="section-heading">
