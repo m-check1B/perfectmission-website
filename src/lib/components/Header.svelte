@@ -221,6 +221,7 @@
         <a
           href={link.href}
           class:active={isActive(link.href)}
+          aria-current={isActive(link.href) ? 'page' : undefined}
           onclick={() => {
             trackNavigation(link.label.toLowerCase(), link.href);
             closeMenu({ restoreFocus: false });
@@ -235,14 +236,12 @@
 
 <!-- Overlay for mobile menu -->
 {#if menuOpen}
-  <div 
+  <button
+    type="button"
     class="mobile-menu-overlay" 
     onclick={() => closeMenu()}
-    onkeydown={(e) => e.key === 'Enter' && closeMenu()}
-    role="button"
-    tabindex="0"
     aria-label="Close menu"
-  ></div>
+  ></button>
 {/if}
 
 <style>
@@ -277,11 +276,16 @@
   .mobile-menu-overlay {
     position: fixed;
     inset: 0;
+    display: block;
+    width: 100%;
+    border: 0;
+    padding: 0;
     background: rgba(10, 22, 40, 0.8);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 90;
     animation: fadeIn 0.25s ease;
+    cursor: pointer;
   }
   
   @keyframes fadeIn {
