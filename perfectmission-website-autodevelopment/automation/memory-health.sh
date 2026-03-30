@@ -23,6 +23,7 @@ hindsight_banks_json=""
 root_cause=""
 openclaw_plugin_mode="unknown"
 openclaw_config_path="$AUTODEV_MEMORY_HINDSIGHT_RECOVERY_OPENCLAW_CONFIG"
+remediation_file=""
 
 add_report() {
   report="${report}$1"$'\n'
@@ -259,12 +260,58 @@ check_swarm() {
   add_report "swarm: unreachable ($AUTODEV_MEMORY_HEALTH_SWARM_URL)"
 }
 
+write_remediation_artifact() {
+  if [ "$root_cause" = "openclaw-hindsight-external-api-mode" ]; then
+    remediation_file="$AUTODEV_MEMORY_HEALTH_REMEDIATION_FILE"
+    cat >"$remediation_file" <<EOF
+OpenClaw Hindsight remediation
+
+Detected: hindsight-openclaw is configured in external-api mode.
+Config file: $openclaw_config_path
+Expected local API URL: $AUTODEV_MEMORY_HINDSIGHT_API_URL
+
+Problem:
+- The plugin config sets \`hindsightApiUrl\`, which tells OpenClaw to use an already-running external Hindsight API.
+- In this mode the plugin does not start the local daemon, so autodev health remains failing when $AUTODEV_MEMORY_HINDSIGHT_API_URL is down.
+
+Recommended change:
+1. Open $openclaw_config_path
+2. In \`plugins.entries.hindsight-openclaw.config\`, remove \`hindsightApiUrl\`
+3. Set \`apiPort\` to the local port from the autodev backend URL
+
+Minimal target shape:
+{
+  "plugins": {
+    "entries": {
+      "hindsight-openclaw": {
+        "config": {
+          "apiPort": 9077
+        }
+      }
+    }
+  }
+}
+
+Then rerun:
+- ./perfectmission-website-autodevelopment/automation/memory-sync.sh
+- ./perfectmission-website-autodevelopment/automation/memory-health.sh
+- ./perfectmission-website-autodevelopment/automation/doctor.sh
+EOF
+    add_report "remediation-file: $remediation_file"
+    return
+  fi
+
+  remediation_file=""
+  rm -f "$AUTODEV_MEMORY_HEALTH_REMEDIATION_FILE"
+}
+
 check_backend_contract
 check_hindsight_api
 check_openclaw_config
 check_openclaw
 check_backend_status
 check_swarm
+write_remediation_artifact
 
 memory_health_report=$(
   cat <<EOF
@@ -280,7 +327,7 @@ EOF
 
 printf '%s\n' "$health" > "$AUTODEV_MEMORY_HEALTH_STATUS_FILE"
 printf '%s\n' "$memory_health_report" > "$AUTODEV_MEMORY_HEALTH_REPORT_FILE"
-python3 - "$AUTODEV_MEMORY_HEALTH_JSON_FILE" "$health" "$PROJECT_NAME" "$AUTODEV_MEMORY_BACKEND" "$AUTODEV_MEMORY_HINDSIGHT_API_URL" "$AUTODEV_MEMORY_HEALTH_SWARM_URL" "$openclaw_config_path" "$openclaw_plugin_mode" "$root_cause" <<'PY'
+python3 - "$AUTODEV_MEMORY_HEALTH_JSON_FILE" "$health" "$PROJECT_NAME" "$AUTODEV_MEMORY_BACKEND" "$AUTODEV_MEMORY_HINDSIGHT_API_URL" "$AUTODEV_MEMORY_HEALTH_SWARM_URL" "$openclaw_config_path" "$openclaw_plugin_mode" "$root_cause" "$remediation_file" <<'PY'
 from pathlib import Path
 import json
 import sys
@@ -295,6 +342,7 @@ payload = {
     "openclaw_config_path": sys.argv[7],
     "openclaw_plugin_mode": sys.argv[8],
     "root_cause": sys.argv[9],
+    "remediation_file": sys.argv[10],
 }
 output.write_text(json.dumps(payload, indent=2) + "\n")
 PY

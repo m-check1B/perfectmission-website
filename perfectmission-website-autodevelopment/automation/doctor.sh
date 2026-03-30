@@ -172,12 +172,14 @@ memory_health_age=""
 memory_health_status=""
 memory_health_root_cause=""
 memory_health_openclaw_mode=""
+memory_health_remediation_file=""
 
 if [ -f "$AUTODEV_MEMORY_HEALTH_JSON_FILE" ]; then
   memory_health_age="$(file_age_minutes "$AUTODEV_MEMORY_HEALTH_JSON_FILE")"
   memory_health_status="$(memory_health_field health || true)"
   memory_health_root_cause="$(memory_health_field root_cause || true)"
   memory_health_openclaw_mode="$(memory_health_field openclaw_plugin_mode || true)"
+  memory_health_remediation_file="$(memory_health_field remediation_file || true)"
 
   add_report "memory-health: ${memory_health_status:-unknown} (${memory_health_age}m old)"
   if [ -n "$memory_health_root_cause" ]; then
@@ -185,6 +187,9 @@ if [ -f "$AUTODEV_MEMORY_HEALTH_JSON_FILE" ]; then
   fi
   if [ -n "$memory_health_openclaw_mode" ]; then
     add_report "memory-health-openclaw-mode: $memory_health_openclaw_mode"
+  fi
+  if [ -n "$memory_health_remediation_file" ]; then
+    add_report "memory-health-remediation-file: $memory_health_remediation_file"
   fi
 
   if [ "$memory_health_age" -gt "$AUTODEV_DOCTOR_MAX_MEMORY_AGE_MINUTES" ]; then

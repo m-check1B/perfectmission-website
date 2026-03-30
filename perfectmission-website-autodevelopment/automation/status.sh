@@ -100,6 +100,26 @@ except Exception:
 print(payload.get("openclaw_plugin_mode") or "unknown")
 PY
 )"
+printf 'memory_health_remediation_file=%s\n' "$(
+  python3 - "$AUTODEV_MEMORY_HEALTH_JSON_FILE" <<'PY'
+from pathlib import Path
+import json
+import sys
+
+path = Path(sys.argv[1])
+if not path.is_file():
+    print("none")
+    raise SystemExit(0)
+
+try:
+    payload = json.loads(path.read_text() or "{}")
+except Exception:
+    print("invalid")
+    raise SystemExit(0)
+
+print(payload.get("remediation_file") or "none")
+PY
+)"
 printf 'test_command_configured=%s\n' "$(if verification_command_configured "$AUTODEV_TEST_COMMAND"; then printf 'true'; else printf 'false'; fi)"
 printf 'test_required=%s\n' "$AUTODEV_TEST_REQUIRED"
 printf 'last_test_status=%s\n' "$(verification_status_value "$AUTODEV_LAST_TEST_STATUS_FILE")"
