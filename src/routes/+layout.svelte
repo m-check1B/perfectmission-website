@@ -17,7 +17,7 @@
   let { children } = $props();
 
   if (browser && hasConsent()) {
-    initPostHog('perfectmission.co.uk');
+    void initPostHog('perfectmission.co.uk');
   }
 </script>
 

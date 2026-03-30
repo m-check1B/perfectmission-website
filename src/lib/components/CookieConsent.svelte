@@ -12,7 +12,7 @@
   function accept() {
     setConsent('all');
     visible = false;
-    initPostHog(site);
+    void initPostHog(site);
   }
 
   function reject() {
