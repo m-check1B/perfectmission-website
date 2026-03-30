@@ -136,6 +136,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+body[data-cookie-banner-open='true'] {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 :where(main[id], section[id], nav[id], article[id], aside[id]) {
   scroll-margin-top: var(--anchor-offset);
 }
