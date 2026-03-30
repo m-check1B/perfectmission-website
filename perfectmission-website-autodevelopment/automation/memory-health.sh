@@ -22,7 +22,7 @@ report=""
 hindsight_banks_json=""
 root_cause=""
 openclaw_plugin_mode="unknown"
-openclaw_config_path="$AUTODEV_MEMORY_HINDSIGHT_RECOVERY_OPENCLAW_CONFIG"
+openclaw_config_path="$(effective_hindsight_recovery_openclaw_config)"
 remediation_file=""
 
 add_report() {
