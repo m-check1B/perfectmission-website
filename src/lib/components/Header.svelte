@@ -336,6 +336,7 @@
         bind:this={menuButton}
         aria-expanded={menuOpen}
         aria-controls="primary-navigation"
+        aria-haspopup="dialog"
         aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
         onclick={toggleMenu}
       >
@@ -357,6 +358,13 @@
     >
       {#if menuOpen}
         <p id={mobileMenuTitleId} class="sr-only">Primary navigation menu</p>
+        <button
+          type="button"
+          class="site-nav__close"
+          onclick={() => closeMenu()}
+        >
+          Close menu
+        </button>
       {/if}
       {#each links as link}
         <a

@@ -334,6 +334,10 @@ main:focus {
   transition: all var(--transition-base);
 }
 
+.site-nav__close {
+  display: none;
+}
+
 .site-nav a:hover,
 .site-nav a.active {
   color: var(--color-text);
@@ -1468,6 +1472,32 @@ p, li, dd {
   
   .site-nav--open {
     display: flex;
+  }
+
+  .site-nav__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    min-height: 2.75rem;
+    margin-bottom: 0.25rem;
+    padding: 0 1rem;
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--transition-base);
+  }
+
+  .site-nav__close:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
   }
   
   .site-nav a {
