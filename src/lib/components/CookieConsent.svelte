@@ -7,13 +7,20 @@
   let visible = $state(false);
   let dialogElement = $state<HTMLDivElement | undefined>(undefined);
   let lastFocusedElement: HTMLElement | null = null;
+  let pageShellElement: HTMLElement | null = null;
+  let restoreAriaHidden: string | null = null;
 
   if (browser) {
     visible = needsConsentBanner();
   }
 
   onMount(() => {
+    if (browser) {
+      pageShellElement = document.querySelector<HTMLElement>('.page-shell');
+    }
+
     return () => {
+      restoreBackgroundInteractivity();
       if (document.body.dataset.cookieBannerOpen === 'true') {
         delete document.body.dataset.cookieBannerOpen;
       }
@@ -28,9 +35,11 @@
     lastFocusedElement =
       document.activeElement instanceof HTMLElement ? document.activeElement : null;
     document.body.dataset.cookieBannerOpen = 'true';
+    disableBackgroundInteractivity();
     void focusBanner();
 
     return () => {
+      restoreBackgroundInteractivity();
       delete document.body.dataset.cookieBannerOpen;
     };
   });
@@ -38,6 +47,32 @@
   async function focusBanner() {
     await tick();
     dialogElement?.focus();
+  }
+
+  function disableBackgroundInteractivity() {
+    if (!pageShellElement) {
+      return;
+    }
+
+    restoreAriaHidden = pageShellElement.getAttribute('aria-hidden');
+    pageShellElement.inert = true;
+    pageShellElement.setAttribute('aria-hidden', 'true');
+  }
+
+  function restoreBackgroundInteractivity() {
+    if (!pageShellElement) {
+      return;
+    }
+
+    pageShellElement.inert = false;
+
+    if (restoreAriaHidden === null) {
+      pageShellElement.removeAttribute('aria-hidden');
+    } else {
+      pageShellElement.setAttribute('aria-hidden', restoreAriaHidden);
+    }
+
+    restoreAriaHidden = null;
   }
 
   function getFocusableElements() {
