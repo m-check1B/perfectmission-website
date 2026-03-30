@@ -26,6 +26,33 @@ add_report() {
   report="${report}$1"$'\n'
 }
 
+memory_health_field() {
+  local field="$1"
+
+  python3 - "$AUTODEV_MEMORY_HEALTH_JSON_FILE" "$field" <<'PY'
+from pathlib import Path
+import json
+import sys
+
+path = Path(sys.argv[1])
+field = sys.argv[2]
+
+if not path.is_file():
+    raise SystemExit(0)
+
+try:
+    payload = json.loads(path.read_text() or "{}")
+except Exception:
+    raise SystemExit(0)
+
+value = payload.get(field)
+if value is None:
+    raise SystemExit(0)
+
+print(value)
+PY
+}
+
 automation_paused() {
   [ "$AUTODEV_ENABLED" != "true" ]
 }
@@ -140,6 +167,49 @@ else
 fi
 
 check_freshness "memory-sync" "$AUTODEV_LOG_DIR/memory-sync-*.log" "$AUTODEV_DOCTOR_MAX_MEMORY_AGE_MINUTES"
+
+memory_health_age=""
+memory_health_status=""
+memory_health_root_cause=""
+memory_health_openclaw_mode=""
+
+if [ -f "$AUTODEV_MEMORY_HEALTH_JSON_FILE" ]; then
+  memory_health_age="$(file_age_minutes "$AUTODEV_MEMORY_HEALTH_JSON_FILE")"
+  memory_health_status="$(memory_health_field health || true)"
+  memory_health_root_cause="$(memory_health_field root_cause || true)"
+  memory_health_openclaw_mode="$(memory_health_field openclaw_plugin_mode || true)"
+
+  add_report "memory-health: ${memory_health_status:-unknown} (${memory_health_age}m old)"
+  if [ -n "$memory_health_root_cause" ]; then
+    add_report "memory-health-root-cause: $memory_health_root_cause"
+  fi
+  if [ -n "$memory_health_openclaw_mode" ]; then
+    add_report "memory-health-openclaw-mode: $memory_health_openclaw_mode"
+  fi
+
+  if [ "$memory_health_age" -gt "$AUTODEV_DOCTOR_MAX_MEMORY_AGE_MINUTES" ]; then
+    mark_degraded
+    add_report "memory-health: stale (>${AUTODEV_DOCTOR_MAX_MEMORY_AGE_MINUTES}m)"
+  fi
+
+  case "$memory_health_status" in
+    healthy)
+      ;;
+    degraded)
+      mark_degraded
+      ;;
+    failing)
+      mark_failing
+      ;;
+    *)
+      mark_degraded
+      add_report "memory-health: unreadable"
+      ;;
+  esac
+else
+  mark_degraded
+  add_report "memory-health: missing"
+fi
 
 if hour_in_window "$(current_hour)" "$AUTODEV_HEARTBEAT_ACTIVE_START" "$AUTODEV_HEARTBEAT_ACTIVE_END"; then
   check_freshness "heartbeat" "$AUTODEV_LOG_DIR/heartbeat-*.log" "$AUTODEV_DOCTOR_MAX_HEARTBEAT_AGE_MINUTES"
