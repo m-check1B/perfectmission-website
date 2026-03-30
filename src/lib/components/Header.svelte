@@ -5,6 +5,7 @@
   let menuOpen = $state(false);
   let scrolled = $state(false);
   let darkMode = $state(true);
+  let currentHash = $state('');
   let menuButton: HTMLButtonElement | undefined;
   let navElement: HTMLElement | undefined;
   let lastFocusedElement: HTMLElement | null = null;
@@ -28,6 +29,9 @@
     const handleScroll = () => {
       scrolled = window.scrollY > 20;
     };
+    const handleHashChange = () => {
+      currentHash = window.location.hash;
+    };
     const desktopMedia = window.matchMedia('(min-width: 901px)');
     const handleDesktopChange = (event: MediaQueryListEvent) => {
       if (event.matches) {
@@ -36,11 +40,14 @@
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('hashchange', handleHashChange);
     desktopMedia.addEventListener('change', handleDesktopChange);
     handleScroll();
+    handleHashChange();
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('hashchange', handleHashChange);
       desktopMedia.removeEventListener('change', handleDesktopChange);
       document.body.style.overflow = '';
     };
@@ -66,10 +73,29 @@
   }
 
   function isActive(href: string) {
-    if (href.startsWith('mailto:') || href.includes('#')) {
+    if (href.startsWith('mailto:')) {
       return false;
     }
+
+    if (href.includes('#')) {
+      const [path, hash] = href.split('#');
+      const resolvedPath = path || '/';
+      return currentPath === resolvedPath && currentHash === `#${hash}`;
+    }
+
+    if (href === '/') {
+      return currentPath === '/' && currentHash === '';
+    }
+
     return href === '/' ? currentPath === '/' : currentPath === href || currentPath.startsWith(`${href}`);
+  }
+
+  function getAriaCurrent(href: string) {
+    if (!isActive(href)) {
+      return undefined;
+    }
+
+    return href.includes('#') ? 'location' : 'page';
   }
 
   function trackNavigation(target: string, href: string) {
@@ -221,7 +247,7 @@
         <a
           href={link.href}
           class:active={isActive(link.href)}
-          aria-current={isActive(link.href) ? 'page' : undefined}
+          aria-current={getAriaCurrent(link.href)}
           onclick={() => {
             trackNavigation(link.label.toLowerCase(), link.href);
             closeMenu({ restoreFocus: false });
