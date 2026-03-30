@@ -12,6 +12,9 @@
   let lastFocusedElement: HTMLElement | null = null;
   let backgroundElements: HTMLElement[] = [];
   let backgroundAriaHidden = new Map<HTMLElement, string | null>();
+  let headerChromeElements: HTMLElement[] = [];
+  let headerChromeAriaHidden = new Map<HTMLElement, string | null>();
+  let headerChromeTabIndex = new Map<HTMLElement, string | null>();
 
   const links = [
     { href: '/', label: 'Overview' },
@@ -162,28 +165,49 @@
 
   function disableBackgroundContent() {
     const pageShell = navElement?.closest<HTMLElement>('.page-shell');
-    if (!pageShell) {
+    if (pageShell) {
+      backgroundElements = Array.from(
+        pageShell.querySelectorAll<HTMLElement>(':scope > main, :scope > footer')
+      );
+
+      backgroundAriaHidden.clear();
+
+      for (const element of backgroundElements) {
+        backgroundAriaHidden.set(element, element.getAttribute('aria-hidden'));
+        element.inert = true;
+        element.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    const header = navElement?.closest<HTMLElement>('header');
+    if (!header) {
       return;
     }
 
-    backgroundElements = Array.from(
-      pageShell.querySelectorAll<HTMLElement>(':scope > main, :scope > footer')
+    headerChromeElements = Array.from(
+      header.querySelectorAll<HTMLElement>('.skip-link, .brand, .theme-toggle')
     );
 
-    backgroundAriaHidden.clear();
+    headerChromeAriaHidden.clear();
+    headerChromeTabIndex.clear();
 
-    for (const element of backgroundElements) {
-      backgroundAriaHidden.set(element, element.getAttribute('aria-hidden'));
+    for (const element of headerChromeElements) {
+      headerChromeAriaHidden.set(element, element.getAttribute('aria-hidden'));
+      headerChromeTabIndex.set(element, element.getAttribute('tabindex'));
       element.inert = true;
       element.setAttribute('aria-hidden', 'true');
+
+      if (
+        element instanceof HTMLAnchorElement ||
+        element instanceof HTMLButtonElement ||
+        element.hasAttribute('tabindex')
+      ) {
+        element.setAttribute('tabindex', '-1');
+      }
     }
   }
 
   function restoreBackgroundContent() {
-    if (backgroundElements.length === 0) {
-      return;
-    }
-
     for (const element of backgroundElements) {
       element.inert = false;
       const previousAriaHidden = backgroundAriaHidden.get(element);
@@ -195,8 +219,29 @@
       }
     }
 
+    for (const element of headerChromeElements) {
+      element.inert = false;
+      const previousAriaHidden = headerChromeAriaHidden.get(element);
+      const previousTabIndex = headerChromeTabIndex.get(element);
+
+      if (previousAriaHidden === null || previousAriaHidden === undefined) {
+        element.removeAttribute('aria-hidden');
+      } else {
+        element.setAttribute('aria-hidden', previousAriaHidden);
+      }
+
+      if (previousTabIndex === null || previousTabIndex === undefined) {
+        element.removeAttribute('tabindex');
+      } else {
+        element.setAttribute('tabindex', previousTabIndex);
+      }
+    }
+
     backgroundElements = [];
     backgroundAriaHidden.clear();
+    headerChromeElements = [];
+    headerChromeAriaHidden.clear();
+    headerChromeTabIndex.clear();
   }
 
   async function restoreMenuFocus() {
