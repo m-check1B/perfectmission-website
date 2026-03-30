@@ -189,7 +189,7 @@
     }
 
     headerChromeElements = Array.from(
-      header.querySelectorAll<HTMLElement>('.skip-link, .brand, .theme-toggle')
+      header.querySelectorAll<HTMLElement>('.skip-link, .brand, .theme-toggle, .menu-toggle')
     );
 
     headerChromeAriaHidden.clear();
