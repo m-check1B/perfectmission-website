@@ -199,6 +199,17 @@
   }
 
   function focusFirstMenuItem() {
+    if (!navElement) {
+      menuButton?.focus();
+      return;
+    }
+
+    const firstPrimaryLink = navElement.querySelector<HTMLElement>('a[href]');
+    if (firstPrimaryLink) {
+      firstPrimaryLink.focus();
+      return;
+    }
+
     const [firstItem] = getFocusableMenuElements();
     if (firstItem) {
       firstItem.focus();
