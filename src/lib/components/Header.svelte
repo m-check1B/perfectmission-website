@@ -481,7 +481,6 @@
     class="mobile-menu-overlay"
     onclick={() => closeMenu()}
     aria-label="Close menu"
-    aria-hidden="true"
     tabindex="-1"
   ></button>
 {/if}
