@@ -23,7 +23,6 @@
     { href: '/markets/', label: 'Markets' },
     { href: '/#contact', label: 'Contact' }
   ];
-  const mobileMenuTitleId = 'primary-navigation-title';
 
   function readStoredTheme(): string | null {
     try {
@@ -430,8 +429,7 @@
         bind:this={menuButton}
         aria-expanded={menuOpen}
         aria-controls="primary-navigation"
-        aria-haspopup="dialog"
-        aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-label={menuOpen ? 'Close primary navigation menu' : 'Open primary navigation menu'}
         onclick={toggleMenu}
       >
         <span></span>
@@ -445,13 +443,9 @@
       bind:this={navElement}
       class:site-nav--open={menuOpen}
       class="site-nav"
-      aria-label="Primary"
-      aria-labelledby={menuOpen ? mobileMenuTitleId : undefined}
-      aria-modal={menuOpen ? 'true' : undefined}
-      role={menuOpen ? 'dialog' : undefined}
+      aria-label={menuOpen ? 'Primary navigation menu' : 'Primary navigation'}
     >
       {#if menuOpen}
-        <p id={mobileMenuTitleId} class="sr-only">Primary navigation menu</p>
         <button
           type="button"
           class="site-nav__close"
@@ -486,18 +480,6 @@
 {/if}
 
 <style>
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
   .header-actions {
     display: flex;
     align-items: center;
