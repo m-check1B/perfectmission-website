@@ -214,6 +214,19 @@
     menuButton?.focus();
   }
 
+  function keepFocusInsideMenu() {
+    if (!menuOpen) {
+      return;
+    }
+
+    const activeElement = document.activeElement;
+    if (activeElement instanceof HTMLElement && navElement?.contains(activeElement)) {
+      return;
+    }
+
+    focusFirstMenuItem();
+  }
+
   function disableBackgroundContent() {
     const pageShell = navElement?.closest<HTMLElement>('.page-shell');
     if (pageShell) {
@@ -351,9 +364,22 @@
       trapMenuFocus(event);
     }
   }
+
+  function handleWindowFocusIn(event: FocusEvent) {
+    if (!menuOpen) {
+      return;
+    }
+
+    const target = event.target;
+    if (target instanceof HTMLElement && navElement?.contains(target)) {
+      return;
+    }
+
+    keepFocusInsideMenu();
+  }
 </script>
 
-<svelte:window onkeydown={handleWindowKeydown} />
+<svelte:window onkeydown={handleWindowKeydown} onfocusin={handleWindowFocusIn} />
 
 <header class="site-header" class:site-header--scrolled={scrolled}>
   <a class="skip-link" href="#main-content">Skip to main content</a>
