@@ -24,9 +24,25 @@
   ];
   const mobileMenuTitleId = 'primary-navigation-title';
 
+  function readStoredTheme(): string | null {
+    try {
+      return localStorage.getItem('theme');
+    } catch {
+      return null;
+    }
+  }
+
+  function persistThemePreference(theme: 'dark' | 'light') {
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      // Ignore storage failures so the UI still updates for the current session.
+    }
+  }
+
   onMount(() => {
     // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = readStoredTheme();
     if (savedTheme) {
       darkMode = savedTheme === 'dark';
     } else {
@@ -100,7 +116,7 @@
   function toggleTheme() {
     darkMode = !darkMode;
     applyTheme();
-    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    persistThemePreference(darkMode ? 'dark' : 'light');
     
     window.posthog?.capture('theme_toggle', {
       site: 'perfectmission.co.uk',

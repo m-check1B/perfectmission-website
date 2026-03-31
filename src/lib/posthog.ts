@@ -7,27 +7,31 @@ const CONSENT_KEY = 'perfectmission_cookie_consent';
 let initialized = false;
 let initPromise: Promise<void> | null = null;
 
+function readConsent(): string | null {
+  try {
+    return localStorage.getItem(CONSENT_KEY);
+  } catch {
+    return null;
+  }
+}
+
 export function hasConsent(): boolean {
   if (!browser) return false;
-  try {
-    return localStorage.getItem(CONSENT_KEY) === 'all';
-  } catch {
-    return false;
-  }
+  return readConsent() === 'all';
 }
 
 export function setConsent(level: 'essential' | 'all'): void {
   if (!browser) return;
-  localStorage.setItem(CONSENT_KEY, level);
+  try {
+    localStorage.setItem(CONSENT_KEY, level);
+  } catch {
+    // Ignore storage failures so consent choices do not break the UI flow.
+  }
 }
 
 export function needsConsentBanner(): boolean {
   if (!browser) return false;
-  try {
-    return localStorage.getItem(CONSENT_KEY) === null;
-  } catch {
-    return true;
-  }
+  return readConsent() === null;
 }
 
 export async function initPostHog(site: string): Promise<void> {
