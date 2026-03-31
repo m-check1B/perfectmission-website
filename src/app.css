@@ -62,8 +62,8 @@
   /* Popup/Mobile menu specific */
   --popup-bg: rgba(7, 15, 28, 0.98);
   --popup-backdrop: rgba(10, 22, 40, 0.85);
-  --anchor-offset: 5.25rem;
   --site-header-height: 4.5rem;
+  --anchor-offset: calc(var(--site-header-height) + 0.75rem);
 
   --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1536,7 +1536,7 @@ p, li, dd {
 @media (max-width: 640px) {
   :root {
     --container: 100%;
-    --anchor-offset: 4.75rem;
+    --anchor-offset: calc(var(--site-header-height) + 0.25rem);
   }
 
   .skip-link {

@@ -87,6 +87,7 @@
       restoreBackgroundContent();
       headerResizeObserver?.disconnect();
       headerResizeObserver = null;
+      document.documentElement.style.removeProperty('--site-header-height');
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('hashchange', handleHashChange);
       desktopMedia.removeEventListener('change', handleDesktopChange);
@@ -153,7 +154,7 @@
       return;
     }
 
-    headerElement.style.setProperty('--site-header-height', `${headerElement.offsetHeight}px`);
+    document.documentElement.style.setProperty('--site-header-height', `${headerElement.offsetHeight}px`);
   }
 
   function isActive(href: string) {
