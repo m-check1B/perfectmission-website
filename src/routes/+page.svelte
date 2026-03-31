@@ -381,11 +381,11 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section section--muted" id="contact">
+    <section class="section section--muted" id="contact" aria-labelledby="contact-heading">
       <div class="container contact-grid">
         <div class="section-heading contact-copy reveal-on-scroll">
           <p class="eyebrow">Contact</p>
-          <h2>Brief us on the market, capital, or site question you need cleared.</h2>
+          <h2 id="contact-heading">Brief us on the market, capital, or site question you need cleared.</h2>
           <p>
             Perfect Mission Ltd provides decision-ready country briefs, launch sequencing, and
             execution screens for cross-border real estate opportunities.
