@@ -443,15 +443,16 @@
       bind:this={navElement}
       class:site-nav--open={menuOpen}
       class="site-nav"
-      aria-label={menuOpen ? 'Primary navigation menu' : 'Primary navigation'}
+      aria-label="Primary navigation"
     >
       {#if menuOpen}
         <button
           type="button"
           class="site-nav__close"
+          aria-label="Close primary navigation menu"
           onclick={() => closeMenu()}
         >
-          Close menu
+          Close navigation
         </button>
       {/if}
       {#each links as link}
