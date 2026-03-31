@@ -51,7 +51,15 @@
 
     <span class="market-card__cta">
       Open market brief
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="market-card__arrow">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 16 16"
+        fill="none"
+        class="market-card__arrow"
+        aria-hidden="true"
+        focusable="false"
+      >
         <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </span>

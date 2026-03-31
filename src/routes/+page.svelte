@@ -138,7 +138,15 @@
               onclick={() => captureCta('review_live_briefs', '/markets/')}
             >
               Review live briefs
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="margin-left: 4px;">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                style="margin-left: 4px;"
+                aria-hidden="true"
+                focusable="false"
+              >
                 <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </a>
