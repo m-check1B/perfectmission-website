@@ -7,6 +7,7 @@
   let scrolled = $state(false);
   let darkMode = $state(true);
   let currentHash = $state('');
+  let headerElement: HTMLElement | undefined;
   let menuButton: HTMLButtonElement | undefined;
   let navElement: HTMLElement | undefined;
   let lastFocusedElement: HTMLElement | null = null;
@@ -16,6 +17,7 @@
   let headerChromeElements: HTMLElement[] = [];
   let headerChromeAriaHidden = new Map<HTMLElement, string | null>();
   let headerChromeTabIndex = new Map<HTMLElement, string | null>();
+  let headerResizeObserver: ResizeObserver | null = null;
   let sessionTheme: 'dark' | 'light' | null = null;
 
   const links = [
@@ -63,6 +65,17 @@
         closeMenu({ restoreFocus: false });
       }
     };
+
+    updateHeaderHeightVariable();
+    if ('ResizeObserver' in window) {
+      headerResizeObserver = new ResizeObserver(() => {
+        updateHeaderHeightVariable();
+      });
+
+      if (headerElement) {
+        headerResizeObserver.observe(headerElement);
+      }
+    }
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('hashchange', handleHashChange);
@@ -72,6 +85,8 @@
     
     return () => {
       restoreBackgroundContent();
+      headerResizeObserver?.disconnect();
+      headerResizeObserver = null;
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('hashchange', handleHashChange);
       desktopMedia.removeEventListener('change', handleDesktopChange);
@@ -131,6 +146,14 @@
     } else {
       document.documentElement.setAttribute('data-theme', 'light');
     }
+  }
+
+  function updateHeaderHeightVariable() {
+    if (!headerElement) {
+      return;
+    }
+
+    headerElement.style.setProperty('--site-header-height', `${headerElement.offsetHeight}px`);
   }
 
   function isActive(href: string) {
@@ -386,7 +409,7 @@
 
 <svelte:window onkeydown={handleWindowKeydown} onfocusin={handleWindowFocusIn} />
 
-<header class="site-header" class:site-header--scrolled={scrolled}>
+<header bind:this={headerElement} class="site-header" class:site-header--scrolled={scrolled}>
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <div class="container site-header__inner">
     <a class="brand" href="/" onclick={() => trackNavigation('home', '/') }>

@@ -63,6 +63,7 @@
   --popup-bg: rgba(7, 15, 28, 0.98);
   --popup-backdrop: rgba(10, 22, 40, 0.85);
   --anchor-offset: 5.25rem;
+  --site-header-height: 4.5rem;
 
   --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1439,7 +1440,7 @@ p, li, dd {
   
   .site-nav {
     position: fixed;
-    top: 4.5rem;
+    top: var(--site-header-height, 4.5rem);
     left: 0;
     right: 0;
     bottom: 0;
@@ -1456,8 +1457,8 @@ p, li, dd {
     z-index: 99;
     animation: slideDown 0.25s ease;
     overflow-y: auto;
-    max-height: calc(100vh - 4.5rem);
-    max-height: calc(100dvh - 4.5rem);
+    max-height: calc(100vh - var(--site-header-height, 4.5rem));
+    max-height: calc(100dvh - var(--site-header-height, 4.5rem));
     padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
   }
   
