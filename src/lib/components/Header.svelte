@@ -2,11 +2,10 @@
   import { browser } from '$app/environment';
   import { onMount, tick } from 'svelte';
   
-  let { currentPath = '/' }: { currentPath?: string } = $props();
+  let { currentPath = '/', currentHash = '' }: { currentPath?: string; currentHash?: string } = $props();
   let menuOpen = $state(false);
   let scrolled = $state(false);
   let darkMode = $state(true);
-  let currentHash = $state('');
   let headerElement: HTMLElement | undefined;
   let menuButton: HTMLButtonElement | undefined;
   let navElement: HTMLElement | undefined;
@@ -56,9 +55,6 @@
     const handleScroll = () => {
       scrolled = window.scrollY > 20;
     };
-    const handleHashChange = () => {
-      currentHash = window.location.hash;
-    };
     const desktopMedia = window.matchMedia('(min-width: 901px)');
     const handleDesktopChange = (event: MediaQueryListEvent) => {
       if (event.matches) {
@@ -78,10 +74,8 @@
     }
     
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('hashchange', handleHashChange);
     desktopMedia.addEventListener('change', handleDesktopChange);
     handleScroll();
-    handleHashChange();
     
     return () => {
       restoreBackgroundContent();
@@ -89,7 +83,6 @@
       headerResizeObserver = null;
       document.documentElement.style.removeProperty('--site-header-height');
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('hashchange', handleHashChange);
       desktopMedia.removeEventListener('change', handleDesktopChange);
       document.body.style.overflow = '';
     };

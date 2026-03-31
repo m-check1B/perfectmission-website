@@ -25,6 +25,7 @@
   const currentPath = $derived(
     page.url.pathname === '/' ? '/' : `${page.url.pathname.replace(/\/+$/, '')}/`
   );
+  const currentHash = $derived(page.url.hash);
 
   function makeHashTargetTemporarilyFocusable(target: HTMLElement) {
     const hadTabIndex = target.hasAttribute('tabindex');
@@ -139,7 +140,7 @@
 
 <CookieConsent site="perfectmission.co.uk" />
 <div class="page-shell">
-  <Header currentPath={currentPath} />
+  <Header currentPath={currentPath} currentHash={currentHash} />
   {@render children?.()}
   <Footer />
 </div>
