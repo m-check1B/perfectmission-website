@@ -17,6 +17,7 @@
   let headerChromeAriaHidden = new Map<HTMLElement, string | null>();
   let headerChromeTabIndex = new Map<HTMLElement, string | null>();
   let sessionTheme: 'dark' | 'light' | null = null;
+  let lastFocusedHash = '';
 
   const links = [
     { href: '/', label: 'Overview' },
@@ -96,6 +97,33 @@
     }
 
     lastLocationKey = locationKey;
+  });
+
+  $effect(() => {
+    if (!browser) {
+      return;
+    }
+
+    const hash = currentHash;
+    if (!hash) {
+      lastFocusedHash = '';
+      return;
+    }
+
+    if (hash === lastFocusedHash) {
+      return;
+    }
+
+    const targetId = decodeURIComponent(hash.slice(1));
+    const target = document.getElementById(targetId);
+    if (!target) {
+      return;
+    }
+
+    lastFocusedHash = hash;
+    requestAnimationFrame(() => {
+      target.focus({ preventScroll: true });
+    });
   });
 
   $effect(() => {
