@@ -108,6 +108,20 @@
     }
   }
 
+  function keepFocusInsideBanner() {
+    if (!visible) {
+      return;
+    }
+
+    const activeElement = document.activeElement;
+    if (activeElement instanceof HTMLElement && dialogElement?.contains(activeElement)) {
+      return;
+    }
+
+    const [firstElement] = getFocusableElements();
+    firstElement?.focus() ?? dialogElement?.focus();
+  }
+
   async function closeBanner() {
     visible = false;
     await tick();
@@ -133,7 +147,22 @@
       trapFocus(event);
     }
   }
+
+  function handleWindowFocusIn(event: FocusEvent) {
+    if (!visible) {
+      return;
+    }
+
+    const target = event.target;
+    if (target instanceof HTMLElement && dialogElement?.contains(target)) {
+      return;
+    }
+
+    keepFocusInsideBanner();
+  }
 </script>
+
+<svelte:window onfocusin={handleWindowFocusIn} />
 
 {#if visible}
   <div class="cookie-banner-backdrop"></div>
