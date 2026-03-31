@@ -16,6 +16,7 @@
   let headerChromeElements: HTMLElement[] = [];
   let headerChromeAriaHidden = new Map<HTMLElement, string | null>();
   let headerChromeTabIndex = new Map<HTMLElement, string | null>();
+  let sessionTheme: 'dark' | 'light' | null = null;
 
   const links = [
     { href: '/', label: 'Overview' },
@@ -26,13 +27,14 @@
 
   function readStoredTheme(): string | null {
     try {
-      return localStorage.getItem('theme');
+      return localStorage.getItem('theme') ?? sessionTheme;
     } catch {
-      return null;
+      return sessionTheme;
     }
   }
 
   function persistThemePreference(theme: 'dark' | 'light') {
+    sessionTheme = theme;
     try {
       localStorage.setItem('theme', theme);
     } catch {
