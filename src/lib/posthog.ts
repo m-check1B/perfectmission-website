@@ -6,12 +6,13 @@ const CONSENT_KEY = 'perfectmission_cookie_consent';
 
 let initialized = false;
 let initPromise: Promise<void> | null = null;
+let sessionConsent: 'essential' | 'all' | null = null;
 
 function readConsent(): string | null {
   try {
-    return localStorage.getItem(CONSENT_KEY);
+    return localStorage.getItem(CONSENT_KEY) ?? sessionConsent;
   } catch {
-    return null;
+    return sessionConsent;
   }
 }
 
@@ -22,6 +23,7 @@ export function hasConsent(): boolean {
 
 export function setConsent(level: 'essential' | 'all'): void {
   if (!browser) return;
+  sessionConsent = level;
   try {
     localStorage.setItem(CONSENT_KEY, level);
   } catch {
