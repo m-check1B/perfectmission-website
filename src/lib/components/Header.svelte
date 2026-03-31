@@ -456,16 +456,6 @@
       class="site-nav"
       aria-label="Primary navigation"
     >
-      {#if menuOpen}
-        <button
-          type="button"
-          class="site-nav__close"
-          aria-label="Close primary navigation menu"
-          onclick={() => closeMenu()}
-        >
-          Close navigation
-        </button>
-      {/if}
       {#each links as link}
         <a
           href={link.href}
@@ -476,6 +466,16 @@
           {link.label}
         </a>
       {/each}
+      {#if menuOpen}
+        <button
+          type="button"
+          class="site-nav__close"
+          aria-label="Close primary navigation menu"
+          onclick={() => closeMenu()}
+        >
+          Close navigation
+        </button>
+      {/if}
     </nav>
   </div>
 </header>

@@ -1475,6 +1475,7 @@ p, li, dd {
   }
 
   .site-nav__close {
+    order: -1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
