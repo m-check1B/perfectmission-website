@@ -322,6 +322,14 @@
     const firstItem = focusable[0];
     const lastItem = focusable[focusable.length - 1];
     const activeElement = document.activeElement;
+    const focusInsideMenu =
+      activeElement instanceof HTMLElement ? focusable.includes(activeElement) : false;
+
+    if (!focusInsideMenu) {
+      event.preventDefault();
+      (event.shiftKey ? lastItem : firstItem).focus();
+      return;
+    }
 
     if (event.shiftKey && activeElement === firstItem) {
       event.preventDefault();
