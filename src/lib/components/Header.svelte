@@ -17,7 +17,6 @@
   let headerChromeAriaHidden = new Map<HTMLElement, string | null>();
   let headerChromeTabIndex = new Map<HTMLElement, string | null>();
   let sessionTheme: 'dark' | 'light' | null = null;
-  let lastFocusedHash = '';
 
   const links = [
     { href: '/', label: 'Overview' },
@@ -104,33 +103,6 @@
       return;
     }
 
-    const hash = currentHash;
-    if (!hash) {
-      lastFocusedHash = '';
-      return;
-    }
-
-    if (hash === lastFocusedHash) {
-      return;
-    }
-
-    const targetId = decodeURIComponent(hash.slice(1));
-    const target = document.getElementById(targetId);
-    if (!target) {
-      return;
-    }
-
-    lastFocusedHash = hash;
-    requestAnimationFrame(() => {
-      target.focus({ preventScroll: true });
-    });
-  });
-
-  $effect(() => {
-    if (!browser) {
-      return;
-    }
-
     if (!menuOpen) {
       restoreBackgroundContent();
       return;
@@ -197,32 +169,9 @@
     });
   }
 
-  function getInPageHashTarget(href: string) {
-    if (!href.includes('#')) {
-      return null;
-    }
-
-    const [path, hash] = href.split('#');
-    const resolvedPath = path || '/';
-    if (!hash || resolvedPath !== currentPath) {
-      return null;
-    }
-
-    return document.getElementById(decodeURIComponent(hash));
-  }
-
-  async function handleNavLinkClick(link: { href: string; label: string }) {
+  function handleNavLinkClick(link: { href: string; label: string }) {
     trackNavigation(link.label.toLowerCase(), link.href);
-
-    const hashTarget = browser ? getInPageHashTarget(link.href) : null;
     closeMenu({ restoreFocus: false });
-
-    if (!hashTarget) {
-      return;
-    }
-
-    await tick();
-    hashTarget.focus({ preventScroll: true });
   }
 
   async function toggleMenu() {
