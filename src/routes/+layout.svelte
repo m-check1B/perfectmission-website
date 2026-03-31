@@ -18,6 +18,36 @@
 
   let { children } = $props();
 
+  let restoreFocusedTarget: (() => void) | null = null;
+
+  function makeHashTargetTemporarilyFocusable(target: HTMLElement) {
+    const hadTabIndex = target.hasAttribute('tabindex');
+    const previousTabIndex = target.getAttribute('tabindex');
+
+    if (!hadTabIndex) {
+      target.setAttribute('tabindex', '-1');
+    }
+
+    let restored = false;
+    const restore = () => {
+      if (restored) {
+        return;
+      }
+
+      restored = true;
+      target.removeEventListener('blur', restore);
+
+      if (!hadTabIndex) {
+        target.removeAttribute('tabindex');
+      } else if (previousTabIndex !== null) {
+        target.setAttribute('tabindex', previousTabIndex);
+      }
+    };
+
+    target.addEventListener('blur', restore, { once: true });
+    return restore;
+  }
+
   function focusHashTarget(hash = window.location.hash) {
     if (!hash) {
       return;
@@ -30,6 +60,8 @@
     }
 
     requestAnimationFrame(() => {
+      restoreFocusedTarget?.();
+      restoreFocusedTarget = makeHashTargetTemporarilyFocusable(target);
       target.focus({ preventScroll: true });
     });
   }
@@ -63,6 +95,8 @@
     document.addEventListener('click', handleDocumentClick);
 
     return () => {
+      restoreFocusedTarget?.();
+      restoreFocusedTarget = null;
       window.removeEventListener('hashchange', handleHashChange);
       document.removeEventListener('click', handleDocumentClick);
     };
