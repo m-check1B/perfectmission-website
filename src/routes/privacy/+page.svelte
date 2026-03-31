@@ -1,6 +1,4 @@
 <script lang="ts">
-  import Footer from '$lib/components/Footer.svelte';
-  import Header from '$lib/components/Header.svelte';
   import Seo from '$lib/components/Seo.svelte';
 </script>
 
@@ -10,10 +8,7 @@
   canonicalPath="/privacy/"
 />
 
-<div class="page-shell">
-  <Header currentPath="/privacy/" />
-
-  <main id="main-content" tabindex="-1">
+<main id="main-content" tabindex="-1">
     <section class="hero-section hero-section--detail">
       <div class="container detail-hero">
         <div>
@@ -101,9 +96,6 @@
       </div>
     </section>
   </main>
-
-  <Footer />
-</div>
 
 <style>
   .content {

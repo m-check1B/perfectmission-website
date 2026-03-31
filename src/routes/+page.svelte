@@ -1,7 +1,5 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import Footer from '$lib/components/Footer.svelte';
-  import Header from '$lib/components/Header.svelte';
   import MarketCard from '$lib/components/MarketCard.svelte';
   import Seo from '$lib/components/Seo.svelte';
   import { PROFESSIONAL_SERVICE_SCHEMA } from '$lib/site';
@@ -115,10 +113,7 @@
   structuredData={PROFESSIONAL_SERVICE_SCHEMA}
 />
 
-<div class="page-shell">
-  <Header currentPath="/" />
-
-  <main id="main-content" tabindex="-1">
+<main id="main-content" tabindex="-1">
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="container hero-grid">
@@ -432,6 +427,3 @@
       </div>
     </section>
   </main>
-
-  <Footer />
-</div>

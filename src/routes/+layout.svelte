@@ -1,6 +1,7 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { afterNavigate } from '$app/navigation';
+  import { page } from '$app/state';
   import { onMount } from 'svelte';
   import '@fontsource/inter/latin-400.css';
   import '@fontsource/inter/latin-600.css';
@@ -13,12 +14,17 @@
   import playfair700Woff2 from '@fontsource/playfair-display/files/playfair-display-latin-700-normal.woff2';
   import playfair700ItalicWoff2 from '@fontsource/playfair-display/files/playfair-display-latin-700-italic.woff2';
   import CookieConsent from '$lib/components/CookieConsent.svelte';
+  import Footer from '$lib/components/Footer.svelte';
+  import Header from '$lib/components/Header.svelte';
   import { hasConsent, initPostHog } from '$lib/posthog';
   import '../app.css';
 
   let { children } = $props();
 
   let restoreFocusedTarget: (() => void) | null = null;
+  const currentPath = $derived(
+    page.url.pathname === '/' ? '/' : `${page.url.pathname.replace(/\/+$/, '')}/`
+  );
 
   function makeHashTargetTemporarilyFocusable(target: HTMLElement) {
     const hadTabIndex = target.hasAttribute('tabindex');
@@ -132,4 +138,8 @@
 </svelte:head>
 
 <CookieConsent site="perfectmission.co.uk" />
-{@render children?.()}
+<div class="page-shell">
+  <Header currentPath={currentPath} />
+  {@render children?.()}
+  <Footer />
+</div>

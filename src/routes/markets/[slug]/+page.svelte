@@ -1,6 +1,4 @@
 <script lang="ts">
-  import Footer from '$lib/components/Footer.svelte';
-  import Header from '$lib/components/Header.svelte';
   import ScoreBar from '$lib/components/ScoreBar.svelte';
   import Seo from '$lib/components/Seo.svelte';
   import { buildBriefMailto } from '$lib/contact';
@@ -51,10 +49,7 @@
   modifiedTime={market.last_updated}
 />
 
-<div class="page-shell">
-  <Header currentPath="/markets/" />
-
-  <main id="main-content" class="section-stack" tabindex="-1">
+<main id="main-content" class="section-stack" tabindex="-1">
     <section class="hero-section hero-section--detail">
       <div class="container detail-hero">
         <div>
@@ -330,6 +325,3 @@
       </div>
     </section>
   </main>
-
-  <Footer />
-</div>

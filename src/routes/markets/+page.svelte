@@ -1,6 +1,4 @@
 <script lang="ts">
-  import Footer from '$lib/components/Footer.svelte';
-  import Header from '$lib/components/Header.svelte';
   import MarketCard from '$lib/components/MarketCard.svelte';
   import type { MarketStatus } from '$lib/market-shared';
   import Seo from '$lib/components/Seo.svelte';
@@ -31,10 +29,7 @@
   canonicalPath="/markets/"
 />
 
-<div class="page-shell">
-  <Header currentPath="/markets/" />
-
-  <main id="main-content" class="section-stack" tabindex="-1">
+<main id="main-content" class="section-stack" tabindex="-1">
     <section class="section">
       <div class="container page-intro">
         <p class="eyebrow">Market library</p>
@@ -74,6 +69,3 @@
       </section>
     {/each}
   </main>
-
-  <Footer />
-</div>
