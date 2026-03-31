@@ -9,7 +9,7 @@ description: Learned Kraliki procedure for perfectmission-website: sveltekit web
 
 - Project: `perfectmission-website`
 - Trigger: task focus matches `Build SvelteKit website for Perfect Mission — AI-driven real estate consultancy (steering/active/2026-03-27-sveltekit-website.md)`
-- Evidence: `9` successful session(s); latest `2026-03-29T14:02:45Z`
+- Evidence: `52` successful session(s); latest `2026-03-31T16:32:37Z`
 - Steering source: `steering/active/2026-03-27-sveltekit-website.md`
 
 ## Proven Procedure
@@ -22,37 +22,36 @@ description: Learned Kraliki procedure for perfectmission-website: sveltekit web
 
 ## Files Usually Touched
 
-- `src/app.css`
+- `src/lib/components/Header.svelte`
+- `src/lib/components/MarketCard.svelte`
 - `src/routes/+page.svelte`
-- `src/lib/site.ts`
-- `src/routes/markets/[slug]/+page.svelte`
 
 ## Representative Commands
 
 - `./perfectmission-website-autodevelopment/automation/status.sh`
 - `git status --short`
-- `sed -n '1,240p' 'src/routes/markets/[slug]/+page.svelte'`
-- `sed -n '1,220p' src/lib/components/Header.svelte`
-- `sed -n '560,690p' src/app.css`
-- `sed -n '1,260p' src/routes/markets/+page.svelte`
-- `sed -n '1,220p' src/lib/market-intelligence.ts`
-- `sed -n '1,220p' src/lib/components/Seo.svelte`
+- `sed -n '1,220p' perfectmission-website-autodevelopment/skills/learned/sveltekit-website/SKILL.md`
+- `sed -n '1,260p' src/lib/components/Header.svelte`
+- `sed -n '1,260p' src/lib/components/MarketCard.svelte`
+- `sed -n '1,360p' src/routes/+page.svelte`
+- `sed -n '260,560p' src/lib/components/Header.svelte`
+- `sed -n '360,470p' src/routes/+page.svelte`
 
 ## Verification Pattern
 
+- npm run check` passed with 0 errors and 0 warnings.
+- npm run build` passed and `@sveltejs/adapter-static` wrote the site to `build/`.
+- Commit created: `9bad035` (`fix: expose mobile menu backdrop control`).
 - automated-test: not-configured
 - visual-test: not-configured
-- npm run check`: passed
-- npm run build`: passed
-- html-validate build/index.html build/markets.html build/markets/poland.html`: passed
-- Built output now shows correct asset metadata URLs such as `https://perfectmission.co.uk/social/perfect-mission-og.png` and `https://perfectmission.co.uk/favicon.svg` with no trailing slash
+- npm run check` passed with 0 errors and 0 warnings. `npm run build` passed and `@sveltejs/adapter-static` wrote the site to `build/`. Commit created: `1765227` (`fix: hide decorative icons from screen readers`).
 
 ## Evidence
 
-- Latest commit: `00e757196f63fe3686ba4872284cfd4f2b0e207b`
-- Latest session: `20260329T160001.md`
-- Next-step heuristic: run a real browser/Lighthouse pass against the built or deployed site and fix the next measured runtime issue, since rendered mobile/accessibility proof is still the highest-value missing gate.
+- Latest commit: `9bad035901691d028f9cade3d3d48df2e5ee5720`
+- Latest session: `20260331T183001.md`
+- Next-step heuristic: run a real browser/Lighthouse pass against the local preview or deployed site outside this sandbox, then fix the next measured rendered/runtime issue. The highest-value unresolved gate is still true browser proof rather than another source-only accessibility guess.
 
 ## Recent Successful Summary
 
-Chosen task: finalize the homepage hero so the first screen clearly sells Perfect Mission as an AI-driven real estate consultancy, with stronger CTAs and better mobile behavior. I changed `src/routes/+page.svelte` and `src/app.css`. The hero now uses sharper positioning copy, revised CTA labels, a compact signal list, and a clearer right-hand proof panel with a priority-review link. The CSS update tightens the hero grid, switches buttons to a spec-aligned rectangular radius, and improves small-screen hero spacing and signal stacking at `src/app.css`.
+Chosen task: fix the mobile navigation backdrop so it is not an interactive control hidden from assistive technology. Files changed: src/lib/components/Header.svelte
