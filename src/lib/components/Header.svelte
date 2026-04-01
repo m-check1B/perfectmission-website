@@ -241,12 +241,6 @@
       return;
     }
 
-    const firstPrimaryLink = navElement.querySelector<HTMLElement>('a[href]');
-    if (firstPrimaryLink) {
-      firstPrimaryLink.focus();
-      return;
-    }
-
     const [firstItem] = getFocusableMenuElements();
     if (firstItem) {
       firstItem.focus();
@@ -493,16 +487,6 @@
       class="site-nav"
       aria-label="Primary navigation"
     >
-      {#each links as link}
-        <a
-          href={link.href}
-          class:active={isActive(link.href)}
-          aria-current={getAriaCurrent(link.href)}
-          onclick={() => void handleNavLinkClick(link)}
-        >
-          {link.label}
-        </a>
-      {/each}
       {#if menuOpen}
         <button
           type="button"
@@ -513,6 +497,16 @@
           Close navigation
         </button>
       {/if}
+      {#each links as link}
+        <a
+          href={link.href}
+          class:active={isActive(link.href)}
+          aria-current={getAriaCurrent(link.href)}
+          onclick={() => void handleNavLinkClick(link)}
+        >
+          {link.label}
+        </a>
+      {/each}
     </nav>
   </div>
 </header>
