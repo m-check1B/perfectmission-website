@@ -57,13 +57,17 @@
     return restore;
   }
 
-  function focusHashTarget(hash = window.location.hash) {
+  function getHashTarget(hash = window.location.hash) {
     if (!hash) {
-      return;
+      return null;
     }
 
     const targetId = decodeURIComponent(hash.slice(1));
-    const target = document.getElementById(targetId);
+    return document.getElementById(targetId);
+  }
+
+  function focusHashTarget(hash = window.location.hash) {
+    const target = getHashTarget(hash);
     if (!target) {
       return;
     }
@@ -72,6 +76,17 @@
       restoreFocusedTarget?.();
       restoreFocusedTarget = makeHashTargetTemporarilyFocusable(target);
       target.focus({ preventScroll: true });
+    });
+  }
+
+  function scrollHashTargetIntoView(hash = window.location.hash) {
+    const target = getHashTarget(hash);
+    if (!target) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ block: 'start' });
     });
   }
 
@@ -140,6 +155,8 @@
       }
 
       if (link.hash && link.hash === window.location.hash) {
+        event.preventDefault();
+        scrollHashTargetIntoView(link.hash);
         focusHashTarget(link.hash);
       }
     };
