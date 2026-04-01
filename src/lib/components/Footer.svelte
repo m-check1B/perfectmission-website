@@ -47,7 +47,7 @@
       </div>
       
       <nav class="site-footer__section" aria-labelledby="footer-markets-title">
-        <p class="site-footer__title" id="footer-markets-title">Markets</p>
+        <h2 class="site-footer__title" id="footer-markets-title">Markets</h2>
         <ul class="site-footer__links">
           <li><a href="/markets/" class:active={isActive('/markets/')} aria-current={getAriaCurrent('/markets/')}>All markets</a></li>
           <li><a href="/markets/bulgaria/" class:active={isActive('/markets/bulgaria/')} aria-current={getAriaCurrent('/markets/bulgaria/')}>Bulgaria</a></li>
@@ -58,7 +58,7 @@
       </nav>
       
       <nav class="site-footer__section" aria-labelledby="footer-company-title">
-        <p class="site-footer__title" id="footer-company-title">Company</p>
+        <h2 class="site-footer__title" id="footer-company-title">Company</h2>
         <ul class="site-footer__links">
           <li><a href="/#about" class:active={isActive('/#about')} aria-current={getAriaCurrent('/#about')}>About</a></li>
           <li><a href="/#contact" class:active={isActive('/#contact')} aria-current={getAriaCurrent('/#contact')}>Contact</a></li>
@@ -66,19 +66,21 @@
         </ul>
       </nav>
       
-      <nav class="site-footer__section" aria-labelledby="footer-legal-title">
-        <p class="site-footer__title" id="footer-legal-title">Legal</p>
-        <ul class="site-footer__links">
-          <li><a href="/privacy/" class:active={isActive('/privacy/')} aria-current={getAriaCurrent('/privacy/')}>Privacy Policy</a></li>
-          <li><a href="/terms/" class:active={isActive('/terms/')} aria-current={getAriaCurrent('/terms/')}>Terms of Service</a></li>
-        </ul>
+      <div class="site-footer__section">
+        <nav aria-labelledby="footer-legal-title">
+          <h2 class="site-footer__title" id="footer-legal-title">Legal</h2>
+          <ul class="site-footer__links">
+            <li><a href="/privacy/" class:active={isActive('/privacy/')} aria-current={getAriaCurrent('/privacy/')}>Privacy Policy</a></li>
+            <li><a href="/terms/" class:active={isActive('/terms/')} aria-current={getAriaCurrent('/terms/')}>Terms of Service</a></li>
+          </ul>
+        </nav>
         <address class="site-footer__address">
           20 Wenlock Road<br>
           London N1 7GU<br>
           United Kingdom<br>
           <span class="site-footer__reg">Reg. England & Wales No. 08651715</span>
         </address>
-      </nav>
+      </div>
     </div>
     
     <div class="site-footer__bottom">
