@@ -194,9 +194,20 @@
     });
   }
 
+  function shouldRestoreFocusAfterNavClick(href: string) {
+    if (!href.includes('#')) {
+      return true;
+    }
+
+    const [path, hash] = href.split('#');
+    const resolvedPath = path || '/';
+
+    return !(resolvedPath === currentPath && hash);
+  }
+
   function handleNavLinkClick(link: { href: string; label: string }) {
     trackNavigation(link.label.toLowerCase(), link.href);
-    closeMenu({ restoreFocus: false });
+    closeMenu({ restoreFocus: shouldRestoreFocusAfterNavClick(link.href) });
   }
 
   async function toggleMenu() {
