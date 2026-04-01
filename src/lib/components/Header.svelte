@@ -159,27 +159,31 @@
     document.body.removeAttribute('data-nav-open');
   }
 
+  function isHashHrefActive(href: string) {
+    if (!href.includes('#')) {
+      return false;
+    }
+
+    const [path, hash] = href.split('#');
+    const resolvedPath = path || '/';
+    return currentPath === resolvedPath && currentHash === `#${hash}`;
+  }
+
+  function hasExplicitHeaderHashMatch() {
+    return links.some((link) => isHashHrefActive(link.href));
+  }
+
   function isActive(href: string) {
     if (href.startsWith('mailto:')) {
       return false;
     }
-
-    const isHashHrefActive = (value: string) => {
-      if (!value.includes('#')) {
-        return false;
-      }
-
-      const [path, hash] = value.split('#');
-      const resolvedPath = path || '/';
-      return currentPath === resolvedPath && currentHash === `#${hash}`;
-    };
 
     if (href.includes('#')) {
       return isHashHrefActive(href);
     }
 
     if (href === '/') {
-      return currentPath === '/' && !links.some((link) => isHashHrefActive(link.href));
+      return currentPath === '/' && !hasExplicitHeaderHashMatch();
     }
 
     return href === '/' ? currentPath === '/' : currentPath === href || currentPath.startsWith(`${href}`);
@@ -190,7 +194,15 @@
       return undefined;
     }
 
-    return href.includes('#') ? 'location' : 'page';
+    if (href.includes('#')) {
+      return 'location';
+    }
+
+    if (href === '/' && currentPath === '/' && currentHash && !hasExplicitHeaderHashMatch()) {
+      return 'location';
+    }
+
+    return 'page';
   }
 
   function trackNavigation(target: string, href: string) {
