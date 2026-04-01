@@ -66,20 +66,7 @@
     return document.getElementById(targetId);
   }
 
-  function focusHashTarget(hash = window.location.hash) {
-    const target = getHashTarget(hash);
-    if (!target) {
-      return;
-    }
-
-    requestAnimationFrame(() => {
-      restoreFocusedTarget?.();
-      restoreFocusedTarget = makeHashTargetTemporarilyFocusable(target);
-      target.focus({ preventScroll: true });
-    });
-  }
-
-  function scrollHashTargetIntoView(hash = window.location.hash) {
+  function activateHashTarget(hash = window.location.hash) {
     const target = getHashTarget(hash);
     if (!target) {
       return;
@@ -87,6 +74,9 @@
 
     requestAnimationFrame(() => {
       target.scrollIntoView({ block: 'start' });
+      restoreFocusedTarget?.();
+      restoreFocusedTarget = makeHashTargetTemporarilyFocusable(target);
+      target.focus({ preventScroll: true });
     });
   }
 
@@ -143,7 +133,7 @@
 
     void tick().then(() => {
       if (hash) {
-        focusHashTarget(hash);
+        activateHashTarget(hash);
         return;
       }
 
@@ -182,8 +172,7 @@
 
       if (link.hash && link.hash === window.location.hash) {
         event.preventDefault();
-        scrollHashTargetIntoView(link.hash);
-        focusHashTarget(link.hash);
+        activateHashTarget(link.hash);
         return;
       }
 
