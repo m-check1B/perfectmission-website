@@ -21,6 +21,8 @@
   let { children } = $props();
 
   let restoreFocusedTarget: (() => void) | null = null;
+  let hasHandledNavigation = false;
+  let lastNavigationPath = '';
   const currentPath = $derived(
     page.url.pathname === '/' ? '/' : `${page.url.pathname.replace(/\/+$/, '')}/`
   );
@@ -72,6 +74,17 @@
     });
   }
 
+  function focusMainContent() {
+    const mainContent = document.getElementById('main-content');
+    if (!(mainContent instanceof HTMLElement)) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      mainContent.focus({ preventScroll: true });
+    });
+  }
+
   if (browser && hasConsent()) {
     void initPostHog('perfectmission.co.uk');
   }
@@ -81,11 +94,22 @@
       return;
     }
 
-    currentPath;
+    const path = currentPath;
     const hash = currentHash;
+    const pathChanged = hasHandledNavigation && path !== lastNavigationPath;
+
+    lastNavigationPath = path;
+    hasHandledNavigation = true;
 
     void tick().then(() => {
-      focusHashTarget(hash);
+      if (hash) {
+        focusHashTarget(hash);
+        return;
+      }
+
+      if (pathChanged) {
+        focusMainContent();
+      }
     });
   });
 
