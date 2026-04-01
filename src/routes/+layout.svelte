@@ -86,6 +86,10 @@
     });
   }
 
+  function resetScrollPosition() {
+    window.scrollTo({ top: 0, left: 0 });
+  }
+
   if (browser && hasConsent()) {
     void initPostHog('perfectmission.co.uk');
   }
@@ -114,6 +118,10 @@
       }
 
       if (pathChanged || hashCleared) {
+        if (hashCleared && !pathChanged) {
+          resetScrollPosition();
+        }
+
         focusMainContent();
       }
     });
