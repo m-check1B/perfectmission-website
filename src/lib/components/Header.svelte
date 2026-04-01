@@ -207,6 +207,10 @@
 
   function handleNavLinkClick(link: { href: string; label: string }) {
     trackNavigation(link.label.toLowerCase(), link.href);
+    if (!menuOpen) {
+      return;
+    }
+
     closeMenu({ restoreFocus: shouldRestoreFocusAfterNavClick(link.href) });
   }
 
