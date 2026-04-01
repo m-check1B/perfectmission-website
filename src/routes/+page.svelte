@@ -398,12 +398,14 @@
         </div>
 
         <aside class="contact-card reveal-on-scroll" aria-labelledby="contact-card-title" style="animation-delay: 0.15s;">
-          <p class="hero-panel__title" id="contact-card-title">Direct line</p>
-          <a class="contact-card__email" href="mailto:info@perfectmission.co.uk">
-            info@perfectmission.co.uk
-          </a>
-          <p>20 Wenlock Road, London N1 7GU, United Kingdom</p>
-          <p>Registered in England &amp; Wales, No. 08651715</p>
+          <h3 class="hero-panel__title" id="contact-card-title">Direct line</h3>
+          <address class="contact-card__details">
+            <a class="contact-card__email" href="mailto:info@perfectmission.co.uk">
+              info@perfectmission.co.uk
+            </a>
+            <p>20 Wenlock Road, London N1 7GU, United Kingdom</p>
+          </address>
+          <p class="contact-card__meta">Registered in England &amp; Wales, No. 08651715</p>
 
           <div class="hero-actions contact-card__actions">
             <a

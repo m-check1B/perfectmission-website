@@ -1095,6 +1095,10 @@ p, li, dd {
   padding: 1.75rem;
 }
 
+.contact-card__details {
+  font-style: normal;
+}
+
 .contact-card__email {
   display: inline-block;
   margin-bottom: 1rem;
@@ -1112,9 +1116,17 @@ p, li, dd {
   color: var(--color-accent);
 }
 
+.contact-card__details .contact-card__email {
+  margin-bottom: 0.35rem;
+}
+
 .contact-card p {
   margin: 0.4rem 0;
   font-size: 0.9rem;
+}
+
+.contact-card__meta {
+  margin-top: 0.85rem;
 }
 
 .contact-card__actions {
