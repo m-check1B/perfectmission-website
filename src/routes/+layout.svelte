@@ -90,6 +90,21 @@
     });
   }
 
+  function normalizePathname(pathname: string) {
+    return pathname === '/' ? '/' : `${pathname.replace(/\/+$/, '')}/`;
+  }
+
+  function isPlainPrimaryClick(event: MouseEvent) {
+    return (
+      !event.defaultPrevented &&
+      event.button === 0 &&
+      !event.metaKey &&
+      !event.ctrlKey &&
+      !event.shiftKey &&
+      !event.altKey
+    );
+  }
+
   function focusMainContent() {
     const mainContent = document.getElementById('main-content');
     if (!(mainContent instanceof HTMLElement)) {
@@ -144,13 +159,24 @@
 
   onMount(() => {
     const handleDocumentClick = (event: MouseEvent) => {
+      if (!isPlainPrimaryClick(event)) {
+        return;
+      }
+
       const trigger = event.target;
       if (!(trigger instanceof Element)) {
         return;
       }
 
-      const link = trigger.closest<HTMLAnchorElement>('a[href*="#"]');
-      if (!link || link.origin !== window.location.origin || link.pathname !== window.location.pathname) {
+      const link = trigger.closest<HTMLAnchorElement>('a[href]');
+      if (
+        !link ||
+        link.origin !== window.location.origin ||
+        normalizePathname(link.pathname) !== normalizePathname(window.location.pathname) ||
+        link.search !== window.location.search ||
+        link.hasAttribute('download') ||
+        (link.target !== '' && link.target !== '_self')
+      ) {
         return;
       }
 
@@ -158,6 +184,13 @@
         event.preventDefault();
         scrollHashTargetIntoView(link.hash);
         focusHashTarget(link.hash);
+        return;
+      }
+
+      if (!link.hash && window.location.hash === '') {
+        event.preventDefault();
+        resetScrollPosition();
+        focusMainContent();
       }
     };
 
