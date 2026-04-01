@@ -194,24 +194,14 @@
     });
   }
 
-  function shouldRestoreFocusAfterNavClick(href: string) {
-    if (!href.includes('#')) {
-      return true;
-    }
-
-    const [path, hash] = href.split('#');
-    const resolvedPath = path || '/';
-
-    return !(resolvedPath === currentPath && hash);
-  }
-
   function handleNavLinkClick(link: { href: string; label: string }) {
     trackNavigation(link.label.toLowerCase(), link.href);
     if (!menuOpen) {
       return;
     }
 
-    closeMenu({ restoreFocus: shouldRestoreFocusAfterNavClick(link.href) });
+    // Route-level focus management should land on the destination content or hash target.
+    closeMenu({ restoreFocus: false });
   }
 
   async function toggleMenu() {
