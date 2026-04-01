@@ -1,8 +1,7 @@
 <script lang="ts">
   import { browser } from '$app/environment';
-  import { afterNavigate } from '$app/navigation';
   import { page } from '$app/state';
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import '@fontsource/inter/latin-400.css';
   import '@fontsource/inter/latin-600.css';
   import '@fontsource/inter/latin-700.css';
@@ -77,11 +76,20 @@
     void initPostHog('perfectmission.co.uk');
   }
 
-  onMount(() => {
-    const handleHashChange = () => {
-      focusHashTarget();
-    };
+  $effect(() => {
+    if (!browser) {
+      return;
+    }
 
+    currentPath;
+    const hash = currentHash;
+
+    void tick().then(() => {
+      focusHashTarget(hash);
+    });
+  });
+
+  onMount(() => {
     const handleDocumentClick = (event: MouseEvent) => {
       const trigger = event.target;
       if (!(trigger instanceof Element)) {
@@ -98,19 +106,13 @@
       }
     };
 
-    window.addEventListener('hashchange', handleHashChange);
     document.addEventListener('click', handleDocumentClick);
 
     return () => {
       restoreFocusedTarget?.();
       restoreFocusedTarget = null;
-      window.removeEventListener('hashchange', handleHashChange);
       document.removeEventListener('click', handleDocumentClick);
     };
-  });
-
-  afterNavigate(() => {
-    focusHashTarget();
   });
 </script>
 
