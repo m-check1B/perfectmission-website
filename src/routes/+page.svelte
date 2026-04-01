@@ -243,11 +243,13 @@
     </section>
 
     <!-- Founders and Process Section -->
-    <section class="section section--muted">
+    <section class="section section--muted" id="about" aria-labelledby="about-heading">
       <div class="container">
         <div class="section-heading reveal-on-scroll">
           <p class="eyebrow">Founders and process</p>
-          <h2>Operator judgment and a disciplined screening process, not generic market commentary.</h2>
+          <h2 id="about-heading">
+            Operator judgment and a disciplined screening process, not generic market commentary.
+          </h2>
           <p>
             Perfect Mission combines founder-led real estate experience with AI-assisted analysis
             so early market decisions move faster without losing execution realism.

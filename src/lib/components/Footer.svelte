@@ -28,7 +28,7 @@
       <div class="site-footer__section">
         <p class="site-footer__title">Company</p>
         <ul class="site-footer__links">
-          <li><a href="/">About</a></li>
+          <li><a href="/#about">About</a></li>
           <li><a href="/#contact">Contact</a></li>
           <li><a href="mailto:info@perfectmission.co.uk">Email us</a></li>
         </ul>
