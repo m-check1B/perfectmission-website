@@ -164,14 +164,22 @@
       return false;
     }
 
-    if (href.includes('#')) {
-      const [path, hash] = href.split('#');
+    const isHashHrefActive = (value: string) => {
+      if (!value.includes('#')) {
+        return false;
+      }
+
+      const [path, hash] = value.split('#');
       const resolvedPath = path || '/';
       return currentPath === resolvedPath && currentHash === `#${hash}`;
+    };
+
+    if (href.includes('#')) {
+      return isHashHrefActive(href);
     }
 
     if (href === '/') {
-      return currentPath === '/' && currentHash === '';
+      return currentPath === '/' && !links.some((link) => isHashHrefActive(link.href));
     }
 
     return href === '/' ? currentPath === '/' : currentPath === href || currentPath.startsWith(`${href}`);
