@@ -84,7 +84,7 @@
       document.documentElement.style.removeProperty('--site-header-height');
       window.removeEventListener('scroll', handleScroll);
       desktopMedia.removeEventListener('change', handleDesktopChange);
-      document.body.style.overflow = '';
+      syncBodyMenuState(false);
     };
   });
 
@@ -150,6 +150,15 @@
     document.documentElement.style.setProperty('--site-header-height', `${headerElement.offsetHeight}px`);
   }
 
+  function syncBodyMenuState(open: boolean) {
+    if (open) {
+      document.body.setAttribute('data-nav-open', 'true');
+      return;
+    }
+
+    document.body.removeAttribute('data-nav-open');
+  }
+
   function isActive(href: string) {
     if (href.startsWith('mailto:')) {
       return false;
@@ -198,7 +207,7 @@
 
     lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     menuOpen = true;
-    document.body.style.overflow = 'hidden';
+    syncBodyMenuState(true);
     await tick();
     focusFirstMenuItem();
   }
@@ -338,7 +347,7 @@
 
   function closeMenu({ restoreFocus = true }: { restoreFocus?: boolean } = {}) {
     menuOpen = false;
-    document.body.style.overflow = '';
+    syncBodyMenuState(false);
     if (restoreFocus) {
       void restoreMenuFocus();
     } else {
