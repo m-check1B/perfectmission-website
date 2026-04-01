@@ -23,6 +23,7 @@
   let restoreFocusedTarget: (() => void) | null = null;
   let hasHandledNavigation = false;
   let lastNavigationPath = '';
+  let lastNavigationHash = '';
   const currentPath = $derived(
     page.url.pathname === '/' ? '/' : `${page.url.pathname.replace(/\/+$/, '')}/`
   );
@@ -96,9 +97,14 @@
 
     const path = currentPath;
     const hash = currentHash;
-    const pathChanged = hasHandledNavigation && path !== lastNavigationPath;
+    const previousPath = lastNavigationPath;
+    const previousHash = lastNavigationHash;
+    const hasPreviousNavigation = hasHandledNavigation;
+    const pathChanged = hasPreviousNavigation && path !== previousPath;
+    const hashCleared = hasPreviousNavigation && !hash && previousHash !== '';
 
     lastNavigationPath = path;
+    lastNavigationHash = hash;
     hasHandledNavigation = true;
 
     void tick().then(() => {
@@ -107,7 +113,7 @@
         return;
       }
 
-      if (pathChanged) {
+      if (pathChanged || hashCleared) {
         focusMainContent();
       }
     });
