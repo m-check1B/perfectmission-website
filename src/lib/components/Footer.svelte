@@ -1,5 +1,37 @@
 <script lang="ts">
+  let {
+    currentPath = '/',
+    currentHash = ''
+  }: { currentPath?: string; currentHash?: string } = $props();
+
   const currentYear = new Date().getFullYear();
+
+  function normalizePath(path: string) {
+    return path === '/' ? '/' : `${path.replace(/\/+$/, '')}/`;
+  }
+
+  function isActive(href: string) {
+    if (href.startsWith('mailto:')) {
+      return false;
+    }
+
+    const [path, hash] = href.split('#');
+    const resolvedPath = normalizePath(path || '/');
+
+    if (hash) {
+      return currentPath === resolvedPath && currentHash === `#${hash}`;
+    }
+
+    return currentPath === resolvedPath && !currentHash;
+  }
+
+  function getAriaCurrent(href: string) {
+    if (!isActive(href)) {
+      return undefined;
+    }
+
+    return href.includes('#') ? 'location' : 'page';
+  }
 </script>
 
 <footer class="site-footer">
@@ -17,19 +49,19 @@
       <div class="site-footer__section">
         <p class="site-footer__title">Markets</p>
         <ul class="site-footer__links">
-          <li><a href="/markets/">All markets</a></li>
-          <li><a href="/markets/bulgaria/">Bulgaria</a></li>
-          <li><a href="/markets/romania/">Romania</a></li>
-          <li><a href="/markets/morocco/">Morocco</a></li>
-          <li><a href="/markets/albania/">Albania</a></li>
+          <li><a href="/markets/" class:active={isActive('/markets/')} aria-current={getAriaCurrent('/markets/')}>All markets</a></li>
+          <li><a href="/markets/bulgaria/" class:active={isActive('/markets/bulgaria/')} aria-current={getAriaCurrent('/markets/bulgaria/')}>Bulgaria</a></li>
+          <li><a href="/markets/romania/" class:active={isActive('/markets/romania/')} aria-current={getAriaCurrent('/markets/romania/')}>Romania</a></li>
+          <li><a href="/markets/morocco/" class:active={isActive('/markets/morocco/')} aria-current={getAriaCurrent('/markets/morocco/')}>Morocco</a></li>
+          <li><a href="/markets/albania/" class:active={isActive('/markets/albania/')} aria-current={getAriaCurrent('/markets/albania/')}>Albania</a></li>
         </ul>
       </div>
       
       <div class="site-footer__section">
         <p class="site-footer__title">Company</p>
         <ul class="site-footer__links">
-          <li><a href="/#about">About</a></li>
-          <li><a href="/#contact">Contact</a></li>
+          <li><a href="/#about" class:active={isActive('/#about')} aria-current={getAriaCurrent('/#about')}>About</a></li>
+          <li><a href="/#contact" class:active={isActive('/#contact')} aria-current={getAriaCurrent('/#contact')}>Contact</a></li>
           <li><a href="mailto:info@perfectmission.co.uk">Email us</a></li>
         </ul>
       </div>
@@ -37,8 +69,8 @@
       <div class="site-footer__section">
         <p class="site-footer__title">Legal</p>
         <ul class="site-footer__links">
-          <li><a href="/privacy/">Privacy Policy</a></li>
-          <li><a href="/terms/">Terms of Service</a></li>
+          <li><a href="/privacy/" class:active={isActive('/privacy/')} aria-current={getAriaCurrent('/privacy/')}>Privacy Policy</a></li>
+          <li><a href="/terms/" class:active={isActive('/terms/')} aria-current={getAriaCurrent('/terms/')}>Terms of Service</a></li>
         </ul>
         <address class="site-footer__address">
           20 Wenlock Road<br>
@@ -116,7 +148,15 @@
     color: var(--color-text);
   }
   
+  .site-footer__links a.active {
+    color: var(--color-text);
+  }
+
   .site-footer__links a:hover::after {
+    width: 100%;
+  }
+
+  .site-footer__links a.active::after {
     width: 100%;
   }
   

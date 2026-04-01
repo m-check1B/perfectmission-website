@@ -221,5 +221,5 @@
 <div class="page-shell">
   <Header currentPath={currentPath} currentHash={currentHash} />
   {@render children?.()}
-  <Footer />
+  <Footer currentPath={currentPath} currentHash={currentHash} />
 </div>
