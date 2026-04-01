@@ -205,6 +205,14 @@
     return 'page';
   }
 
+  function isBrandCurrent() {
+    return currentPath === '/' && !currentHash;
+  }
+
+  function getBrandAriaCurrent() {
+    return isBrandCurrent() ? 'page' : undefined;
+  }
+
   function trackNavigation(target: string, href: string) {
     window.posthog?.capture('navigation_click', {
       site: 'perfectmission.co.uk',
@@ -434,7 +442,13 @@
 <header bind:this={headerElement} class="site-header" class:site-header--scrolled={scrolled}>
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <div class="container site-header__inner">
-    <a class="brand" href="/" onclick={() => trackNavigation('home', '/') }>
+    <a
+      class="brand"
+      href="/"
+      class:active={isBrandCurrent()}
+      aria-current={getBrandAriaCurrent()}
+      onclick={() => trackNavigation('home', '/')}
+    >
       Perfect<span>Mission</span>
     </a>
 
@@ -537,6 +551,31 @@
 {/if}
 
 <style>
+  .brand {
+    position: relative;
+  }
+
+  .brand.active {
+    opacity: 1;
+  }
+
+  .brand.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.35rem;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--color-accent) 18%,
+      var(--color-accent) 82%,
+      transparent 100%
+    );
+    opacity: 0.75;
+  }
+
   .header-actions {
     display: flex;
     align-items: center;
