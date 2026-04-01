@@ -446,6 +446,7 @@
       class="brand"
       href="/"
       class:active={isBrandCurrent()}
+      aria-label="Perfect Mission"
       aria-current={getBrandAriaCurrent()}
       onclick={() => trackNavigation('home', '/')}
     >

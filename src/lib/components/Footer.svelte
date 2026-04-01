@@ -38,7 +38,13 @@
   <div class="container">
     <div class="site-footer__grid">
       <div class="site-footer__brand">
-        <a class="brand" href="/" class:active={isActive('/')} aria-current={getAriaCurrent('/')}>
+        <a
+          class="brand"
+          href="/"
+          class:active={isActive('/')}
+          aria-label="Perfect Mission"
+          aria-current={getAriaCurrent('/')}
+        >
           Perfect<span>Mission</span>
         </a>
         <p class="site-footer__tagline">
