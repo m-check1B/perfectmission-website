@@ -18,6 +18,10 @@
   let headerChromeTabIndex = new Map<HTMLElement, string | null>();
   let headerResizeObserver: ResizeObserver | null = null;
   let sessionTheme: 'dark' | 'light' | null = null;
+  const THEME_COLORS = {
+    dark: '#0A1628',
+    light: '#F8F6F1'
+  } as const;
 
   const links = [
     { href: '/', label: 'Overview' },
@@ -140,6 +144,9 @@
     } else {
       document.documentElement.setAttribute('data-theme', 'light');
     }
+
+    const themeColorMeta = document.head.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    themeColorMeta?.setAttribute('content', darkMode ? THEME_COLORS.dark : THEME_COLORS.light);
   }
 
   function updateHeaderHeightVariable() {

@@ -13,6 +13,23 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="/site.webmanifest" />
     <script>
+      const DARK_THEME_COLOR = '#0A1628';
+      const LIGHT_THEME_COLOR = '#F8F6F1';
+
+      const applyTheme = (theme) => {
+        if (theme === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+
+        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+        themeColorMeta?.setAttribute(
+          'content',
+          theme === 'light' ? LIGHT_THEME_COLOR : DARK_THEME_COLOR
+        );
+      };
+
       document.documentElement.classList.add('js');
       try {
         const savedTheme = localStorage.getItem('theme');
@@ -20,12 +37,12 @@
           savedTheme === null && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
         if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
-          document.documentElement.setAttribute('data-theme', 'light');
+          applyTheme('light');
         } else {
-          document.documentElement.removeAttribute('data-theme');
+          applyTheme('dark');
         }
       } catch {
-        document.documentElement.removeAttribute('data-theme');
+        applyTheme('dark');
       }
     </script>
     %sveltekit.head%
