@@ -64,6 +64,16 @@
     year: 'numeric',
     timeZone: 'UTC'
   });
+  const sourceCount = $derived(market.source_registry.length);
+  const latestSourceRetrieved = $derived(
+    market.source_registry.reduce(
+      (latest, source) => (source.retrieved > latest ? source.retrieved : latest),
+      ''
+    )
+  );
+  const latestSourceRetrievedLabel = $derived(
+    latestSourceRetrieved ? formatIsoDate(latestSourceRetrieved) : ''
+  );
 
   function formatIsoDate(value: string) {
     const [year, month, day] = value.split('-').map(Number);
@@ -73,6 +83,13 @@
     }
 
     return marketDateFormatter.format(new Date(Date.UTC(year, month - 1, day)));
+  }
+
+  function formatSourceType(value: string) {
+    return value
+      .split('-')
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
   }
 
   const formattedLastUpdated = $derived(formatIsoDate(market.last_updated));
@@ -344,33 +361,49 @@
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">Sources</p>
-          <h2>Registry carried inside the MI document.</h2>
+          <h2>Expandable citations carried inside the MI document.</h2>
+          <p class="source-summary">
+            {sourceCount} cited source{sourceCount === 1 ? '' : 's'} in the registry.
+            {#if latestSourceRetrieved}
+              Latest refresh <time datetime={latestSourceRetrieved}>{latestSourceRetrievedLabel}</time>.
+            {/if}
+          </p>
         </div>
 
-        <div class="stack-list">
-          {#each market.source_registry as source}
-            <article class="stack-card">
-              <div class="stack-card__header">
-                <h3>{source.title}</h3>
-                <span>{source.publisher}</span>
-              </div>
-              <p>{source.why_it_matters}</p>
-              <p>
-                <strong>Retrieved:</strong>
-                <time datetime={source.retrieved}>{formatIsoDate(source.retrieved)}</time>
-              </p>
-              <a
-                class="text-link"
-                href={source.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Open source: ${source.title} (opens in a new tab)`}
-              >
-                Open source
-              </a>
-            </article>
+        <ol class="source-endnotes">
+          {#each market.source_registry as source, index}
+            <li>
+              <details class="source-disclosure">
+                <summary>
+                  <span class="source-disclosure__index" aria-hidden="true">{index + 1}.</span>
+                  <span class="source-disclosure__copy">
+                    <span class="source-disclosure__title">{source.title}</span>
+                    <span class="source-disclosure__meta">
+                      {source.publisher} · {formatSourceType(source.type)}
+                    </span>
+                  </span>
+                  <span class="source-disclosure__indicator" aria-hidden="true">+</span>
+                </summary>
+
+                <div class="source-disclosure__body">
+                  <p>{source.why_it_matters}</p>
+                  <p class="source-disclosure__supporting">
+                    Retrieved <time datetime={source.retrieved}>{formatIsoDate(source.retrieved)}</time>
+                  </p>
+                  <a
+                    class="text-link"
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open source: ${source.title} (opens in a new tab)`}
+                  >
+                    Open source
+                  </a>
+                </div>
+              </details>
+            </li>
           {/each}
-        </div>
+        </ol>
       </div>
     </section>
   </main>
