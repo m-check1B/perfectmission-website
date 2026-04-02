@@ -66,6 +66,14 @@
     return document.getElementById(targetId);
   }
 
+  function getHashFocusTarget(target: HTMLElement) {
+    if (target instanceof HTMLDetailsElement) {
+      return target.querySelector<HTMLElement>('summary') ?? target;
+    }
+
+    return target;
+  }
+
   function activateHashTarget(hash = window.location.hash) {
     const target = getHashTarget(hash);
     if (!target) {
@@ -77,10 +85,11 @@
         target.open = true;
       }
 
+      const focusTarget = getHashFocusTarget(target);
       target.scrollIntoView({ block: 'start' });
       restoreFocusedTarget?.();
-      restoreFocusedTarget = makeHashTargetTemporarilyFocusable(target);
-      target.focus({ preventScroll: true });
+      restoreFocusedTarget = focusTarget === target ? makeHashTargetTemporarilyFocusable(target) : null;
+      focusTarget.focus({ preventScroll: true });
     });
   }
 

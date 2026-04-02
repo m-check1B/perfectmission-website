@@ -122,7 +122,8 @@
     }
 
     target.open = true;
-    target.focus({ preventScroll: true });
+    const focusTarget = target.querySelector<HTMLElement>('summary') ?? target;
+    focusTarget.focus({ preventScroll: true });
   }
 
   onMount(() => {
