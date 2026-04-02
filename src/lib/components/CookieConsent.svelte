@@ -136,10 +136,24 @@
     firstElement?.focus() ?? dialogElement?.focus();
   }
 
+  function getRestoreFocusTarget() {
+    if (
+      lastFocusedElement &&
+      lastFocusedElement.isConnected &&
+      lastFocusedElement !== document.body &&
+      lastFocusedElement !== document.documentElement
+    ) {
+      return lastFocusedElement;
+    }
+
+    const mainContent = document.getElementById('main-content');
+    return mainContent instanceof HTMLElement ? mainContent : null;
+  }
+
   async function closeBanner() {
     visible = false;
     await tick();
-    lastFocusedElement?.focus();
+    getRestoreFocusTarget()?.focus({ preventScroll: true });
     lastFocusedElement = null;
   }
 
