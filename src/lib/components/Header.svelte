@@ -520,15 +520,14 @@
       class="site-nav-shell"
       role={menuOpen ? 'dialog' : undefined}
       aria-modal={menuOpen ? 'true' : undefined}
-      aria-labelledby={menuOpen ? 'primary-navigation-title' : undefined}
+      aria-label={menuOpen ? 'Primary navigation menu' : undefined}
     >
-      <h2 class="visually-hidden" id="primary-navigation-title">Primary navigation</h2>
       <nav
         id="primary-navigation"
         bind:this={navElement}
         class:site-nav--open={menuOpen}
         class="site-nav"
-        aria-labelledby="primary-navigation-title"
+        aria-label="Primary navigation"
       >
         {#if menuOpen}
           <button
