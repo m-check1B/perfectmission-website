@@ -2,6 +2,7 @@
   import MarketCard from '$lib/components/MarketCard.svelte';
   import type { MarketStatus } from '$lib/market-shared';
   import Seo from '$lib/components/Seo.svelte';
+  import { SITE_URL, absoluteUrl, buildBreadcrumbSchema } from '$lib/site';
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
@@ -21,12 +22,50 @@
   const statusLegendEntries = $derived(
     Object.entries(data.statusLegend) as [MarketStatus, string][]
   );
+  const allMarkets = $derived(
+    data.marketGroups
+      .flatMap((group) => group.markets)
+      .toSorted((left, right) => left.priority_rank - right.priority_rank)
+  );
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Markets', path: '/markets/' }
+  ]);
+  const collectionSchema = $derived({
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Perfect Mission market library',
+    description:
+      'Browse the Perfect Mission market-intelligence index, grouped by region and ranked by execution priority.',
+    url: absoluteUrl('/markets/'),
+    inLanguage: 'en-GB',
+    dateModified: data.lastUpdated,
+    about: {
+      '@id': `${SITE_URL}/#organization`
+    },
+    isPartOf: {
+      '@id': `${SITE_URL}/#website`
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      name: 'Live market-intelligence briefs',
+      numberOfItems: allMarkets.length,
+      itemListOrder: 'https://schema.org/ItemListOrderAscending',
+      itemListElement: allMarkets.map((market, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: market.country,
+        url: absoluteUrl(`/markets/${market.slug}/`)
+      }))
+    }
+  });
 </script>
 
 <Seo
   title="Markets | Perfect Mission"
   description="Browse the Perfect Mission market-intelligence index, grouped by region and ranked by execution priority."
   canonicalPath="/markets/"
+  structuredData={[breadcrumbSchema, collectionSchema]}
 />
 
 <main id="main-content" class="section-stack" tabindex="-1">

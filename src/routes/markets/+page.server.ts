@@ -4,6 +4,7 @@ export const prerender = true;
 
 export function load() {
   return {
+    lastUpdated: marketIndex.last_updated,
     statusLegend: marketIndex.status_legend,
     marketGroups: marketGroups.map((group) => ({
       id: group.id,
