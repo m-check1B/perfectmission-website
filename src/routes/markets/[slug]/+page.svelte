@@ -3,23 +3,42 @@
   import Seo from '$lib/components/Seo.svelte';
   import { buildBriefMailto } from '$lib/contact';
   import { formatStatus } from '$lib/market-shared';
-  import { buildBreadcrumbSchema } from '$lib/site';
+  import { DEFAULT_OG_IMAGE, absoluteUrl, buildBreadcrumbSchema } from '$lib/site';
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
   const market = $derived(data.market);
+  const marketPath = $derived(`/markets/${market.slug}/`);
+  const marketUrl = $derived(absoluteUrl(marketPath));
   const structuredData = $derived([
     {
       '@context': 'https://schema.org',
       '@type': 'Report',
+      '@id': `${marketUrl}#report`,
+      headline: market.hero.title,
       name: market.seo.title,
       description: market.seo.description,
-      url: `https://perfectmission.co.uk/markets/${market.slug}/`,
+      url: marketUrl,
+      mainEntityOfPage: {
+        '@id': marketUrl
+      },
+      isPartOf: {
+        '@id': 'https://perfectmission.co.uk/#website'
+      },
       dateModified: market.last_updated,
+      inLanguage: 'en-GB',
+      image: absoluteUrl(DEFAULT_OG_IMAGE),
+      author: {
+        '@id': 'https://perfectmission.co.uk/#organization'
+      },
+      publisher: {
+        '@id': 'https://perfectmission.co.uk/#organization'
+      },
       about: {
         '@type': 'Place',
         name: market.country
-      }
+      },
+      citation: market.source_registry.map((source) => source.url)
     },
     buildBreadcrumbSchema([
       { name: 'Perfect Mission', path: '/' },
@@ -46,7 +65,7 @@
     timeZone: 'UTC'
   });
 
-  function formatMarketUpdateDate(value: string) {
+  function formatIsoDate(value: string) {
     const [year, month, day] = value.split('-').map(Number);
 
     if (!year || !month || !day) {
@@ -56,13 +75,14 @@
     return marketDateFormatter.format(new Date(Date.UTC(year, month - 1, day)));
   }
 
-  const formattedLastUpdated = $derived(formatMarketUpdateDate(market.last_updated));
+  const formattedLastUpdated = $derived(formatIsoDate(market.last_updated));
 </script>
 
 <Seo
   title={market.seo.title}
   description={market.seo.description}
-  canonicalPath={`/markets/${market.slug}/`}
+  type="article"
+  canonicalPath={marketPath}
   structuredData={structuredData}
   modifiedTime={market.last_updated}
 />
@@ -335,8 +355,19 @@
                 <span>{source.publisher}</span>
               </div>
               <p>{source.why_it_matters}</p>
-              <p><strong>Retrieved:</strong> {source.retrieved}</p>
-              <a class="text-link" href={source.url} target="_blank" rel="noreferrer">Open source</a>
+              <p>
+                <strong>Retrieved:</strong>
+                <time datetime={source.retrieved}>{formatIsoDate(source.retrieved)}</time>
+              </p>
+              <a
+                class="text-link"
+                href={source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open source: ${source.title} (opens in a new tab)`}
+              >
+                Open source
+              </a>
             </article>
           {/each}
         </div>
