@@ -1190,6 +1190,26 @@ p, li, dd {
   font-size: 1rem;
 }
 
+.detail-summary__link {
+  color: inherit;
+  text-decoration-color: rgba(212, 149, 75, 0.45);
+  text-underline-offset: 0.18em;
+  transition:
+    color var(--transition-fast),
+    text-decoration-color var(--transition-fast);
+}
+
+.detail-summary__link:hover {
+  color: var(--color-accent);
+  text-decoration-color: currentColor;
+}
+
+.detail-summary__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 0.2rem;
+}
+
 .detail-summary span {
   color: var(--color-text-muted);
   font-size: 0.9rem;

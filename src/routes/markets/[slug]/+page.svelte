@@ -64,6 +64,8 @@
     year: 'numeric',
     timeZone: 'UTC'
   });
+  const sourcesSectionId = 'market-sources';
+  const sourcesSectionHeadingId = 'market-sources-heading';
   const sourceCount = $derived(market.source_registry.length);
   const latestSourceRetrieved = $derived(
     market.source_registry.reduce(
@@ -141,13 +143,27 @@
           </div>
           <div class="detail-summary__row">
             <span>Cited sources</span>
-            <strong>{sourceCount}</strong>
+            <strong>
+              <a
+                class="detail-summary__link"
+                href={`#${sourcesSectionId}`}
+                aria-label={`Jump to sources section (${sourceCount} cited source${sourceCount === 1 ? '' : 's'})`}
+              >
+                {sourceCount}
+              </a>
+            </strong>
           </div>
           <div class="detail-summary__row">
             <span>Latest source</span>
             <strong>
               {#if latestSourceRetrieved}
-                <time datetime={latestSourceRetrieved}>{latestSourceRetrievedLabel}</time>
+                <a
+                  class="detail-summary__link"
+                  href={`#${sourcesSectionId}`}
+                  aria-label={`Jump to sources section (latest source ${latestSourceRetrievedLabel})`}
+                >
+                  <time datetime={latestSourceRetrieved}>{latestSourceRetrievedLabel}</time>
+                </a>
               {:else}
                 Not listed
               {/if}
@@ -371,11 +387,15 @@
       </div>
     </section>
 
-    <section class="section section--muted">
+    <section
+      id={sourcesSectionId}
+      class="section section--muted"
+      aria-labelledby={sourcesSectionHeadingId}
+    >
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">Sources</p>
-          <h2>Expandable citations carried inside the MI document.</h2>
+          <h2 id={sourcesSectionHeadingId}>Expandable citations carried inside the MI document.</h2>
           <p class="source-summary">
             {sourceCount} cited source{sourceCount === 1 ? '' : 's'} in the registry.
             {#if latestSourceRetrieved}
