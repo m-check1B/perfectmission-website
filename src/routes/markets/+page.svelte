@@ -27,6 +27,10 @@
       .flatMap((group) => group.markets)
       .toSorted((left, right) => left.priority_rank - right.priority_rank)
   );
+  const priorityBriefCount = $derived(
+    allMarkets.filter((market) => market.status.startsWith('priority')).length
+  );
+  const lastUpdatedLabel = $derived(formatDateLabel(data.lastUpdated));
   const breadcrumbSchema = buildBreadcrumbSchema([
     { name: 'Home', path: '/' },
     { name: 'Markets', path: '/markets/' }
@@ -59,6 +63,20 @@
       }))
     }
   });
+
+  function formatDateLabel(dateString: string) {
+    const normalizedDate = dateString.includes('T') ? dateString : `${dateString}T00:00:00Z`;
+    const parsedDate = new Date(normalizedDate);
+
+    if (Number.isNaN(parsedDate.getTime())) {
+      return dateString;
+    }
+
+    return new Intl.DateTimeFormat('en-GB', {
+      dateStyle: 'long',
+      timeZone: 'UTC'
+    }).format(parsedDate);
+  }
 </script>
 
 <Seo
@@ -70,13 +88,34 @@
 
 <main id="main-content" class="section-stack" tabindex="-1">
     <section class="section">
-      <div class="container page-intro">
-        <p class="eyebrow">Market library</p>
-        <h1>All live market-intelligence briefs.</h1>
-        <p>
-          Browse the live country briefs by region, market priority, and current operating
-          profile.
-        </p>
+      <div class="container detail-hero">
+        <div class="page-intro">
+          <p class="eyebrow">Market library</p>
+          <h1>All live market-intelligence briefs.</h1>
+          <p>
+            Browse the live country briefs by region, market priority, and current operating
+            profile.
+          </p>
+        </div>
+
+        <aside class="detail-summary">
+          <div class="detail-summary__row">
+            <span>Live briefs</span>
+            <strong>{allMarkets.length}</strong>
+          </div>
+          <div class="detail-summary__row">
+            <span>Priority briefs</span>
+            <strong>{priorityBriefCount}</strong>
+          </div>
+          <div class="detail-summary__row">
+            <span>Regions covered</span>
+            <strong>{data.marketGroups.length}</strong>
+          </div>
+          <div class="detail-summary__row">
+            <span>Updated</span>
+            <strong><time datetime={data.lastUpdated}>{lastUpdatedLabel}</time></strong>
+          </div>
+        </aside>
       </div>
     </section>
 
