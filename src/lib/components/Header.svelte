@@ -516,34 +516,42 @@
       </button>
     </div>
 
-    <nav
-      id="primary-navigation"
-      bind:this={navElement}
-      class:site-nav--open={menuOpen}
-      class="site-nav"
-      aria-label="Primary navigation"
+    <div
+      class="site-nav-shell"
+      role={menuOpen ? 'dialog' : undefined}
+      aria-modal={menuOpen ? 'true' : undefined}
+      aria-labelledby={menuOpen ? 'primary-navigation-title' : undefined}
     >
-      {#if menuOpen}
-        <button
-          type="button"
-          class="site-nav__close"
-          aria-label="Close primary navigation menu"
-          onclick={() => closeMenu()}
-        >
-          Close navigation
-        </button>
-      {/if}
-      {#each links as link}
-        <a
-          href={link.href}
-          class:active={isActive(link.href)}
-          aria-current={getAriaCurrent(link.href)}
-          onclick={() => void handleNavLinkClick(link)}
-        >
-          {link.label}
-        </a>
-      {/each}
-    </nav>
+      <h2 class="visually-hidden" id="primary-navigation-title">Primary navigation</h2>
+      <nav
+        id="primary-navigation"
+        bind:this={navElement}
+        class:site-nav--open={menuOpen}
+        class="site-nav"
+        aria-labelledby="primary-navigation-title"
+      >
+        {#if menuOpen}
+          <button
+            type="button"
+            class="site-nav__close"
+            aria-label="Close primary navigation menu"
+            onclick={() => closeMenu()}
+          >
+            Close navigation
+          </button>
+        {/if}
+        {#each links as link}
+          <a
+            href={link.href}
+            class:active={isActive(link.href)}
+            aria-current={getAriaCurrent(link.href)}
+            onclick={() => void handleNavLinkClick(link)}
+          >
+            {link.label}
+          </a>
+        {/each}
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -553,12 +561,17 @@
     type="button"
     class="mobile-menu-overlay"
     onclick={() => closeMenu()}
-    aria-label="Close menu"
+    aria-hidden="true"
     tabindex="-1"
   ></button>
 {/if}
 
 <style>
+  .site-nav-shell {
+    display: flex;
+    align-items: center;
+  }
+
   .brand {
     position: relative;
   }
