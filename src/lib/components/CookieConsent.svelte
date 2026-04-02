@@ -98,6 +98,14 @@
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
     const activeElement = document.activeElement;
+    const focusInsideBanner =
+      activeElement instanceof HTMLElement ? focusableElements.includes(activeElement) : false;
+
+    if (!focusInsideBanner) {
+      event.preventDefault();
+      (event.shiftKey ? lastElement : firstElement).focus();
+      return;
+    }
 
     if (event.shiftKey && activeElement === firstElement) {
       event.preventDefault();
@@ -181,7 +189,7 @@
         <p id="cookie-banner-title" class="cookie-title">Cookie preferences</p>
         <p id="cookie-banner-description">
           We use optional analytics cookies to understand site traffic and improve the experience.
-          You can continue with essential cookies only. <a href="/privacy" class="cookie-link">Privacy Policy</a>
+          You can continue with essential cookies only. <a href="/privacy/" class="cookie-link">Privacy Policy</a>
         </p>
       </div>
       <div class="cookie-actions">
