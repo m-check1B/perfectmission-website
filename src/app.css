@@ -1289,13 +1289,25 @@ p, li, dd {
   -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
+  scroll-margin-top: 7.5rem;
   transition:
     border-color var(--transition-base),
-    background var(--transition-base);
+    background var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
 .source-disclosure[open] {
   border-color: var(--color-line-strong);
+}
+
+.source-disclosure:target {
+  border-color: rgba(212, 149, 75, 0.6);
+  box-shadow: 0 0 0 1px rgba(212, 149, 75, 0.28), var(--shadow-soft);
+}
+
+.source-disclosure:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
 .source-disclosure summary {

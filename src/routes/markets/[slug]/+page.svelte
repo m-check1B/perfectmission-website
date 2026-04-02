@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount, tick } from 'svelte';
   import ScoreBar from '$lib/components/ScoreBar.svelte';
   import Seo from '$lib/components/Seo.svelte';
   import { buildBriefMailto } from '$lib/contact';
@@ -66,12 +67,19 @@
   });
   const sourcesSectionId = 'market-sources';
   const sourcesSectionHeadingId = 'market-sources-heading';
+  const sourceItemIdPrefix = 'market-source-';
   const sourceCount = $derived(market.source_registry.length);
   const latestSourceRetrieved = $derived(
     market.source_registry.reduce(
       (latest, source) => (source.retrieved > latest ? source.retrieved : latest),
       ''
     )
+  );
+  const latestSourceIndex = $derived(
+    market.source_registry.findIndex((source) => source.retrieved === latestSourceRetrieved)
+  );
+  const latestSourceId = $derived(
+    latestSourceIndex >= 0 ? getSourceItemId(latestSourceIndex) : sourcesSectionId
   );
   const latestSourceRetrievedLabel = $derived(
     latestSourceRetrieved ? formatIsoDate(latestSourceRetrieved) : ''
@@ -93,6 +101,43 @@
       .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
       .join(' ');
   }
+
+  function getSourceItemId(index: number) {
+    return `${sourceItemIdPrefix}${index + 1}`;
+  }
+
+  async function revealSourceFromHash() {
+    const hash = window.location.hash;
+
+    if (!hash.startsWith(`#${sourceItemIdPrefix}`)) {
+      return;
+    }
+
+    await tick();
+
+    const target = document.querySelector<HTMLDetailsElement>(hash);
+
+    if (!target) {
+      return;
+    }
+
+    target.open = true;
+    target.focus({ preventScroll: true });
+  }
+
+  onMount(() => {
+    void revealSourceFromHash();
+
+    const handleHashChange = () => {
+      void revealSourceFromHash();
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  });
 
   const formattedLastUpdated = $derived(formatIsoDate(market.last_updated));
 </script>
@@ -159,8 +204,8 @@
               {#if latestSourceRetrieved}
                 <a
                   class="detail-summary__link"
-                  href={`#${sourcesSectionId}`}
-                  aria-label={`Jump to sources section (latest source ${latestSourceRetrievedLabel})`}
+                  href={`#${latestSourceId}`}
+                  aria-label={`Jump to latest cited source (${latestSourceRetrievedLabel})`}
                 >
                   <time datetime={latestSourceRetrieved}>{latestSourceRetrievedLabel}</time>
                 </a>
@@ -408,7 +453,11 @@
         <ol class="source-endnotes">
           {#each market.source_registry as source, index}
             <li>
-              <details class="source-disclosure">
+              <details
+                id={getSourceItemId(index)}
+                class="source-disclosure"
+                tabindex="-1"
+              >
                 <summary>
                   <span class="source-disclosure__index" aria-hidden="true">{index + 1}.</span>
                   <span class="source-disclosure__copy">
