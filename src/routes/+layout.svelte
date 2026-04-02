@@ -73,6 +73,10 @@
     }
 
     requestAnimationFrame(() => {
+      if (target instanceof HTMLDetailsElement) {
+        target.open = true;
+      }
+
       target.scrollIntoView({ block: 'start' });
       restoreFocusedTarget?.();
       restoreFocusedTarget = makeHashTargetTemporarilyFocusable(target);
