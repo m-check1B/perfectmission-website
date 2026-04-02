@@ -313,8 +313,9 @@
       return;
     }
 
+    // Keep the visible menu toggle interactive so it remains a real close affordance.
     headerChromeElements = Array.from(
-      header.querySelectorAll<HTMLElement>('.skip-link, .brand, .theme-toggle, .menu-toggle')
+      header.querySelectorAll<HTMLElement>('.skip-link, .brand, .theme-toggle')
     );
 
     headerChromeAriaHidden.clear();
