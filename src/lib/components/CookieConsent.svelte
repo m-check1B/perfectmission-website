@@ -9,6 +9,7 @@
   let lastFocusedElement: HTMLElement | null = null;
   let pageShellElement: HTMLElement | null = null;
   let restoreAriaHidden: string | null = null;
+  let backgroundInteractivityDisabled = false;
 
   if (browser) {
     visible = needsConsentBanner();
@@ -17,6 +18,9 @@
   onMount(() => {
     if (browser) {
       pageShellElement = document.querySelector<HTMLElement>('.page-shell');
+      if (visible) {
+        disableBackgroundInteractivity();
+      }
     }
 
     return () => {
@@ -50,17 +54,18 @@
   }
 
   function disableBackgroundInteractivity() {
-    if (!pageShellElement) {
+    if (!pageShellElement || backgroundInteractivityDisabled) {
       return;
     }
 
     restoreAriaHidden = pageShellElement.getAttribute('aria-hidden');
     pageShellElement.inert = true;
     pageShellElement.setAttribute('aria-hidden', 'true');
+    backgroundInteractivityDisabled = true;
   }
 
   function restoreBackgroundInteractivity() {
-    if (!pageShellElement) {
+    if (!pageShellElement || !backgroundInteractivityDisabled) {
       return;
     }
 
@@ -73,6 +78,7 @@
     }
 
     restoreAriaHidden = null;
+    backgroundInteractivityDisabled = false;
   }
 
   function getFocusableElements() {
