@@ -39,6 +39,24 @@
       `I want to discuss a site, listing, plot, or thesis in ${market.country}.`
     )
   );
+  const marketDateFormatter = new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC'
+  });
+
+  function formatMarketUpdateDate(value: string) {
+    const [year, month, day] = value.split('-').map(Number);
+
+    if (!year || !month || !day) {
+      return value;
+    }
+
+    return marketDateFormatter.format(new Date(Date.UTC(year, month - 1, day)));
+  }
+
+  const formattedLastUpdated = $derived(formatMarketUpdateDate(market.last_updated));
 </script>
 
 <Seo
@@ -86,7 +104,7 @@
           </div>
           <div class="detail-summary__row">
             <span>Updated</span>
-            <strong><time datetime={market.last_updated}>{market.last_updated}</time></strong>
+            <strong><time datetime={market.last_updated}>{formattedLastUpdated}</time></strong>
           </div>
         </aside>
       </div>
