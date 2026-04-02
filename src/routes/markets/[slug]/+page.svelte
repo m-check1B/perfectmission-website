@@ -140,6 +140,20 @@
             <strong>{market.confidence}</strong>
           </div>
           <div class="detail-summary__row">
+            <span>Cited sources</span>
+            <strong>{sourceCount}</strong>
+          </div>
+          <div class="detail-summary__row">
+            <span>Latest source</span>
+            <strong>
+              {#if latestSourceRetrieved}
+                <time datetime={latestSourceRetrieved}>{latestSourceRetrievedLabel}</time>
+              {:else}
+                Not listed
+              {/if}
+            </strong>
+          </div>
+          <div class="detail-summary__row">
             <span>Updated</span>
             <strong><time datetime={market.last_updated}>{formattedLastUpdated}</time></strong>
           </div>
@@ -365,7 +379,8 @@
           <p class="source-summary">
             {sourceCount} cited source{sourceCount === 1 ? '' : 's'} in the registry.
             {#if latestSourceRetrieved}
-              Latest refresh <time datetime={latestSourceRetrieved}>{latestSourceRetrievedLabel}</time>.
+              Latest source refresh
+              <time datetime={latestSourceRetrieved}>{latestSourceRetrievedLabel}</time>.
             {/if}
           </p>
         </div>
