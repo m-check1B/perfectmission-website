@@ -76,8 +76,16 @@
       ''
     )
   );
+  const latestSourceMatchCount = $derived(
+    latestSourceRetrieved
+      ? market.source_registry.filter((source) => source.retrieved === latestSourceRetrieved).length
+      : 0
+  );
+  const hasSingleLatestSource = $derived(latestSourceMatchCount === 1);
   const latestSourceIndex = $derived(
-    market.source_registry.findIndex((source) => source.retrieved === latestSourceRetrieved)
+    hasSingleLatestSource
+      ? market.source_registry.findIndex((source) => source.retrieved === latestSourceRetrieved)
+      : -1
   );
   const latestSourceId = $derived(
     latestSourceIndex >= 0
@@ -86,6 +94,14 @@
   );
   const latestSourceRetrievedLabel = $derived(
     latestSourceRetrieved ? formatIsoDate(latestSourceRetrieved) : ''
+  );
+  const latestSourceSummaryLabel = $derived(
+    hasSingleLatestSource ? 'Latest source' : 'Latest refresh'
+  );
+  const latestSourceAriaLabel = $derived(
+    hasSingleLatestSource
+      ? `Jump to latest cited source (${latestSourceRetrievedLabel})`
+      : `Jump to sources refreshed on ${latestSourceRetrievedLabel} (${latestSourceMatchCount} cited source${latestSourceMatchCount === 1 ? '' : 's'})`
   );
 
   function formatIsoDate(value: string) {
@@ -263,13 +279,13 @@
             </strong>
           </div>
           <div class="detail-summary__row">
-            <span>Latest source</span>
+            <span>{latestSourceSummaryLabel}</span>
             <strong>
               {#if latestSourceRetrieved}
                 <a
                   class="detail-summary__link"
                   href={`#${latestSourceId}`}
-                  aria-label={`Jump to latest cited source (${latestSourceRetrievedLabel})`}
+                  aria-label={latestSourceAriaLabel}
                 >
                   <time datetime={latestSourceRetrieved}>{latestSourceRetrievedLabel}</time>
                 </a>
