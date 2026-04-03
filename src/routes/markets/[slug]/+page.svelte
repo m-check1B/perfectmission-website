@@ -8,6 +8,7 @@
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
+  type MarketSource = PageData['market']['source_registry'][number];
   const market = $derived(data.market);
   const marketPath = $derived(`/markets/${market.slug}/`);
   const marketUrl = $derived(absoluteUrl(marketPath));
@@ -79,7 +80,9 @@
     market.source_registry.findIndex((source) => source.retrieved === latestSourceRetrieved)
   );
   const latestSourceId = $derived(
-    latestSourceIndex >= 0 ? getSourceItemId(latestSourceIndex) : sourcesSectionId
+    latestSourceIndex >= 0
+      ? getSourceItemId(market.source_registry[latestSourceIndex], latestSourceIndex)
+      : sourcesSectionId
   );
   const latestSourceRetrievedLabel = $derived(
     latestSourceRetrieved ? formatIsoDate(latestSourceRetrieved) : ''
@@ -102,8 +105,60 @@
       .join(' ');
   }
 
-  function getSourceItemId(index: number) {
-    return `${sourceItemIdPrefix}${index + 1}`;
+  function normalizeSourceAnchorSuffix(value: string) {
+    return value
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9_-]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  function getSourceItemId(source: MarketSource, index: number) {
+    const normalizedId = normalizeSourceAnchorSuffix(source.id);
+    return `${sourceItemIdPrefix}${normalizedId || `${index + 1}`}`;
+  }
+
+  function getLegacySourceTarget(hash: string) {
+    const legacySuffix = decodeURIComponent(hash.slice(1)).slice(sourceItemIdPrefix.length);
+
+    if (!/^\d+$/.test(legacySuffix)) {
+      return null;
+    }
+
+    const legacyIndex = Number(legacySuffix) - 1;
+    const source = market.source_registry[legacyIndex];
+
+    if (!source) {
+      return null;
+    }
+
+    const stableTargetId = getSourceItemId(source, legacyIndex);
+    const stableTarget = document.getElementById(stableTargetId);
+
+    return stableTarget instanceof HTMLDetailsElement ? stableTarget : null;
+  }
+
+  function syncStableSourceHash(hash: string, targetId: string) {
+    const currentTargetId = decodeURIComponent(hash.slice(1));
+
+    if (currentTargetId === targetId) {
+      return;
+    }
+
+    const nextUrl = new URL(window.location.href);
+    nextUrl.hash = targetId;
+    window.history.replaceState(window.history.state, '', nextUrl);
+  }
+
+  function getSourceTargetFromHash(hash: string) {
+    const targetId = decodeURIComponent(hash.slice(1));
+    const directTarget = document.getElementById(targetId);
+
+    if (directTarget instanceof HTMLDetailsElement) {
+      return directTarget;
+    }
+
+    return getLegacySourceTarget(hash);
   }
 
   async function revealSourceFromHash() {
@@ -115,12 +170,13 @@
 
     await tick();
 
-    const target = document.querySelector<HTMLDetailsElement>(hash);
+    const target = getSourceTargetFromHash(hash);
 
     if (!target) {
       return;
     }
 
+    syncStableSourceHash(hash, target.id);
     target.open = true;
     const focusTarget = target.querySelector<HTMLElement>('summary') ?? target;
     focusTarget.focus({ preventScroll: true });
@@ -455,7 +511,7 @@
           {#each market.source_registry as source, index}
             <li>
               <details
-                id={getSourceItemId(index)}
+                id={getSourceItemId(source, index)}
                 class="source-disclosure"
                 tabindex="-1"
               >
