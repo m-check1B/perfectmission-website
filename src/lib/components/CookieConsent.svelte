@@ -150,6 +150,10 @@
     return mainContent instanceof HTMLElement ? mainContent : null;
   }
 
+  function prepareForPolicyNavigation() {
+    lastFocusedElement = null;
+  }
+
   async function closeBanner() {
     visible = false;
     await tick();
@@ -209,7 +213,7 @@
         <p id="cookie-banner-title" class="cookie-title">Cookie preferences</p>
         <p id="cookie-banner-description">
           We use optional analytics cookies to understand site traffic and improve the experience.
-          You can continue with essential cookies only. <a href="/privacy/" class="cookie-link">Privacy Policy</a>
+          You can continue with essential cookies only. <a href="/privacy/" class="cookie-link" onclick={prepareForPolicyNavigation}>Privacy Policy</a>
         </p>
       </div>
       <div class="cookie-actions">
