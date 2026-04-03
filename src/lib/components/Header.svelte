@@ -264,6 +264,16 @@
     );
   }
 
+  function getModalFocusElements() {
+    const focusableMenuElements = getFocusableMenuElements();
+
+    if (!menuButton) {
+      return focusableMenuElements;
+    }
+
+    return [menuButton, ...focusableMenuElements.filter((element) => element !== menuButton)];
+  }
+
   function focusFirstMenuItem() {
     if (!navElement) {
       menuButton?.focus();
@@ -285,7 +295,10 @@
     }
 
     const activeElement = document.activeElement;
-    if (activeElement instanceof HTMLElement && navElement?.contains(activeElement)) {
+    if (
+      activeElement instanceof HTMLElement &&
+      (navElement?.contains(activeElement) || activeElement === menuButton)
+    ) {
       return;
     }
 
@@ -391,7 +404,7 @@
   }
 
   function trapMenuFocus(event: KeyboardEvent) {
-    const focusable = getFocusableMenuElements();
+    const focusable = getModalFocusElements();
     if (focusable.length === 0) {
       event.preventDefault();
       menuButton?.focus();
