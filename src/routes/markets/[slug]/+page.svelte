@@ -177,7 +177,14 @@
     }
 
     syncStableSourceHash(hash, target.id);
+    const targetWasClosed = !target.open;
     target.open = true;
+
+    if (targetWasClosed) {
+      await tick();
+    }
+
+    target.scrollIntoView({ block: 'start' });
     const focusTarget = target.querySelector<HTMLElement>('summary') ?? target;
     focusTarget.focus({ preventScroll: true });
   }
