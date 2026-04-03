@@ -134,8 +134,21 @@
     return `${sourceItemIdPrefix}${normalizedId || `${index + 1}`}`;
   }
 
+  function decodeHashTargetId(hash: string) {
+    try {
+      return decodeURIComponent(hash.slice(1));
+    } catch {
+      return null;
+    }
+  }
+
   function getLegacySourceTarget(hash: string) {
-    const legacySuffix = decodeURIComponent(hash.slice(1)).slice(sourceItemIdPrefix.length);
+    const targetId = decodeHashTargetId(hash);
+    if (!targetId?.startsWith(sourceItemIdPrefix)) {
+      return null;
+    }
+
+    const legacySuffix = targetId.slice(sourceItemIdPrefix.length);
 
     if (!/^\d+$/.test(legacySuffix)) {
       return null;
@@ -155,9 +168,9 @@
   }
 
   function isLegacySourceHash(hash: string) {
-    const targetId = decodeURIComponent(hash.slice(1));
+    const targetId = decodeHashTargetId(hash);
 
-    if (!targetId.startsWith(sourceItemIdPrefix)) {
+    if (!targetId?.startsWith(sourceItemIdPrefix)) {
       return false;
     }
 
@@ -165,7 +178,7 @@
   }
 
   function syncStableSourceHash(hash: string, targetId: string) {
-    const currentTargetId = decodeURIComponent(hash.slice(1));
+    const currentTargetId = decodeHashTargetId(hash);
 
     if (currentTargetId === targetId) {
       return;

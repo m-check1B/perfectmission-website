@@ -57,12 +57,24 @@
     return restore;
   }
 
+  function decodeHashTargetId(hash: string) {
+    try {
+      return decodeURIComponent(hash.slice(1));
+    } catch {
+      return null;
+    }
+  }
+
   function getHashTarget(hash = window.location.hash) {
     if (!hash) {
       return null;
     }
 
-    const targetId = decodeURIComponent(hash.slice(1));
+    const targetId = decodeHashTargetId(hash);
+    if (!targetId) {
+      return null;
+    }
+
     return document.getElementById(targetId);
   }
 
