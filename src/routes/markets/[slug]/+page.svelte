@@ -154,6 +154,16 @@
     return stableTarget instanceof HTMLDetailsElement ? stableTarget : null;
   }
 
+  function isLegacySourceHash(hash: string) {
+    const targetId = decodeURIComponent(hash.slice(1));
+
+    if (!targetId.startsWith(sourceItemIdPrefix)) {
+      return false;
+    }
+
+    return /^\d+$/.test(targetId.slice(sourceItemIdPrefix.length));
+  }
+
   function syncStableSourceHash(hash: string, targetId: string) {
     const currentTargetId = decodeURIComponent(hash.slice(1));
 
@@ -166,27 +176,16 @@
     window.history.replaceState(window.history.state, '', nextUrl);
   }
 
-  function getSourceTargetFromHash(hash: string) {
-    const targetId = decodeURIComponent(hash.slice(1));
-    const directTarget = document.getElementById(targetId);
-
-    if (directTarget instanceof HTMLDetailsElement) {
-      return directTarget;
-    }
-
-    return getLegacySourceTarget(hash);
-  }
-
-  async function revealSourceFromHash() {
+  async function revealLegacySourceFromHash() {
     const hash = window.location.hash;
 
-    if (!hash.startsWith(`#${sourceItemIdPrefix}`)) {
+    if (!isLegacySourceHash(hash)) {
       return;
     }
 
     await tick();
 
-    const target = getSourceTargetFromHash(hash);
+    const target = getLegacySourceTarget(hash);
 
     if (!target) {
       return;
@@ -206,10 +205,10 @@
   }
 
   onMount(() => {
-    void revealSourceFromHash();
+    void revealLegacySourceFromHash();
 
     const handleHashChange = () => {
-      void revealSourceFromHash();
+      void revealLegacySourceFromHash();
     };
 
     window.addEventListener('hashchange', handleHashChange);
