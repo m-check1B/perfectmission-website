@@ -1,3 +1,5 @@
+import { shouldDeferHashActivationForCookieBanner } from './cookie-consent-state.ts';
+
 export type MarketSourceAnchorItem = {
   id: string;
 };
@@ -68,4 +70,16 @@ export function getLegacySourceIndex(hash: string, sourceItemIdPrefix = 'market-
 
 export function isLegacySourceHash(hash: string, sourceItemIdPrefix = 'market-source-') {
   return getLegacySourceIndex(hash, sourceItemIdPrefix) !== null;
+}
+
+export function shouldRevealLegacySourceHash(
+  hash: string,
+  currentPath: string,
+  consentBannerVisible: boolean,
+  sourceItemIdPrefix = 'market-source-'
+) {
+  return (
+    isLegacySourceHash(hash, sourceItemIdPrefix) &&
+    !shouldDeferHashActivationForCookieBanner(currentPath, consentBannerVisible)
+  );
 }

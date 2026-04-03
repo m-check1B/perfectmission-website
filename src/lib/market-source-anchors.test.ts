@@ -5,7 +5,8 @@ import {
   buildSourceItemIds,
   decodeHashTargetId,
   getLegacySourceIndex,
-  isLegacySourceHash
+  isLegacySourceHash,
+  shouldRevealLegacySourceHash
 } from './market-source-anchors.ts';
 
 test('buildSourceItemIds keeps generated duplicate suffixes distinct from natural suffixed ids', () => {
@@ -38,4 +39,23 @@ test('legacy hash helpers only accept positive numeric source suffixes', () => {
   assert.equal(getLegacySourceIndex('#market-source-cz_deloitte_property'), null);
   assert.equal(isLegacySourceHash('#market-source-3'), true);
   assert.equal(isLegacySourceHash('#market-source-cz_deloitte_property'), false);
+});
+
+test('legacy source hash reveal defers behind a blocking cookie banner', () => {
+  assert.equal(
+    shouldRevealLegacySourceHash('#market-source-3', '/markets/czech-republic/', true),
+    false
+  );
+  assert.equal(
+    shouldRevealLegacySourceHash('#market-source-3', '/markets/czech-republic/', false),
+    true
+  );
+  assert.equal(
+    shouldRevealLegacySourceHash('#market-source-3', '/privacy/', true),
+    true
+  );
+  assert.equal(
+    shouldRevealLegacySourceHash('#market-source-cz_deloitte_property', '/markets/czech-republic/', false),
+    false
+  );
 });

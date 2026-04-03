@@ -7,8 +7,10 @@
   import {
     buildSourceItemIds,
     getLegacySourceIndex,
-    isLegacySourceHash
+    shouldRevealLegacySourceHash
   } from '$lib/market-source-anchors';
+  import { COOKIE_BANNER_CLOSED_EVENT } from '$lib/cookie-consent-state';
+  import { needsConsentBanner } from '$lib/posthog';
   import { DEFAULT_OG_IMAGE, absoluteUrl, buildBreadcrumbSchema } from '$lib/site';
   import type { PageData } from './$types';
 
@@ -160,7 +162,14 @@
   async function revealLegacySourceFromHash() {
     const hash = window.location.hash;
 
-    if (!isLegacySourceHash(hash)) {
+    if (
+      !shouldRevealLegacySourceHash(
+        hash,
+        marketPath,
+        document.body.dataset.cookieBannerOpen === 'true' || needsConsentBanner(),
+        sourceItemIdPrefix
+      )
+    ) {
       return;
     }
 
@@ -191,11 +200,16 @@
     const handleHashChange = () => {
       void revealLegacySourceFromHash();
     };
+    const handleCookieBannerClosed = () => {
+      void revealLegacySourceFromHash();
+    };
 
     window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener(COOKIE_BANNER_CLOSED_EVENT, handleCookieBannerClosed);
 
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener(COOKIE_BANNER_CLOSED_EVENT, handleCookieBannerClosed);
     };
   });
 
