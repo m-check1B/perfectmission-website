@@ -129,9 +129,19 @@
       .replace(/^-+|-+$/g, '');
   }
 
-  function getSourceItemId(source: MarketSource, index: number) {
+  function getStableSourceAnchorSuffix(source: MarketSource, index: number) {
     const normalizedId = normalizeSourceAnchorSuffix(source.id);
-    return `${sourceItemIdPrefix}${normalizedId || `${index + 1}`}`;
+
+    // Keep stable IDs distinct from the legacy numeric hash format.
+    if (!normalizedId || /^\d+$/.test(normalizedId)) {
+      return `entry-${index + 1}`;
+    }
+
+    return normalizedId;
+  }
+
+  function getSourceItemId(source: MarketSource, index: number) {
+    return `${sourceItemIdPrefix}${getStableSourceAnchorSuffix(source, index)}`;
   }
 
   function decodeHashTargetId(hash: string) {
