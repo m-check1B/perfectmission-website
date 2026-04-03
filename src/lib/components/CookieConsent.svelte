@@ -1,7 +1,7 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { onMount, tick } from 'svelte';
-  import { shouldCookieBannerBeModal } from '$lib/cookie-consent-state';
+  import { getCookieBannerPresentation } from '$lib/cookie-consent-state';
   import { initPostHog, needsConsentBanner, setConsent } from '$lib/posthog';
 
   let { site, currentPath = '/' }: { site: string; currentPath?: string } = $props();
@@ -11,7 +11,10 @@
   let pageShellElement: HTMLElement | null = null;
   let restoreAriaHidden: string | null = null;
   let backgroundInteractivityDisabled = false;
-  const bannerIsModal = $derived(shouldCookieBannerBeModal(currentPath));
+  const bannerPresentation = $derived(getCookieBannerPresentation(currentPath));
+  const bannerIsModal = $derived(bannerPresentation.isModal);
+  const bannerShouldLockBackground = $derived(bannerPresentation.lockBackground);
+  const bannerShouldShowBackdrop = $derived(bannerPresentation.showBackdrop);
 
   if (browser) {
     visible = needsConsentBanner();
@@ -20,7 +23,7 @@
   onMount(() => {
     if (browser) {
       pageShellElement = document.querySelector<HTMLElement>('.page-shell');
-      if (visible && bannerIsModal) {
+      if (visible && bannerShouldLockBackground) {
         disableBackgroundInteractivity();
       }
     }
@@ -34,7 +37,7 @@
   });
 
   $effect(() => {
-    if (!browser || !visible || !bannerIsModal) {
+    if (!browser || !visible || !bannerShouldLockBackground) {
       return;
     }
 
@@ -201,7 +204,9 @@
 <svelte:window onfocusin={handleWindowFocusIn} />
 
 {#if visible}
+  {#if bannerShouldShowBackdrop}
   <div class="cookie-banner-backdrop"></div>
+  {/if}
   <div
     bind:this={dialogElement}
     class="cookie-banner"
