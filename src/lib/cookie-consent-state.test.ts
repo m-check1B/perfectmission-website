@@ -2,7 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
+  COOKIE_BANNER_CLOSED_EVENT,
   getCookieBannerPresentation,
+  shouldDeferHashActivationForCookieBanner,
   shouldReleaseCookieBannerForLinkNavigation,
   shouldCookieBannerBeModal
 } from './cookie-consent-state.ts';
@@ -26,6 +28,13 @@ test('cookie banner becomes non-modal on legal document routes', () => {
     lockBackground: false,
     showBackdrop: false
   });
+});
+
+test('hash-target focus only defers while a blocking cookie banner is visible', () => {
+  assert.equal(COOKIE_BANNER_CLOSED_EVENT, 'perfectmission:cookie-banner-closed');
+  assert.equal(shouldDeferHashActivationForCookieBanner('/markets/czech-republic/', true), true);
+  assert.equal(shouldDeferHashActivationForCookieBanner('/privacy/', true), false);
+  assert.equal(shouldDeferHashActivationForCookieBanner('/markets/czech-republic/', false), false);
 });
 
 test('cookie banner only releases modal locking for same-tab policy navigation', () => {

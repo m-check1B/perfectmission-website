@@ -2,6 +2,7 @@
   import { browser } from '$app/environment';
   import { onMount, tick } from 'svelte';
   import {
+    COOKIE_BANNER_CLOSED_EVENT,
     getCookieBannerPresentation,
     shouldReleaseCookieBannerForLinkNavigation
   } from '$lib/cookie-consent-state';
@@ -174,6 +175,7 @@
   async function closeBanner() {
     visible = false;
     await tick();
+    window.dispatchEvent(new CustomEvent(COOKIE_BANNER_CLOSED_EVENT));
     getRestoreFocusTarget()?.focus({ preventScroll: true });
     lastFocusedElement = null;
   }

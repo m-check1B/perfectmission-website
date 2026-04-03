@@ -13,16 +13,21 @@
   import playfair700Woff2 from '@fontsource/playfair-display/files/playfair-display-latin-700-normal.woff2';
   import playfair700ItalicWoff2 from '@fontsource/playfair-display/files/playfair-display-latin-700-italic.woff2';
   import CookieConsent from '$lib/components/CookieConsent.svelte';
+  import {
+    COOKIE_BANNER_CLOSED_EVENT,
+    shouldDeferHashActivationForCookieBanner
+  } from '$lib/cookie-consent-state';
   import Footer from '$lib/components/Footer.svelte';
   import Header from '$lib/components/Header.svelte';
   import { decodeHashTargetId } from '$lib/market-source-anchors';
-  import { hasConsent, initPostHog } from '$lib/posthog';
+  import { hasConsent, initPostHog, needsConsentBanner } from '$lib/posthog';
   import '../app.css';
 
   let { children } = $props();
 
   let restoreFocusedTarget: (() => void) | null = null;
   let hasHandledNavigation = false;
+  let hasDeferredHashActivation = false;
   let lastNavigationPath = '';
   let lastNavigationHash = '';
   const currentPath = $derived(
@@ -128,6 +133,13 @@
     return document.body.dataset.cookieBannerOpen === 'true';
   }
 
+  function shouldDeferHashActivation(path: string) {
+    return (
+      isCookieBannerOpen() ||
+      shouldDeferHashActivationForCookieBanner(path, needsConsentBanner())
+    );
+  }
+
   function resetScrollPosition() {
     window.scrollTo({ top: 0, left: 0 });
   }
@@ -155,9 +167,17 @@
 
     void tick().then(() => {
       if (hash) {
+        if (shouldDeferHashActivation(path)) {
+          hasDeferredHashActivation = true;
+          return;
+        }
+
+        hasDeferredHashActivation = false;
         activateHashTarget(hash);
         return;
       }
+
+      hasDeferredHashActivation = false;
 
       if (pathChanged || hashCleared) {
         if (hashCleared && !pathChanged) {
@@ -174,6 +194,15 @@
   });
 
   onMount(() => {
+    const handleCookieBannerClosed = () => {
+      if (!hasDeferredHashActivation || !window.location.hash) {
+        return;
+      }
+
+      hasDeferredHashActivation = false;
+      activateHashTarget(window.location.hash);
+    };
+
     const handleDocumentClick = (event: MouseEvent) => {
       if (!isPlainPrimaryClick(event)) {
         return;
@@ -212,11 +241,13 @@
       }
     };
 
+    window.addEventListener(COOKIE_BANNER_CLOSED_EVENT, handleCookieBannerClosed);
     document.addEventListener('click', handleDocumentClick);
 
     return () => {
       restoreFocusedTarget?.();
       restoreFocusedTarget = null;
+      window.removeEventListener(COOKIE_BANNER_CLOSED_EVENT, handleCookieBannerClosed);
       document.removeEventListener('click', handleDocumentClick);
     };
   });
