@@ -140,15 +140,19 @@
   }
 
   function buildSourceItemIds(sources: MarketSource[]) {
-    const seenSuffixes = new Map<string, number>();
+    const usedSuffixes = new Set<string>();
 
     return sources.map((source, index) => {
       const baseSuffix = getStableSourceAnchorSuffix(source, index);
-      const collisionCount = seenSuffixes.get(baseSuffix) ?? 0;
-      seenSuffixes.set(baseSuffix, collisionCount + 1);
+      let uniqueSuffix = baseSuffix;
+      let collisionIndex = 2;
 
-      const uniqueSuffix =
-        collisionCount === 0 ? baseSuffix : `${baseSuffix}-${collisionCount + 1}`;
+      while (usedSuffixes.has(uniqueSuffix)) {
+        uniqueSuffix = `${baseSuffix}-${collisionIndex}`;
+        collisionIndex += 1;
+      }
+
+      usedSuffixes.add(uniqueSuffix);
 
       return `${sourceItemIdPrefix}${uniqueSuffix}`;
     });
