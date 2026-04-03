@@ -1,4 +1,10 @@
 <script lang="ts">
+  import {
+    getFooterHrefAriaCurrent,
+    getHomeBrandAriaCurrent,
+    isFooterHrefActive
+  } from '$lib/navigation-state';
+
   let {
     currentPath = '/',
     currentHash = ''
@@ -6,31 +12,12 @@
 
   const currentYear = new Date().getFullYear();
 
-  function normalizePath(path: string) {
-    return path === '/' ? '/' : `${path.replace(/\/+$/, '')}/`;
-  }
-
   function isActive(href: string) {
-    if (href.startsWith('mailto:')) {
-      return false;
-    }
-
-    const [path, hash] = href.split('#');
-    const resolvedPath = normalizePath(path || '/');
-
-    if (hash) {
-      return currentPath === resolvedPath && currentHash === `#${hash}`;
-    }
-
-    return currentPath === resolvedPath && !currentHash;
+    return isFooterHrefActive(href, currentPath, currentHash);
   }
 
   function getAriaCurrent(href: string) {
-    if (!isActive(href)) {
-      return undefined;
-    }
-
-    return href.includes('#') ? 'location' : 'page';
+    return getFooterHrefAriaCurrent(href, currentPath, currentHash);
   }
 </script>
 
@@ -43,7 +30,7 @@
           href="/"
           class:active={isActive('/')}
           aria-label="Perfect Mission"
-          aria-current={getAriaCurrent('/')}
+          aria-current={getHomeBrandAriaCurrent(currentPath, currentHash)}
         >
           Perfect<span>Mission</span>
         </a>

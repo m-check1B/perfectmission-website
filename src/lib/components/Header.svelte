@@ -1,6 +1,12 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { onMount, tick } from 'svelte';
+  import {
+    getHeaderHrefAriaCurrent,
+    getHomeBrandAriaCurrent,
+    isHeaderHrefActive,
+    isHomeBrandCurrent
+  } from '$lib/navigation-state';
   
   let { currentPath = '/', currentHash = '' }: { currentPath?: string; currentHash?: string } = $props();
   let menuOpen = $state(false);
@@ -28,6 +34,7 @@
     { href: '/markets/', label: 'Markets' },
     { href: '/#contact', label: 'Contact' }
   ];
+  const headerHashHrefs = links.filter((link) => link.href.includes('#')).map((link) => link.href);
 
   function readStoredTheme(): string | null {
     try {
@@ -166,58 +173,20 @@
     document.body.removeAttribute('data-nav-open');
   }
 
-  function isHashHrefActive(href: string) {
-    if (!href.includes('#')) {
-      return false;
-    }
-
-    const [path, hash] = href.split('#');
-    const resolvedPath = path || '/';
-    return currentPath === resolvedPath && currentHash === `#${hash}`;
-  }
-
-  function hasExplicitHeaderHashMatch() {
-    return links.some((link) => isHashHrefActive(link.href));
-  }
-
   function isActive(href: string) {
-    if (href.startsWith('mailto:')) {
-      return false;
-    }
-
-    if (href.includes('#')) {
-      return isHashHrefActive(href);
-    }
-
-    if (href === '/') {
-      return currentPath === '/' && !hasExplicitHeaderHashMatch();
-    }
-
-    return href === '/' ? currentPath === '/' : currentPath === href || currentPath.startsWith(`${href}`);
+    return isHeaderHrefActive(href, currentPath, currentHash, headerHashHrefs);
   }
 
   function getAriaCurrent(href: string) {
-    if (!isActive(href)) {
-      return undefined;
-    }
-
-    if (href.includes('#')) {
-      return 'location';
-    }
-
-    if (href === '/' && currentPath === '/' && currentHash && !hasExplicitHeaderHashMatch()) {
-      return 'location';
-    }
-
-    return 'page';
+    return getHeaderHrefAriaCurrent(href, currentPath, currentHash, headerHashHrefs);
   }
 
   function isBrandCurrent() {
-    return currentPath === '/' && !currentHash;
+    return isHomeBrandCurrent(currentPath, currentHash);
   }
 
   function getBrandAriaCurrent() {
-    return isBrandCurrent() ? 'page' : undefined;
+    return getHomeBrandAriaCurrent(currentPath, currentHash);
   }
 
   function trackNavigation(target: string, href: string) {
