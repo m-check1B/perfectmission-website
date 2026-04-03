@@ -70,6 +70,7 @@
   const sourcesSectionHeadingId = 'market-sources-heading';
   const sourceItemIdPrefix = 'market-source-';
   const sourceCount = $derived(market.source_registry.length);
+  const sourceItemIds = $derived(buildSourceItemIds(market.source_registry));
   const latestSourceRetrieved = $derived(
     market.source_registry.reduce(
       (latest, source) => (source.retrieved > latest ? source.retrieved : latest),
@@ -88,9 +89,7 @@
       : -1
   );
   const latestSourceId = $derived(
-    latestSourceIndex >= 0
-      ? getSourceItemId(market.source_registry[latestSourceIndex], latestSourceIndex)
-      : sourcesSectionId
+    latestSourceIndex >= 0 ? sourceItemIds[latestSourceIndex] : sourcesSectionId
   );
   const latestSourceRetrievedLabel = $derived(
     latestSourceRetrieved ? formatIsoDate(latestSourceRetrieved) : ''
@@ -140,8 +139,19 @@
     return normalizedId;
   }
 
-  function getSourceItemId(source: MarketSource, index: number) {
-    return `${sourceItemIdPrefix}${getStableSourceAnchorSuffix(source, index)}`;
+  function buildSourceItemIds(sources: MarketSource[]) {
+    const seenSuffixes = new Map<string, number>();
+
+    return sources.map((source, index) => {
+      const baseSuffix = getStableSourceAnchorSuffix(source, index);
+      const collisionCount = seenSuffixes.get(baseSuffix) ?? 0;
+      seenSuffixes.set(baseSuffix, collisionCount + 1);
+
+      const uniqueSuffix =
+        collisionCount === 0 ? baseSuffix : `${baseSuffix}-${collisionCount + 1}`;
+
+      return `${sourceItemIdPrefix}${uniqueSuffix}`;
+    });
   }
 
   function decodeHashTargetId(hash: string) {
@@ -165,13 +175,15 @@
     }
 
     const legacyIndex = Number(legacySuffix) - 1;
-    const source = market.source_registry[legacyIndex];
-
-    if (!source) {
+    if (!market.source_registry[legacyIndex]) {
       return null;
     }
 
-    const stableTargetId = getSourceItemId(source, legacyIndex);
+    const stableTargetId = sourceItemIds[legacyIndex];
+    if (!stableTargetId) {
+      return null;
+    }
+
     const stableTarget = document.getElementById(stableTargetId);
 
     return stableTarget instanceof HTMLDetailsElement ? stableTarget : null;
@@ -556,7 +568,7 @@
           {#each market.source_registry as source, index}
             <li>
               <details
-                id={getSourceItemId(source, index)}
+                id={sourceItemIds[index]}
                 class="source-disclosure"
                 tabindex="-1"
               >
