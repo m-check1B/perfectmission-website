@@ -15,6 +15,7 @@
   import CookieConsent from '$lib/components/CookieConsent.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import Header from '$lib/components/Header.svelte';
+  import { decodeHashTargetId } from '$lib/market-source-anchors';
   import { hasConsent, initPostHog } from '$lib/posthog';
   import '../app.css';
 
@@ -55,14 +56,6 @@
 
     target.addEventListener('blur', restore, { once: true });
     return restore;
-  }
-
-  function decodeHashTargetId(hash: string) {
-    try {
-      return decodeURIComponent(hash.slice(1));
-    } catch {
-      return null;
-    }
   }
 
   function getHashTarget(hash = window.location.hash) {

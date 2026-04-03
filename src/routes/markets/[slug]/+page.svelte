@@ -4,6 +4,11 @@
   import Seo from '$lib/components/Seo.svelte';
   import { buildBriefMailto } from '$lib/contact';
   import { formatStatus } from '$lib/market-shared';
+  import {
+    buildSourceItemIds,
+    getLegacySourceIndex,
+    isLegacySourceHash
+  } from '$lib/market-source-anchors';
   import { DEFAULT_OG_IMAGE, absoluteUrl, buildBreadcrumbSchema } from '$lib/site';
   import type { PageData } from './$types';
 
@@ -120,65 +125,12 @@
       .join(' ');
   }
 
-  function normalizeSourceAnchorSuffix(value: string) {
-    return value
-      .trim()
-      .toLowerCase()
-      .replace(/[^a-z0-9_-]+/g, '-')
-      .replace(/^-+|-+$/g, '');
-  }
-
-  function getStableSourceAnchorSuffix(source: MarketSource, index: number) {
-    const normalizedId = normalizeSourceAnchorSuffix(source.id);
-
-    // Keep stable IDs distinct from the legacy numeric hash format.
-    if (!normalizedId || /^\d+$/.test(normalizedId)) {
-      return `entry-${index + 1}`;
-    }
-
-    return normalizedId;
-  }
-
-  function buildSourceItemIds(sources: MarketSource[]) {
-    const usedSuffixes = new Set<string>();
-
-    return sources.map((source, index) => {
-      const baseSuffix = getStableSourceAnchorSuffix(source, index);
-      let uniqueSuffix = baseSuffix;
-      let collisionIndex = 2;
-
-      while (usedSuffixes.has(uniqueSuffix)) {
-        uniqueSuffix = `${baseSuffix}-${collisionIndex}`;
-        collisionIndex += 1;
-      }
-
-      usedSuffixes.add(uniqueSuffix);
-
-      return `${sourceItemIdPrefix}${uniqueSuffix}`;
-    });
-  }
-
-  function decodeHashTargetId(hash: string) {
-    try {
-      return decodeURIComponent(hash.slice(1));
-    } catch {
-      return null;
-    }
-  }
-
   function getLegacySourceTarget(hash: string) {
-    const targetId = decodeHashTargetId(hash);
-    if (!targetId?.startsWith(sourceItemIdPrefix)) {
+    const legacyIndex = getLegacySourceIndex(hash, sourceItemIdPrefix);
+    if (legacyIndex === null) {
       return null;
     }
 
-    const legacySuffix = targetId.slice(sourceItemIdPrefix.length);
-
-    if (!/^\d+$/.test(legacySuffix)) {
-      return null;
-    }
-
-    const legacyIndex = Number(legacySuffix) - 1;
     if (!market.source_registry[legacyIndex]) {
       return null;
     }
@@ -193,18 +145,8 @@
     return stableTarget instanceof HTMLDetailsElement ? stableTarget : null;
   }
 
-  function isLegacySourceHash(hash: string) {
-    const targetId = decodeHashTargetId(hash);
-
-    if (!targetId?.startsWith(sourceItemIdPrefix)) {
-      return false;
-    }
-
-    return /^\d+$/.test(targetId.slice(sourceItemIdPrefix.length));
-  }
-
   function syncStableSourceHash(hash: string, targetId: string) {
-    const currentTargetId = decodeHashTargetId(hash);
+    const currentTargetId = hash.startsWith('#') ? hash.slice(1) : hash;
 
     if (currentTargetId === targetId) {
       return;
