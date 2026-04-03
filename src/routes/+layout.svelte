@@ -119,6 +119,10 @@
     });
   }
 
+  function isCookieBannerOpen() {
+    return document.body.dataset.cookieBannerOpen === 'true';
+  }
+
   function resetScrollPosition() {
     window.scrollTo({ top: 0, left: 0 });
   }
@@ -153,6 +157,10 @@
       if (pathChanged || hashCleared) {
         if (hashCleared && !pathChanged) {
           resetScrollPosition();
+        }
+
+        if (isCookieBannerOpen()) {
+          return;
         }
 
         focusMainContent();
@@ -192,7 +200,10 @@
       if (!link.hash && window.location.hash === '') {
         event.preventDefault();
         resetScrollPosition();
-        focusMainContent();
+
+        if (!isCookieBannerOpen()) {
+          focusMainContent();
+        }
       }
     };
 
