@@ -1,7 +1,10 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { onMount, tick } from 'svelte';
-  import { getCookieBannerPresentation } from '$lib/cookie-consent-state';
+  import {
+    getCookieBannerPresentation,
+    shouldReleaseCookieBannerForLinkNavigation
+  } from '$lib/cookie-consent-state';
   import { initPostHog, needsConsentBanner, setConsent } from '$lib/posthog';
 
   let { site, currentPath = '/' }: { site: string; currentPath?: string } = $props();
@@ -155,7 +158,14 @@
     return mainContent instanceof HTMLElement ? mainContent : null;
   }
 
-  function prepareForPolicyNavigation() {
+  function prepareForPolicyNavigation(event: MouseEvent) {
+    if (
+      !bannerShouldLockBackground ||
+      !shouldReleaseCookieBannerForLinkNavigation(event)
+    ) {
+      return;
+    }
+
     lastFocusedElement = null;
     restoreBackgroundInteractivity();
     delete document.body.dataset.cookieBannerOpen;

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 import {
   getCookieBannerPresentation,
+  shouldReleaseCookieBannerForLinkNavigation,
   shouldCookieBannerBeModal
 } from './cookie-consent-state.ts';
 
@@ -25,4 +26,42 @@ test('cookie banner becomes non-modal on legal document routes', () => {
     lockBackground: false,
     showBackdrop: false
   });
+});
+
+test('cookie banner only releases modal locking for same-tab policy navigation', () => {
+  assert.equal(
+    shouldReleaseCookieBannerForLinkNavigation({
+      altKey: false,
+      button: 0,
+      ctrlKey: false,
+      defaultPrevented: false,
+      metaKey: false,
+      shiftKey: false
+    }),
+    true
+  );
+
+  assert.equal(
+    shouldReleaseCookieBannerForLinkNavigation({
+      altKey: false,
+      button: 0,
+      ctrlKey: false,
+      defaultPrevented: false,
+      metaKey: true,
+      shiftKey: false
+    }),
+    false
+  );
+
+  assert.equal(
+    shouldReleaseCookieBannerForLinkNavigation({
+      altKey: false,
+      button: 1,
+      ctrlKey: false,
+      defaultPrevented: false,
+      metaKey: false,
+      shiftKey: false
+    }),
+    false
+  );
 });
