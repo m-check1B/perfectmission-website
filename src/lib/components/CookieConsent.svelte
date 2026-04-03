@@ -1,15 +1,17 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { onMount, tick } from 'svelte';
+  import { shouldCookieBannerBeModal } from '$lib/cookie-consent-state';
   import { initPostHog, needsConsentBanner, setConsent } from '$lib/posthog';
 
-  let { site }: { site: string } = $props();
+  let { site, currentPath = '/' }: { site: string; currentPath?: string } = $props();
   let visible = $state(false);
   let dialogElement = $state<HTMLDivElement | undefined>(undefined);
   let lastFocusedElement: HTMLElement | null = null;
   let pageShellElement: HTMLElement | null = null;
   let restoreAriaHidden: string | null = null;
   let backgroundInteractivityDisabled = false;
+  const bannerIsModal = $derived(shouldCookieBannerBeModal(currentPath));
 
   if (browser) {
     visible = needsConsentBanner();
@@ -18,7 +20,7 @@
   onMount(() => {
     if (browser) {
       pageShellElement = document.querySelector<HTMLElement>('.page-shell');
-      if (visible) {
+      if (visible && bannerIsModal) {
         disableBackgroundInteractivity();
       }
     }
@@ -32,7 +34,7 @@
   });
 
   $effect(() => {
-    if (!browser || !visible) {
+    if (!browser || !visible || !bannerIsModal) {
       return;
     }
 
@@ -123,7 +125,7 @@
   }
 
   function keepFocusInsideBanner() {
-    if (!visible) {
+    if (!visible || !bannerIsModal) {
       return;
     }
 
@@ -152,6 +154,8 @@
 
   function prepareForPolicyNavigation() {
     lastFocusedElement = null;
+    restoreBackgroundInteractivity();
+    delete document.body.dataset.cookieBannerOpen;
   }
 
   async function closeBanner() {
@@ -175,13 +179,13 @@
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       reject();
-    } else if (event.key === 'Tab') {
+    } else if (event.key === 'Tab' && bannerIsModal) {
       trapFocus(event);
     }
   }
 
   function handleWindowFocusIn(event: FocusEvent) {
-    if (!visible) {
+    if (!visible || !bannerIsModal) {
       return;
     }
 
@@ -202,7 +206,7 @@
     bind:this={dialogElement}
     class="cookie-banner"
     role="dialog"
-    aria-modal="true"
+    aria-modal={bannerIsModal ? 'true' : undefined}
     aria-labelledby="cookie-banner-title"
     aria-describedby="cookie-banner-description"
     tabindex="-1"

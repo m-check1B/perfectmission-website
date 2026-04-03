@@ -246,7 +246,7 @@
   />
 </svelte:head>
 
-<CookieConsent site="perfectmission.co.uk" />
+<CookieConsent site="perfectmission.co.uk" currentPath={currentPath} />
 <div class="page-shell">
   <Header currentPath={currentPath} currentHash={currentHash} />
   {@render children?.()}
