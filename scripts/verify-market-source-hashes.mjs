@@ -4,10 +4,12 @@ import process from 'node:process';
 
 const DEFAULT_BASE_URL = 'http://127.0.0.1:4175/';
 const DEFAULT_BROWSER = process.env.PLAYWRIGHT_BROWSER ?? 'chromium';
+const CONSENT_KEY = 'perfectmission_cookie_consent';
 const STABLE_SOURCE_TARGET_ID = 'market-source-cz_deloitte_property';
 const LEGACY_SOURCE_HASH = '#market-source-3';
 const MALFORMED_SOURCE_HASH = '#%E0%A4%A';
 const MARKET_PATH = '/markets/czech-republic/';
+const STORED_CONSENT_VALUE = 'essential';
 
 function printUsage() {
   console.log(`Usage: node scripts/verify-market-source-hashes.mjs [base-url]
@@ -19,6 +21,7 @@ Runs a fresh-consent browser verification against the Czech market page and asse
 - dismissing the banner opens the expected source disclosure and focuses it
 - the legacy numeric hash is canonicalized to the stable source id after dismissal
 - dismissing the banner with a malformed hash leaves focus on the main content without opening a source
+- an existing essential-only consent opens stable and legacy source deep links without showing the banner
 
 Examples:
   npm run verify:market-source-hashes
@@ -60,13 +63,28 @@ function getBrowserType(playwright, browserName) {
   return browserType;
 }
 
-async function withFreshPage(browserType, baseUrl, run) {
+async function withFreshPage(browserType, baseUrl, run, options = {}) {
   let browser;
   let context;
+  const consentValue = options.consent ?? null;
 
   try {
     browser = await browserType.launch({ headless: true });
     context = await browser.newContext({ baseURL: baseUrl });
+
+    if (consentValue) {
+      await context.addInitScript(
+        ({ key, value }) => {
+          try {
+            window.localStorage.setItem(key, value);
+          } catch {
+            // Ignore storage errors so the verifier still reports the real browser failure.
+          }
+        },
+        { key: CONSENT_KEY, value: consentValue }
+      );
+    }
+
     const page = await context.newPage();
     page.setDefaultTimeout(10000);
     return await run(page);
@@ -137,6 +155,52 @@ async function verifyStableHashFlow(page) {
   }, STABLE_SOURCE_TARGET_ID);
 }
 
+async function verifyStableHashFlowWithStoredConsent(page) {
+  await page.goto(`${MARKET_PATH}#${STABLE_SOURCE_TARGET_ID}`, { waitUntil: 'load' });
+  await page.waitForFunction((targetId) => {
+    const target = document.getElementById(targetId);
+    const activeElement = document.activeElement;
+
+    return (
+      !document.querySelector('.cookie-banner') &&
+      document.body.dataset.cookieBannerOpen !== 'true' &&
+      target instanceof HTMLDetailsElement &&
+      target.open &&
+      activeElement instanceof Element &&
+      target.contains(activeElement)
+    );
+  }, STABLE_SOURCE_TARGET_ID);
+
+  const afterLoad = await page.evaluate((targetId) => {
+    const target = document.getElementById(targetId);
+    const activeElement = document.activeElement;
+
+    return {
+      bannerVisible: !!document.querySelector('.cookie-banner'),
+      hash: window.location.hash,
+      modalLockActive: document.body.dataset.cookieBannerOpen === 'true',
+      targetContainsFocus:
+        target instanceof Element && activeElement instanceof Element ? target.contains(activeElement) : false,
+      targetOpen: target instanceof HTMLDetailsElement ? target.open : null
+    };
+  }, STABLE_SOURCE_TARGET_ID);
+
+  ensure(afterLoad.bannerVisible === false, 'Stored-consent stable hash flow: cookie banner was still visible.');
+  ensure(
+    afterLoad.modalLockActive === false,
+    'Stored-consent stable hash flow: cookie banner lock was still active.'
+  );
+  ensure(
+    afterLoad.hash === `#${STABLE_SOURCE_TARGET_ID}`,
+    `Stored-consent stable hash flow: expected hash "#${STABLE_SOURCE_TARGET_ID}", got "${afterLoad.hash}".`
+  );
+  ensure(afterLoad.targetOpen === true, 'Stored-consent stable hash flow: source disclosure did not open.');
+  ensure(
+    afterLoad.targetContainsFocus,
+    'Stored-consent stable hash flow: focus did not land inside the source disclosure.'
+  );
+}
+
 async function verifyLegacyHashFlow(page) {
   await page.goto(`${MARKET_PATH}${LEGACY_SOURCE_HASH}`, { waitUntil: 'load' });
   await page.waitForFunction(() => !!document.querySelector('.cookie-banner'));
@@ -194,6 +258,59 @@ async function verifyLegacyHashFlow(page) {
   }, expectedTargetId);
 
   return expectedTargetId;
+}
+
+async function verifyLegacyHashFlowWithStoredConsent(page) {
+  await page.goto(`${MARKET_PATH}${LEGACY_SOURCE_HASH}`, { waitUntil: 'load' });
+  await page.waitForFunction(() => {
+    const thirdSource = document.querySelectorAll('details.source-disclosure').item(2);
+    const activeElement = document.activeElement;
+
+    return (
+      !document.querySelector('.cookie-banner') &&
+      document.body.dataset.cookieBannerOpen !== 'true' &&
+      thirdSource instanceof HTMLDetailsElement &&
+      window.location.hash === `#${thirdSource.id}` &&
+      thirdSource.open &&
+      activeElement instanceof Element &&
+      thirdSource.contains(activeElement)
+    );
+  });
+
+  const afterLoad = await page.evaluate(() => {
+    const thirdSource = document.querySelectorAll('details.source-disclosure').item(2);
+    const activeElement = document.activeElement;
+
+    return {
+      bannerVisible: !!document.querySelector('.cookie-banner'),
+      hash: window.location.hash,
+      modalLockActive: document.body.dataset.cookieBannerOpen === 'true',
+      targetContainsFocus:
+        thirdSource instanceof Element && activeElement instanceof Element
+          ? thirdSource.contains(activeElement)
+          : false,
+      targetId: thirdSource instanceof HTMLDetailsElement ? thirdSource.id : null,
+      targetOpen: thirdSource instanceof HTMLDetailsElement ? thirdSource.open : null
+    };
+  });
+
+  ensure(afterLoad.targetId, 'Stored-consent legacy hash flow: could not resolve the third market source disclosure id.');
+  ensure(afterLoad.bannerVisible === false, 'Stored-consent legacy hash flow: cookie banner was still visible.');
+  ensure(
+    afterLoad.modalLockActive === false,
+    'Stored-consent legacy hash flow: cookie banner lock was still active.'
+  );
+  ensure(
+    afterLoad.hash === `#${afterLoad.targetId}`,
+    `Stored-consent legacy hash flow: expected canonical hash "#${afterLoad.targetId}", got "${afterLoad.hash}".`
+  );
+  ensure(afterLoad.targetOpen === true, 'Stored-consent legacy hash flow: source disclosure did not open.');
+  ensure(
+    afterLoad.targetContainsFocus,
+    'Stored-consent legacy hash flow: focus did not land inside the canonical source disclosure.'
+  );
+
+  return afterLoad.targetId;
 }
 
 async function verifyMalformedHashFlow(page) {
@@ -283,6 +400,23 @@ async function main() {
 
   await withFreshPage(browserType, baseUrl, verifyMalformedHashFlow);
   console.log(`PASS malformed hash ignored safely: ${MALFORMED_SOURCE_HASH}`);
+
+  await withFreshPage(browserType, baseUrl, verifyStableHashFlowWithStoredConsent, {
+    consent: STORED_CONSENT_VALUE
+  });
+  console.log(
+    `PASS stored ${STORED_CONSENT_VALUE} consent preserves stable source deep link: #${STABLE_SOURCE_TARGET_ID}`
+  );
+
+  const storedConsentLegacyTargetId = await withFreshPage(
+    browserType,
+    baseUrl,
+    verifyLegacyHashFlowWithStoredConsent,
+    { consent: STORED_CONSENT_VALUE }
+  );
+  console.log(
+    `PASS stored ${STORED_CONSENT_VALUE} consent preserves legacy deep link: ${LEGACY_SOURCE_HASH} -> #${storedConsentLegacyTargetId}`
+  );
 
   console.log(`Verified market source hash flows successfully against ${baseUrl}`);
 }
