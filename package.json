@@ -10,7 +10,8 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "verify:market-source-hashes": "npm_config_cache=/tmp/perfectmission-npm-cache npx -y -p playwright@1.57.0 node scripts/verify-market-source-hashes.mjs"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.10",
