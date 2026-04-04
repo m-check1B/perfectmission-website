@@ -6,6 +6,7 @@ const DEFAULT_BASE_URL = 'http://127.0.0.1:4175/';
 const DEFAULT_BROWSER = process.env.PLAYWRIGHT_BROWSER ?? 'chromium';
 const STABLE_SOURCE_TARGET_ID = 'market-source-cz_deloitte_property';
 const LEGACY_SOURCE_HASH = '#market-source-3';
+const MALFORMED_SOURCE_HASH = '#%E0%A4%A';
 const MARKET_PATH = '/markets/czech-republic/';
 
 function printUsage() {
@@ -14,8 +15,10 @@ function printUsage() {
 Runs a fresh-consent browser verification against the Czech market page and asserts:
 - the blocking cookie banner keeps focus away from the stable source hash target
 - the blocking cookie banner keeps focus away from the legacy numeric hash target
+- the blocking cookie banner keeps focus away from malformed source hashes
 - dismissing the banner opens the expected source disclosure and focuses it
 - the legacy numeric hash is canonicalized to the stable source id after dismissal
+- dismissing the banner with a malformed hash leaves focus on the main content without opening a source
 
 Examples:
   npm run verify:market-source-hashes
@@ -193,6 +196,71 @@ async function verifyLegacyHashFlow(page) {
   return expectedTargetId;
 }
 
+async function verifyMalformedHashFlow(page) {
+  await page.goto(`${MARKET_PATH}${MALFORMED_SOURCE_HASH}`, { waitUntil: 'load' });
+  await page.waitForFunction(() => !!document.querySelector('.cookie-banner'));
+
+  const beforeDismiss = await page.evaluate(() => {
+    const activeElement = document.activeElement;
+
+    return {
+      activeInBanner:
+        activeElement instanceof Element ? !!activeElement.closest('.cookie-banner') : false,
+      bannerVisible: !!document.querySelector('.cookie-banner'),
+      hash: window.location.hash,
+      modalLockActive: document.body.dataset.cookieBannerOpen === 'true',
+      openDisclosureCount: document.querySelectorAll('details.source-disclosure[open]').length
+    };
+  });
+
+  ensure(beforeDismiss.bannerVisible, 'Malformed hash flow: cookie banner was not visible on first load.');
+  ensure(beforeDismiss.modalLockActive, 'Malformed hash flow: cookie banner did not lock the page shell.');
+  ensure(beforeDismiss.activeInBanner, 'Malformed hash flow: initial focus escaped the cookie banner.');
+  ensure(
+    beforeDismiss.hash === MALFORMED_SOURCE_HASH,
+    `Malformed hash flow: expected initial hash "${MALFORMED_SOURCE_HASH}", got "${beforeDismiss.hash}".`
+  );
+  ensure(
+    beforeDismiss.openDisclosureCount === 0,
+    'Malformed hash flow: a source disclosure opened before consent dismissal.'
+  );
+
+  await page.getByRole('button', { name: 'Essential only' }).click();
+  await page.waitForFunction(() => !document.querySelector('.cookie-banner'));
+
+  const afterDismiss = await page.evaluate(() => {
+    const activeElement = document.activeElement;
+    const mainContent = document.getElementById('main-content');
+    const activeDisclosure = activeElement instanceof Element ? activeElement.closest('details.source-disclosure') : null;
+
+    return {
+      activeDisclosureId: activeDisclosure instanceof HTMLDetailsElement ? activeDisclosure.id : null,
+      hash: window.location.hash,
+      mainContentFocused: activeElement === mainContent,
+      modalLockActive: document.body.dataset.cookieBannerOpen === 'true',
+      openDisclosureCount: document.querySelectorAll('details.source-disclosure[open]').length
+    };
+  });
+
+  ensure(
+    afterDismiss.hash === MALFORMED_SOURCE_HASH,
+    `Malformed hash flow: expected malformed hash to remain "${MALFORMED_SOURCE_HASH}", got "${afterDismiss.hash}".`
+  );
+  ensure(afterDismiss.modalLockActive === false, 'Malformed hash flow: cookie banner lock remained active after dismissal.');
+  ensure(
+    afterDismiss.openDisclosureCount === 0,
+    'Malformed hash flow: a source disclosure opened after consent dismissal.'
+  );
+  ensure(
+    afterDismiss.activeDisclosureId === null,
+    `Malformed hash flow: focus landed inside source disclosure "${afterDismiss.activeDisclosureId}".`
+  );
+  ensure(
+    afterDismiss.mainContentFocused,
+    'Malformed hash flow: focus did not return to the main content after dismissing the banner.'
+  );
+}
+
 async function main() {
   const firstArgument = process.argv[2];
 
@@ -212,6 +280,9 @@ async function main() {
   console.log(
     `PASS legacy hash deferred and canonicalized correctly: ${LEGACY_SOURCE_HASH} -> #${expectedLegacyTargetId}`
   );
+
+  await withFreshPage(browserType, baseUrl, verifyMalformedHashFlow);
+  console.log(`PASS malformed hash ignored safely: ${MALFORMED_SOURCE_HASH}`);
 
   console.log(`Verified market source hash flows successfully against ${baseUrl}`);
 }
