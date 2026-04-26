@@ -9,7 +9,7 @@ description: Learned Kraliki procedure for perfectmission-website: sveltekit web
 
 - Project: `perfectmission-website`
 - Trigger: task focus matches `Build SvelteKit website for Perfect Mission — AI-driven real estate consultancy (steering/active/2026-03-27-sveltekit-website.md)`
-- Evidence: `52` successful session(s); latest `2026-03-31T16:32:37Z`
+- Evidence: `124` successful session(s); latest `2026-04-04T06:49:52Z`
 - Steering source: `steering/active/2026-03-27-sveltekit-website.md`
 
 ## Proven Procedure
@@ -22,36 +22,35 @@ description: Learned Kraliki procedure for perfectmission-website: sveltekit web
 
 ## Files Usually Touched
 
-- `src/lib/components/Header.svelte`
-- `src/lib/components/MarketCard.svelte`
-- `src/routes/+page.svelte`
+- `scripts/verify-market-source-hashes.mjs`
+- `package.json`
 
 ## Representative Commands
 
-- `./perfectmission-website-autodevelopment/automation/status.sh`
 - `git status --short`
-- `sed -n '1,220p' perfectmission-website-autodevelopment/skills/learned/sveltekit-website/SKILL.md`
-- `sed -n '1,260p' src/lib/components/Header.svelte`
-- `sed -n '1,260p' src/lib/components/MarketCard.svelte`
-- `sed -n '1,360p' src/routes/+page.svelte`
-- `sed -n '260,560p' src/lib/components/Header.svelte`
-- `sed -n '360,470p' src/routes/+page.svelte`
+- `./perfectmission-website-autodevelopment/automation/status.sh`
+- `npm run preview -- --host 127.0.0.1 --port 4175`
+- `temp-cache Playwright probes for Chromium, WebKit, and Firefox`
+- `npm run verify:market-source-hashes -- --help`
+- `node --experimental-strip-types --test src/lib/cookie-consent-state.test.ts src/lib/market-source-anchors.test.ts`
+- `npm run check`
+- `attempted `git add -- package.json scripts/verify-market-source-hashes.mjs && git commit -m "chore: add market source hash verifier"`
 
 ## Verification Pattern
 
-- npm run check` passed with 0 errors and 0 warnings.
-- npm run build` passed and `@sveltejs/adapter-static` wrote the site to `build/`.
-- Commit created: `9bad035` (`fix: expose mobile menu backdrop control`).
+- npm run verify:market-source-hashes -- --help` passed and now documents the stored-consent coverage. The product diff is isolated to the verifier script in website scope. A real browser pass did not complete here because the MCP browser navigation was cancelled, and commit is still blocked in this sandbox with `.git/index.lock: Operation not permitted`.
 - automated-test: not-configured
 - visual-test: not-configured
-- npm run check` passed with 0 errors and 0 warnings. `npm run build` passed and `@sveltejs/adapter-static` wrote the site to `build/`. Commit created: `1765227` (`fix: hide decorative icons from screen readers`).
+- npm run verify:market-source-hashes -- --help` passed.
+- Targeted tests passed: `8/8`.
+- npm run check` passed with `0 errors` and `0 warnings`.
 
 ## Evidence
 
-- Latest commit: `9bad035901691d028f9cade3d3d48df2e5ee5720`
-- Latest session: `20260331T183001.md`
-- Next-step heuristic: run a real browser/Lighthouse pass against the local preview or deployed site outside this sandbox, then fix the next measured rendered/runtime issue. The highest-value unresolved gate is still true browser proof rather than another source-only accessibility guess.
+- Latest commit: `9cd7e2b9542d6607e1aba0858af1cd78a34887e7`
+- Latest session: `20260404T080002.md`
+- Next-step heuristic: on a host shell outside this sandbox, run `npm run dev -- --host 127.0.0.1 --port 4175` and then `npm run verify:market-source-hashes -- http://127.0.0.1:4175/` to exercise fresh-consent, malformed-hash, and stored-consent stable/legacy flows in a real browser.
 
 ## Recent Successful Summary
 
-Chosen task: fix the mobile navigation backdrop so it is not an interactive control hidden from assistive technology. Files changed: src/lib/components/Header.svelte
+1. Chosen task: extend the host-side Czech market hash verifier so it also proves the post-consent re-entry case, not just first-load banner deferral. scripts/verify-market-source-hashes.mjs now seeds stored consent into a fresh Playwright context, and scripts/verify-market-source-hashes.mjs and scripts/verify-market-source-hashes.mjs verify that stable and legacy deep links open immediately without showing the cookie banner when consent is already stored. 2. Files changed: scripts/verify-market-source-hashes.mjs. The pre-existing learned-skill diff in `perfectmission-website-autodevelopment/.../SKILL.md` was left untouched.
