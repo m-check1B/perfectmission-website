@@ -1,7 +1,7 @@
 import { browser } from '$app/environment';
 
-const POSTHOG_TOKEN = 'phc_7046iNH3W5qKp0CDbMYpPpwgi71Z7HsMo7GBkKRFbEg';
-const POSTHOG_HOST = 'https://eu.i.posthog.com';
+const POSTHOG_TOKEN = import.meta.env.VITE_POSTHOG_API_KEY || 'phc_7046iNH3W5qKp0CDbMYpPpwgi71Z7HsMo7GBkKRFbEg';
+const POSTHOG_HOST = import.meta.env.VITE_POSTHOG_HOST || 'https://eu.i.posthog.com';
 const CONSENT_KEY = 'perfectmission_cookie_consent';
 
 let initialized = false;
@@ -14,6 +14,12 @@ function readConsent(): string | null {
   } catch {
     return sessionConsent;
   }
+}
+
+function privacySignalBlocksAnalytics(): boolean {
+  if (!browser) return true;
+  const navigatorWithGpc = navigator as Navigator & { globalPrivacyControl?: boolean };
+  return navigatorWithGpc.globalPrivacyControl === true || navigator.doNotTrack === '1';
 }
 
 export function hasConsent(): boolean {
@@ -38,7 +44,7 @@ export function needsConsentBanner(): boolean {
 
 export async function initPostHog(site: string): Promise<void> {
   if (!browser || initialized || initPromise) return initPromise ?? Promise.resolve();
-  if (!hasConsent()) return;
+  if (!hasConsent() || privacySignalBlocksAnalytics()) return;
 
   initPromise = import('posthog-js')
     .then(({ default: posthog }) => {
@@ -87,4 +93,10 @@ export async function initPostHog(site: string): Promise<void> {
     });
 
   return initPromise;
+}
+
+export function captureEvent(event: string, properties?: Record<string, unknown>): boolean {
+  if (!browser || !hasConsent() || !window.posthog) return false;
+  window.posthog.capture(event, properties);
+  return true;
 }
